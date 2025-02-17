@@ -40,9 +40,11 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_localizations:
     sdk: flutter
-  intl:
-  intl_translation: any
-
+  shared_preferences: ^2.5.1
+  easy_localization: ^3.0.7+1
+  dio: ^5.8.0+1
+  curved_navigation_bar: ^1.0.6
+#  flutter_native_splash: ^2.4.4
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -69,6 +71,7 @@ flutter:
   assets:
     - assets/images/
     - assets/Svg/
+    - assets/translations/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
