@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:healthy_sync/core/cubit/auth_cubit/login_cubit/login_state.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
+import 'package:healthy_sync/feature/authentication/cubit/login_cubit/login_state.dart';
 import 'package:healthy_sync/feature/layout/presentation/screens/layout/layout_screen.dart';
 
 class LoginCubit extends Cubit<LoginState> {
