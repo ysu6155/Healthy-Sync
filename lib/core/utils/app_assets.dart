@@ -1,16 +1,17 @@
-
-sealed  class AppAssets {
-  static String homeIcon = "assets/Svg/home.svg";
-  static String remind = "assets/Svg/remind.svg";
-  static String forgotPassword = "assets/images/forgotpassword.png";
-  static String image1 = "assets/images/image1.png";
-  static String image2 = "assets/images/image2.png";
-  static String image3 = "assets/images/image3.png";
-  static String image4 = "assets/images/image4.png";
-  static String verification = "assets/images/Verification.png";
+sealed class AppAssets {
+  static String iconPath = "assets/icons";
+  static String imagePath = "assets/images";
+  static String homeIcon = "$iconPath/home.svg";
+  static String remind = "$iconPath/remind.svg";
+  static String forgotPassword = "$imagePath/forgotpassword.png";
+  static String image1 = "$imagePath/image1.png";
+  static String image2 = "$imagePath/image2.png";
+  static String image3 = "$imagePath/image3.png";
+  static String image4 = "$imagePath/image4.png";
+  static String verification = "$imagePath/Verification.png";
   static String translationPath = "assets/translations";
-  static String testIcon= "assets/Svg/tistIcon.svg";
-  static String chatBot = "assets/Svg/chatbot.svg";
-  static String radiologyCenters = "assets/Svg/RadiologyCenters.svg";
-  static String medicationTime = "assets/images/pills-pill-svgrepo-com.png";
+  static String testIcon = "$iconPath/tistIcon.svg";
+  static String chatBot = "$iconPath/chatbot.svg";
+  static String radiologyCenters = "$iconPath/RadiologyCenters.svg";
+  static String medicationTime = "$imagePath/pills-pill-svgrepo-com.png";
 }

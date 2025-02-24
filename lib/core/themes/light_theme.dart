@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/view_model/utils/app_color.dart';
+import 'package:healthy_sync/core/utils/app_color.dart';
+import 'package:pinput/pinput.dart';
 
 ThemeData themeLight = ThemeData(
   brightness: Brightness.light,
@@ -11,8 +12,8 @@ ThemeData themeLight = ThemeData(
 
 TextStyle textButtonStyle = TextStyle(
   color: AppColor.white,
-  fontSize: 16.sp,
-  fontWeight: FontWeight.w500,
+  fontSize: 20.sp,
+  fontWeight: FontWeight.bold,
 );
 
 InputDecorationTheme inputDecorationTheme(Color fillColor, Color borderColor) {
@@ -34,3 +35,16 @@ OutlineInputBorder borderStyle(Color color) {
     borderRadius: BorderRadius.circular(16.r),
   );
 }
+
+final defaultPinTheme = PinTheme(
+  width: 60,
+  height: 60,
+  textStyle: const TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  ),
+  decoration: BoxDecoration(
+    border: Border.all(color: AppColor.main, width: 2),
+    borderRadius: BorderRadius.circular(10),
+  ),
+);

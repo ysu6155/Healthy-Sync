@@ -2,13 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/feature/authentication/presentation/screens/signup/widgets/custom_dropdown.dart';
-import 'package:healthy_sync/view/Widgets/custom_text_field.dart';
+import 'package:healthy_sync/core/widgets/custom_button.dart';
+import 'package:healthy_sync/core/widgets/custom_text_field.dart';
+import 'package:healthy_sync/feature/authentication/presentation/cubit/signup_cubit/signup_cubit.dart';
+import 'package:healthy_sync/feature/authentication/presentation/cubit/signup_cubit/signup_state.dart';
+import 'package:healthy_sync/feature/authentication/presentation/widgets/custom_dropdown.dart';
 import 'package:healthy_sync/feature/authentication/presentation/screens/login/login_screen.dart';
-import 'package:healthy_sync/view/widgets/custom_button.dart';
 import 'package:healthy_sync/core/Themes/light_theme.dart';
-import 'package:healthy_sync/core/cubit/auth_cubit/signup_cubit/signup_cubit.dart';
-import 'package:healthy_sync/core/cubit/auth_cubit/signup_cubit/signup_state.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
@@ -212,13 +212,23 @@ class FormSignUp extends StatelessWidget {
                 if (state is SignUpLoading) {
                   return CircularProgressIndicator();
                 } else if (state is SignUpError) {
-                  return Text(
-                    "state.error",
-                    style: TextStyle(
-                      color: AppColor.red,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
+                  return Column(
+                    children: [
+                      Text(
+                        state.error,
+                        style: TextStyle(
+                          color: AppColor.red,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      16.H,
+                      CustomButton(
+                        name: Text(LocaleKeys.signUp.tr(),
+                            style: textButtonStyle),
+                        onTap: () => signUpCubit.signUp(context),
+                      ),
+                    ],
                   );
                 } else {
                   return CustomButton(
@@ -238,7 +248,10 @@ class FormSignUp extends StatelessWidget {
                 child: Text(
                   LocaleKeys.login.tr(),
                   style: textButtonStyle.copyWith(
-                      color: AppColor.main, fontWeight: FontWeight.w500),
+                    color: AppColor.main,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12.sp,
+                  ),
                 ),
               ),
             ],

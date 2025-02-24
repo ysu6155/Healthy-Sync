@@ -32,5 +32,4 @@ sealed class AppColor {
   static Color greenShade800 = Color(0xff2E7D32);
   static Color orange = Color(0xffFF9800);
   static Color transparent = Colors.transparent;
-
 }

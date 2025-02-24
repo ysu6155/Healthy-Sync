@@ -31,11 +31,16 @@ class TimerWidgetState extends State<TimerWidget> {
       if (_remainingSeconds == 0) {
         _timer.cancel();
         setState(() {
-          timerText = TextButton( onPressed: ()
-          {
-            _remainingSeconds = 60;
-            _startTimer();
-          }, child: Text(LocaleKeys.resend.tr(),style: TextStyle(color: AppColor.main),),);
+          timerText = TextButton(
+            onPressed: () {
+              _remainingSeconds = 60;
+              _startTimer();
+            },
+            child: Text(
+              LocaleKeys.resend.tr(),
+              style: TextStyle(color: AppColor.main),
+            ),
+          );
         });
       }
     });
@@ -51,7 +56,6 @@ class TimerWidgetState extends State<TimerWidget> {
   Widget build(BuildContext context) {
     return Center(
       child: timerText,
-
     );
   }
 }

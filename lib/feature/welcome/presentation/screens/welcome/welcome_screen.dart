@@ -1,16 +1,17 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/view/Screens/Welcome/Widgets/build_pge_welcome.dart';
+import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/feature/authentication/presentation/screens/login/login_screen.dart';
-import 'package:healthy_sync/view/widgets/custom_button.dart';
 import 'package:healthy_sync/core/Themes/light_theme.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_assets.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
-
-import 'Widgets/build_dot.dart';
+import 'package:healthy_sync/feature/authentication/presentation/screens/signup/signup_screen.dart';
+import 'package:healthy_sync/feature/welcome/presentation/widgets/build_dot.dart';
+import 'package:healthy_sync/feature/welcome/presentation/widgets/build_pge_welcome.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -27,20 +28,16 @@ class WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Stack(
+        top: false,
+        child: Column(
           children: [
-            PageView(
-              controller: _pageController,
-              onPageChanged: (index) {
-                setState(() {
-                  _currentPage = index;
-                });
-              },
-              children: [
+            CarouselSlider(
+              items: [
                 buildPage(
                   image: AppAssets.image1,
                   title: LocaleKeys.welcomeToHealthySync.tr(),
-                  description: LocaleKeys.Empoweringyoutoliveahealthierlife.tr(),
+                  description:
+                      LocaleKeys.Empoweringyoutoliveahealthierlife.tr(),
                 ),
                 buildPage(
                   image: AppAssets.image2,
@@ -53,67 +50,61 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                   description: LocaleKeys.readyToStartYourSync.tr(),
                 ),
               ],
+              options: CarouselOptions(
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _currentPage = index;
+                  });
+                },
+                height: 0.7.sh,
+                viewportFraction: 1,
+                initialPage: 0,
+                enableInfiniteScroll: false,
+                reverse: false,
+                autoPlay: false,
+                autoPlayInterval: Duration(seconds: 3),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enlargeCenterPage: false,
+                scrollDirection: Axis.horizontal,
+              ),
             ),
-            Positioned(
-              bottom: 20.sp,
-              left: 0.sp,
-              right: 0.sp,
-              child: Column(
-                children: [
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    ...List.generate(
-                      3,
-                      (index) =>
-                          buildDot(index: index, currentPage: _currentPage),
+            Column(
+              children: [
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  ...List.generate(
+                    3,
+                    (index) =>
+                        buildDot(index: index, currentPage: _currentPage),
+                  ),
+                ]),
+                15.H,
+                Column(
+                  children: [
+                    CustomButton(
+                      name: Text(
+                        LocaleKeys.login.tr(),
+                        style: textButtonStyle,
+                      ),
+                      onTap: () {
+                        context.push(LoginScreen());
+                      },
                     ),
-                  ]),
-                  15.H,
-                  if (_currentPage == 2)
-                    Column(
-                      children: [
-                        CustomButton(
-                            name: Text(
-                              LocaleKeys.startNow.tr(),
-                              style: textButtonStyle,
-                            ),
-                            onTap: () {
-                             context.pushReplacement(LoginScreen());
-                            }),
-                       60.H,
-                      ],
-                    )
-                  else
-                    Column(
-                      children: [
-                        CustomButton(
-                          name: Text(
-                            LocaleKeys.next.tr(),
-                            style: textButtonStyle,
-                          ),
-                          onTap: () {
-                            _pageController.nextPage(
-                              duration: Duration(milliseconds: 300),
-                              curve: Curves.easeIn,
-                            );
-                          },
-                        ),
-                        16.H,
-                        CustomButton(
-                          name: Text(
-                            LocaleKeys.skip.tr(),
-                            style: textButtonStyle,
-                          ),
-                          backgroundColor: AppColor.primaryGradientLight,
-                          textColor: AppColor.black,
-                          onTap: () {
-                            _pageController.jumpToPage(2);
-                          },
-                        ),
-                      ],
+                    16.H,
+                    CustomButton(
+                      border: Border.all(color: AppColor.black, width: 3.sp),
+                      name:
+                          Text(LocaleKeys.signUp.tr(), style: textButtonStyle),
+                      backgroundColor: AppColor.main,
+                      textColor: AppColor.black,
+                      onTap: () {
+                        context.push(SignUpScreen());
+                      },
                     ),
-                ],
-              ).paddingSymmetric(horizontal: 16.w),
-            ),
+                  ],
+                ),
+              ],
+            ).paddingSymmetric(horizontal: 16.w, vertical: 16.sp),
           ],
         ),
       ),

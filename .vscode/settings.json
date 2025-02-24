@@ -1,3 +1,5 @@
 {
-    "cmake.sourceDirectory": "Y:/flutter/healthy_sync/linux"
+    "cmake.sourceDirectory": "Y:/flutter/healthy_sync/linux",
+    "editor.bracketPairColorization.enabled": false,
+    "editor.guides.bracketPairs": true
 }

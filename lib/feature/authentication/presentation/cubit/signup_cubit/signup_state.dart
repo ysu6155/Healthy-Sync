@@ -23,16 +23,17 @@ class GenderSelected extends SignUpState {
   final String? selectedGender;
   GenderSelected(this.selectedGender);
 }
+
 class CitySelected extends SignUpState {
   final String? selectedCity;
   CitySelected(this.selectedCity);
 }
 
-
 class TermsAgreementToggled extends SignUpState {
   final bool isAgreed;
   TermsAgreementToggled(this.isAgreed);
 }
+
 class AccountTypeSelected extends SignUpState {
   final String? selectedAccountType;
   AccountTypeSelected(this.selectedAccountType);

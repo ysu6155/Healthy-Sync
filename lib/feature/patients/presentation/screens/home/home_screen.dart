@@ -1,15 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/view/Screens/patients/home/Widgets/doctor_visit_card.dart';
-import 'package:healthy_sync/view/Screens/patients/home/Widgets/specializations.dart';
-import 'package:healthy_sync/view/screens/patients/specializations_all/specializations_screen.dart';
+import 'package:healthy_sync/feature/patients/presentation/screens/specializations_all/specializations_screen.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_assets.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
-
-import 'Widgets/doctors_section.dart';
+import 'package:healthy_sync/feature/patients/presentation/widgets/doctor_visit_card.dart';
+import 'package:healthy_sync/feature/patients/presentation/widgets/doctors_section.dart';
+import 'package:healthy_sync/feature/patients/presentation/widgets/specializations.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,7 +16,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     body: ListView(
+      body: ListView(
         children: [
           Row(
             children: [
@@ -30,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                 ).image,
               ),
-             16.W,
+              16.W,
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,26 +57,26 @@ class HomeScreen extends StatelessWidget {
                 radius: 20.r,
                 backgroundColor: AppColor.secondary,
                 child: Icon(
-                    Icons.notifications,
-                    color: AppColor.white,
-                    size: 20.sp,
-                  
+                  Icons.notifications,
+                  color: AppColor.white,
+                  size: 20.sp,
                 ),
-              ).withTapEffect(onTap: () {
-                //تغير اللغه موقتنا
+              ).withTapEffect(
+                onTap: () {
+                  //تغير اللغه موقتنا
                   print(context.locale.toString());
                   if (context.locale.toString() == 'ar') {
                     context.setLocale(Locale('en'));
                   } else {
                     context.setLocale(Locale('ar'));
                   }
-
-               },)
+                },
+              )
             ],
           ).paddingAll(16.sp),
           16.H,
           DoctorVisitCard().paddingSymmetric(horizontal: 16.w),
-           16.H,
+          16.H,
           Row(
             children: [
               Expanded(
@@ -92,8 +91,7 @@ class HomeScreen extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return SpecializationsAll();
                   }));
                 },

@@ -86,7 +86,7 @@ class DoctorVisitScreen extends StatelessWidget {
           radius: 30.r,
           backgroundImage: AssetImage(AppAssets.image1),
         ),
-      12.W,
+        12.W,
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -108,7 +108,7 @@ class DoctorVisitScreen extends StatelessWidget {
     return Column(
       children: [
         _buildInfoRow(Icons.access_time, '${LocaleKeys.time.tr()}: ١٢:٠٠ م'),
-       8.H,
+        8.H,
         _buildInfoRow(Icons.calendar_today, 'Date: ١٢/١٢/٢٠٢١'),
       ],
     );
@@ -126,7 +126,8 @@ class DoctorVisitScreen extends StatelessWidget {
       children: [
         _buildInfoRow(Icons.description, 'Diagnosis: Chest Pain & High BP'),
         8.H,
-        _buildInfoRow(Icons.medical_services, 'Prescription: Aspirin 100mg Daily'),
+        _buildInfoRow(
+            Icons.medical_services, 'Prescription: Aspirin 100mg Daily'),
         8.H,
         _buildInfoRow(Icons.analytics, 'Required Tests: ECG, Blood Test'),
       ],
@@ -142,11 +143,12 @@ class DoctorVisitScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoRow(IconData icon, String text, {Color? iconColor, Color? textColor}) {
+  Widget _buildInfoRow(IconData icon, String text,
+      {Color? iconColor, Color? textColor}) {
     return Row(
       children: [
         Icon(icon, color: iconColor ?? AppColor.main, size: 22.sp),
-      8.W,
+        8.W,
         Expanded(
           child: Text(
             text,

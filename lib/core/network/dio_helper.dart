@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:healthy_sync/view_model/network/end_points.dart';
+import 'package:healthy_sync/core/network/end_points.dart';
 
 sealed class DioHelper {
   static Dio dio = Dio(
@@ -13,14 +13,14 @@ sealed class DioHelper {
   );
 
   static Future<Response> post({
-    required String path,
+    required String endPoints,
     Object? body,
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   }) async {
     try {
       return await dio.post(
-        path,
+        endPoints,
         data: body,
         queryParameters: params,
         options: Options(
@@ -33,14 +33,14 @@ sealed class DioHelper {
   }
 
   static Future<Response> get({
-    required String path,
+    required String endPoints,
     Object? body,
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   }) async {
     try {
       return await dio.get(
-        path,
+        endPoints,
         data: body,
         queryParameters: params,
         options: Options(
@@ -53,14 +53,14 @@ sealed class DioHelper {
   }
 
   static Future<Response> patch({
-    required String path,
+    required String endPoints,
     Object? body,
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   }) async {
     try {
       return await dio.patch(
-        path,
+        endPoints,
         data: body,
         queryParameters: params,
         options: Options(
@@ -73,14 +73,14 @@ sealed class DioHelper {
   }
 
   static Future<Response> delete({
-    required String path,
+    required String endPoints,
     Object? body,
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   }) async {
     try {
       return await dio.delete(
-        path,
+        endPoints,
         data: body,
         queryParameters: params,
         options: Options(
@@ -93,14 +93,14 @@ sealed class DioHelper {
   }
 
   static Future<Response> put({
-    required String path,
+    required String endPoints,
     Object? body,
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   }) async {
     try {
       return await dio.put(
-        path,
+        endPoints,
         data: body,
         queryParameters: params,
         options: Options(

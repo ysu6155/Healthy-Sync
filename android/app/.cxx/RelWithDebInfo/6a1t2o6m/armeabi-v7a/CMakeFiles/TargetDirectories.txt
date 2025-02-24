@@ -1,0 +1,2 @@
+Y:/flutter/Healthy_Sync/android/app/.cxx/RelWithDebInfo/6a1t2o6m/armeabi-v7a/CMakeFiles/edit_cache.dir
+Y:/flutter/Healthy_Sync/android/app/.cxx/RelWithDebInfo/6a1t2o6m/armeabi-v7a/CMakeFiles/rebuild_cache.dir

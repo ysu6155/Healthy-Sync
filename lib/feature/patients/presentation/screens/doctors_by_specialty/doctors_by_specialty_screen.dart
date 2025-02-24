@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/view/screens/patients/doctor_details/doctor_details.dart';
+import 'package:healthy_sync/feature/patients/presentation/screens/doctor_details/doctor_details.dart';
 import 'package:healthy_sync/core/Models/data_doctors.dart';
 import 'package:healthy_sync/core/Themes/light_theme.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
@@ -104,7 +104,9 @@ class _DoctorsBySpecialtyScreenState extends State<DoctorsBySpecialtyScreen> {
                       ),
                     ],
                   ),
-                ).withTapEffect(onTap: (){context.push(DoctorDetails(doctor: doctor));});
+                ).withTapEffect(onTap: () {
+                  context.push(DoctorDetails(doctor: doctor));
+                });
               },
             ),
     );

@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/view/screens/patients/doctors_by_specialty/doctors_by_specialty_screen.dart';
+import 'package:healthy_sync/feature/patients/presentation/screens/doctors_by_specialty/doctors_by_specialty_screen.dart';
 import 'package:healthy_sync/core/Models/data_specializations.dart';
 import 'package:healthy_sync/core/Themes/light_theme.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
@@ -26,7 +26,7 @@ class SpecializationsAll extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         16.H,
+          16.H,
           Expanded(
             child: GridView.builder(
               itemCount: specializations.length, // عدد التخصصات
@@ -39,8 +39,9 @@ class SpecializationsAll extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                   context.push(DoctorsBySpecialtyScreen(
-                       selectedSpecialty: specializations[index]['name'] as String,
+                    context.push(DoctorsBySpecialtyScreen(
+                      selectedSpecialty:
+                          specializations[index]['name'] as String,
                     ));
                   },
                   child: Container(
@@ -56,7 +57,7 @@ class SpecializationsAll extends StatelessWidget {
                           color: AppColor.white,
                           size: 40.sp,
                         ),
-                       8.H,
+                        8.H,
                         Text(
                           specializations[index]['name'] as String,
                           style: TextStyle(

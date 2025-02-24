@@ -21,7 +21,7 @@ class DoctorVisitCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildDoctorInfo(),
-           Divider(),
+          Divider(),
           8.H,
           _buildTimeAndDate(context),
           8.H,
@@ -34,7 +34,8 @@ class DoctorVisitCard extends StatelessWidget {
       ),
     ).withTapEffect(
       onTap: () {
-     context.push(DoctorVisitScreen());},
+        context.push(DoctorVisitScreen());
+      },
       splashColor: AppColor.main,
       highlightColor: AppColor.secondary,
     );
@@ -71,7 +72,7 @@ class DoctorVisitCard extends StatelessWidget {
       children: [
         Row(
           children: [
-             Icon(Icons.access_time, color: AppColor.white),
+            Icon(Icons.access_time, color: AppColor.white),
             4.W,
             Text(
               '${LocaleKeys.time.tr()}: ١٢:٠٠ م',
@@ -84,7 +85,7 @@ class DoctorVisitCard extends StatelessWidget {
         ),
         Row(
           children: [
-             Icon(Icons.calendar_today, color: AppColor.white),
+            Icon(Icons.calendar_today, color: AppColor.white),
             4.W,
             Text(
               'Date: ١٢/١٢/٢٠٢١',
@@ -102,7 +103,7 @@ class DoctorVisitCard extends StatelessWidget {
   Widget _buildLocation() {
     return Row(
       children: [
-         Icon(Icons.location_on, color: AppColor.white),
+        Icon(Icons.location_on, color: AppColor.white),
         8.W,
         Expanded(
           child: Text(
@@ -121,7 +122,7 @@ class DoctorVisitCard extends StatelessWidget {
   Widget _buildDetails() {
     return Row(
       children: [
-         Icon(Icons.description, color: AppColor.white),
+        Icon(Icons.description, color: AppColor.white),
         8.W,
         Expanded(
           child: Text(
@@ -139,7 +140,7 @@ class DoctorVisitCard extends StatelessWidget {
   Widget _buildHealthStatus(BuildContext context) {
     return Row(
       children: [
-         Icon(Icons.health_and_safety, color: AppColor.green),
+        Icon(Icons.health_and_safety, color: AppColor.green),
         8.W,
         Text(
           LocaleKeys.stable.tr(),

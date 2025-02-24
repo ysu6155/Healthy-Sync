@@ -68,7 +68,6 @@ class TreatmentSchedulePageState extends State<TreatmentSchedulePage> {
     );
   }
 
-
   List<Treatment> treatments = [
     Treatment(
       time: TimeOfDay(hour: 9, minute: 0),
@@ -113,7 +112,6 @@ class TreatmentSchedulePageState extends State<TreatmentSchedulePage> {
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
-
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: treatments.length,
                 itemBuilder: (context, index) =>
@@ -126,11 +124,10 @@ class TreatmentSchedulePageState extends State<TreatmentSchedulePage> {
     );
   }
 
-
   Widget buildCalendarHeader() {
     return Card(
       child: Padding(
-        padding:  EdgeInsets.all(16.0.sp),
+        padding: EdgeInsets.all(16.0.sp),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -258,7 +255,7 @@ class TreatmentSchedulePageState extends State<TreatmentSchedulePage> {
   Widget buildColorGuide() {
     return Card(
       child: Padding(
-        padding:  EdgeInsets.all(16.0.sp),
+        padding: EdgeInsets.all(16.0.sp),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -279,7 +276,7 @@ class TreatmentSchedulePageState extends State<TreatmentSchedulePage> {
           radius: 10.r,
           backgroundColor: color,
         ),
-      8.H,
+        8.H,
         Text(label, style: TextStyle(fontSize: 12.sp, color: Colors.black)),
       ],
     );
