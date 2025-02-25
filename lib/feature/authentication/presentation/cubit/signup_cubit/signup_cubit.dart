@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:healthy_sync/core/service/local/shared_keys.dart';
+import 'package:healthy_sync/core/service/local/shared_prefs_helper.dart';
 import 'package:healthy_sync/feature/authentication/data/models/request/register_params.dart';
 import 'package:healthy_sync/feature/authentication/data/repo/auth_repo.dart';
 import 'package:healthy_sync/feature/layout/presentation/screens/layout/layout_screen.dart';
@@ -86,19 +88,28 @@ class SignUpCubit extends Cubit<SignUpState> {
    // });
  // }
 
-  register(RegisterParams params) {
-    if (!formKey.currentState!.validate()) return;
-    if (!isAgreedToTerms) {
-      emit(SignUpError("يجب الموافقة على الشروط والأحكام"));
-      return;
-    }
-    emit(SignUpLoading());
-    AuthRepo.register(params).then((value) {
-      if (value != null) {
-        emit(SignUpSuccess());
-      } else {
-        emit(SignUpError("Failed to register"));
-      }
-    });
+  Future<void> register(RegisterParams params) async {
+  if (!formKey.currentState!.validate()) return;
+
+  if (!isAgreedToTerms) {
+    emit(SignUpError("ocaleKeys.agreeToTermsError.tr()")); // استخدم الترجمة
+    return;
   }
+
+  emit(SignUpLoading());
+
+  try {
+    final result = await AuthRepo.register(params); // استخدام async/await
+
+    if (result != null  ) { 
+      SharedHelper.sava(SharedKeys.kToken, result.data?.token);
+      emit(SignUpSuccess());
+    } else {
+      emit(SignUpError("LocaleKeys.signUpFailed.tr()")); // رسالة خطأ مترجمة
+    }
+  } catch (e) {
+    emit(SignUpError(e.toString())); // خطأ عام
+  }
+}
+
 }

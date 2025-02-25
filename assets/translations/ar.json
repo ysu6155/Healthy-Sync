@@ -112,5 +112,7 @@
   "admin": "مسؤول",
   "accountType": "نوع الحساب",
   "accountTypeIsRequired":"النوع مطلوب",
-  "cityIsRequired": "المدينة مطلوبة"
+  "cityIsRequired": "المدينة مطلوبة",
+  "languageNaw":"العربية",
+   "editProfile" : "تعديل الملف الشخصي"
 }

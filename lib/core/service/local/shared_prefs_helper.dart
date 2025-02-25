@@ -23,7 +23,7 @@ sealed class SharedHelper {
     }
   }
 
-  static get(String key) {
+  static get(String key)  {
     return prefs?.get(key);
   }
 

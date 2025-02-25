@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const signUp = 'signUp';
   static const pleaseSignUpToGetStarted = 'pleaseSignUpToGetStarted';
   static const name = 'name';
@@ -24,8 +24,7 @@ abstract class LocaleKeys {
   static const seeAll = 'seeAll';
   static const home = 'home';
   static const welcomeToHealthySync = 'welcomeToHealthySync';
-  static const Empoweringyoutoliveahealthierlife =
-      'Empoweringyoutoliveahealthierlife';
+  static const Empoweringyoutoliveahealthierlife = 'Empoweringyoutoliveahealthierlife';
   static const Empowering = 'Empowering';
   static const next = 'next';
   static const easyToUse = 'easyToUse';
@@ -66,8 +65,7 @@ abstract class LocaleKeys {
   static const specializations = 'specializations';
   static const specialization = 'specialization';
   static const AboutDoctor = 'AboutDoctor';
-  static const NoAdditionalInformationProvided =
-      'NoAdditionalInformationProvided';
+  static const NoAdditionalInformationProvided = 'NoAdditionalInformationProvided';
   static const callDoctor = 'callDoctor';
   static const chatWithDoctor = 'chatWithDoctor';
   static const maleGender = 'maleGender';
@@ -119,4 +117,7 @@ abstract class LocaleKeys {
   static const accountType = 'accountType';
   static const accountTypeIsRequired = 'accountTypeIsRequired';
   static const cityIsRequired = 'cityIsRequired';
+  static const languageNaw = 'languageNaw';
+  static const editProfile = 'editProfile';
+
 }

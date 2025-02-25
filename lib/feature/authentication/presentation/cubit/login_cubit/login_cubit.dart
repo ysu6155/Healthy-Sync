@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:healthy_sync/core/service/local/shared_keys.dart';
+import 'package:healthy_sync/core/service/local/shared_prefs_helper.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
 import 'package:healthy_sync/feature/authentication/data/models/request/register_params.dart';
 import 'package:healthy_sync/feature/authentication/data/repo/auth_repo.dart';
@@ -26,26 +28,31 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginRememberMeToggled(rememberMe));
   }
 
-  // void login(BuildContext context) {
-  // if (formKey.currentState!.validate()) {
-  // emit(LoginLoading());
-  // Future.delayed(Duration(seconds: 2), () {
-  // context.pushReplacement(TapBarScreen());
-  //emit(LoginSuccess()); // Simulating API Call Success
-  //});
-  // }
+  Future<void> login(RegisterParams params, BuildContext context) async {
+    if (!formKey.currentState!.validate()) return;
 
-  // }
-  login(RegisterParams params) {
-    if (formKey.currentState!.validate()) {
-      emit(LoginLoading());
-      AuthRepo.register(params).then((value) {
-        if (value != null) {
-          emit(LoginSuccess());
-        } else {
-          emit(LoginError("Failed to register"));
+    emit(LoginLoading());
+    try {
+      final response = await AuthRepo.login(params);
+
+      if (response != null ) {
+        await SharedHelper.sava(SharedKeys.kToken, response.data?.token);
+         await SharedHelper.sava(SharedKeys.name, response.data?.user?.name);
+         await SharedHelper.sava(SharedKeys.email, response.data?.user?.email);
+          await SharedHelper.sava(SharedKeys.image, response.data?.user?.image);
+        
+        emit(LoginSuccess());
+
+        if (context.mounted) {
+          context.pushAndRemoveUntil(const TapBarScreen());
         }
-      });
+      } else {
+        emit(LoginError("Invalid credentials"));
+      }
+    } catch (e, stackTrace) {
+      print("🔥 Login Error: $e");
+      print("📌 StackTrace: $stackTrace");
+      emit(LoginError("An error occurred. Please try again."));
     }
   }
 }

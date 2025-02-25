@@ -10,8 +10,8 @@ class LoginLoading extends LoginState {}
 class LoginSuccess extends LoginState {}
 
 class LoginError extends LoginState {
-  final String message;
-  LoginError(this.message);
+  final String error;
+  LoginError(this.error);
 }
 
 class LoginPasswordVisibilityToggled extends LoginState {

@@ -8,6 +8,7 @@ import 'package:healthy_sync/core/utils/extensions.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:healthy_sync/feature/authentication/presentation/widgets/form_login.dart';
 
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 

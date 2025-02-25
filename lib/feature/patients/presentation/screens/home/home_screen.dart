@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -63,8 +65,8 @@ class HomeScreen extends StatelessWidget {
                 ),
               ).withTapEffect(
                 onTap: () {
-                  //تغير اللغه موقتنا
-                  print(context.locale.toString());
+                  
+                  log(context.locale.toString());
                   if (context.locale.toString() == 'ar') {
                     context.setLocale(Locale('en'));
                   } else {

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:healthy_sync/core/service/local/shared_keys.dart';
+import 'package:healthy_sync/core/service/local/shared_prefs_helper.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/treatment_schedule/treatment_schedule_screen.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/home/home_screen.dart';
 import 'package:healthy_sync/core/utils/app_assets.dart';
@@ -22,7 +24,14 @@ class TapBarScreenState extends State<TapBarScreen> {
   final List<Widget> _pages = [
     HomeScreen(),
     TreatmentSchedulePage(),
-    Scaffold(body: Center(child: Text("ChatBot Page"))),
+    Scaffold(
+        body: Center(
+            child: IconButton(
+                onPressed: () {
+                  SharedHelper.removeKay(SharedKeys.kToken);
+
+                },
+                icon: Icon(Icons.abc_outlined,size: 100,)))),
     Scaffold(body: Center(child: Text("Test Page"))),
     ProfileScreen(),
   ];

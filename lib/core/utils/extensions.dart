@@ -116,11 +116,6 @@ extension NavigationExtensions on BuildContext {
         this, MaterialPageRoute(builder: (context) => page));
   }
 
-  /// الانتقال إلى صفحة جديدة مع مسح جميع الصفحات السابقة
-  void pushAndRemoveAll(Widget page) {
-    Navigator.pushAndRemoveUntil(
-        this, MaterialPageRoute(builder: (context) => page), (route) => false);
-  }
 
   /// الرجوع للصفحة السابقة
   void pop() {

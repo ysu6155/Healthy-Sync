@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:healthy_sync/core/Themes/light_theme.dart';
+import 'package:healthy_sync/feature/welcome/presentation/screens/splash/splash_screen.dart';
 import 'package:healthy_sync/feature/welcome/presentation/screens/welcome/welcome_screen.dart';
 
 class HealthySync extends StatelessWidget {
@@ -25,6 +26,6 @@ class HealthySync extends StatelessWidget {
               title: 'Healthy Sync',
               home: child);
         },
-        child: WelcomeScreen());
+        child: SplashScreen());
   }
 }

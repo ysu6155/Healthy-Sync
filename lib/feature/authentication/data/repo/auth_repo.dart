@@ -13,10 +13,10 @@ class AuthRepo {
    if (response.statusCode == 201) {
      return UserResponse.fromJson(response.data);
    } else {
-     throw Exception('Failed to register');
+     throw Exception('Failed to register ${response.data}');
    }
 } on Exception catch (e) {
-  throw Exception('Failed to register');
+  throw Exception(e);
 }
   }
   static Future<UserResponse> login(RegisterParams params) async {
@@ -28,10 +28,10 @@ class AuthRepo {
    if (response.statusCode == 200) {
      return UserResponse.fromJson(response.data);
    } else {
-     throw Exception('Failed to login');
+     throw Exception('Failed to login ${response.data}');
    }
 } on Exception catch (e) {
-  throw Exception('Failed to login');
+  throw Exception(e);
 }
   }
   
