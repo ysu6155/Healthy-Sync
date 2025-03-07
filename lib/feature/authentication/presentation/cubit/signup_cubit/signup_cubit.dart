@@ -4,8 +4,7 @@ import 'package:healthy_sync/core/service/local/shared_keys.dart';
 import 'package:healthy_sync/core/service/local/shared_prefs_helper.dart';
 import 'package:healthy_sync/feature/authentication/data/models/request/register_params.dart';
 import 'package:healthy_sync/feature/authentication/data/repo/auth_repo.dart';
-import 'package:healthy_sync/feature/layout/presentation/screens/layout/layout_screen.dart';
-import 'package:healthy_sync/core/utils/extensions.dart';
+
 import 'signup_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
@@ -101,13 +100,10 @@ class SignUpCubit extends Cubit<SignUpState> {
   try {
     final result = await AuthRepo.register(params); // استخدام async/await
 
-    if (result != null  ) { 
-      SharedHelper.sava(SharedKeys.kToken, result.data?.token);
-      emit(SignUpSuccess());
-    } else {
-      emit(SignUpError("LocaleKeys.signUpFailed.tr()")); // رسالة خطأ مترجمة
-    }
-  } catch (e) {
+ 
+    SharedHelper.sava(SharedKeys.kToken, result.data?.token);
+    emit(SignUpSuccess());
+    } catch (e) {
     emit(SignUpError(e.toString())); // خطأ عام
   }
 }

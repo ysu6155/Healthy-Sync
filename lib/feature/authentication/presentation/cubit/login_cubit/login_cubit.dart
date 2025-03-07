@@ -35,21 +35,17 @@ class LoginCubit extends Cubit<LoginState> {
     try {
       final response = await AuthRepo.login(params);
 
-      if (response != null ) {
-        await SharedHelper.sava(SharedKeys.kToken, response.data?.token);
-         await SharedHelper.sava(SharedKeys.name, response.data?.user?.name);
-         await SharedHelper.sava(SharedKeys.email, response.data?.user?.email);
-          await SharedHelper.sava(SharedKeys.image, response.data?.user?.image);
-        
-        emit(LoginSuccess());
+      await SharedHelper.sava(SharedKeys.kToken, response.data?.token);
+       await SharedHelper.sava(SharedKeys.name, response.data?.user?.name);
+       await SharedHelper.sava(SharedKeys.email, response.data?.user?.email);
+        await SharedHelper.sava(SharedKeys.image, response.data?.user?.image);
+      
+      emit(LoginSuccess());
 
-        if (context.mounted) {
-          context.pushAndRemoveUntil(const TapBarScreen());
-        }
-      } else {
-        emit(LoginError("Invalid credentials"));
+      if (context.mounted) {
+        context.pushAndRemoveUntil(const TapBarScreen());
       }
-    } catch (e, stackTrace) {
+        } catch (e, stackTrace) {
       print("🔥 Login Error: $e");
       print("📌 StackTrace: $stackTrace");
       emit(LoginError("An error occurred. Please try again."));

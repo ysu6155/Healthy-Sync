@@ -79,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   radius: 50.r,
                   backgroundImage:
                       Image.network(
-                        SharedHelper.get(SharedKeys.image ?? ""),
+                        SharedHelper.get(SharedKeys.image),
                       ).image,
                 ),
                 16.W,

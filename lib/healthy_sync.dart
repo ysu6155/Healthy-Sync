@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:healthy_sync/core/Themes/light_theme.dart';
 import 'package:healthy_sync/feature/welcome/presentation/screens/splash/splash_screen.dart';
-import 'package:healthy_sync/feature/welcome/presentation/screens/welcome/welcome_screen.dart';
 
 class HealthySync extends StatelessWidget {
   const HealthySync({super.key});
