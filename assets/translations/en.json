@@ -112,7 +112,8 @@
     "admin": "Admin",
   "accountType": "Account Type",
   "accountTypeIsRequired": "Account Type is required",
-  "cityIsRequired": "City is required"
-
+  "cityIsRequired": "City is required",
+  "languageNaw":"english",
+  "editProfile" :"Edit Profile"
 
 }

@@ -1,0 +1,2 @@
+Y:/flutter/Healthy_Sync/android/app/.cxx/RelWithDebInfo/6a1t2o6m/x86/CMakeFiles/edit_cache.dir
+Y:/flutter/Healthy_Sync/android/app/.cxx/RelWithDebInfo/6a1t2o6m/x86/CMakeFiles/rebuild_cache.dir
