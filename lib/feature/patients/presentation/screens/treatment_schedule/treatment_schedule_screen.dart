@@ -31,7 +31,8 @@ class TreatmentSchedulePageState extends State<TreatmentSchedulePage> {
                 title: Text('الوقت: ${selectedTime.format(context)}'),
                 trailing: Icon(Icons.access_time),
                 onTap: () async {
-                  selectedTime = await showTimePicker(
+                  selectedTime =
+                      await showTimePicker(
                         context: context,
                         initialTime: selectedTime,
                       ) ??
@@ -109,14 +110,12 @@ class TreatmentSchedulePageState extends State<TreatmentSchedulePage> {
             buildColorGuide(),
             buildCalendarHeader(),
             20.H,
-            Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: treatments.length,
-                itemBuilder: (context, index) =>
-                    buildTreatmentCard(treatments[index]),
-              ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: treatments.length,
+              itemBuilder:
+                  (context, index) => buildTreatmentCard(treatments[index]),
             ),
           ],
         ),
@@ -150,7 +149,7 @@ class TreatmentSchedulePageState extends State<TreatmentSchedulePage> {
       'الأربعاء',
       'الخميس',
       'الجمعة',
-      'السبت'
+      'السبت',
     ];
     return days[DateTime.now().weekday - 1];
   }
@@ -160,10 +159,7 @@ class TreatmentSchedulePageState extends State<TreatmentSchedulePage> {
       margin: EdgeInsets.symmetric(vertical: 8.sp),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.r),
-        side: BorderSide(
-          color: getBorderColor(treatment),
-          width: 3.w,
-        ),
+        side: BorderSide(color: getBorderColor(treatment), width: 3.w),
       ),
       color: getBackgroundColor(treatment),
       child: ListTile(
@@ -176,12 +172,13 @@ class TreatmentSchedulePageState extends State<TreatmentSchedulePage> {
           'الوقت: ${formatTimeOfDay(treatment.time)}',
           style: TextStyle(color: Colors.black),
         ),
-        trailing: treatment.isCompleted
-            ? Icon(Icons.check_circle, color: Colors.green)
-            : IconButton(
-                icon: Icon(Icons.check_circle_outline, color: Colors.white),
-                onPressed: () => markCompleted(treatment),
-              ),
+        trailing:
+            treatment.isCompleted
+                ? Icon(Icons.check_circle, color: Colors.green)
+                : IconButton(
+                  icon: Icon(Icons.check_circle_outline, color: Colors.white),
+                  onPressed: () => markCompleted(treatment),
+                ),
       ),
     );
   }
@@ -237,7 +234,7 @@ class TreatmentSchedulePageState extends State<TreatmentSchedulePage> {
       'سبتمبر',
       'أكتوبر',
       'نوفمبر',
-      'ديسمبر'
+      'ديسمبر',
     ];
     return months[month - 1];
   }
@@ -272,10 +269,7 @@ class TreatmentSchedulePageState extends State<TreatmentSchedulePage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CircleAvatar(
-          radius: 10.r,
-          backgroundColor: color,
-        ),
+        CircleAvatar(radius: 10.r, backgroundColor: color),
         8.H,
         Text(label, style: TextStyle(fontSize: 12.sp, color: Colors.black)),
       ],

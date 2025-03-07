@@ -10,7 +10,7 @@ ThemeData themeLight = ThemeData(
       inputDecorationTheme(AppColor.lightGrey, AppColor.border),
 );
 
-TextStyle textButtonStyle = TextStyle(
+TextStyle textStyle = TextStyle(
   color: AppColor.white,
   fontSize: 20.sp,
   fontWeight: FontWeight.bold,

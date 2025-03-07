@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:healthy_sync/core/service/local/shared_keys.dart';
-import 'package:healthy_sync/core/service/local/shared_prefs_helper.dart';
+import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:healthy_sync/core/utils/app_assets.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
 import 'package:healthy_sync/feature/layout/presentation/screens/layout/layout_screen.dart';

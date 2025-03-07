@@ -84,7 +84,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                     CustomButton(
                       name: Text(
                         LocaleKeys.login.tr(),
-                        style: textButtonStyle,
+                        style: textStyle,
                       ),
                       onTap: () {
                         context.push(LoginScreen());
@@ -94,7 +94,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                     CustomButton(
                       border: Border.all(color: AppColor.black, width: 3.sp),
                       name:
-                          Text(LocaleKeys.signUp.tr(), style: textButtonStyle),
+                          Text(LocaleKeys.signUp.tr(), style: textStyle),
                       backgroundColor: AppColor.main,
                       textColor: AppColor.black,
                       onTap: () {

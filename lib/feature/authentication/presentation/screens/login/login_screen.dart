@@ -60,8 +60,7 @@ class LoginScreen extends StatelessWidget {
                         topLeft: Radius.circular(24.r),
                         topRight: Radius.circular(24.r)),
                   ),
-                  child: BlocProvider(
-                      create: (context) => LoginCubit(), child: FormLogin()),
+                  child: FormLogin(),
                 ),
               ],
             ),

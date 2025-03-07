@@ -225,7 +225,7 @@ class FormSignUp extends StatelessWidget {
             ),
             12.H,
             CustomButton(
-              name: Text(LocaleKeys.signUp.tr(), style: textButtonStyle),
+              name: Text(LocaleKeys.signUp.tr(), style: textStyle),
               onTap: () => signUpCubit.register(
                 RegisterParams(
                     email: signUpCubit.emailController.text,
@@ -245,7 +245,7 @@ class FormSignUp extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => LoginScreen())),
                   child: Text(
                     LocaleKeys.login.tr(),
-                    style: textButtonStyle.copyWith(
+                    style: textStyle.copyWith(
                       color: AppColor.main,
                       fontWeight: FontWeight.w500,
                       fontSize: 12.sp,

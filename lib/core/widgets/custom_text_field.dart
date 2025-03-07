@@ -63,7 +63,7 @@ class CustomTextField extends StatelessWidget {
               )
             : null,
       ),
-      style: textButtonStyle.copyWith(
+      style: textStyle.copyWith(
         fontSize: 16.sp,
         color: AppColor.black,
       ),

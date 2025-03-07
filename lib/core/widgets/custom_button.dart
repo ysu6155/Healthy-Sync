@@ -9,7 +9,7 @@ class CustomButton extends StatelessWidget {
   final Color? textColor;
   final void Function() onTap;
   final Border? border;
-  CustomButton(
+  const CustomButton(
       {super.key,
       required this.name,
       this.backgroundColor,

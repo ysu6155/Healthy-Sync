@@ -19,4 +19,6 @@ sealed class AppAssets {
   static String loading2 = "$imagePath/loading2.json";
   static String splash = "$imagePath/splash.png";
   static String backIconSvg = "$iconPath\back.svg";
+  static String personImage = "$imagePath/person.jpg";
+  static String passwordImage = "$imagePath/password1.json";
 }

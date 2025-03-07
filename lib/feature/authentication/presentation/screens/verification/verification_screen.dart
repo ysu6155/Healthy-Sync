@@ -150,7 +150,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 CustomButton(
                   name: Text(
                     LocaleKeys.verify.tr(),
-                    style: textButtonStyle,
+                    style: textStyle,
                   ),
                   onTap: () {
                     setState(() {

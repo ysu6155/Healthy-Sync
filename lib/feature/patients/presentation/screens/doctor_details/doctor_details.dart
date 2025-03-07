@@ -17,7 +17,7 @@ class DoctorDetails extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 48.sp,
-        title: Text(doctor["name"], style: textButtonStyle),
+        title: Text(doctor["name"], style: textStyle),
         iconTheme: IconThemeData(color: AppColor.white, size: 16.sp),
         backgroundColor: AppColor.main,
       ),
@@ -86,7 +86,7 @@ class DoctorDetails extends StatelessWidget {
               children: [
                 Text(
                   LocaleKeys.callDoctor.tr(),
-                  style: textButtonStyle,
+                  style: textStyle,
                 ),
                 8.W,
                 Icon(
@@ -105,7 +105,7 @@ class DoctorDetails extends StatelessWidget {
               children: [
                 Text(
                   LocaleKeys.chatWithDoctor.tr(),
-                  style: textButtonStyle,
+                  style: textStyle,
                 ),
                 8.W,
                 Icon(

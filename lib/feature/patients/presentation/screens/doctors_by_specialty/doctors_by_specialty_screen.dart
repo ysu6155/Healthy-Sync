@@ -41,7 +41,7 @@ class _DoctorsBySpecialtyScreenState extends State<DoctorsBySpecialtyScreen> {
         toolbarHeight: 48.sp,
         title: Text(
           widget.selectedSpecialty,
-          style: textButtonStyle,
+          style: textStyle,
         ),
         iconTheme: IconThemeData(color: AppColor.white, size: 16.sp),
         backgroundColor: AppColor.main,

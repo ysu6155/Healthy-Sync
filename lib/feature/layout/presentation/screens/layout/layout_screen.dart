@@ -4,12 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:healthy_sync/core/service/local/shared_keys.dart';
-import 'package:healthy_sync/core/service/local/shared_prefs_helper.dart';
+import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/treatment_schedule/treatment_schedule_screen.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/home/home_screen.dart';
 import 'package:healthy_sync/core/utils/app_assets.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
-import 'package:healthy_sync/feature/profile/presentation/screens/profile/profile_screen.dart';
+import 'package:healthy_sync/feature/profile/presentation/screens/profile_screen.dart';
 
 class TapBarScreen extends StatefulWidget {
   const TapBarScreen({super.key});
@@ -28,7 +28,7 @@ class TapBarScreenState extends State<TapBarScreen> {
         body: Center(
             child: IconButton(
                 onPressed: () {
-                  SharedHelper.removeKay(SharedKeys.kToken);
+                  SharedHelper.removeKey(SharedKeys.kToken);
 
                 },
                 icon: Icon(Icons.abc_outlined,size: 100,)))),

@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/service/local/shared_prefs_helper.dart';
+import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:healthy_sync/healthy_sync.dart';
 import 'package:healthy_sync/core/utils/app_assets.dart';
 

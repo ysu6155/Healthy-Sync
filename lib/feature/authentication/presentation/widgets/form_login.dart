@@ -111,7 +111,7 @@ class FormLogin extends StatelessWidget {
                         }),
                     Text(
                       LocaleKeys.rememberMe.tr(),
-                      style: textButtonStyle.copyWith(
+                      style: textStyle.copyWith(
                           color: AppColor.black, fontSize: 14.sp),
                     ),
                   ],
@@ -131,7 +131,7 @@ class FormLogin extends StatelessWidget {
             CustomButton(
                 name: Text(
                   LocaleKeys.login.tr(),
-                  style: textButtonStyle,
+                  style: textStyle,
                 ),
                 onTap: () {
                   loginCubit.login(

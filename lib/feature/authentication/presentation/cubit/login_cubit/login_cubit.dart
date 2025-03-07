@@ -1,8 +1,10 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthy_sync/core/service/local/shared_keys.dart';
-import 'package:healthy_sync/core/service/local/shared_prefs_helper.dart';
+import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
 import 'package:healthy_sync/feature/authentication/data/models/request/register_params.dart';
 import 'package:healthy_sync/feature/authentication/data/repo/auth_repo.dart';
@@ -46,8 +48,8 @@ class LoginCubit extends Cubit<LoginState> {
         context.pushAndRemoveUntil(const TapBarScreen());
       }
         } catch (e, stackTrace) {
-      print("🔥 Login Error: $e");
-      print("📌 StackTrace: $stackTrace");
+      log("🔥 Login Error: $e");
+      log("📌 StackTrace: $stackTrace");
       emit(LoginError("An error occurred. Please try again."));
     }
   }

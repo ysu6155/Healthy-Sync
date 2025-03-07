@@ -27,7 +27,7 @@ sealed class SharedHelper {
     return prefs?.get(key);
   }
 
-  static Future<void> removeKay(String key) async {
+  static Future<void> removeKey(String key) async {
     await prefs?.remove(key);
   }
 

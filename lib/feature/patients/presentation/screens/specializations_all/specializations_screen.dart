@@ -18,7 +18,7 @@ class SpecializationsAll extends StatelessWidget {
         toolbarHeight: 40.sp,
         title: Text(
           LocaleKeys.specializations.tr(),
-          style: textButtonStyle,
+          style: textStyle,
         ),
         iconTheme: IconThemeData(color: AppColor.white, size: 14.sp),
         backgroundColor: AppColor.main,

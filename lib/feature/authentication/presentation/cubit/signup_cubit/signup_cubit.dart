@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_sync/core/service/local/shared_keys.dart';
-import 'package:healthy_sync/core/service/local/shared_prefs_helper.dart';
+import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:healthy_sync/feature/authentication/data/models/request/register_params.dart';
 import 'package:healthy_sync/feature/authentication/data/repo/auth_repo.dart';
 
@@ -38,7 +38,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     'Beni Suef',
     'Fayoum',
     'Qena',
-    'Sohag'
+    'Sohag',
   ];
 
   String? selectedGender;
@@ -72,40 +72,38 @@ class SignUpCubit extends Cubit<SignUpState> {
     emit(TermsAgreementToggled(isAgreedToTerms));
   }
 
- // void signUp(BuildContext context) {
-   // if (!formKey.currentState!.validate()) return;
-    //if (!isAgreedToTerms) {
-      //emit(SignUpError("يجب الموافقة على الشروط والأحكام"));
-     // return;
- //   }
-   // emit(SignUpLoading());
+  // void signUp(BuildContext context) {
+  // if (!formKey.currentState!.validate()) return;
+  //if (!isAgreedToTerms) {
+  //emit(SignUpError("يجب الموافقة على الشروط والأحكام"));
+  // return;
+  //   }
+  // emit(SignUpLoading());
 
-    // محاكاة API Call
-   // Future.delayed(Duration(seconds: 2), () {
-     // context.pushAndRemoveUntil(TapBarScreen());
-     // emit(SignUpSuccess());
-   // });
- // }
+  // محاكاة API Call
+  // Future.delayed(Duration(seconds: 2), () {
+  // context.pushAndRemoveUntil(TapBarScreen());
+  // emit(SignUpSuccess());
+  // });
+  // }
 
   Future<void> register(RegisterParams params) async {
-  if (!formKey.currentState!.validate()) return;
+    if (!formKey.currentState!.validate()) return;
 
-  if (!isAgreedToTerms) {
-    emit(SignUpError("ocaleKeys.agreeToTermsError.tr()")); // استخدم الترجمة
-    return;
-  }
+    if (!isAgreedToTerms) {
+      emit(SignUpError("ocaleKeys.agreeToTermsError.tr()")); // استخدم الترجمة
+      return;
+    }
 
-  emit(SignUpLoading());
+    emit(SignUpLoading());
 
-  try {
-    final result = await AuthRepo.register(params); // استخدام async/await
+    try {
+      final result = await AuthRepo.register(params); // استخدام async/await
 
- 
-    SharedHelper.sava(SharedKeys.kToken, result.data?.token);
-    emit(SignUpSuccess());
+      SharedHelper.sava(SharedKeys.kToken, result.data?.token);
+      emit(SignUpSuccess());
     } catch (e) {
-    emit(SignUpError(e.toString())); // خطأ عام
+      emit(SignUpError(e.toString())); // خطأ عام
+    }
   }
-}
-
 }

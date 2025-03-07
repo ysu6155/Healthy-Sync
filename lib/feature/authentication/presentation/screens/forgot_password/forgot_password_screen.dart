@@ -89,14 +89,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           CustomButton(
                             name: Text(
                               LocaleKeys.sendCode.tr(),
-                              style: textButtonStyle,
+                              style: textStyle,
                             ),
                             onTap: () {
                               if (formKey.currentState!.validate()) {
-                                context.push(BlocProvider(
-                                  create: (context) => VerificationCubit(),
-                                  child: VerificationScreen(phone: email.text),
-                                ));
+                                context.push(VerificationScreen(phone: email.text));
                               }
                             },
                           ),

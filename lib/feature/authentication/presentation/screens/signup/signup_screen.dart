@@ -55,8 +55,7 @@ class SignUpScreen extends StatelessWidget {
                       topRight: Radius.circular(24.r),
                     ),
                   ),
-                  child: BlocProvider(
-                      create: (context) => SignUpCubit(), child: FormSignUp()),
+                  child: FormSignUp(),
                 ),
               ],
             ),
