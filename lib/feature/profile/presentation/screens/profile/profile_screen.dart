@@ -134,6 +134,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: Colors.black,
                       ),
                     ),
+                    
                     subtitle:
                         item["value"].isNotEmpty ? Text(item["value"]) : null,
                     trailing:
