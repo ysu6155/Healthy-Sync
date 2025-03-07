@@ -21,7 +21,7 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class WelcomeScreenState extends State<WelcomeScreen> {
-  final PageController _pageController = PageController();
+  final pageController = PageController();
   int _currentPage = 0;
 
   @override
