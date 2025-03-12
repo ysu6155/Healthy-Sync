@@ -1,10 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
-import 'package:healthy_sync/feature/authentication/presentation/cubit/verification_cubit/cubit/verification_cubit.dart';
 import 'package:healthy_sync/feature/authentication/presentation/screens/Verification/verification_screen.dart';
 import 'package:healthy_sync/core/Themes/light_theme.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
@@ -26,13 +24,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        iconTheme: IconThemeData(color: AppColor.white),
+        backgroundColor: AppColor.main,
+        title: Text(LocaleKeys.forgotPassword.tr(), style: textStyle),
+      ),
       body: SafeArea(
         top: false,
         child: Container(
           padding: EdgeInsets.only(top: 40.sp),
-          decoration: BoxDecoration(
-            gradient: AppColor.primaryGradient,
-          ),
+          decoration: BoxDecoration(color: AppColor.main),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -42,65 +44,59 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   height: 130.sp,
                   fit: BoxFit.cover,
                 ),
-                50.H,
-                Text(
-                  LocaleKeys.forgotPassword.tr(),
-                  style: TextStyle(
-                    color: AppColor.black,
-                    fontSize: 30.sp,
-                    fontWeight: FontWeight.w700,
+                32.H,
+                Container(
+                  width: 1.sw,
+                  padding: EdgeInsets.all(24.sp),
+                  decoration: BoxDecoration(
+                    color: AppColor.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(24.r),
+                      topRight: Radius.circular(24.r),
+                    ),
+                  ),
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        16.H,
+                        CustomTextField(
+                          controller: email,
+                          labelText: LocaleKeys.emailPhone.tr(),
+                          labelStyle: TextStyle(
+                            color: AppColor.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.sp,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          hintText: LocaleKeys.enterYourEmailOrPhone.tr(),
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return LocaleKeys.emailIsRequired.tr();
+                            }
+                            return null;
+                          },
+                        ),
+                        32.H,
+                        CustomButton(
+                          name: Text(
+                            LocaleKeys.sendCode.tr(),
+                            style: textStyle,
+                          ),
+                          onTap: () {
+                            if (formKey.currentState!.validate()) {
+                              context.push(
+                                VerificationScreen(phone: email.text),
+                              );
+                            }
+                          },
+                        ),
+                        100.H,
+                      ],
+                    ),
                   ),
                 ),
-                30.H,
-                Container(
-                    width: 1.sw,
-                    padding: EdgeInsets.all(24.sp),
-                    decoration: BoxDecoration(
-                      color: AppColor.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(24.r),
-                        topRight: Radius.circular(24.r),
-                      ),
-                    ),
-                    child: Form(
-                      key: formKey,
-                      child: Column(
-                        children: [
-                          16.H,
-                          CustomTextField(
-                              controller: email,
-                              labelText: LocaleKeys.emailPhone.tr(),
-                              labelStyle: TextStyle(
-                                color: AppColor.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.sp,
-                              ),
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
-                              hintText: LocaleKeys.enterYourEmailOrPhone.tr(),
-                              keyboardType: TextInputType.emailAddress,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return LocaleKeys.emailIsRequired.tr();
-                                }
-                                return null;
-                              }),
-                          32.H,
-                          CustomButton(
-                            name: Text(
-                              LocaleKeys.sendCode.tr(),
-                              style: textStyle,
-                            ),
-                            onTap: () {
-                              if (formKey.currentState!.validate()) {
-                                context.push(VerificationScreen(phone: email.text));
-                              }
-                            },
-                          ),
-                          100.H,
-                        ],
-                      ),
-                    )),
               ],
             ),
           ),

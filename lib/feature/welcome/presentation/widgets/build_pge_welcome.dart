@@ -12,7 +12,7 @@ Widget buildPage({
     children: [
       Image.asset(
         image,
-        height: 250.sp,
+        height: 400.sp,
         width: double.infinity.w,
         fit: BoxFit.cover,
       ),

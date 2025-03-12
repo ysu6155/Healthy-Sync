@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:healthy_sync/core/service/local/shared_keys.dart';
 import 'package:healthy_sync/core/service/local/shared_helper.dart';
@@ -16,7 +14,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class SplashScreenState extends State<SplashScreen> {
-   String? token = SharedHelper.get(SharedKeys.kToken);
+  String? token = SharedHelper.get(SharedKeys.kToken);
   @override
   void initState() {
     super.initState();
@@ -34,8 +32,6 @@ class SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Image.asset(AppAssets.splash)),
-    );
+    return Scaffold(body: Center(child: Image.asset(AppAssets.logo)));
   }
 }

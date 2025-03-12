@@ -6,8 +6,10 @@ import 'package:pinput/pinput.dart';
 ThemeData themeLight = ThemeData(
   brightness: Brightness.light,
   scaffoldBackgroundColor: AppColor.white,
-  inputDecorationTheme:
-      inputDecorationTheme(AppColor.lightGrey, AppColor.border),
+  inputDecorationTheme: inputDecorationTheme(
+    AppColor.lightGrey,
+    AppColor.border,
+  ),
 );
 
 TextStyle textStyle = TextStyle(
@@ -39,12 +41,9 @@ OutlineInputBorder borderStyle(Color color) {
 final defaultPinTheme = PinTheme(
   width: 60,
   height: 60,
-  textStyle: const TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-  ),
+  textStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
   decoration: BoxDecoration(
-    border: Border.all(color: AppColor.main, width: 2),
-    borderRadius: BorderRadius.circular(10),
+    border: Border.all(color: AppColor.main, width: 2.w),
+    borderRadius: BorderRadius.circular(10.r),
   ),
 );

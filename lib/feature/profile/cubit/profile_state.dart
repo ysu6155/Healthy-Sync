@@ -45,3 +45,20 @@ class ProfileSuccess extends ProfileState {
   @override
   List<Object> get props => [message];
 }
+class ProfileUpdateError extends ProfileState {
+  final String message;
+  ProfileUpdateError(this.message);
+
+  @override
+  List<Object?> get props => [message];
+}
+
+class ProfileUpdateSuccess extends ProfileState {
+  final String message;
+
+  ProfileUpdateSuccess(this.message);
+
+  @override
+  List<Object> get props => [message];
+}
+class ProfileUpdateLoading extends ProfileState {}

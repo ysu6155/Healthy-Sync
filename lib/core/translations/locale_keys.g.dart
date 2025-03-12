@@ -119,5 +119,37 @@ abstract class  LocaleKeys {
   static const cityIsRequired = 'cityIsRequired';
   static const languageNaw = 'languageNaw';
   static const editProfile = 'editProfile';
+  static const dailyTreatmentSchedule = 'dailyTreatmentSchedule';
+  static const noDataFound = 'noDataFound';
+  static const analyticsDashboard = 'analyticsDashboard';
+  static const patients = 'patients';
+  static const labResults = 'labResults';
+  static const pharmacyOrders = 'pharmacyOrders';
+  static const treatments = 'treatments';
+  static const hospitals = 'hospitals';
+  static const clinics = 'clinics';
+  static const doctors = 'doctors';
+  static const pharmacies = 'pharmacies';
+  static const labs = 'labs';
+  static const patientsStatistics = 'patientsStatistics';
+  static const doctorsStatistics = 'doctorsStatistics';
+  static const hospitalsStatistics = 'hospitalsStatistics';
+  static const clinicsStatistics = 'clinicsStatistics';
+  static const pharmaciesStatistics = 'pharmaciesStatistics';
+  static const labsStatistics = 'labsStatistics';
+  static const addNewPatient = 'addNewPatient';
+  static const addNewLabResult = 'addNewLabResult';
+  static const addNewPharmacyOrder = 'addNewPharmacyOrder';
+  static const addNewTreatment = 'addNewTreatment';
+  static const addNewHospital = 'addNewHospital';
+  static const addNewClinic = 'addNewClinic';
+  static const addNewDoctor = 'addNewDoctor';
+  static const addNewPharmacy = 'addNewPharmacy';
+  static const addNewLab = 'addNewLab';
+  static const medicalTest = 'medicalTest';
+  static const labTest = 'labTest';
+  static const addNewMedicalTest = 'addNewMedicalTest';
+  static const referenceRange = 'referenceRange';
+  static const value = 'value';
 
 }

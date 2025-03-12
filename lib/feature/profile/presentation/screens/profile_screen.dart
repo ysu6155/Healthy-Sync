@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,12 +8,15 @@ import 'package:gap/gap.dart';
 import 'package:healthy_sync/core/service/local/shared_keys.dart';
 import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
+import 'package:healthy_sync/core/utils/app_assets.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
+import 'package:healthy_sync/core/widgets/show_dialog.dart';
 import 'package:healthy_sync/feature/profile/cubit/profile_cubit.dart';
 import 'package:healthy_sync/feature/profile/presentation/screens/edit_profile.dart';
 import 'package:healthy_sync/feature/profile/presentation/screens/update_password.dart';
 import 'package:healthy_sync/feature/welcome/presentation/screens/welcome/welcome_screen.dart';
+import 'package:lottie/lottie.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -29,21 +34,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    log(SharedHelper.get(SharedKeys.kToken));
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.main,
+        backgroundColor: AppColor.white,
         title: Text(
           LocaleKeys.profile.tr(),
           style: TextStyle(
             fontSize: 18.sp,
             fontWeight: FontWeight.bold,
-            color: AppColor.white,
+            color: AppColor.black,
           ),
         ),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.logout, color: AppColor.white),
+            icon: Icon(Icons.logout, color: AppColor.black),
             onPressed: () {
               SharedHelper.removeKey(SharedKeys.kToken);
               context.pushAndRemoveUntil(const WelcomeScreen());
@@ -65,33 +71,49 @@ class _ProfileScreenState extends State<ProfileScreen> {
           },
           builder: (context, state) {
             if (state is ProfileLoading) {
-              return Center(child: CircularProgressIndicator());
+              return showLoading();
             } else if (state is ProfileLoaded) {
               return ListView(
                 children: [
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 50.r,
-                        backgroundImage: NetworkImage(state.image),
-                      ),
-                      16.W,
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            state.name,
-                            style: TextStyle(
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold,
-                              color: AppColor.main,
+                  Container(
+                    margin: EdgeInsets.all(16.sp),
+                    decoration: BoxDecoration(
+                      color: AppColor.white,
+                      borderRadius: BorderRadius.circular(16.r),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColor.main.withValues(alpha: .5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 50.r,
+                          backgroundImage: NetworkImage(state.image),
+                        ),
+                        16.W,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              state.name,
+                              style: TextStyle(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                                color: AppColor.main,
+                              ),
                             ),
-                          ),
-                          Text(state.email),
-                        ],
-                      ),
-                    ],
-                  ).paddingAll(16.sp),
+                            Text(state.email),
+                            Text(state.phone ?? "-"),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
 
                   ProfileItem(
                     title: LocaleKeys.phone.tr(),
@@ -176,12 +198,7 @@ class ProfileItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(
-              alpha: 1,
-              blue: .8,
-              green: .5,
-              red: .2,
-            ),
+            color: AppColor.main.withValues(alpha: .5),
             spreadRadius: 2,
             blurRadius: 5,
             offset: Offset(0, 3),

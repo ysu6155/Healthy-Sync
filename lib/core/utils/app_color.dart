@@ -31,5 +31,7 @@ sealed class AppColor {
   static Color orangeShade200 = Color(0xffFFE0B2);
   static Color greenShade800 = Color(0xff2E7D32);
   static Color orange = Color(0xffFF9800);
+  static Color blue = Color(0xff2196F3);
+  static Color yellow = Color(0xffFFEB3B);
   static Color transparent = Colors.transparent;
 }

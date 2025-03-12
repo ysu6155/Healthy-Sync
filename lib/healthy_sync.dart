@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/Themes/light_theme.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/signup_cubit/signup_cubit.dart';
+import 'package:healthy_sync/feature/authentication/presentation/cubit/verification_cubit/cubit/verification_cubit.dart';
 import 'package:healthy_sync/feature/profile/cubit/profile_cubit.dart';
 import 'package:healthy_sync/feature/welcome/presentation/screens/splash/splash_screen.dart';
 
@@ -16,28 +17,29 @@ class HealthySync extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => ProfileCubit()..getProfileData()),
+        BlocProvider(create: (context) => ProfileCubit()),
         BlocProvider(create: (context) => LoginCubit()),
-        BlocProvider(create: (context) => SignUpCubit(),),
-       
-      
+        BlocProvider(create: (context) => SignUpCubit()),
+        BlocProvider(create: (context) => VerificationCubit()),
       ],
       child: ScreenUtilInit(
-          designSize: const Size(360, 690),
-          minTextAdapt: true,
-          splitScreenMode: true,
-          builder: (_, child) {
-            return MaterialApp(
-                // darkTheme: darkTheme,
-                theme: themeLight,
-                localizationsDelegates: context.localizationDelegates,
-                supportedLocales: context.supportedLocales,
-                locale: context.locale,
-                debugShowCheckedModeBanner: false,
-                title: 'Healthy Sync',
-                home: child);
-          },
-          child: SplashScreen()),
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (_, child) {
+          return MaterialApp(
+            // darkTheme: darkTheme,
+            theme: themeLight,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            debugShowCheckedModeBanner: false,
+            title: 'Healthy Sync',
+            home: child,
+          );
+        },
+        child: SplashScreen(),
+      ),
     );
   }
 }

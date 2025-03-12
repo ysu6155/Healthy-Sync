@@ -7,6 +7,7 @@ import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_assets.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
+import 'package:healthy_sync/core/utils/extensions.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_cubit.dart';
@@ -21,6 +22,14 @@ class UpdatePassword extends StatelessWidget {
     LoginCubit loginCubit = BlocProvider.of<LoginCubit>(context);
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: AppColor.main),
+          onPressed: () {
+            context.pop();
+            context.read<ProfileCubit>().getProfileData();
+          },
+        ),
+        centerTitle: true,
         title: Text(
           LocaleKeys.changePassword.tr(),
           style: textStyle.copyWith(color: AppColor.black),
@@ -31,14 +40,14 @@ class UpdatePassword extends StatelessWidget {
         padding: EdgeInsets.all(20.sp),
         child: BlocConsumer<ProfileCubit, ProfileState>(
           listener: (context, state) {
-            if (state is ProfileSuccess) {
+            if (state is ProfileUpdateSuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.message),
                   backgroundColor: Colors.green,
                 ),
               );
-            } else if (state is ProfileError) {
+            } else if (state is ProfileUpdateError) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.message),
@@ -99,7 +108,7 @@ class UpdatePassword extends StatelessWidget {
                   isPassword: true,
                 ),
                 Gap(40),
-                state is ProfileLoading
+                state is ProfileUpdateLoading
                     ? Center(child: CircularProgressIndicator())
                     : CustomButton(
                       name: Text(

@@ -29,7 +29,7 @@ class ProfileRepository {
       endPoints: EndPoints.updateProfile,
       body: formData,
       headers: {
-        "Authorization": "Bearer \${SharedHelper.get(SharedKeys.kToken)}",
+        "Authorization": "Bearer ${SharedHelper.get(SharedKeys.kToken)}",
       },
     );
   }
@@ -39,7 +39,7 @@ class ProfileRepository {
       endPoints: EndPoints.updatePassword,
       body: body,
       headers: {
-        "Authorization": "Bearer \${SharedHelper.get(SharedKeys.kToken)}",
+        "Authorization": "Bearer ${SharedHelper.get(SharedKeys.kToken)}",
       },
     );
   }

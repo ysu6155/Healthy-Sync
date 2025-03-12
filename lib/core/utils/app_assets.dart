@@ -1,6 +1,7 @@
 sealed class AppAssets {
   static String iconPath = "assets/icons";
   static String imagePath = "assets/images";
+  static String logo = "$imagePath/logo.png";
   static String homeIcon = "$iconPath/home.svg";
   static String remind = "$iconPath/remind.svg";
   static String forgotPassword = "$imagePath/forgotpassword.png";
@@ -21,4 +22,6 @@ sealed class AppAssets {
   static String backIconSvg = "$iconPath\back.svg";
   static String personImage = "$imagePath/person.jpg";
   static String passwordImage = "$imagePath/password1.json";
+  static String loading3 = "$imagePath/loading3.json";
+  static String loading4 = "$imagePath/loading4.json";
 }

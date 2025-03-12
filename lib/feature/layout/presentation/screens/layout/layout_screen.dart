@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:healthy_sync/core/service/local/shared_keys.dart';
 import 'package:healthy_sync/core/service/local/shared_helper.dart';
+import 'package:healthy_sync/feature/medical_tests/presentation/screens/medical_tests_screen.dart';
+import 'package:healthy_sync/feature/patients/presentation/screens/chat_bot/chat_bot_screen.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/treatment_schedule/treatment_schedule_screen.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/home/home_screen.dart';
 import 'package:healthy_sync/core/utils/app_assets.dart';
@@ -23,16 +25,9 @@ class TapBarScreenState extends State<TapBarScreen> {
 
   final List<Widget> _pages = [
     HomeScreen(),
-    TreatmentSchedulePage(),
-    Scaffold(
-        body: Center(
-            child: IconButton(
-                onPressed: () {
-                  SharedHelper.removeKey(SharedKeys.kToken);
-
-                },
-                icon: Icon(Icons.abc_outlined,size: 100,)))),
-    Scaffold(body: Center(child: Text("Test Page"))),
+    TreatmentScheduleScreen(),
+    ChatBotScreen(),
+    MedicalTestsScreen(),
     ProfileScreen(),
   ];
 
@@ -51,17 +46,10 @@ class TapBarScreenState extends State<TapBarScreen> {
         items: [
           SvgPicture.asset(
             AppAssets.homeIcon,
-            colorFilter: ColorFilter.mode(
-              AppColor.white,
-              BlendMode.srcIn,
-            ),
+            colorFilter: ColorFilter.mode(AppColor.white, BlendMode.srcIn),
             height: 25.sp,
           ),
-          Icon(
-            Icons.notifications,
-            size: 25.sp,
-            color: AppColor.white,
-          ),
+          Icon(Icons.notifications, size: 25.sp, color: AppColor.white),
           SvgPicture.asset(
             AppAssets.chatBot,
             colorFilter: ColorFilter.mode(
@@ -70,16 +58,8 @@ class TapBarScreenState extends State<TapBarScreen> {
             ),
             height: 32.sp,
           ),
-          Icon(
-            Icons.medical_services,
-            size: 25.sp,
-            color: AppColor.white,
-          ),
-          Icon(
-            Icons.person,
-            size: 25.sp,
-            color: AppColor.white,
-          ),
+          Icon(Icons.medical_services, size: 25.sp, color: AppColor.white),
+          Icon(Icons.person, size: 25.sp, color: AppColor.white),
         ],
         onTap: (index) {
           setState(() {

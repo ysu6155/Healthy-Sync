@@ -54,6 +54,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     TextEditingController phone,
     TextEditingController address,
   ) async {
+    emit(ProfileUpdateLoading());
     try {
       FormData formData = FormData.fromMap({
         "name": name.text,
@@ -69,12 +70,14 @@ class ProfileCubit extends Cubit<ProfileState> {
       Response response = await ProfileRepository.updateProfile(formData);
 
       if (response.statusCode == 200) {
+        emit(ProfileUpdateSuccess("Profile updated successfully!"));
         log("✅ Profile updated successfully!");
         name.clear();
         phone.clear();
         address.clear();
       } else {
-        log("❌ Error: \${response.statusMessage}");
+        emit(ProfileUpdateError("Failed to update profile"));
+        log("❌ Error: ${response.statusMessage}");
       }
     } catch (e) {
       log("❌ Exception: $e");
@@ -82,7 +85,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<void> updatePassword() async {
-    emit(ProfileLoading());
+    emit(ProfileUpdateLoading());
     try {
       final response = await ProfileRepository.updatePassword({
         "current_password": currentPasswordController.text,
@@ -91,13 +94,13 @@ class ProfileCubit extends Cubit<ProfileState> {
       });
 
       if (response.statusCode == 200) {
-        emit(ProfileSuccess("Password updated successfully!"));
+        emit(ProfileUpdateSuccess("Password updated successfully!"));
         log("Password updated successfully!");
         currentPasswordController.clear();
         newPasswordController.clear();
         confirmPasswordController.clear();
       } else {
-        emit(ProfileError("Failed to update password"));
+        emit(ProfileUpdateError("Failed to update password"));
         log("Error: ${response.statusMessage}");
       }
     } catch (e) {

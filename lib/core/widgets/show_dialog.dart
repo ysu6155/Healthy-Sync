@@ -4,21 +4,23 @@ import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:lottie/lottie.dart';
 
 showErrorToast(BuildContext context, String error) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text(error),
-      backgroundColor: AppColor.red,
-    ),
+  ScaffoldMessenger.of(
+    context,
+  ).showSnackBar(SnackBar(content: Text(error), backgroundColor: AppColor.red));
+}
+
+showLoadingDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder:
+        (context) => Dialog(
+          backgroundColor: AppColor.transparent,
+          child: Center(child: Lottie.asset(AppAssets.loading3)),
+        ),
   );
 }
-showLoadingDialog(BuildContext context) {
-   showDialog(
-            context: context,
-            builder: (context) => Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Lottie.asset(AppAssets.loading),
-              ],
-            ),
-          );
+
+showLoading() {
+  return Center(child: Lottie.asset(AppAssets.loading3));
 }

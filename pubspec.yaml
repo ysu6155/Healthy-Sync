@@ -29,7 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   bloc: ^9.0.0
-  carousel_slider: null
+  carousel_slider:
   cupertino_icons: ^1.0.8
   curved_navigation_bar: ^1.0.6
   dio: ^5.8.0+1
@@ -37,6 +37,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.0.0
+  flutter_launcher_icons: ^0.14.3
   flutter_localizations:
     sdk: flutter
   flutter_screenutil: ^5.9.3
@@ -47,7 +48,8 @@ dependencies:
   pinput: ^5.0.1
   shared_preferences: ^2.5.1
   smooth_page_indicator: ^1.2.1
-#  flutter_native_splash: ^2.4.4
+  flutter_native_splash: ^2.4.4
+
 dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_test:
@@ -58,37 +60,15 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
     - assets/icons/
     - assets/translations/
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/to/resolution-aware-images
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/to/asset-from-package
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/to/font-from-package
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/images/logo.png"
