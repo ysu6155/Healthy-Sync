@@ -16,12 +16,11 @@ class SpecializationsSection extends StatelessWidget {
         padding: EdgeInsetsDirectional.only(start: 16.sp),
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          // إنشاء الكارد لكل تخصص
           return Ink(
             width: 100.w,
             padding: EdgeInsets.all(16.sp),
             decoration: BoxDecoration(
-              gradient: AppColor.primaryGradient,
+              color: AppColor.main,
               borderRadius: BorderRadius.circular(16.r),
             ),
             child: Column(
@@ -30,29 +29,22 @@ class SpecializationsSection extends StatelessWidget {
                   child: Icon(
                     specializations[index]['icon'] as IconData,
                     color: AppColor.white,
-                    size: 18.sp,
-                  ),
-                ),
-                Expanded(
-                  child: Text(
-                    specializations[index]['name'] as String,
-                    style: TextStyle(
-                      color: AppColor.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.sp,
-                    ),
-                    textAlign: TextAlign.center,
+                    size: 30.sp,
                   ),
                 ),
               ],
             ),
           ).withTapEffect(
-              onTap: () => context.push(DoctorsBySpecialtyScreen(
+            onTap:
+                () => context.push(
+                  DoctorsBySpecialtyScreen(
                     selectedSpecialty: specializations[index]['name'] as String,
-                  )));
+                  ),
+                ),
+          );
         },
         separatorBuilder: (context, index) => 16.W,
-        itemCount: specializations.length, // عدد التخصصات
+        itemCount: specializations.length,
       ),
     );
   }

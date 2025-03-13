@@ -1,27 +1,39 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/feature/patients/presentation/screens/boctor_visit/doctor_visit_screen.dart';
-import 'package:healthy_sync/core/utils/extensions.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
+import 'package:healthy_sync/core/utils/extensions.dart';
+import 'package:healthy_sync/feature/patients/presentation/screens/boctor_visit/doctor_visit_screen.dart';
 
-class DoctorVisitCard extends StatelessWidget {
+class DoctorVisitCard extends StatefulWidget {
   const DoctorVisitCard({super.key});
 
   @override
+  State<DoctorVisitCard> createState() => _DoctorVisitCardState();
+}
+
+class _DoctorVisitCardState extends State<DoctorVisitCard> {
+  @override
   Widget build(BuildContext context) {
     return Ink(
-      padding: EdgeInsets.all(16.sp),
       decoration: BoxDecoration(
-        gradient: AppColor.primaryGradient,
-        borderRadius: BorderRadius.circular(12.r),
+        color: AppColor.main,
+        borderRadius: BorderRadius.circular(16.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 8.0,
+            spreadRadius: 2.0,
+            offset: Offset(0, 4),
+          ),
+        ],
       ),
+      padding: EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildDoctorInfo(),
-          Divider(),
           8.H,
           _buildTimeAndDate(context),
           8.H,
@@ -33,11 +45,11 @@ class DoctorVisitCard extends StatelessWidget {
         ],
       ),
     ).withTapEffect(
-      onTap: () {
-        context.push(DoctorVisitScreen());
-      },
-      splashColor: AppColor.main,
-      highlightColor: AppColor.secondary,
+      onTap:
+          () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const DoctorVisitScreen()),
+          ),
     );
   }
 
@@ -45,22 +57,19 @@ class DoctorVisitCard extends StatelessWidget {
     return Row(
       children: [
         Icon(Icons.person, color: AppColor.white),
-        8.W,
+        SizedBox(width: 8.w),
         Text(
-          'Dr. Ahmed',
+          'Dr. John Doe',
           style: TextStyle(
             fontSize: 18.sp,
             fontWeight: FontWeight.bold,
             color: AppColor.white,
           ),
         ),
-        8.W,
+        SizedBox(width: 8.w),
         Text(
           'Cardiologist',
-          style: TextStyle(
-            fontSize: 16.sp,
-            color: AppColor.white,
-          ),
+          style: TextStyle(fontSize: 16.sp, color: AppColor.white),
         ),
       ],
     );
@@ -72,27 +81,21 @@ class DoctorVisitCard extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(Icons.access_time, color: AppColor.white),
-            4.W,
+            Icon(Icons.schedule, color: AppColor.white),
+            8.W,
             Text(
-              '${LocaleKeys.time.tr()}: ١٢:٠٠ م',
-              style: TextStyle(
-                fontSize: 16.sp,
-                color: AppColor.white,
-              ),
+              '${LocaleKeys.time.tr()}: ١٢/١٢/٢٠٢١',
+              style: TextStyle(fontSize: 16.sp, color: AppColor.white),
             ),
           ],
         ),
         Row(
           children: [
             Icon(Icons.calendar_today, color: AppColor.white),
-            4.W,
+            8.W,
             Text(
               'Date: ١٢/١٢/٢٠٢١',
-              style: TextStyle(
-                fontSize: 14.sp,
-                color: AppColor.white,
-              ),
+              style: TextStyle(fontSize: 16.sp, color: AppColor.white),
             ),
           ],
         ),
@@ -104,15 +107,13 @@ class DoctorVisitCard extends StatelessWidget {
     return Row(
       children: [
         Icon(Icons.location_on, color: AppColor.white),
-        8.W,
-        Expanded(
-          child: Text(
-            'Address: 1234 Main St, Cairo, Egypt',
-            style: TextStyle(
-              fontSize: 16.sp,
-              fontStyle: FontStyle.italic,
-              color: AppColor.white,
-            ),
+        SizedBox(width: 8.w),
+        Text(
+          'Address: 1234 Main St, Cairo',
+          style: TextStyle(
+            fontSize: 16.sp,
+            fontStyle: FontStyle.italic,
+            color: AppColor.white,
           ),
         ),
       ],
@@ -127,10 +128,7 @@ class DoctorVisitCard extends StatelessWidget {
         Expanded(
           child: Text(
             'Details: The patient is experiencing chest pain.',
-            style: TextStyle(
-              fontSize: 16.sp,
-              color: AppColor.white,
-            ),
+            style: TextStyle(fontSize: 16.sp, color: AppColor.white),
           ),
         ),
       ],
@@ -140,15 +138,11 @@ class DoctorVisitCard extends StatelessWidget {
   Widget _buildHealthStatus(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.health_and_safety, color: AppColor.green),
+        Icon(Icons.favorite, color: AppColor.white),
         8.W,
         Text(
-          LocaleKeys.stable.tr(),
-          style: TextStyle(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.bold,
-            color: AppColor.green,
-          ),
+          'Stable Condition',
+          style: TextStyle(fontSize: 16.sp, color: AppColor.white),
         ),
       ],
     );

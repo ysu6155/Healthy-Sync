@@ -45,7 +45,7 @@ class _DoctorsSectionState extends State<DoctorsSection> {
             dynamic doctor = doctors[index];
             return Ink(
               decoration: BoxDecoration(
-                gradient: AppColor.primaryGradient,
+                color: AppColor.main,
                 borderRadius: BorderRadius.circular(16.r),
               ),
               child: Column(

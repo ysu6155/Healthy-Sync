@@ -12,9 +12,14 @@ import 'package:healthy_sync/feature/patients/presentation/widgets/doctor_visit_
 import 'package:healthy_sync/feature/patients/presentation/widgets/doctors_section.dart';
 import 'package:healthy_sync/feature/patients/presentation/widgets/specializations.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,12 +29,13 @@ class HomeScreen extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 30.r,
-                backgroundImage: Image.asset(
-                  AppAssets.image1,
-                  width: 16.w,
-                  height: 16.sp,
-                  fit: BoxFit.cover,
-                ).image,
+                backgroundImage:
+                    Image.asset(
+                      AppAssets.image1,
+                      width: 16.w,
+                      height: 16.sp,
+                      fit: BoxFit.cover,
+                    ).image,
               ),
               16.W,
               Expanded(
@@ -57,7 +63,7 @@ class HomeScreen extends StatelessWidget {
               ),
               CircleAvatar(
                 radius: 20.r,
-                backgroundColor: AppColor.secondary,
+                backgroundColor: AppColor.main,
                 child: Icon(
                   Icons.notifications,
                   color: AppColor.white,
@@ -65,7 +71,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ).withTapEffect(
                 onTap: () {
-                  
                   log(context.locale.toString());
                   if (context.locale.toString() == 'ar') {
                     context.setLocale(Locale('en'));
@@ -73,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                     context.setLocale(Locale('ar'));
                   }
                 },
-              )
+              ),
             ],
           ).paddingAll(16.sp),
           16.H,
@@ -93,9 +98,14 @@ class HomeScreen extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return SpecializationsAll();
-                  }));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return SpecializationsAll();
+                      },
+                    ),
+                  );
                 },
                 child: Text(
                   LocaleKeys.seeAll.tr(),

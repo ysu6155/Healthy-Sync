@@ -8,7 +8,6 @@ import 'package:gap/gap.dart';
 import 'package:healthy_sync/core/service/local/shared_keys.dart';
 import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
-import 'package:healthy_sync/core/utils/app_assets.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
 import 'package:healthy_sync/core/widgets/show_dialog.dart';
@@ -16,7 +15,6 @@ import 'package:healthy_sync/feature/profile/cubit/profile_cubit.dart';
 import 'package:healthy_sync/feature/profile/presentation/screens/edit_profile.dart';
 import 'package:healthy_sync/feature/profile/presentation/screens/update_password.dart';
 import 'package:healthy_sync/feature/welcome/presentation/screens/welcome/welcome_screen.dart';
-import 'package:lottie/lottie.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -108,7 +106,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ),
                             Text(state.email),
-                            Text(state.phone ?? "-"),
+                            Text(state.phone ?? ""),
                           ],
                         ),
                       ],
@@ -212,13 +210,13 @@ class ProfileItem extends StatelessWidget {
           style: TextStyle(
             fontSize: 16.sp,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: AppColor.black,
           ),
         ),
         subtitle: value != null ? Text(value!) : null,
         trailing:
             onTap != null
-                ? Icon(Icons.arrow_forward_ios, color: Colors.grey)
+                ? Icon(Icons.arrow_forward_ios, color: AppColor.grey)
                 : null,
         onTap: onTap,
       ),
