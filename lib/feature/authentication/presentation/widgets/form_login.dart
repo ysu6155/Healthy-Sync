@@ -16,7 +16,6 @@ import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
 
-
 class FormLogin extends StatelessWidget {
   const FormLogin({super.key});
 
@@ -36,40 +35,45 @@ class FormLogin extends StatelessWidget {
       child: Form(
         key: loginCubit.formKey,
         child: SingleChildScrollView(
-          child: Column(spacing: 8.sp, children: [
-            16.H,
-            CustomTextField(
-              textInputAction: TextInputAction.next,
-              controller: loginCubit.emailController,
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              hintText: LocaleKeys.enterYourEmailOrPhone.tr(),
-              keyboardType: TextInputType.emailAddress,
-              labelText: LocaleKeys.emailPhone.tr(),
-              labelStyle: TextStyle(
-                color: AppColor.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 20.sp,
+          child: Column(
+            spacing: 8.sp,
+            children: [
+              16.H,
+              CustomTextField(
+                textInputAction: TextInputAction.next,
+                controller: loginCubit.emailController,
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                hintText: LocaleKeys.enterYourEmailOrPhone.tr(),
+                keyboardType: TextInputType.emailAddress,
+                labelText: LocaleKeys.emailPhone.tr(),
+                labelStyle: TextStyle(
+                  color: AppColor.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.sp,
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return LocaleKeys.emailIsRequired.tr();
+                  }
+                  return null;
+                },
               ),
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return LocaleKeys.emailIsRequired.tr();
-                }
-                return null;
-              },
-            ),
-            8.H,
-            BlocBuilder<LoginCubit, LoginState>(
-                buildWhen: (previous, current) =>
-                    current is LoginPasswordVisibilityToggled,
+              8.H,
+              BlocBuilder<LoginCubit, LoginState>(
+                buildWhen:
+                    (previous, current) =>
+                        current is LoginPasswordVisibilityToggled,
                 builder: (context, state) {
                   return CustomTextField(
                     textInputAction: TextInputAction.done,
-                    onFieldSubmitted: (value) => loginCubit.login(
-                        RegisterParams(
-                          email: loginCubit.emailController.text,
-                          password: loginCubit.passwordController.text,
+                    onFieldSubmitted:
+                        (value) => loginCubit.login(
+                          RegisterParams(
+                            email: loginCubit.emailController.text,
+                            password: loginCubit.passwordController.text,
+                          ),
+                          context,
                         ),
-                        context),
                     controller: loginCubit.passwordController,
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     keyboardType: TextInputType.visiblePassword,
@@ -92,15 +96,17 @@ class FormLogin extends StatelessWidget {
                       return null;
                     },
                   );
-                }),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    BlocBuilder<LoginCubit, LoginState>(
-                        buildWhen: (previous, current) =>
-                            current is LoginRememberMeToggled,
+                },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      BlocBuilder<LoginCubit, LoginState>(
+                        buildWhen:
+                            (previous, current) =>
+                                current is LoginRememberMeToggled,
                         builder: (context, state) {
                           return Checkbox(
                             value: loginCubit.rememberMe,
@@ -108,57 +114,64 @@ class FormLogin extends StatelessWidget {
                               loginCubit.toggleRememberMe(value ?? false);
                             },
                           );
-                        }),
-                    Text(
-                      LocaleKeys.rememberMe.tr(),
-                      style: textStyle.copyWith(
-                          color: AppColor.black, fontSize: 14.sp),
-                    ),
-                  ],
-                ),
-                TextButton(
-                  onPressed: () {
-                    context.push(ForgotPasswordScreen());
-                  },
-                  child: Text(
-                    " ${LocaleKeys.forgotPassword.tr()}?",
-                    style: TextStyle(
-                        color: AppColor.main, fontWeight: FontWeight.w500),
+                        },
+                      ),
+                      Text(
+                        LocaleKeys.rememberMe.tr(),
+                        style: textStyle.copyWith(
+                          color: AppColor.black,
+                          fontSize: 14.sp,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-            CustomButton(
-                name: Text(
-                  LocaleKeys.login.tr(),
-                  style: textStyle,
-                ),
+                  TextButton(
+                    onPressed: () {
+                      context.push(ForgotPasswordScreen());
+                    },
+                    child: Text(
+                      " ${LocaleKeys.forgotPassword.tr()}?",
+                      style: TextStyle(
+                        color: AppColor.main,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              CustomButton(
+                name: Text(LocaleKeys.login.tr(), style: textStyle),
                 onTap: () {
                   loginCubit.login(
-                      RegisterParams(
-                        email: loginCubit.emailController.text,
-                        password: loginCubit.passwordController.text,
+                    RegisterParams(
+                      email: loginCubit.emailController.text,
+                      password: loginCubit.passwordController.text,
+                    ),
+                    context,
+                  );
+                },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(LocaleKeys.dontHaveAnAccount.tr()),
+                  TextButton(
+                    onPressed: () {
+                      context.push(SignUpScreen());
+                    },
+                    child: Text(
+                      LocaleKeys.signUp.tr(),
+                      style: TextStyle(
+                        color: AppColor.main,
+                        fontWeight: FontWeight.w500,
                       ),
-                      context);
-                }),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(LocaleKeys.dontHaveAnAccount.tr()),
-                TextButton(
-                  onPressed: () {
-                    context.push(SignUpScreen());
-                  },
-                  child: Text(
-                    LocaleKeys.signUp.tr(),
-                    style: TextStyle(
-                        color: AppColor.main, fontWeight: FontWeight.w500),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            60.H,
-          ]),
+                ],
+              ),
+              60.H,
+            ],
+          ),
         ),
       ),
     );

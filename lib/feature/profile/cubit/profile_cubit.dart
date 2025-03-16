@@ -22,15 +22,15 @@ class ProfileCubit extends Cubit<ProfileState> {
   Future<void> getProfileData() async {
     emit(ProfileLoading());
     try {
-      final response = await ProfileRepository.getProfileData();
+      final response = await ProfileRepository.updateUser();
       emit(
         ProfileLoaded(
-          name: response.data?.name ?? "",
-          email: response.data?.email ?? "No Email",
-          image: response.data?.image ?? "",
-          address: response.data?.address ?? "",
-          city: response.data?.city ?? "",
-          phone: response.data?.phone ?? "",
+          name: response.user?.name ?? "",
+          email: response.user?.email ?? "No Email",
+          image: response.user?.profilePhoto ?? "",
+          address: response.user?.role ?? "",
+          city: response.user?.createdAt.toString() ?? "",
+          phone: response.user?.v.toString() ?? "",
         ),
       );
     } catch (e) {
@@ -40,7 +40,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<void> logout(BuildContext context) async {
-    SharedHelper.removeKey(SharedKeys.kToken);
+    SharedHelper.clear();
+
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (_) => WelcomeScreen()),
@@ -56,18 +57,16 @@ class ProfileCubit extends Cubit<ProfileState> {
   ) async {
     emit(ProfileUpdateLoading());
     try {
-      FormData formData = FormData.fromMap({
+      Response response = await ProfileRepository.updateProfile({
         "name": name.text,
         "phone": phone.text,
-        "address": address.text,
+        "role": address.text,
         if (imageFile != null)
-          "image": await MultipartFile.fromFile(
+          "profilePhoto": await MultipartFile.fromFile(
             imageFile.path,
             filename: "profile.jpg",
           ),
       });
-
-      Response response = await ProfileRepository.updateProfile(formData);
 
       if (response.statusCode == 200) {
         emit(ProfileUpdateSuccess("Profile updated successfully!"));

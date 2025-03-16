@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
-import 'package:healthy_sync/feature/patients/presentation/screens/boctor_visit/doctor_visit_screen.dart';
+import 'package:healthy_sync/feature/patients/presentation/screens/doctor_visit_screen.dart';
 
 class DoctorVisitCard extends StatefulWidget {
   const DoctorVisitCard({super.key});

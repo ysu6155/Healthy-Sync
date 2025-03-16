@@ -72,38 +72,24 @@ class SignUpCubit extends Cubit<SignUpState> {
     emit(TermsAgreementToggled(isAgreedToTerms));
   }
 
-  // void signUp(BuildContext context) {
-  // if (!formKey.currentState!.validate()) return;
-  //if (!isAgreedToTerms) {
-  //emit(SignUpError("يجب الموافقة على الشروط والأحكام"));
-  // return;
-  //   }
-  // emit(SignUpLoading());
-
-  // محاكاة API Call
-  // Future.delayed(Duration(seconds: 2), () {
-  // context.pushAndRemoveUntil(TapBarScreen());
-  // emit(SignUpSuccess());
-  // });
-  // }
 
   Future<void> register(RegisterParams params) async {
     if (!formKey.currentState!.validate()) return;
 
     if (!isAgreedToTerms) {
-      emit(SignUpError("ocaleKeys.agreeToTermsError.tr()")); // استخدم الترجمة
+      emit(SignUpError("localeKeys.agreeToTermsError.tr()"));
       return;
     }
 
     emit(SignUpLoading());
 
     try {
-      final result = await AuthRepo.register(params); // استخدام async/await
+      final result = await AuthRepo.register(params); 
 
-      SharedHelper.sava(SharedKeys.kToken, result.data?.token);
+      SharedHelper.sava(SharedKeys.kToken, result.token);
       emit(SignUpSuccess());
     } catch (e) {
-      emit(SignUpError(e.toString())); // خطأ عام
+      emit(SignUpError(e.toString())); 
     }
   }
 }

@@ -14,8 +14,7 @@ import 'package:healthy_sync/core/Themes/light_theme.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
-import 'package:healthy_sync/feature/layout/presentation/screens/layout/layout_screen.dart';
-
+import 'package:healthy_sync/feature/patients/presentation/screens/patient_home_nav.dart';
 
 class FormSignUp extends StatelessWidget {
   const FormSignUp({super.key});
@@ -26,15 +25,13 @@ class FormSignUp extends StatelessWidget {
     return BlocListener<SignUpCubit, SignUpState>(
       listener: (context, state) {
         if (state is SignUpLoading) {
-           showLoadingDialog(context);
+          showLoadingDialog(context);
         } else if (state is SignUpSuccess) {
-        
           Navigator.pop(context); // إغلاق الـ Dialog لو مفتوح
-          context.pushAndRemoveUntil(TapBarScreen());
+          context.pushAndRemoveUntil(PatientHomeNavScreen());
         } else if (state is SignUpError) {
           Navigator.pop(context); // إغلاق الـ Dialog لو مفتوح
           showErrorToast(context, state.error);
-
         }
       },
       child: Form(
@@ -49,18 +46,28 @@ class FormSignUp extends StatelessWidget {
                   value: signUpCubit.selectedAccountType,
                   hint: LocaleKeys.patient.tr(),
                   onChanged: signUpCubit.selectAccountType,
-                  validator: (value) => value == null
-                      ? LocaleKeys.accountTypeIsRequired.tr()
-                      : null,
+                  validator:
+                      (value) =>
+                          value == null
+                              ? LocaleKeys.accountTypeIsRequired.tr()
+                              : null,
                   items: [
                     DropdownMenuItem(
-                        value: "Doctor", child: Text(LocaleKeys.doctor.tr())),
+                      value: "doctor",
+                      child: Text(LocaleKeys.doctor.tr()),
+                    ),
                     DropdownMenuItem(
-                        value: "Patient", child: Text(LocaleKeys.patient.tr())),
+                      value: "patient",
+                      child: Text(LocaleKeys.patient.tr()),
+                    ),
                     DropdownMenuItem(
-                        value: "Lab", child: Text(LocaleKeys.lab.tr())),
+                      value: "lab",
+                      child: Text(LocaleKeys.lab.tr()),
+                    ),
                     DropdownMenuItem(
-                        value: "Admin", child: Text(LocaleKeys.admin.tr())),
+                      value: "admin",
+                      child: Text(LocaleKeys.admin.tr()),
+                    ),
                   ],
                 );
               },
@@ -71,8 +78,9 @@ class FormSignUp extends StatelessWidget {
               floatingLabelBehavior: FloatingLabelBehavior.always,
               hintText: LocaleKeys.youssifShaban.tr(),
               labelText: LocaleKeys.name.tr(),
-              validator: (value) =>
-                  value!.isEmpty ? LocaleKeys.nameIsRequired.tr() : null,
+              validator:
+                  (value) =>
+                      value!.isEmpty ? LocaleKeys.nameIsRequired.tr() : null,
             ),
             16.H,
             CustomTextField(
@@ -95,15 +103,15 @@ class FormSignUp extends StatelessWidget {
               hintText: LocaleKeys.youssifAge.tr(),
               labelText: LocaleKeys.age.tr(),
               keyboardType: TextInputType.number,
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return LocaleKeys.ageIsRequired.tr();
-                }
-                if (int.tryParse(value) == null) {
-                  return LocaleKeys.PleaseEnterAValidNumber.tr();
-                }
-                return null;
-              },
+              // validator: (value) {
+              // if (value!.isEmpty) {
+              //  return LocaleKeys.ageIsRequired.tr();
+              //  }
+              //if (int.tryParse(value) == null) {
+              //return LocaleKeys.PleaseEnterAValidNumber.tr();
+              // }
+              //return null;
+              //},
             ),
             16.H,
             CustomTextField(
@@ -112,12 +120,12 @@ class FormSignUp extends StatelessWidget {
               hintText: LocaleKeys.youssifPhone.tr(),
               labelText: LocaleKeys.phone.tr(),
               keyboardType: TextInputType.phone,
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return LocaleKeys.phoneIsRequired.tr();
-                }
-                return null;
-              },
+              // validator: (value) {
+              // if (value!.isEmpty) {
+              // return LocaleKeys.phoneIsRequired.tr();
+              //}
+              //return null;
+              //},
             ),
             16.H,
             BlocBuilder<SignUpCubit, SignUpState>(
@@ -128,12 +136,18 @@ class FormSignUp extends StatelessWidget {
                   value: signUpCubit.selectedCity,
                   hint: LocaleKeys.cityHint.tr(),
                   onChanged: signUpCubit.selectCity,
-                  validator: (value) =>
-                      value == null ? LocaleKeys.cityIsRequired.tr() : null,
-                  items: signUpCubit.cities
-                      .map((city) =>
-                          DropdownMenuItem(value: city, child: Text(city)))
-                      .toList(),
+                  // validator:
+                  //     (value) =>
+                  //         value == null ? LocaleKeys.cityIsRequired.tr() : null,
+                  items:
+                      signUpCubit.cities
+                          .map(
+                            (city) => DropdownMenuItem(
+                              value: city,
+                              child: Text(city),
+                            ),
+                          )
+                          .toList(),
                 );
               },
             ),
@@ -146,22 +160,28 @@ class FormSignUp extends StatelessWidget {
                   value: signUpCubit.selectedGender,
                   hint: LocaleKeys.maleGender.tr(),
                   onChanged: signUpCubit.selectGender,
-                  validator: (value) =>
-                      value == null ? LocaleKeys.genderIsRequired.tr() : null,
+                  validator:
+                      (value) =>
+                          value == null
+                              ? LocaleKeys.genderIsRequired.tr()
+                              : null,
                   items: [
                     DropdownMenuItem(
-                        value: "Male", child: Text(LocaleKeys.maleGender.tr())),
+                      value: "Male",
+                      child: Text(LocaleKeys.maleGender.tr()),
+                    ),
                     DropdownMenuItem(
-                        value: "Female",
-                        child: Text(LocaleKeys.femaleGender.tr())),
+                      value: "Female",
+                      child: Text(LocaleKeys.femaleGender.tr()),
+                    ),
                   ],
                 );
               },
             ),
             16.H,
             BlocBuilder<SignUpCubit, SignUpState>(
-              buildWhen: (previous, current) =>
-                  current is PasswordVisibilityToggled,
+              buildWhen:
+                  (previous, current) => current is PasswordVisibilityToggled,
               builder: (context, state) {
                 return CustomTextField(
                   labelText: LocaleKeys.password.tr(),
@@ -172,42 +192,45 @@ class FormSignUp extends StatelessWidget {
                   isPasswordVisible: signUpCubit.isPasswordVisible,
                   togglePasswordVisibility:
                       signUpCubit.togglePasswordVisibility,
-                  validator: (value) => value!.isEmpty
-                      ? LocaleKeys.passwordIsRequired.tr()
-                      : null,
+                  validator:
+                      (value) =>
+                          value!.isEmpty
+                              ? LocaleKeys.passwordIsRequired.tr()
+                              : null,
                 );
               },
             ),
             16.H,
             BlocBuilder<SignUpCubit, SignUpState>(
-                buildWhen: (previous, current) =>
-                    current is PasswordVisibilityToggled,
-                builder: (context, state) {
-                  return CustomTextField(
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    labelText: LocaleKeys.confirmPassword.tr(),
-                    controller: signUpCubit.confirmPasswordController,
-                    hintText: "*" * 8,
-                    isPassword: true,
-                    isPasswordVisible: signUpCubit.isPasswordVisible,
-                    togglePasswordVisibility: () {
-                      signUpCubit.togglePasswordVisibility();
-                    },
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return LocaleKeys.confirmPasswordIsRequired.tr();
-                      }
-                      if (value != signUpCubit.passwordController.text) {
-                        return LocaleKeys.PasswordDoesNotMatch.tr();
-                      }
-                      return null;
-                    },
-                  );
-                }),
+              buildWhen:
+                  (previous, current) => current is PasswordVisibilityToggled,
+              builder: (context, state) {
+                return CustomTextField(
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  labelText: LocaleKeys.confirmPassword.tr(),
+                  controller: signUpCubit.confirmPasswordController,
+                  hintText: "*" * 8,
+                  isPassword: true,
+                  isPasswordVisible: signUpCubit.isPasswordVisible,
+                  togglePasswordVisibility: () {
+                    signUpCubit.togglePasswordVisibility();
+                  },
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return LocaleKeys.confirmPasswordIsRequired.tr();
+                    }
+                    if (value != signUpCubit.passwordController.text) {
+                      return LocaleKeys.PasswordDoesNotMatch.tr();
+                    }
+                    return null;
+                  },
+                );
+              },
+            ),
             16.H,
             BlocBuilder<SignUpCubit, SignUpState>(
-              buildWhen: (previous, current) =>
-                  current is TermsAgreementToggled,
+              buildWhen:
+                  (previous, current) => current is TermsAgreementToggled,
               builder: (context, state) {
                 return Row(
                   children: [
@@ -217,8 +240,10 @@ class FormSignUp extends StatelessWidget {
                         signUpCubit.toggleTermsAgreement(value ?? false);
                       },
                     ),
-                    Text(LocaleKeys.iAgreeToTermsAndConditions.tr(),
-                        style: TextStyle(fontSize: 12.sp)),
+                    Text(
+                      LocaleKeys.iAgreeToTermsAndConditions.tr(),
+                      style: TextStyle(fontSize: 12.sp),
+                    ),
                   ],
                 );
               },
@@ -226,23 +251,31 @@ class FormSignUp extends StatelessWidget {
             12.H,
             CustomButton(
               name: Text(LocaleKeys.signUp.tr(), style: textStyle),
-              onTap: () => signUpCubit.register(
-                RegisterParams(
-                    email: signUpCubit.emailController.text,
-                    password: signUpCubit.passwordController.text,
-                    name: signUpCubit.nameController.text,
-                    passwordConfirmation:
-                        signUpCubit.confirmPasswordController.text),
-              ),
+              onTap:
+                  () => signUpCubit.register(
+                    RegisterParams(
+                      email: signUpCubit.emailController.text,
+                      password: signUpCubit.passwordController.text,
+                      name: signUpCubit.nameController.text,
+                      passwordConfirmation:
+                          signUpCubit.confirmPasswordController.text,
+                      role: signUpCubit.selectedAccountType,
+                    ),
+                  ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(LocaleKeys.alreadyHaveAnAccount.tr(),
-                    style: TextStyle(fontSize: 12.sp)),
+                Text(
+                  LocaleKeys.alreadyHaveAnAccount.tr(),
+                  style: TextStyle(fontSize: 12.sp),
+                ),
                 TextButton(
-                  onPressed: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginScreen())),
+                  onPressed:
+                      () => Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                      ),
                   child: Text(
                     LocaleKeys.login.tr(),
                     style: textStyle.copyWith(

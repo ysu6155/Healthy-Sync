@@ -3,7 +3,7 @@ import 'package:healthy_sync/core/service/local/shared_keys.dart';
 import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:healthy_sync/core/utils/app_assets.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
-import 'package:healthy_sync/feature/layout/presentation/screens/layout/layout_screen.dart';
+import 'package:healthy_sync/feature/patients/presentation/screens/patient_home_nav.dart';
 import 'package:healthy_sync/feature/welcome/presentation/screens/welcome/welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -24,7 +24,7 @@ class SplashScreenState extends State<SplashScreen> {
   Future<void> navigateToNextScreen() async {
     await Future.delayed(const Duration(seconds: 3));
     if (token != null) {
-      context.pushReplacement(const TapBarScreen());
+      context.pushReplacement(const PatientHomeNavScreen());
     } else {
       context.pushReplacement(const WelcomeScreen());
     }

@@ -71,21 +71,21 @@ class WelcomeScreenState extends State<WelcomeScreen> {
             ),
             Column(
               children: [
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  ...List.generate(
-                    3,
-                    (index) =>
-                        buildDot(index: index, currentPage: _currentPage),
-                  ),
-                ]),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ...List.generate(
+                      3,
+                      (index) =>
+                          buildDot(index: index, currentPage: _currentPage),
+                    ),
+                  ],
+                ),
                 15.H,
                 Column(
                   children: [
                     CustomButton(
-                      name: Text(
-                        LocaleKeys.login.tr(),
-                        style: textStyle,
-                      ),
+                      name: Text(LocaleKeys.login.tr(), style: textStyle),
                       onTap: () {
                         context.push(LoginScreen());
                       },
@@ -93,8 +93,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                     16.H,
                     CustomButton(
                       border: Border.all(color: AppColor.black, width: 3.sp),
-                      name:
-                          Text(LocaleKeys.signUp.tr(), style: textStyle),
+                      name: Text(LocaleKeys.signUp.tr(), style: textStyle),
                       backgroundColor: AppColor.main,
                       textColor: AppColor.black,
                       onTap: () {

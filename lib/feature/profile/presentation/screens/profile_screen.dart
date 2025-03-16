@@ -74,6 +74,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               return ListView(
                 children: [
                   Container(
+                    padding: EdgeInsets.all(16.sp),
                     margin: EdgeInsets.all(16.sp),
                     decoration: BoxDecoration(
                       color: AppColor.white,
@@ -93,21 +94,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           radius: 50.r,
                           backgroundImage: NetworkImage(state.image),
                         ),
-                        16.W,
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              state.name,
-                              style: TextStyle(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.bold,
-                                color: AppColor.main,
+                        Gap(16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                // SharedHelper.get(SharedKeys.name),
+                                state.name,
+                                style: TextStyle(
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColor.main,
+                                ),
                               ),
-                            ),
-                            Text(state.email),
-                            Text(state.phone ?? ""),
-                          ],
+                              Text(state.email),
+                              Text(state.phone ?? ""),
+                            ],
+                          ),
                         ),
                       ],
                     ),

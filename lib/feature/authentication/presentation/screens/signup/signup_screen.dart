@@ -28,9 +28,7 @@ class SignUpScreen extends StatelessWidget {
       body: SafeArea(
         top: false,
         child: Container(
-          decoration: BoxDecoration(
-            color: AppColor.main,
-          ),
+          decoration: BoxDecoration(color: AppColor.main),
           child: SingleChildScrollView(
             child: Column(
               children: [

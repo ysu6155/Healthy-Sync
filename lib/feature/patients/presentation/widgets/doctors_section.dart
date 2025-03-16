@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:healthy_sync/feature/patients/presentation/screens/doctor_details/doctor_details.dart';
+import 'package:healthy_sync/feature/patients/presentation/screens/doctor_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/Models/data_doctors.dart';
@@ -66,10 +66,7 @@ class _DoctorsSectionState extends State<DoctorsSection> {
                   ),
                   Text(
                     doctor["specialty"]!,
-                    style: TextStyle(
-                      color: AppColor.white,
-                      fontSize: 14.sp,
-                    ),
+                    style: TextStyle(color: AppColor.white, fontSize: 14.sp),
                   ),
                   8.H,
                   Row(
@@ -78,19 +75,19 @@ class _DoctorsSectionState extends State<DoctorsSection> {
                       double rat = doctor["rating"] ?? 0;
                       return Icon(
                         Icons.star,
-                        color: index < rat
-                            ? AppColor.amber
-                            : AppColor.grey, // نجمة ملونة أو فارغة
+                        color:
+                            index < rat
+                                ? AppColor.amber
+                                : AppColor.grey, // نجمة ملونة أو فارغة
                         size: 20.sp,
                       );
                     }),
-                  )
+                  ),
                 ],
               ),
             ).withTapEffect(
-                onTap: () => context.push(
-                      DoctorDetails(doctor: doctor),
-                    ));
+              onTap: () => context.push(DoctorDetails(doctor: doctor)),
+            );
           },
         ),
       ],

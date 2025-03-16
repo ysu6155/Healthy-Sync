@@ -23,9 +23,7 @@ sealed class DioHelper {
         endPoints,
         data: body,
         queryParameters: params,
-        options: Options(
-          headers: headers,
-        ),
+        options: Options(headers: headers),
       );
     } catch (e) {
       rethrow;
@@ -43,9 +41,7 @@ sealed class DioHelper {
         endPoints,
         data: body,
         queryParameters: params,
-        options: Options(
-          headers: headers,
-        ),
+        options: Options(headers: headers),
       );
     } catch (e) {
       rethrow;
@@ -63,9 +59,7 @@ sealed class DioHelper {
         endPoints,
         data: body,
         queryParameters: params,
-        options: Options(
-          headers: headers,
-        ),
+        options: Options(headers: headers),
       );
     } catch (e) {
       rethrow;
@@ -83,9 +77,7 @@ sealed class DioHelper {
         endPoints,
         data: body,
         queryParameters: params,
-        options: Options(
-          headers: headers,
-        ),
+        options: Options(headers: headers),
       );
     } catch (e) {
       rethrow;
@@ -103,9 +95,7 @@ sealed class DioHelper {
         endPoints,
         data: body,
         queryParameters: params,
-        options: Options(
-          headers: headers,
-        ),
+        options: Options(headers: headers),
       );
     } catch (e) {
       rethrow;

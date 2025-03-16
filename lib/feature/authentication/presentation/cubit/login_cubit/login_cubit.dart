@@ -9,7 +9,7 @@ import 'package:healthy_sync/core/utils/extensions.dart';
 import 'package:healthy_sync/feature/authentication/data/models/request/register_params.dart';
 import 'package:healthy_sync/feature/authentication/data/repo/auth_repo.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_state.dart';
-import 'package:healthy_sync/feature/layout/presentation/screens/layout/layout_screen.dart';
+import 'package:healthy_sync/feature/patients/presentation/screens/patient_home_nav.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
@@ -36,18 +36,21 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginLoading());
     try {
       final response = await AuthRepo.login(params);
+      log(response.user?.name ?? "5");
+      log(response.user?.email ?? "13");
+      log(response.token ?? "14");
+      await SharedHelper.sava(SharedKeys.kToken, response.token);
+      await SharedHelper.sava(SharedKeys.name, response.user?.name);
+      await SharedHelper.sava(SharedKeys.email, response.user?.email);
+      //await SharedHelper.sava(SharedKeys.image, response.data?.newUser?.profilePhoto);
+      // await SharedHelper.sava(SharedKeys.role, response.data?.newUser?.role);
 
-      await SharedHelper.sava(SharedKeys.kToken, response.data?.token);
-       await SharedHelper.sava(SharedKeys.name, response.data?.user?.name);
-       await SharedHelper.sava(SharedKeys.email, response.data?.user?.email);
-        await SharedHelper.sava(SharedKeys.image, response.data?.user?.image);
-      
       emit(LoginSuccess());
 
       if (context.mounted) {
-        context.pushAndRemoveUntil(const TapBarScreen());
+        context.pushAndRemoveUntil(const PatientHomeNavScreen());
       }
-        } catch (e, stackTrace) {
+    } catch (e, stackTrace) {
       log("🔥 Login Error: $e");
       log("📌 StackTrace: $stackTrace");
       emit(LoginError("An error occurred. Please try again."));

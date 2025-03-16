@@ -1,12 +1,12 @@
 import 'dart:developer';
 
-
 import 'package:dio/dio.dart';
 import 'package:healthy_sync/core/network/dio_helper.dart';
 import 'package:healthy_sync/core/network/end_points.dart';
 import 'package:healthy_sync/core/service/local/shared_keys.dart';
 import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:healthy_sync/feature/profile/data/models/profile/profile.dart';
+import 'package:healthy_sync/feature/profile/data/models/update_user/update_user.dart';
 
 class ProfileRepository {
   static Future<Profile> getProfileData() async {
@@ -24,10 +24,10 @@ class ProfileRepository {
     }
   }
 
-  static Future<Response> updateProfile(FormData formData) async {
-    return await DioHelper.post(
-      endPoints: EndPoints.updateProfile,
-      body: formData,
+  static Future<Response> updateProfile( Map<String, dynamic> body) async {
+    return await DioHelper.put(
+      endPoints: EndPoints.updateUser,
+      body: body,
       headers: {
         "Authorization": "Bearer ${SharedHelper.get(SharedKeys.kToken)}",
       },
@@ -43,5 +43,20 @@ class ProfileRepository {
       },
     );
   }
-}
 
+  static Future<UpdateUser> updateUser() async {
+    final response = await DioHelper.put(
+      endPoints: EndPoints.updateUser,
+     
+      headers: {
+        "Authorization": "Bearer ${SharedHelper.get(SharedKeys.kToken)}",
+      },
+    );
+    if (response.statusCode == 200) {
+      log("API Response: ${response.data}");
+      return UpdateUser.fromJson(response.data);
+    } else {
+      throw Exception("Failed to load profile");
+    }
+  }
+}

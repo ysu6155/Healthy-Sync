@@ -9,13 +9,14 @@ class CustomButton extends StatelessWidget {
   final Color? textColor;
   final void Function() onTap;
   final Border? border;
-  const CustomButton(
-      {super.key,
-      required this.name,
-      this.backgroundColor,
-      this.textColor,
-      required this.onTap,
-      this.border});
+  const CustomButton({
+    super.key,
+    required this.name,
+    this.backgroundColor,
+    this.textColor,
+    required this.onTap,
+    this.border,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -54,8 +54,6 @@ class TimerWidgetState extends State<TimerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: timerText,
-    );
+    return Center(child: timerText);
   }
 }

@@ -8,18 +8,14 @@ import 'package:healthy_sync/core/utils/app_color.dart';
 class CustomForm1 extends StatelessWidget {
   Widget widget1;
   Widget widget2;
-  CustomForm1({
-    super.key,
-    required this.widget1,
-    required this.widget2,
-  });
+  CustomForm1({super.key, required this.widget1, required this.widget2});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       top: false,
       child: Container(
-        decoration: BoxDecoration(color: AppColor.main,),
+        decoration: BoxDecoration(color: AppColor.main),
         child: SingleChildScrollView(
           child: Column(
             spacing: 8.sp,

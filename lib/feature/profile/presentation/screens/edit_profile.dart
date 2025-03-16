@@ -61,7 +61,7 @@ class _EditProfileState extends State<EditProfile> {
             ).showSnackBar(SnackBar(content: Text(state.message)));
           }
         },
-        
+
         builder: (context, state) {
           return Padding(
             padding: EdgeInsets.all(16.sp),

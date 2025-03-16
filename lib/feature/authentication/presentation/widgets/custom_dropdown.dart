@@ -23,10 +23,7 @@ class CustomDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
       decoration: InputDecoration(
-        label: Text(
-          labelText,
-          style: TextStyle(fontSize: 14.sp),
-        ),
+        label: Text(labelText, style: TextStyle(fontSize: 14.sp)),
         labelStyle: TextStyle(
           fontSize: 16.sp,
           color: Colors.black,

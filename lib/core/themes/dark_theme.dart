@@ -5,8 +5,5 @@ import 'package:healthy_sync/core/utils/app_color.dart';
 ThemeData darkTheme = ThemeData.dark().copyWith(
   brightness: Brightness.dark,
   scaffoldBackgroundColor: AppColor.darkGrey,
-  inputDecorationTheme: inputDecorationTheme(
-    AppColor.darkGrey,
-    AppColor.white,
-  ),
+  inputDecorationTheme: inputDecorationTheme(AppColor.darkGrey, AppColor.white),
 );
