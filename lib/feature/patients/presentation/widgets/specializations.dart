@@ -20,25 +20,19 @@ class SpecializationsSection extends StatelessWidget {
             width: 100.w,
             padding: EdgeInsets.all(16.sp),
             decoration: BoxDecoration(
-              color: AppColor.main,
+              color: colorSpecializations[index],
               borderRadius: BorderRadius.circular(16.r),
             ),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Icon(
-                    specializations[index]['icon'] as IconData,
-                    color: AppColor.white,
-                    size: 30.sp,
-                  ),
-                ),
-              ],
+            child: Icon(
+              specializations[index]['icon'] as IconData,
+              color: AppColor.white,
+              size: 30.sp,
             ),
           ).withTapEffect(
             onTap:
                 () => context.push(
                   DoctorsBySpecialtyScreen(
-                    selectedSpecialty: specializations[index]['name'] as String,
+                    selectedSpecialty: specializations[index],
                   ),
                 ),
           );
@@ -49,3 +43,17 @@ class SpecializationsSection extends StatelessWidget {
     );
   }
 }
+
+List colorSpecializations = [
+  AppColor.main,
+  AppColor.secondary,
+
+  AppColor.blue,
+  AppColor.green,
+  AppColor.purple,
+  AppColor.pink,
+  AppColor.orange,
+  AppColor.red,
+  AppColor.brown,
+  AppColor.teal,
+];

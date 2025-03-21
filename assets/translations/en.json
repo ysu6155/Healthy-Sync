@@ -146,6 +146,19 @@
   "labTest" :"Lab Test",
   "addNewMedicalTest" :"Add New Medical Test",
   "referenceRange" :"Reference Range",
-  "value" :"Value"
+  "value" :"Value",
+"loginByDoctor": "Login By Doctor",
+"loginByPatient": "Login By Patient",
+"LoginBy": "Login By ",
+"doctorDetails": "Doctor Details",
+"patientDetails": "Patient Details",
+"appointmentDetails": "Appointment Details",
+"medicineDetails": "Medicine Details",
+"status": "Status",
+"visitDetails": "Visit Details",
+"symptoms": "Symptoms",
+"medicine": "Medicine",
+"notes": "Notes",
+"tests": "Tests"
 
 }

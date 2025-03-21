@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const signUp = 'signUp';
   static const pleaseSignUpToGetStarted = 'pleaseSignUpToGetStarted';
   static const name = 'name';
@@ -24,8 +24,7 @@ abstract class LocaleKeys {
   static const seeAll = 'seeAll';
   static const home = 'home';
   static const welcomeToHealthySync = 'welcomeToHealthySync';
-  static const Empoweringyoutoliveahealthierlife =
-      'Empoweringyoutoliveahealthierlife';
+  static const Empoweringyoutoliveahealthierlife = 'Empoweringyoutoliveahealthierlife';
   static const Empowering = 'Empowering';
   static const next = 'next';
   static const easyToUse = 'easyToUse';
@@ -66,8 +65,7 @@ abstract class LocaleKeys {
   static const specializations = 'specializations';
   static const specialization = 'specialization';
   static const AboutDoctor = 'AboutDoctor';
-  static const NoAdditionalInformationProvided =
-      'NoAdditionalInformationProvided';
+  static const NoAdditionalInformationProvided = 'NoAdditionalInformationProvided';
   static const callDoctor = 'callDoctor';
   static const chatWithDoctor = 'chatWithDoctor';
   static const maleGender = 'maleGender';
@@ -153,4 +151,18 @@ abstract class LocaleKeys {
   static const addNewMedicalTest = 'addNewMedicalTest';
   static const referenceRange = 'referenceRange';
   static const value = 'value';
+  static const loginByDoctor = 'loginByDoctor';
+  static const loginByPatient = 'loginByPatient';
+  static const LoginBy = 'LoginBy';
+  static const doctorDetails = 'doctorDetails';
+  static const patientDetails = 'patientDetails';
+  static const appointmentDetails = 'appointmentDetails';
+  static const medicineDetails = 'medicineDetails';
+  static const status = 'status';
+  static const visitDetails = 'visitDetails';
+  static const symptoms = 'symptoms';
+  static const medicine = 'medicine';
+  static const notes = 'notes';
+  static const tests = 'tests';
+
 }

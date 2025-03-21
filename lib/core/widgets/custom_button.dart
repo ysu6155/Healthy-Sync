@@ -9,6 +9,8 @@ class CustomButton extends StatelessWidget {
   final Color? textColor;
   final void Function() onTap;
   final Border? border;
+  final double? height;
+  final double? width;
   const CustomButton({
     super.key,
     required this.name,
@@ -16,12 +18,15 @@ class CustomButton extends StatelessWidget {
     this.textColor,
     required this.onTap,
     this.border,
+    this.height,
+    this.width,
   });
 
   @override
   Widget build(BuildContext context) {
     return Ink(
-      height: 48.sp,
+      width: width ?? 1.sw,
+      height: height ?? 48.sp,
       decoration: BoxDecoration(
         border: border ?? Border.all(color: AppColor.transparent, width: 2.sp),
         // gradient: backgroundColor ?? AppColor.primaryGradient,

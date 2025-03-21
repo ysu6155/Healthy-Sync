@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
@@ -22,7 +21,7 @@ void main() async {
           AppAssets
               .translationPath, // <-- change the path of the translation files
       fallbackLocale: Locale('en'),
-      startLocale: Locale("en"),
+      startLocale: Locale("ar"),
 
       child: HealthySync(),
     ),

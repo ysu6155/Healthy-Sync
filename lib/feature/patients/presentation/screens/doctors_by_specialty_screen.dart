@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/doctor_details.dart';
 import 'package:healthy_sync/core/Models/data_doctors.dart';
-import 'package:healthy_sync/core/Themes/light_theme.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
 
 class DoctorsBySpecialtyScreen extends StatefulWidget {
-  final String selectedSpecialty;
+  final Map selectedSpecialty;
 
   const DoctorsBySpecialtyScreen({super.key, required this.selectedSpecialty});
 
@@ -25,8 +25,7 @@ class _DoctorsBySpecialtyScreenState extends State<DoctorsBySpecialtyScreen> {
     filterDoctors(widget.selectedSpecialty);
   }
 
-  // تصفية الأطباء بناءً على التخصص
-  void filterDoctors(String specialty) {
+  void filterDoctors(Map specialty) {
     setState(() {
       filteredDoctors =
           doctors.where((doctor) {
@@ -40,7 +39,13 @@ class _DoctorsBySpecialtyScreenState extends State<DoctorsBySpecialtyScreen> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 48.sp,
-        title: Text(widget.selectedSpecialty, style: textStyle),
+        title: Row(
+          children: [
+            Text("${widget.selectedSpecialty["name"]} ", style: textStyleTitle),
+            8.W,
+            Icon(widget.selectedSpecialty["icon"], size: 24.sp),
+          ],
+        ),
         iconTheme: IconThemeData(color: AppColor.white, size: 16.sp),
         backgroundColor: AppColor.main,
       ),
@@ -54,13 +59,15 @@ class _DoctorsBySpecialtyScreenState extends State<DoctorsBySpecialtyScreen> {
                   vertical: 16.w,
                 ),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // عدد الأعمدة
-                  crossAxisSpacing: 16.w, // المسافة الأفقية بين العناصر
-                  mainAxisSpacing: 16.sp, // المسافة الرأسية بين العناصر
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16.w,
+                  mainAxisSpacing: 16.sp,
+                  childAspectRatio: .83.sp,
                 ),
                 itemBuilder: (context, index) {
                   dynamic doctor = filteredDoctors[index];
                   return Ink(
+                    padding: EdgeInsets.all(8.sp),
                     decoration: BoxDecoration(
                       color: AppColor.main,
                       borderRadius: BorderRadius.circular(16.r),
@@ -70,24 +77,12 @@ class _DoctorsBySpecialtyScreenState extends State<DoctorsBySpecialtyScreen> {
                       children: [
                         CircleAvatar(
                           radius: 30.r,
-                          backgroundImage: AssetImage(doctor["image"]!),
+                          backgroundImage: Image.network(doctor["image"]).image,
                         ),
                         8.H,
-                        Text(
-                          doctor["name"]!,
-                          style: TextStyle(
-                            color: AppColor.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          doctor["specialty"]!,
-                          style: TextStyle(
-                            color: AppColor.white,
-                            fontSize: 14.sp,
-                          ),
-                        ),
+                        Text(doctor["name"]!, style: textStyleBody),
+                        8.H,
+                        Text(doctor["specialty"]!, style: textStyle),
                         8.H,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

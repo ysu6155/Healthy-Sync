@@ -1,10 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 import 'package:healthy_sync/feature/authentication/presentation/screens/Verification/verification_screen.dart';
-import 'package:healthy_sync/core/Themes/light_theme.dart';
+
 import 'package:healthy_sync/core/utils/extensions.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_assets.dart';
@@ -24,11 +25,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.white,
       appBar: AppBar(
         centerTitle: true,
-        iconTheme: IconThemeData(color: AppColor.white),
+        iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
         backgroundColor: AppColor.main,
-        title: Text(LocaleKeys.forgotPassword.tr(), style: textStyle),
+        title: Text(LocaleKeys.forgotPassword.tr(), style: textStyleTitle),
       ),
       body: SafeArea(
         top: false,
@@ -63,10 +65,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         CustomTextField(
                           controller: email,
                           labelText: LocaleKeys.emailPhone.tr(),
-                          labelStyle: TextStyle(
+                          labelStyle: textStyleTitle.copyWith(
                             color: AppColor.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.sp,
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           hintText: LocaleKeys.enterYourEmailOrPhone.tr(),
@@ -82,7 +82,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         CustomButton(
                           name: Text(
                             LocaleKeys.sendCode.tr(),
-                            style: textStyle,
+                            style: textStyleTitle,
                           ),
                           onTap: () {
                             if (formKey.currentState!.validate()) {
@@ -92,7 +92,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                             }
                           },
                         ),
-                        100.H,
                       ],
                     ),
                   ),

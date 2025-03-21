@@ -2,8 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:healthy_sync/core/enum/enum.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
+import 'package:healthy_sync/core/widgets/responsive_helper.dart';
 import 'package:healthy_sync/core/widgets/show_dialog.dart';
 import 'package:healthy_sync/feature/authentication/data/models/request/register_params.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/signup_cubit/signup_cubit.dart';
@@ -17,7 +19,8 @@ import 'package:healthy_sync/core/utils/extensions.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/patient_home_nav.dart';
 
 class FormSignUp extends StatelessWidget {
-  const FormSignUp({super.key});
+  final UserType userType;
+  const FormSignUp({super.key, required this.userType});
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +30,10 @@ class FormSignUp extends StatelessWidget {
         if (state is SignUpLoading) {
           showLoadingDialog(context);
         } else if (state is SignUpSuccess) {
-          Navigator.pop(context); // إغلاق الـ Dialog لو مفتوح
+          Navigator.pop(context);
           context.pushAndRemoveUntil(PatientHomeNavScreen());
         } else if (state is SignUpError) {
-          Navigator.pop(context); // إغلاق الـ Dialog لو مفتوح
+          Navigator.pop(context);
           showErrorToast(context, state.error);
         }
       },
@@ -234,15 +237,18 @@ class FormSignUp extends StatelessWidget {
               builder: (context, state) {
                 return Row(
                   children: [
-                    Checkbox(
-                      value: signUpCubit.isAgreedToTerms,
-                      onChanged: (bool? value) {
-                        signUpCubit.toggleTermsAgreement(value ?? false);
-                      },
+                    Transform.scale(
+                      scale: ResponsiveHelper.isMobile(context) ? 1 : 1.5,
+                      child: Checkbox(
+                        value: signUpCubit.isAgreedToTerms,
+                        onChanged: (bool? value) {
+                          signUpCubit.toggleTermsAgreement(value ?? false);
+                        },
+                      ),
                     ),
                     Text(
                       LocaleKeys.iAgreeToTermsAndConditions.tr(),
-                      style: TextStyle(fontSize: 12.sp),
+                      style: textStyle.copyWith(color: AppColor.black),
                     ),
                   ],
                 );
@@ -268,21 +274,15 @@ class FormSignUp extends StatelessWidget {
               children: [
                 Text(
                   LocaleKeys.alreadyHaveAnAccount.tr(),
-                  style: TextStyle(fontSize: 12.sp),
+                  style: textStyle.copyWith(color: AppColor.black),
                 ),
                 TextButton(
                   onPressed:
-                      () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                      ),
+                      () => context.push(LoginScreen(userType: userType)),
+
                   child: Text(
                     LocaleKeys.login.tr(),
-                    style: textStyle.copyWith(
-                      color: AppColor.main,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12.sp,
-                    ),
+                    style: textStyle.copyWith(color: AppColor.main),
                   ),
                 ),
               ],

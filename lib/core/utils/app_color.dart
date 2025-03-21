@@ -34,4 +34,9 @@ sealed class AppColor {
   static Color blue = Color(0xff2196F3);
   static Color yellow = Color(0xffFFEB3B);
   static Color transparent = Colors.transparent;
+  static Color purple = Color(0xff9C27B0);
+  static Color brown = Color(0xff795548);
+  static Color teal = Color(0xff009688);
+  static Color pink = Color(0xffE91E63);
+  
 }

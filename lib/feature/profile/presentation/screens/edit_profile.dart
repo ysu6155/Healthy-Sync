@@ -42,7 +42,7 @@ class _EditProfileState extends State<EditProfile> {
         ),
         title: Text(
           LocaleKeys.editProfile.tr(),
-          style: textStyle.copyWith(color: AppColor.main),
+          style: textStyleTitle.copyWith(color: AppColor.main),
         ),
       ),
       body: BlocConsumer<ProfileCubit, ProfileState>(
@@ -109,7 +109,7 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 Gap(22),
                 CustomButton(
-                  name: Text("Update Profile", style: textStyle),
+                  name: Text("Update Profile", style: textStyleTitle),
                   onTap: () {
                     profileCubit.updateProfile(
                       _imageFile,

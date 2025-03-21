@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/specializations_screen.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_assets.dart';
@@ -30,10 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
               CircleAvatar(
                 radius: 30.r,
                 backgroundImage:
-                    Image.asset(
-                      AppAssets.image1,
-                      width: 16.w,
-                      height: 16.sp,
+                    Image.network(
+                      "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+
                       fit: BoxFit.cover,
                     ).image,
               ),
@@ -44,19 +45,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Text(
                       "${LocaleKeys.hello.tr()} 👋",
-                      style: TextStyle(
-                        color: AppColor.black,
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w700,
-                      ),
+                      style: textStyleBody.copyWith(color: AppColor.black),
                     ),
                     Text(
                       "Youssif Shaban",
-                      style: TextStyle(
-                        color: AppColor.black,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: textStyleBody.copyWith(color: AppColor.black),
                     ),
                   ],
                 ),
@@ -89,11 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 child: Text(
                   LocaleKeys.specializations.tr(),
-                  style: TextStyle(
-                    color: AppColor.black,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: textStyleTitle.copyWith(color: AppColor.black),
                 ),
               ),
               TextButton(
@@ -109,11 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: Text(
                   LocaleKeys.seeAll.tr(),
-                  style: TextStyle(
-                    color: AppColor.main,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: textStyleBody.copyWith(color: AppColor.main),
                 ),
               ),
             ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/Themes/light_theme.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
+import 'package:healthy_sync/core/widgets/responsive_helper.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -15,8 +16,8 @@ class CustomTextField extends StatelessWidget {
   final FloatingLabelBehavior? floatingLabelBehavior;
   final String? labelText;
   final TextStyle? labelStyle;
-  final TextInputAction textInputAction; // إضافة تحكم في زر "تم"
-  final ValueChanged<String>? onFieldSubmitted; // إضافة تحكم عند الضغط على "تم"
+  final TextInputAction textInputAction;
+  final ValueChanged<String>? onFieldSubmitted;
 
   const CustomTextField({
     super.key,
@@ -31,8 +32,8 @@ class CustomTextField extends StatelessWidget {
     this.floatingLabelBehavior,
     this.labelText,
     this.labelStyle,
-    this.textInputAction = TextInputAction.done, // القيمة الافتراضية
-    this.onFieldSubmitted, // دالة عند الضغط على "تم"
+    this.textInputAction = TextInputAction.done,
+    this.onFieldSubmitted,
   });
 
   @override
@@ -41,8 +42,8 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       keyboardType: keyboardType,
       obscureText: isPassword && !isPasswordVisible,
-      textInputAction: textInputAction, // تحديد نوع الإجراء
-      onFieldSubmitted: onFieldSubmitted, // دالة عند الضغط على "تم"
+      textInputAction: textInputAction,
+      onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
         floatingLabelBehavior: floatingLabelBehavior,
         labelText: labelText,
@@ -54,6 +55,7 @@ class CustomTextField extends StatelessWidget {
               fontSize: 16.sp,
             ),
         hintText: hintText,
+        hintStyle: textStyle.copyWith(fontSize: 16.sp, color: AppColor.grey),
         suffixIcon:
             isPassword
                 ? IconButton(
@@ -66,8 +68,13 @@ class CustomTextField extends StatelessWidget {
                   onPressed: togglePasswordVisibility,
                 )
                 : null,
+        errorStyle: textStyle.copyWith(color: AppColor.red),
       ),
-      style: textStyle.copyWith(fontSize: 16.sp, color: AppColor.black),
+      style: textStyle.copyWith(
+        fontSize: ResponsiveHelper.isMobile(context) ? 16.sp : 24.sp,
+        color: AppColor.black,
+      ),
+
       validator: validator,
     );
   }

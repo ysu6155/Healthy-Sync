@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/doctor_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +7,7 @@ import 'package:healthy_sync/core/Models/data_doctors.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
+import 'package:healthy_sync/feature/patients/presentation/widgets/specializations.dart';
 
 class DoctorsSection extends StatefulWidget {
   const DoctorsSection({super.key});
@@ -20,32 +22,26 @@ class _DoctorsSectionState extends State<DoctorsSection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // عنوان الصفحة
         Text(
           LocaleKeys.doctor.tr(),
-          style: TextStyle(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-            color: AppColor.black,
-          ),
+          style: textStyleTitle.copyWith(color: AppColor.black),
         ),
         16.H,
 
-        // الشبكة التي تعرض الأطباء
         GridView.builder(
           itemCount: doctors.length,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // عدد الأعمدة
-            crossAxisSpacing: 16.w, // المسافة الأفقية بين العناصر
-            mainAxisSpacing: 16.sp, // المسافة الرأسية بين العناصر
+            crossAxisCount: 2,
+            crossAxisSpacing: 16.w,
+            mainAxisSpacing: 16.sp,
           ),
           itemBuilder: (context, index) {
             dynamic doctor = doctors[index];
             return Ink(
               decoration: BoxDecoration(
-                color: AppColor.main,
+                color: colorSpecializations[index],
                 borderRadius: BorderRadius.circular(16.r),
               ),
               child: Column(
@@ -53,7 +49,7 @@ class _DoctorsSectionState extends State<DoctorsSection> {
                 children: [
                   CircleAvatar(
                     radius: 30.r,
-                    backgroundImage: AssetImage(doctor["image"]!),
+                    backgroundImage: Image.network(doctor["image"]).image,
                   ),
                   8.H,
                   Text(
@@ -78,7 +74,7 @@ class _DoctorsSectionState extends State<DoctorsSection> {
                         color:
                             index < rat
                                 ? AppColor.amber
-                                : AppColor.grey, // نجمة ملونة أو فارغة
+                                : AppColor.grey, 
                         size: 20.sp,
                       );
                     }),

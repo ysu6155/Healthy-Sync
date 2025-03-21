@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
+import 'package:healthy_sync/core/widgets/responsive_helper.dart';
 import 'package:pinput/pinput.dart';
 
 ThemeData themeLight = ThemeData(
@@ -12,22 +13,33 @@ ThemeData themeLight = ThemeData(
   ),
 );
 
-TextStyle textStyle = TextStyle(
+TextStyle textStyleTitle = TextStyle(
   color: AppColor.white,
   fontSize: 20.sp,
   fontWeight: FontWeight.bold,
+);
+TextStyle textStyleBody = TextStyle(
+  color: AppColor.white,
+  fontSize: 16.sp,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle textStyle = TextStyle(
+  color: AppColor.white,
+  fontSize: 12.sp,
+  fontWeight: FontWeight.w400,
 );
 
 InputDecorationTheme inputDecorationTheme(Color fillColor, Color borderColor) {
   return InputDecorationTheme(
     filled: true,
     fillColor: fillColor,
-    hintStyle: TextStyle(color: Colors.grey),
+    hintStyle: textStyle.copyWith(color: AppColor.grey),
     border: borderStyle(borderColor),
     focusedBorder: borderStyle(borderColor),
     enabledBorder: borderStyle(borderColor),
-    errorBorder: borderStyle(Colors.red),
-    focusedErrorBorder: borderStyle(Colors.redAccent),
+    errorBorder: borderStyle(AppColor.red),
+    focusedErrorBorder: borderStyle(AppColor.red),
   );
 }
 
@@ -39,8 +51,9 @@ OutlineInputBorder borderStyle(Color color) {
 }
 
 final defaultPinTheme = PinTheme(
-  width: 60,
-  height: 60,
+  width: 80.sp,
+  height: 80.sp,
+
   textStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
   decoration: BoxDecoration(
     border: Border.all(color: AppColor.main, width: 2.w),

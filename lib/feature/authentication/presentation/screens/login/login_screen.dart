@@ -1,34 +1,36 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:healthy_sync/core/enum/enum.dart';
+import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
 import 'package:healthy_sync/feature/authentication/presentation/widgets/form_login.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  final UserType userType;
+  const LoginScreen({super.key, required this.userType});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          LocaleKeys.login.tr(),
-          style: TextStyle(color: AppColor.white, fontWeight: FontWeight.bold),
-        ),
+        title: Text(LocaleKeys.login.tr(), style: textStyleTitle),
         centerTitle: true,
-        iconTheme: IconThemeData(color: AppColor.white),
+        iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
         backgroundColor: AppColor.main,
       ),
       // backgroundColor: AppColor.main,
-      body: CustomContainer(),
+      body: CustomContainer(userType: userType),
     );
   }
 }
 
 class CustomContainer extends StatelessWidget {
-  const CustomContainer({super.key});
+  final UserType userType;
+  const CustomContainer({super.key, required this.userType});
 
   @override
   Widget build(BuildContext context) {
@@ -36,31 +38,24 @@ class CustomContainer extends StatelessWidget {
       top: false,
       child: Container(
         decoration: BoxDecoration(color: AppColor.main),
-        child: SingleChildScrollView(child: newMethod()),
+        child: SingleChildScrollView(child: newMethod(userType)),
       ),
     );
   }
 
-  Column newMethod() {
+  Column newMethod(final UserType userType) {
+    String handleUserType() {
+      return userType == UserType.doctor ? 'دكتور' : 'مريض';
+    }
+
     return Column(
       spacing: 8.sp,
       children: [
         50.H,
+        Text(LocaleKeys.welcomeToHealthySync.tr(), style: textStyleTitle),
         Text(
-          LocaleKeys.welcomeToHealthySync.tr(),
-          style: TextStyle(
-            color: AppColor.white,
-            fontSize: 25.sp,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        Text(
-          LocaleKeys.loginToYourAccount.tr(),
-          style: TextStyle(
-            color: AppColor.white,
-            fontWeight: FontWeight.w500,
-            fontSize: 16.sp,
-          ),
+          " ${LocaleKeys.loginToYourAccount.tr()} ${handleUserType()}",
+          style: textStyleBody,
         ),
         30.H,
         Container(
@@ -72,7 +67,7 @@ class CustomContainer extends StatelessWidget {
               topRight: Radius.circular(24.r),
             ),
           ),
-          child: FormLogin(),
+          child: FormLogin(userType: userType),
         ),
       ],
     );

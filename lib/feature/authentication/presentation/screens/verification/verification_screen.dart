@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
+import 'package:healthy_sync/core/widgets/responsive_helper.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/verification_cubit/cubit/verification_cubit.dart';
 import 'package:healthy_sync/feature/authentication/presentation/widgets/timer_widget.dart';
 import 'package:healthy_sync/core/themes/light_theme.dart';
@@ -30,11 +31,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.white,
-        iconTheme: IconThemeData(color: AppColor.black),
+        iconTheme: IconThemeData(color: AppColor.black, size: 24.sp),
         centerTitle: true,
         title: Text(
           LocaleKeys.verification.tr(),
-          style: textStyle.copyWith(color: AppColor.black),
+          style: textStyleTitle.copyWith(color: AppColor.black),
         ),
       ),
       body: Padding(
@@ -52,9 +53,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 30.H,
                 Text(
                   LocaleKeys.enterTheCode.tr(),
-                  style: TextStyle(
+                  style: textStyle.copyWith(
                     color: AppColor.black,
-                    fontSize: 12.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -62,19 +62,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 Text.rich(
                   TextSpan(
                     text: LocaleKeys.CodeSentTo.tr(),
-                    style: TextStyle(
-                      color: AppColor.black,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: textStyleBody.copyWith(color: AppColor.black),
                     children: [
                       TextSpan(
                         text: widget.phone,
-                        style: TextStyle(
-                          color: AppColor.black,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: textStyleTitle.copyWith(color: AppColor.main),
                       ),
                     ],
                   ),
@@ -87,10 +79,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         Expanded(
                           child: Text(
                             LocaleKeys.Code.tr(),
-                            style: TextStyle(
+                            style: textStyleBody.copyWith(
                               color: AppColor.black,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w700,
                             ),
                           ),
                         ),
@@ -128,11 +118,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           30.H,
                           Text(
                             cubitOTB.text ?? LocaleKeys.codeIsRequired.tr(),
-                            style: TextStyle(
-                              color: AppColor.red,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
+                            style: textStyleBody.copyWith(color: AppColor.red),
                           ),
                         ],
                       )
@@ -140,7 +126,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       30.H,
                     30.H,
                     CustomButton(
-                      name: Text(LocaleKeys.verify.tr(), style: textStyle),
+                      name: Text(LocaleKeys.verify.tr(), style: textStyleTitle),
                       onTap: () {
                         setState(() {
                           if (cubitOTB.pinController.text.length < 4) {

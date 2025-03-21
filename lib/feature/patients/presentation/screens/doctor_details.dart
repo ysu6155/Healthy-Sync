@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/Themes/light_theme.dart';
+import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
@@ -17,60 +17,78 @@ class DoctorDetails extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 48.sp,
-        title: Text(doctor["name"], style: textStyle),
-        iconTheme: IconThemeData(color: AppColor.white, size: 16.sp),
+        title: Text(LocaleKeys.doctorDetails.tr(), style: textStyleTitle),
+        iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
         backgroundColor: AppColor.main,
       ),
       body: ListView(
         children: [
           Center(
             child: Container(
-              width: double.infinity.w,
+              height: 200.sp,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.r),
               ),
-              child: Image.asset(doctor["image"], fit: BoxFit.cover),
+              child: Image.network(
+                "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           16.H,
           Text(
-            "${LocaleKeys.name.tr()}: ${doctor["name"]}",
-            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+            "${LocaleKeys.name.tr()}:",
+            style: textStyleTitle.copyWith(color: AppColor.black),
           ),
           8.H,
           Text(
-            "${LocaleKeys.specialization.tr()}: ${doctor["specialty"]}",
-            style: TextStyle(fontSize: 16.sp, color: Colors.grey),
+            " ${doctor["name"]}",
+            style: textStyleBody.copyWith(color: AppColor.black),
+          ),
+          8.H,
+          Text(
+            "${LocaleKeys.specialization.tr()}:",
+            style: textStyleTitle.copyWith(color: AppColor.black),
+          ),
+          8.H,
+          Text(
+            "${doctor["specialty"]}",
+            style: textStyleBody.copyWith(color: AppColor.black),
+          ),
+          8.H,
+          Text(
+            "${LocaleKeys.rating.tr()}:",
+            style: textStyleTitle.copyWith(color: AppColor.black),
           ),
           8.H,
           Row(
             children: [
-              Icon(Icons.star, color: Colors.amber, size: 16.sp),
+              Icon(Icons.star, color: AppColor.amber, size: 20.sp),
               4.W,
               Text(
-                "Rating: ${doctor["rating"]}/5.0",
-                style: TextStyle(fontSize: 16.sp),
+                " ${doctor["rating"]}/5.0",
+                style: textStyleBody.copyWith(color: AppColor.black),
               ),
             ],
           ),
           16.H,
           Text(
             "${LocaleKeys.AboutDoctor.tr()}:",
-            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+            style: textStyleTitle.copyWith(color: AppColor.black),
           ),
           8.H,
           Text(
             doctor["about"] ?? LocaleKeys.NoAdditionalInformationProvided.tr(),
-            style: TextStyle(fontSize: 16.sp),
+            style: textStyleBody.copyWith(color: AppColor.black),
           ),
           16.H,
           CustomButton(
             name: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(LocaleKeys.callDoctor.tr(), style: textStyle),
+                Text(LocaleKeys.callDoctor.tr(), style: textStyleTitle),
                 8.W,
-                Icon(Icons.call, color: AppColor.white, size: 16.sp),
+                Icon(Icons.call, color: AppColor.white, size: 20.sp),
               ],
             ),
             onTap: () {},
@@ -80,12 +98,14 @@ class DoctorDetails extends StatelessWidget {
             name: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(LocaleKeys.chatWithDoctor.tr(), style: textStyle),
+                Text(LocaleKeys.chatWithDoctor.tr(), style: textStyleTitle),
                 8.W,
-                Icon(Icons.chat, color: AppColor.white, size: 16.sp),
+                Icon(Icons.chat, color: AppColor.white, size: 20.sp),
               ],
             ),
-            onTap: () {},
+            onTap: () {
+              
+            },
           ),
         ],
       ).paddingAll(16.sp),

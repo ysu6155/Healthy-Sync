@@ -2,16 +2,16 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/widgets/custom_button.dart';
-import 'package:healthy_sync/feature/authentication/presentation/screens/login/login_screen.dart';
-import 'package:healthy_sync/core/Themes/light_theme.dart';
-import 'package:healthy_sync/core/translations/locale_keys.g.dart';
+import 'package:healthy_sync/core/enum/enum.dart';
+import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/utils/app_assets.dart';
+import 'package:healthy_sync/core/widgets/custom_button.dart';
+import 'package:healthy_sync/core/widgets/responsive_helper.dart';
+import 'package:healthy_sync/feature/authentication/presentation/screens/login/login_screen.dart';
+
+import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
-import 'package:healthy_sync/feature/authentication/presentation/screens/signup/signup_screen.dart';
-import 'package:healthy_sync/feature/welcome/presentation/widgets/build_dot.dart';
-import 'package:healthy_sync/feature/welcome/presentation/widgets/build_pge_welcome.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -21,89 +21,91 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class WelcomeScreenState extends State<WelcomeScreen> {
-  final pageController = PageController();
-  int _currentPage = 0;
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         top: false,
-        child: Column(
+        child: Stack(
           children: [
-            CarouselSlider(
-              items: [
-                buildPage(
-                  image: AppAssets.image1,
-                  title: LocaleKeys.welcomeToHealthySync.tr(),
-                  description:
-                      LocaleKeys.Empoweringyoutoliveahealthierlife.tr(),
-                ),
-                buildPage(
-                  image: AppAssets.image2,
-                  title: LocaleKeys.easyToUse.tr(),
-                  description: LocaleKeys.easyToUseAndSimple.tr(),
-                ),
-                buildPage(
-                  image: AppAssets.image3,
-                  title: LocaleKeys.joinNow.tr(),
-                  description: LocaleKeys.readyToStartYourSync.tr(),
-                ),
-              ],
-              options: CarouselOptions(
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    _currentPage = index;
-                  });
-                },
-                height: 0.7.sh,
-                viewportFraction: 1,
-                initialPage: 0,
-                enableInfiniteScroll: false,
-                reverse: false,
-                autoPlay: false,
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enlargeCenterPage: false,
-                scrollDirection: Axis.horizontal,
+            Image.asset(
+              AppAssets.welcome,
+              fit: BoxFit.cover,
+              width: 1.sw,
+              height: 1.sh,
+            ),
+
+            PositionedDirectional(
+              start: 16.sp,
+              end: 16.sp,
+              top: 100.sp,
+
+              child: Column(
+                children: [
+                  50.H,
+                  Text(
+                    LocaleKeys.welcomeToHealthySync.tr(),
+                    style: textStyleTitle.copyWith(
+                      color: AppColor.main,
+                      fontSize: 26.sp,
+                    ),
+                  ),
+                  30.H,
+                  Text(
+                    LocaleKeys.joinNow.tr(),
+                    style: textStyleTitle.copyWith(color: AppColor.main),
+                  ),
+                  30.H,
+                ],
               ),
             ),
-            Column(
-              children: [
-                Row(
+            
+            15.H,
+            PositionedDirectional(
+              bottom: 40.sp,
+              start: 16.sp,
+              end: 16.sp,
+              top: ResponsiveHelper.isMobile(context) ? 500.sp : 330.sp,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                width: 1.sw,
+                height: 200.sp,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: AppColor.secondary.withValues(alpha: 0.4),
+                  borderRadius: BorderRadius.circular(16.sp),
+                ),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ...List.generate(
-                      3,
-                      (index) =>
-                          buildDot(index: index, currentPage: _currentPage),
-                    ),
-                  ],
-                ),
-                15.H,
-                Column(
-                  children: [
+                    Text(LocaleKeys.LoginBy.tr(), style: textStyleTitle),
+                    16.H,
                     CustomButton(
-                      name: Text(LocaleKeys.login.tr(), style: textStyle),
+                      name: Text(LocaleKeys.doctor.tr(), style: textStyleTitle),
+                      backgroundColor: AppColor.main,
                       onTap: () {
-                        context.push(LoginScreen());
+                        context.push(LoginScreen(userType: UserType.doctor));
                       },
                     ),
                     16.H,
                     CustomButton(
-                      border: Border.all(color: AppColor.black, width: 3.sp),
-                      name: Text(LocaleKeys.signUp.tr(), style: textStyle),
+                      // border: Border.all(color: AppColor.black, width: 3.sp),
+                      name: Text(
+                        LocaleKeys.patient.tr(),
+                        style: textStyleTitle,
+                      ),
                       backgroundColor: AppColor.main,
                       textColor: AppColor.black,
                       onTap: () {
-                        context.push(SignUpScreen());
+                        context.push(LoginScreen(userType: UserType.patient));
                       },
                     ),
+                    8.H,
                   ],
                 ),
-              ],
-            ).paddingSymmetric(horizontal: 16.w, vertical: 16.sp),
+              ),
+            ),
           ],
         ),
       ),

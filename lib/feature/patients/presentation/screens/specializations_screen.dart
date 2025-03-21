@@ -39,7 +39,7 @@ class SpecializationsAll extends StatelessWidget {
                     context.push(
                       DoctorsBySpecialtyScreen(
                         selectedSpecialty:
-                            specializations[index]['name'] as String,
+                            specializations[index],
                       ),
                     );
                   },

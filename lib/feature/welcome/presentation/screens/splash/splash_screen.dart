@@ -4,6 +4,7 @@ import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:healthy_sync/core/utils/app_assets.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/patient_home_nav.dart';
+import 'package:healthy_sync/feature/welcome/presentation/screens/intro/intro_screen.dart';
 import 'package:healthy_sync/feature/welcome/presentation/screens/welcome/welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class SplashScreenState extends State<SplashScreen> {
     if (token != null) {
       context.pushReplacement(const PatientHomeNavScreen());
     } else {
-      context.pushReplacement(const WelcomeScreen());
+      context.pushReplacement(const IntroScreen());
     }
   }
 

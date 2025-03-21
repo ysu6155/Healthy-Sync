@@ -5,10 +5,10 @@ sealed class AppAssets {
   static String homeIcon = "$iconPath/home.svg";
   static String remind = "$iconPath/remind.svg";
   static String forgotPassword = "$imagePath/forgotpassword.png";
-  static String image1 = "$imagePath/image1.png";
-  static String image2 = "$imagePath/image2.png";
-  static String image3 = "$imagePath/image3.png";
-  static String image4 = "$imagePath/image4.png";
+  static String image1 = "$imagePath/image1.svg";
+  static String image2 = "$imagePath/image2.svg";
+  static String image3 = "$imagePath/image3.svg";
+  static String image4 = "$imagePath/image4.svg";
   static String verification = "$imagePath/Verification.png";
   static String translationPath = "assets/translations";
   static String testIcon = "$iconPath/tistIcon.svg";
@@ -24,4 +24,5 @@ sealed class AppAssets {
   static String passwordImage = "$imagePath/password1.json";
   static String loading3 = "$imagePath/loading3.json";
   static String loading4 = "$imagePath/loading4.json";
+  static String welcome = "$imagePath/welcome.png";
 }

@@ -16,7 +16,7 @@
   "details": "التفاصيل",
   "stable": "مستقر",
   "special": "خاص",
-  "doctor": "الأطباء",
+  "doctor": "دكتور",
   "seeAll": "عرض الكل",
   "home": "الرئيسية",
   "welcomeToHealthySync": "مرحبًا بك في Healthy Sync",
@@ -146,6 +146,19 @@
   "labTest" :"اختبار معمل",
   "addNewMedicalTest" :"اضافة اختبار طبي جديد",
   "referenceRange" :"القيمه الطبيعيه",
-  "value" :"قيمة"
+  "value" :"قيمة",
+  "loginByDoctor": "تسجيل الدخول بواسطة الطبيب",
+  "loginByPatient": "تسجيل الدخول بواسطة المريض",
+  "LoginBy": "تسجيل الدخول بواسطة",
+  "doctorDetails": "تفاصيل الطبيب",
+  "patientDetails": "تفاصيل المريض",
+  "appointmentDetails": "تفاصيل الموعد",
+  "medicineDetails": "تفاصيل الدواء",
+  "status": "الحالة",
+  "visitDetails": "تفاصيل الزيارة",
+  "symptoms": "الاعراض",
+  "medicine": "الدواء",
+  "notes": "الملاحظات",
+  "tests": "الاختبارات"
   
 }

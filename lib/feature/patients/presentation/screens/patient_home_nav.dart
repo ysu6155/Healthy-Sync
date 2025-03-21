@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:healthy_sync/core/widgets/responsive_helper.dart';
 import 'package:healthy_sync/feature/chat/presentation/screens/chat_bot_screen.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/medical_tests/medical_tests_screen.dart';
 
@@ -40,7 +41,7 @@ class PatientHomeNavScreenState extends State<PatientHomeNavScreen> {
         color: AppColor.main,
         buttonBackgroundColor: AppColor.secondary,
         animationDuration: Duration(milliseconds: 300),
-        height: 60.sp,
+        height: ResponsiveHelper.isMobile(context) ? 60 : 75,
         index: _selectedIndex,
         items: [
           SvgPicture.asset(

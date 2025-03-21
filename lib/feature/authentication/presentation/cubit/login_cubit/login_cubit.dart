@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:healthy_sync/core/enum/enum.dart';
 import 'package:healthy_sync/core/service/local/shared_keys.dart';
 import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';

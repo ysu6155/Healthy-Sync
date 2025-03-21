@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
-import 'package:healthy_sync/core/utils/app_assets.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
 
@@ -12,37 +12,30 @@ class DoctorVisitScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: AppColor.white,
       appBar: AppBar(
-        title: Text(
-          LocaleKeys.city.tr(),
-          style: TextStyle(
-            color: AppColor.white,
-            fontSize: 18.sp,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        iconTheme: IconThemeData(color: AppColor.white),
+        title: Text(LocaleKeys.visitDetails.tr(), style: textStyleTitle),
+        iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
         backgroundColor: AppColor.main,
-        elevation: 4, // ظل خفيف
+        elevation: 4,
       ),
       body: ListView(
         children: [
           _buildCard(
-            title: "LocaleKeys.doctorDetails",
+            title: LocaleKeys.doctorDetails.tr(),
             child: _buildDoctorInfo(),
           ),
           _buildCard(
-            title: "LocaleKeys.appointmentDetails",
+            title: LocaleKeys.appointmentDetails.tr(),
             child: _buildTimeAndDate(context),
           ),
-          _buildCard(title: "LocaleKeys.location", child: _buildLocation()),
+          _buildCard(title: LocaleKeys.address.tr(), child: _buildLocation()),
           _buildCard(
-            title: "LocaleKeys.medicalDetails",
+            title: LocaleKeys.medicineDetails.tr(),
             child: _buildDetails(),
           ),
           _buildCard(
-            title: "LocaleKeys.healthStatus",
+            title: LocaleKeys.status.tr(),
             child: _buildHealthStatus(context),
           ),
         ],
@@ -60,14 +53,7 @@ class DoctorVisitScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.bold,
-                color: AppColor.main,
-              ),
-            ),
+            Text(title, style: textStyleTitle.copyWith(color: AppColor.black)),
             8.H,
             child,
           ],
@@ -81,7 +67,11 @@ class DoctorVisitScreen extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 30.r,
-          backgroundImage: AssetImage(AppAssets.image1),
+          backgroundImage:
+              Image.network(
+                "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                fit: BoxFit.cover,
+              ).image,
         ),
         12.W,
         Column(
@@ -89,11 +79,11 @@ class DoctorVisitScreen extends StatelessWidget {
           children: [
             Text(
               'Dr. Ahmed',
-              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+              style: textStyleTitle.copyWith(color: AppColor.black),
             ),
             Text(
               'Cardiologist',
-              style: TextStyle(fontSize: 16.sp, color: Colors.grey.shade700),
+              style: textStyleBody.copyWith(color: AppColor.black),
             ),
           ],
         ),
@@ -106,29 +96,29 @@ class DoctorVisitScreen extends StatelessWidget {
       children: [
         _buildInfoRow(Icons.access_time, '${LocaleKeys.time.tr()}: ١٢:٠٠ م'),
         8.H,
-        _buildInfoRow(Icons.calendar_today, 'Date: ١٢/١٢/٢٠٢١'),
+        _buildInfoRow(
+          Icons.calendar_today,
+          '${LocaleKeys.date.tr()}: ١٢/١٢/٢٠٢١',
+        ),
       ],
     );
   }
 
   Widget _buildLocation() {
-    return _buildInfoRow(
-      Icons.location_on,
-      'Address: 1234 Main St, Cairo, Egypt',
-    );
+    return _buildInfoRow(Icons.location_on, ' 1234 Main St, Cairo, Egypt');
   }
 
   Widget _buildDetails() {
     return Column(
       children: [
-        _buildInfoRow(Icons.description, 'Diagnosis: Chest Pain & High BP'),
+        _buildInfoRow(Icons.description, '${LocaleKeys.symptoms.tr()}: Chest Pain & High BP'),
         8.H,
         _buildInfoRow(
           Icons.medical_services,
-          'Prescription: Aspirin 100mg Daily',
+          '${LocaleKeys.medicine.tr()}: Aspirin 100mg Daily',
         ),
         8.H,
-        _buildInfoRow(Icons.analytics, 'Required Tests: ECG, Blood Test'),
+        _buildInfoRow(Icons.analytics, '${LocaleKeys.tests.tr()}: ECG, Blood Test'),
       ],
     );
   }
@@ -155,7 +145,7 @@ class DoctorVisitScreen extends StatelessWidget {
         Expanded(
           child: Text(
             text,
-            style: TextStyle(fontSize: 16.sp, color: textColor ?? Colors.black),
+            style: textStyleBody.copyWith(color: textColor ?? AppColor.black),
           ),
         ),
       ],

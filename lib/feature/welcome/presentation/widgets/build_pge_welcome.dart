@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
 
@@ -10,26 +12,19 @@ Widget buildPage({
 }) {
   return Column(
     children: [
-      Image.asset(
+      SvgPicture.asset(
         image,
-        height: 400.sp,
+        height: 350.sp,
         width: double.infinity.w,
         fit: BoxFit.cover,
       ),
-      20.H,
-      Text(
-        title,
-        style: TextStyle(
-          fontSize: 24.sp,
-          fontWeight: FontWeight.bold,
-          color: AppColor.black,
-        ),
-      ),
+      15.H,
+      Text(title, style: textStyleTitle.copyWith(color: AppColor.main)),
       12.H,
       Text(
         description,
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 16.sp, color: AppColor.black),
+        style: textStyleBody.copyWith(color: AppColor.main),
       ),
     ],
   );
