@@ -159,6 +159,8 @@
   "symptoms": "الاعراض",
   "medicine": "الدواء",
   "notes": "الملاحظات",
-  "tests": "الاختبارات"
+  "tests": "الاختبارات",
+  "Diabetes": "السكري",
+  "enterChronicDiseases":"ادخل الامراض المزمنة"
   
 }

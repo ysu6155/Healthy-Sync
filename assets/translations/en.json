@@ -159,6 +159,8 @@
 "symptoms": "Symptoms",
 "medicine": "Medicine",
 "notes": "Notes",
-"tests": "Tests"
+"tests": "Tests",
+"Diabetes": "Diabetes",
+"enterChronicDiseases":"Enter Diagnosis"
 
 }

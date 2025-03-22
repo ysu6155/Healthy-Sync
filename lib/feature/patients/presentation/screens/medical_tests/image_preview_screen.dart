@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 
@@ -14,7 +15,11 @@ class ImagePreviewScreen extends StatelessWidget {
         backgroundColor: AppColor.black,
         iconTheme: IconThemeData(color: AppColor.white),
       ),
-      body: Center(child: InteractiveViewer(child: Image.asset(imageUrl))),
+      body: Center(
+        child: InteractiveViewer(
+          child: CachedNetworkImage(fit: BoxFit.contain, imageUrl: imageUrl),
+        ),
+      ),
     );
   }
 }

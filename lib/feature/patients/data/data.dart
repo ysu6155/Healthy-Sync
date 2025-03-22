@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:healthy_sync/core/utils/app_assets.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 
 final List<Map<String, dynamic>> tests = [
@@ -10,7 +9,8 @@ final List<Map<String, dynamic>> tests = [
       'desc': 'Complete Blood Count',
       'details':
           'Measures red and white blood cells, hemoglobin, and platelets.',
-      'image': AppAssets.image1,
+      'image':
+          "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       'values': {
         'WBC': '${(5.0 + i * 0.2).toStringAsFixed(1)} x10^9/L',
         'RBC': '${(4.5 + i * 0.1).toStringAsFixed(1)} x10^12/L',
@@ -39,7 +39,8 @@ final List<Map<String, dynamic>> tests = [
       'icon': Icons.speed,
       'desc': 'Erythrocyte Sedimentation Rate',
       'details': 'Checks inflammation levels in the body.',
-      'image': AppAssets.image1,
+      'image':
+          "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       'values': {'ESR': '${(15 + i * 2)} mm/hr'},
       'dateTime': DateTime(2025, 3, 8 - i),
       'status': i % 2 == 0 ? 'Completed' : 'Pending Results',
@@ -53,7 +54,8 @@ final List<Map<String, dynamic>> tests = [
       'icon': Icons.monitor_heart,
       'desc': 'Fasting & Random',
       'details': 'Measures blood sugar levels to monitor diabetes.',
-      'image': AppAssets.image1,
+      'image':
+          "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       'values': {
         'Fasting': '${(80 + i * 5)} mg/dL',
         'Post Meal': '${(120 + i * 10)} mg/dL',
@@ -70,7 +72,8 @@ final List<Map<String, dynamic>> tests = [
       'icon': Icons.favorite,
       'desc': 'Cholesterol & Triglycerides',
       'details': 'Assesses heart disease risk by measuring lipid levels.',
-      'image': AppAssets.image1,
+      'image':
+          "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       'values': {
         'Total Cholesterol': '${(170 + i * 5)} mg/dL',
         'LDL': '${(95 + i * 3)} mg/dL',

@@ -164,5 +164,7 @@ abstract class  LocaleKeys {
   static const medicine = 'medicine';
   static const notes = 'notes';
   static const tests = 'tests';
+  static const Diabetes = 'Diabetes';
+  static const enterChronicDiseases = 'enterChronicDiseases';
 
 }

@@ -26,8 +26,8 @@ class MedicalTestsScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          LocaleKeys.medicalTest.tr(),
-          style: textStyle.copyWith(color: AppColor.black),
+          LocaleKeys.tests.tr(),
+          style: textStyleTitle.copyWith(color: AppColor.black),
         ),
         backgroundColor: AppColor.white,
       ),
@@ -35,21 +35,20 @@ class MedicalTestsScreen extends StatelessWidget {
         padding: EdgeInsets.all(8.0.sp),
         child: Column(
           children: [
-            SizedBox(height: 10),
             Expanded(
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 1.2,
+                  crossAxisSpacing: 10.sp,
+                  mainAxisSpacing: 10.sp,
+                  childAspectRatio: 1.sp,
                 ),
                 itemCount: uniqueTests.length,
                 itemBuilder: (context, index) {
                   return Ink(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: AppColor.main, width: 2),
+                      borderRadius: BorderRadius.circular(10.r),
+                      border: Border.all(color: AppColor.main, width: 2.w),
                     ),
 
                     child: Column(
@@ -57,22 +56,19 @@ class MedicalTestsScreen extends StatelessWidget {
                       children: [
                         Icon(
                           uniqueTests[index]['icon'],
-                          size: 40,
+                          size: 40.sp,
                           color: AppColor.main,
                         ),
-                        SizedBox(height: 10),
+                        10.H,
                         Text(
                           uniqueTests[index]['name'],
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: textStyleTitle.copyWith(color: AppColor.black),
                         ),
-                        SizedBox(height: 5),
+                        5.H,
                         Text(
                           uniqueTests[index]['desc'],
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 14, color: AppColor.grey),
+                          style: textStyle.copyWith(color: AppColor.black),
                         ),
                       ],
                     ),

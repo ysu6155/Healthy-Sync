@@ -73,7 +73,7 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
           children: [
             Icon(Icons.calendar_today, color: AppColor.white),
             8.W,
-            Text('Date: ١٢/١٢/٢٠٢١', style: textStyleBody),
+            Text('${LocaleKeys.date.tr()}: ١٢/١٢/٢٠٢١', style: textStyleBody),
           ],
         ),
       ],
@@ -85,7 +85,10 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
       children: [
         Icon(Icons.location_on, color: AppColor.white),
         8.W,
-        Text('Address: 1234 Main St, Cairo', style: textStyleBody),
+        Text(
+          '${LocaleKeys.address.tr()}: 1234 Main St, Cairo',
+          style: textStyleBody,
+        ),
       ],
     );
   }
@@ -97,7 +100,7 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
         8.W,
         Expanded(
           child: Text(
-            'Details: The patient is experiencing chest pain.',
+            '${LocaleKeys.symptoms.tr()}: The patient is experiencing chest pain.',
             style: textStyleBody,
           ),
         ),
@@ -110,7 +113,7 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
       children: [
         Icon(Icons.favorite, color: AppColor.white),
         8.W,
-        Text('Stable Condition', style: textStyleBody),
+        Text('${LocaleKeys.status.tr()} : stable', style: textStyleBody),
       ],
     );
   }

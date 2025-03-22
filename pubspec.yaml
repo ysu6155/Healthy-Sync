@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   bloc: ^9.0.0
+  cached_network_image: ^3.4.1
   carousel_slider: null
   cloud_firestore: ^5.6.5
   cupertino_icons: ^1.0.8
@@ -54,7 +55,6 @@ dependencies:
   pinput: ^5.0.1
   shared_preferences: ^2.5.1
   smooth_page_indicator: ^1.2.1
-
 
 dev_dependencies:
   flutter_lints: ^5.0.0

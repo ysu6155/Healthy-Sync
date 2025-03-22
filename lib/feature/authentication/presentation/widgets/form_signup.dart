@@ -18,10 +18,15 @@ import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/patient_home_nav.dart';
 
-class FormSignUp extends StatelessWidget {
+class FormSignUp extends StatefulWidget {
   final UserType userType;
   const FormSignUp({super.key, required this.userType});
 
+  @override
+  State<FormSignUp> createState() => _FormSignUpState();
+}
+
+class _FormSignUpState extends State<FormSignUp> {
   @override
   Widget build(BuildContext context) {
     SignUpCubit signUpCubit = BlocProvider.of<SignUpCubit>(context);
@@ -143,7 +148,8 @@ class FormSignUp extends StatelessWidget {
                   //     (value) =>
                   //         value == null ? LocaleKeys.cityIsRequired.tr() : null,
                   items:
-                      signUpCubit.cities
+                      signUpCubit
+                          .getCities(context.locale.languageCode)
                           .map(
                             (city) => DropdownMenuItem(
                               value: city,
@@ -230,6 +236,79 @@ class FormSignUp extends StatelessWidget {
                 );
               },
             ),
+            Column(
+              children: [
+                16.H,
+
+                Wrap(
+                  spacing: 8.0.sp,
+                  children:
+                      signUpCubit.selectedDiseases.map((disease) {
+                        return Chip(
+                          label: Text(disease, style: textStyleBody),
+                          backgroundColor: AppColor.secondary,
+                          deleteIcon: Icon(
+                            Icons.close,
+                            size: 18.sp,
+                            color: AppColor.white,
+                          ),
+                          onDeleted: () {
+                            setState(() {
+                              signUpCubit.selectedDiseases.remove(disease);
+                            });
+                          },
+                        );
+                      }).toList(),
+                ),
+                10.H,
+                Autocomplete<String>(
+                  optionsBuilder: (TextEditingValue textEditingValue) {
+                    if (textEditingValue.text.isEmpty) {
+                      return const Iterable<String>.empty();
+                    }
+                    return signUpCubit
+                        .getChronicDiseases(context.locale.languageCode)
+                        .where(
+                          (disease) => disease.contains(textEditingValue.text),
+                        );
+                  },
+                  onSelected: (String selection) {
+                    if (!signUpCubit.selectedDiseases.contains(selection)) {
+                      setState(() {
+                        signUpCubit.selectedDiseases.add(selection);
+                      });
+                    }
+                    signUpCubit.diseaseController.clear();
+                  },
+                  fieldViewBuilder: (
+                    context,
+                    controller,
+                    focusNode,
+                    onFieldSubmitted,
+                  ) {
+                    return CustomTextField(
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintText: LocaleKeys.Diabetes.tr(),
+                      controller: signUpCubit.diseaseController,
+                      focusNode: focusNode,
+
+                      labelText: LocaleKeys.enterChronicDiseases.tr(),
+
+                      onFieldSubmitted: (value) {
+                        if (value.isNotEmpty &&
+                            !signUpCubit.selectedDiseases.contains(value)) {
+                          setState(() {
+                            signUpCubit.selectedDiseases.add(value);
+                          });
+                          signUpCubit.diseaseController.clear();
+                        }
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
+
             16.H,
             BlocBuilder<SignUpCubit, SignUpState>(
               buildWhen:
@@ -248,7 +327,7 @@ class FormSignUp extends StatelessWidget {
                     ),
                     Text(
                       LocaleKeys.iAgreeToTermsAndConditions.tr(),
-                      style: textStyle.copyWith(color: AppColor.black),
+                      style: textStyleBody.copyWith(color: AppColor.black),
                     ),
                   ],
                 );
@@ -256,7 +335,7 @@ class FormSignUp extends StatelessWidget {
             ),
             12.H,
             CustomButton(
-              name: Text(LocaleKeys.signUp.tr(), style: textStyle),
+              name: Text(LocaleKeys.signUp.tr(), style: textStyleTitle),
               onTap:
                   () => signUpCubit.register(
                     RegisterParams(
@@ -274,15 +353,16 @@ class FormSignUp extends StatelessWidget {
               children: [
                 Text(
                   LocaleKeys.alreadyHaveAnAccount.tr(),
-                  style: textStyle.copyWith(color: AppColor.black),
+                  style: textStyleBody.copyWith(color: AppColor.black),
                 ),
                 TextButton(
                   onPressed:
-                      () => context.push(LoginScreen(userType: userType)),
+                      () =>
+                          context.push(LoginScreen(userType: widget.userType)),
 
                   child: Text(
                     LocaleKeys.login.tr(),
-                    style: textStyle.copyWith(color: AppColor.main),
+                    style: textStyleBody.copyWith(color: AppColor.main),
                   ),
                 ),
               ],

@@ -37,7 +37,10 @@ class CustomContainer extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Container(
-        decoration: BoxDecoration(color: AppColor.main),
+        decoration: BoxDecoration(
+         // gradient: AppColor.secondaryGradient,
+           color: AppColor.main,
+        ),
         child: SingleChildScrollView(child: newMethod(userType)),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:healthy_sync/core/Themes/light_theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
@@ -19,22 +20,21 @@ class TestsScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(
           test['name'],
-          style: textStyle.copyWith(color: AppColor.black),
+          style: textStyleTitle.copyWith(color: AppColor.black),
         ),
         backgroundColor: AppColor.white,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0.r),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 10),
+            10.H,
             Text(
               test['desc'],
-              style: TextStyle(fontSize: 16, color: AppColor.black),
+              style: textStyleBody.copyWith(color: AppColor.black),
             ),
-            const SizedBox(height: 20),
-
+            20.H,
             Expanded(
               child: ListView.builder(
                 itemCount: tests.where((t) => t['name'] == test['name']).length,
@@ -45,18 +45,24 @@ class TestsScreen extends StatelessWidget {
                     color: AppColor.white,
                     elevation: 4,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      side: BorderSide(color: AppColor.main, width: 2),
+                      borderRadius: BorderRadius.circular(8.r),
+                      side: BorderSide(color: AppColor.main, width: 2.sp),
                     ),
-                    margin: const EdgeInsets.symmetric(vertical: 8),
+                    margin: EdgeInsets.symmetric(vertical: 8.w),
                     child: ListTile(
                       title: Text(
                         '${filteredTests[index]['name']} ${index + 1}',
+                        style: textStyleBody.copyWith(color: AppColor.black),
                       ),
                       subtitle: Text(
                         "${LocaleKeys.date.tr()} : ${DateFormat('yyyy-MM-dd').format(filteredTests[index]['dateTime'])}",
+                        style: textStyle.copyWith(color: AppColor.black),
                       ),
-                      trailing: const Icon(Icons.arrow_forward_ios),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
+                        color: AppColor.main,
+                        size: 24.sp,
+                      ),
                     ).withTapEffect(
                       highlightColor: AppColor.secondary,
                       onTap: () {

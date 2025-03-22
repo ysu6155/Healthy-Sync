@@ -18,6 +18,7 @@ class CustomTextField extends StatelessWidget {
   final TextStyle? labelStyle;
   final TextInputAction textInputAction;
   final ValueChanged<String>? onFieldSubmitted;
+  final FocusNode? focusNode;
 
   const CustomTextField({
     super.key,
@@ -34,6 +35,7 @@ class CustomTextField extends StatelessWidget {
     this.labelStyle,
     this.textInputAction = TextInputAction.done,
     this.onFieldSubmitted,
+    this.focusNode,
   });
 
   @override
@@ -44,7 +46,9 @@ class CustomTextField extends StatelessWidget {
       obscureText: isPassword && !isPasswordVisible,
       textInputAction: textInputAction,
       onFieldSubmitted: onFieldSubmitted,
+      focusNode: focusNode,
       decoration: InputDecoration(
+        
         floatingLabelBehavior: floatingLabelBehavior,
         labelText: labelText,
         labelStyle:

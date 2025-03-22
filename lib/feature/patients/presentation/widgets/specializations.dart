@@ -20,7 +20,7 @@ class SpecializationsSection extends StatelessWidget {
             width: 100.w,
             padding: EdgeInsets.all(16.sp),
             decoration: BoxDecoration(
-              color: colorSpecializations[index],
+              color: AppColor.main, //colorSpecializations[index],
               borderRadius: BorderRadius.circular(16.r),
             ),
             child: Icon(

@@ -7,7 +7,7 @@ import 'package:healthy_sync/core/Models/data_doctors.dart';
 import 'package:healthy_sync/core/utils/extensions.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/utils/app_color.dart';
-import 'package:healthy_sync/feature/patients/presentation/widgets/specializations.dart';
+import 'package:healthy_sync/feature/patients/presentation/widgets/card_doctor.dart';
 
 class DoctorsSection extends StatefulWidget {
   const DoctorsSection({super.key});
@@ -33,55 +33,14 @@ class _DoctorsSectionState extends State<DoctorsSection> {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+            crossAxisCount: 1,
             crossAxisSpacing: 16.w,
             mainAxisSpacing: 16.sp,
+            childAspectRatio: 3.6.sp,
           ),
           itemBuilder: (context, index) {
             dynamic doctor = doctors[index];
-            return Ink(
-              decoration: BoxDecoration(
-                color: colorSpecializations[index],
-                borderRadius: BorderRadius.circular(16.r),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    radius: 30.r,
-                    backgroundImage: Image.network(doctor["image"]).image,
-                  ),
-                  8.H,
-                  Text(
-                    doctor["name"]!,
-                    style: TextStyle(
-                      color: AppColor.white,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    doctor["specialty"]!,
-                    style: TextStyle(color: AppColor.white, fontSize: 14.sp),
-                  ),
-                  8.H,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(5, (index) {
-                      double rat = doctor["rating"] ?? 0;
-                      return Icon(
-                        Icons.star,
-                        color:
-                            index < rat
-                                ? AppColor.amber
-                                : AppColor.grey, 
-                        size: 20.sp,
-                      );
-                    }),
-                  ),
-                ],
-              ),
-            ).withTapEffect(
+            return CardDoctor(doctor: doctor, index: index).withTapEffect(
               onTap: () => context.push(DoctorDetails(doctor: doctor)),
             );
           },

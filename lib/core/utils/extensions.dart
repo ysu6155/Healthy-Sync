@@ -145,3 +145,8 @@ extension NavigationExtensions on BuildContext {
     );
   }
 }
+extension UserTypeExtension on String {
+  bool canShow(List<String> allowedUsers) {
+    return allowedUsers.contains(this);
+  }
+}

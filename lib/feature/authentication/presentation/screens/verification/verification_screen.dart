@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
-import 'package:healthy_sync/core/widgets/responsive_helper.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/verification_cubit/cubit/verification_cubit.dart';
 import 'package:healthy_sync/feature/authentication/presentation/widgets/timer_widget.dart';
 import 'package:healthy_sync/core/themes/light_theme.dart';
