@@ -2,11 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:healthy_sync/core/enum/enum.dart';
+import 'package:healthy_sync/core/constants/enum.dart';
 import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
-import 'package:healthy_sync/core/utils/app_color.dart';
-import 'package:healthy_sync/core/utils/extensions.dart';
+import 'package:healthy_sync/core/themes/app_color.dart';
+import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/feature/authentication/presentation/widgets/form_login.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
         title: Text(LocaleKeys.login.tr(), style: textStyleTitle),
         centerTitle: true,
         iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
-        backgroundColor: AppColor.main,
+        backgroundColor: AppColor.main2,
       ),
       // backgroundColor: AppColor.main,
       body: CustomContainer(userType: userType),
@@ -38,8 +38,8 @@ class CustomContainer extends StatelessWidget {
       top: false,
       child: Container(
         decoration: BoxDecoration(
-         // gradient: AppColor.secondaryGradient,
-           color: AppColor.main,
+          // gradient: AppColor.secondaryGradient,
+          color: AppColor.main2,
         ),
         child: SingleChildScrollView(child: newMethod(userType)),
       ),
@@ -55,7 +55,10 @@ class CustomContainer extends StatelessWidget {
       spacing: 8.sp,
       children: [
         50.H,
-        Text(LocaleKeys.welcomeToHealthySync.tr(), style: textStyleTitle),
+        Text(
+          LocaleKeys.welcomeToHealthySync.tr(),
+          style: textStyleTitle.copyWith(color: AppColor.main),
+        ),
         Text(
           " ${LocaleKeys.loginToYourAccount.tr()} ${handleUserType()}",
           style: textStyleBody,

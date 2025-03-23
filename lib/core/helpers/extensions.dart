@@ -119,12 +119,10 @@ extension InkTapEffect on Widget {
 }
 
 extension NavigationExtensions on BuildContext {
-  /// الانتقال إلى صفحة جديدة
   void push(Widget page) {
     Navigator.push(this, MaterialPageRoute(builder: (context) => page));
   }
 
-  /// الانتقال إلى صفحة جديدة مع إزالة الصفحة الحالية
   void pushReplacement(Widget page) {
     Navigator.pushReplacement(
       this,
@@ -132,7 +130,6 @@ extension NavigationExtensions on BuildContext {
     );
   }
 
-  /// الرجوع للصفحة السابقة
   void pop() {
     Navigator.pop(this);
   }

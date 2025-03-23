@@ -1,13 +1,10 @@
 import 'dart:developer';
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 
 class FirebaseHelper {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  static final FirebaseStorage _storage = FirebaseStorage.instance;
 
   // ✅ تسجيل مستخدم جديد
   static Future<User?> signUp(String email, String password) async {
@@ -40,19 +37,7 @@ class FirebaseHelper {
     await _auth.signOut();
   }
 
-  // ✅ رفع صورة إلى Firebase Storage
-  static Future<String?> uploadImage(File image, String path) async {
-    try {
-      String fileName = DateTime.now().millisecondsSinceEpoch.toString();
-      Reference ref = _storage.ref().child('$path/$fileName.jpg');
-      UploadTask uploadTask = ref.putFile(image);
-      TaskSnapshot snapshot = await uploadTask;
-      return await snapshot.ref.getDownloadURL();
-    } catch (e) {
-      log("Error uploading image: $e");
-      return null;
-    }
-  }
+
 
   // ✅ إضافة بيانات إلى Firestore
   static Future<void> addData(

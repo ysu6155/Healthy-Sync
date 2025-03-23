@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/light_theme.dart';
-import 'package:healthy_sync/core/utils/app_color.dart';
+import 'package:healthy_sync/core/themes/app_color.dart';
 
 class CustomDropdown extends StatelessWidget {
   final String? value;

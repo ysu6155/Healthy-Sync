@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:healthy_sync/core/widgets/responsive_helper.dart';
+import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/feature/chat/presentation/screens/chat_bot_screen.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/medical_tests/medical_tests_screen.dart';
 
 import 'package:healthy_sync/feature/patients/presentation/screens/treatment_schedule_screen.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/home_screen.dart';
-import 'package:healthy_sync/core/utils/app_assets.dart';
-import 'package:healthy_sync/core/utils/app_color.dart';
+import 'package:healthy_sync/core/constants/app_assets.dart';
+import 'package:healthy_sync/core/themes/app_color.dart';
+
 import 'package:healthy_sync/feature/profile/presentation/screens/profile_screen.dart';
 
 class PatientHomeNavScreen extends StatefulWidget {

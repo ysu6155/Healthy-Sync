@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
-import 'package:healthy_sync/core/utils/app_color.dart';
-import 'package:healthy_sync/core/utils/extensions.dart';
+import 'package:healthy_sync/core/themes/app_color.dart';
+import 'package:healthy_sync/core/helpers/extensions.dart';
 
 class DoctorVisitScreen extends StatelessWidget {
   const DoctorVisitScreen({super.key});
@@ -111,14 +111,20 @@ class DoctorVisitScreen extends StatelessWidget {
   Widget _buildDetails() {
     return Column(
       children: [
-        _buildInfoRow(Icons.description, '${LocaleKeys.symptoms.tr()}: Chest Pain & High BP'),
+        _buildInfoRow(
+          Icons.description,
+          '${LocaleKeys.symptoms.tr()}: Chest Pain & High BP',
+        ),
         8.H,
         _buildInfoRow(
           Icons.medical_services,
           '${LocaleKeys.medicine.tr()}: Aspirin 100mg Daily',
         ),
         8.H,
-        _buildInfoRow(Icons.analytics, '${LocaleKeys.tests.tr()}: ECG, Blood Test'),
+        _buildInfoRow(
+          Icons.analytics,
+          '${LocaleKeys.tests.tr()}: ECG, Blood Test',
+        ),
       ],
     );
   }

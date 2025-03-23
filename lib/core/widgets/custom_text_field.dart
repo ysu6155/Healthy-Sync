@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/Themes/light_theme.dart';
-import 'package:healthy_sync/core/utils/app_color.dart';
-import 'package:healthy_sync/core/widgets/responsive_helper.dart';
+import 'package:healthy_sync/core/helpers/responsive_helper.dart';
+import 'package:healthy_sync/core/themes/app_color.dart';
+
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;

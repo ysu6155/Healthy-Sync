@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:healthy_sync/core/utils/app_color.dart';
+import 'package:healthy_sync/core/themes/app_color.dart';
+
 
 final List<Map<String, dynamic>> tests = [
   for (int i = 0; i < 5; i++) ...[

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 sealed class AppColor {
-  static Color main = Color(0xff003445);
-  //static Color main = Color(0xffD9047D);
-  static Color main2 = Color(0xfF4A00E0);
+  //static Color main = Color(0xff003445);
+  static Color main = Color(0xffD8037C);
+  static Color main2 = Color(0xfF7DA7ED);
   static Color secondary = Color(0xff0095C9);
   static Color backgroundColor = Color(0xffE2E2E2);
-  static Color border = Color(0xff0095C9);
+  static Color border = Color(0xff7DA7ED);
 
   //  static Color secondary = Color(0xffFF5BA5);
   static Color accent = Color(0xffFFA62B);

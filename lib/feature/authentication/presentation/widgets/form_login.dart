@@ -2,11 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/enum/enum.dart';
+import 'package:healthy_sync/core/constants/enum.dart';
 
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
-import 'package:healthy_sync/core/widgets/responsive_helper.dart';
+import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/core/widgets/show_dialog.dart';
 import 'package:healthy_sync/feature/authentication/data/models/request/register_params.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_cubit.dart';
@@ -15,8 +15,8 @@ import 'package:healthy_sync/feature/authentication/presentation/screens/forgot_
 import 'package:healthy_sync/feature/authentication/presentation/screens/signup/signup_screen.dart';
 import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
-import 'package:healthy_sync/core/utils/app_color.dart';
-import 'package:healthy_sync/core/utils/extensions.dart';
+import 'package:healthy_sync/core/themes/app_color.dart';
+import 'package:healthy_sync/core/helpers/extensions.dart';
 
 class FormLogin extends StatelessWidget {
   final UserType userType;

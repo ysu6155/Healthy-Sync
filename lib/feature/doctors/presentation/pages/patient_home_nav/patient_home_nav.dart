@@ -8,8 +8,8 @@ import 'package:healthy_sync/feature/patients/presentation/screens/medical_tests
 
 import 'package:healthy_sync/feature/patients/presentation/screens/treatment_schedule_screen.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/home_screen.dart';
-import 'package:healthy_sync/core/utils/app_assets.dart';
-import 'package:healthy_sync/core/utils/app_color.dart';
+import 'package:healthy_sync/core/constants/app_assets.dart';
+import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/feature/profile/presentation/screens/profile_screen.dart';
 
 class DoctorHomeNavScreen extends StatefulWidget {
