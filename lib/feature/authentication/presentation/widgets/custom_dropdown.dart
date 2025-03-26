@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 
 class CustomDropdown extends StatelessWidget {
   final String? value;
@@ -47,17 +48,14 @@ class CustomDropdown extends StatelessWidget {
           enabledBorder: borderStyle(borderColor ?? AppColor.transparent),
           errorBorder: borderStyle(AppColor.red),
           focusedErrorBorder: borderStyle(AppColor.red),
-          labelStyle: textStyleBody.copyWith(
-            color: AppColor.black,
-            fontWeight: FontWeight.bold,
-          ),
+         
         ),
         iconSize: 25.sp,
         isExpanded: true,
         value: value,
         hint: Text(
           hint,
-          style: textStyle.copyWith(color: AppColor.grey, fontSize: 12.sp),
+          style: TextStyles.font12GreyW400,
         ),
         onChanged: onChanged,
         validator: validator,

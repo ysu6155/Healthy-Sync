@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/doctor_details.dart';
 import 'package:healthy_sync/core/Models/data_doctors.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
@@ -42,7 +42,10 @@ class _DoctorsBySpecialtyScreenState extends State<DoctorsBySpecialtyScreen> {
         toolbarHeight: 48.sp,
         title: Row(
           children: [
-            Text("${widget.selectedSpecialty["name"]} ", style: textStyleTitle),
+            Text(
+              "${widget.selectedSpecialty["name"]} ",
+              style: TextStyles.font20WhiteBold,
+            ),
             8.W,
             Icon(widget.selectedSpecialty["icon"], size: 24.sp),
           ],
@@ -92,9 +95,9 @@ class _DoctorsBySpecialtyScreenState extends State<DoctorsBySpecialtyScreen> {
             backgroundImage: Image.network(doctor["image"]).image,
           ),
           8.H,
-          Text(doctor["name"]!, style: textStyleBody),
+          Text(doctor["name"]!, style: TextStyles.font16DarkBlueW500),
           8.H,
-          Text(doctor["specialty"]!, style: textStyle),
+          Text(doctor["specialty"]!, style: TextStyles.font16DarkBlueW500),
           8.H,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

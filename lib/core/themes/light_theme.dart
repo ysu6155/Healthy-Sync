@@ -8,22 +8,7 @@ ThemeData themeLight = ThemeData(
   scaffoldBackgroundColor: AppColor.white,
 );
 
-TextStyle textStyleTitle = TextStyle(
-  color: AppColor.white,
-  fontSize: 20.sp,
-  fontWeight: FontWeight.bold,
-);
-TextStyle textStyleBody = TextStyle(
-  color: AppColor.mainBlue,
-  fontSize: 16.sp,
-  fontWeight: FontWeight.w500,
-);
 
-TextStyle textStyle = TextStyle(
-  color: AppColor.white,
-  fontSize: 12.sp,
-  fontWeight: FontWeight.w400,
-);
 
 OutlineInputBorder borderStyle(Color color) {
   return OutlineInputBorder(

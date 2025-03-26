@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
-import 'package:healthy_sync/core/themes/app_color.dart';
 
 class TimerWidget extends StatefulWidget {
   const TimerWidget({super.key});
@@ -30,7 +29,7 @@ class TimerWidgetState extends State<TimerWidget> {
         _remainingSeconds--;
         timerText = Text(
           '$_remainingSeconds ',
-          style: textStyleTitle.copyWith(color: AppColor.mainPink),
+          style:TextStyles.font20PinkBold
         );
       });
       if (_remainingSeconds == 0) {
@@ -43,7 +42,7 @@ class TimerWidgetState extends State<TimerWidget> {
             },
             child: Text(
               LocaleKeys.resend.tr(),
-              style: textStyle.copyWith(color: AppColor.mainPink),
+              style: TextStyles.font12PinkW400
             ),
           );
         });

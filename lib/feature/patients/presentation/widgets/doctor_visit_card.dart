@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
@@ -51,9 +51,9 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
       children: [
         Icon(Icons.person, color: AppColor.white),
         8.W,
-        Text('Dr. John Doe', style: textStyleTitle),
+        Text('Dr. John Doe', style: TextStyles.font20WhiteBold),
         8.W,
-        Text('Cardiologist', style: textStyleBody),
+        Text('Cardiologist', style: TextStyles.font16DarkBlueW500),
       ],
     );
   }
@@ -66,14 +66,20 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
           children: [
             Icon(Icons.schedule, color: AppColor.white),
             8.W,
-            Text('${LocaleKeys.time.tr()}: ١٢/١٢/٢٠٢١', style: textStyleBody),
+            Text(
+              '${LocaleKeys.time.tr()}: ١٢/١٢/٢٠٢١',
+              style: TextStyles.font16DarkBlueW500,
+            ),
           ],
         ),
         Row(
           children: [
             Icon(Icons.calendar_today, color: AppColor.white),
             8.W,
-            Text('${LocaleKeys.date.tr()}: ١٢/١٢/٢٠٢١', style: textStyleBody),
+            Text(
+              '${LocaleKeys.date.tr()}: ١٢/١٢/٢٠٢١',
+              style: TextStyles.font16DarkBlueW500,
+            ),
           ],
         ),
       ],
@@ -87,7 +93,7 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
         8.W,
         Text(
           '${LocaleKeys.address.tr()}: 1234 Main St, Cairo',
-          style: textStyleBody,
+          style: TextStyles.font16DarkBlueW500,
         ),
       ],
     );
@@ -101,7 +107,7 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
         Expanded(
           child: Text(
             '${LocaleKeys.symptoms.tr()}: The patient is experiencing chest pain.',
-            style: textStyleBody,
+            style: TextStyles.font16DarkBlueW500,
           ),
         ),
       ],
@@ -113,7 +119,10 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
       children: [
         Icon(Icons.favorite, color: AppColor.white),
         8.W,
-        Text('${LocaleKeys.status.tr()} : stable', style: textStyleBody),
+        Text(
+          '${LocaleKeys.status.tr()} : stable',
+          style: TextStyles.font16DarkBlueW500,
+        ),
       ],
     );
   }

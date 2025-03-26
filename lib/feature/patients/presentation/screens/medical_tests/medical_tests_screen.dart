@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
@@ -27,7 +27,7 @@ class MedicalTestsScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(
           LocaleKeys.tests.tr(),
-          style: textStyleTitle.copyWith(color: AppColor.black),
+          style: TextStyles.font16DarkBlueW500,
         ),
         backgroundColor: AppColor.white,
       ),
@@ -62,13 +62,13 @@ class MedicalTestsScreen extends StatelessWidget {
                         10.H,
                         Text(
                           uniqueTests[index]['name'],
-                          style: textStyleTitle.copyWith(color: AppColor.black),
+                          style: TextStyles.font16DarkBlueW500
                         ),
                         5.H,
                         Text(
                           uniqueTests[index]['desc'],
                           textAlign: TextAlign.center,
-                          style: textStyle.copyWith(color: AppColor.black),
+                          style:TextStyles.font16DarkBlueW500
                         ),
                       ],
                     ),

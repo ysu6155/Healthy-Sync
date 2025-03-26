@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
@@ -20,7 +20,7 @@ class TestsScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(
           test['name'],
-          style: textStyleTitle.copyWith(color: AppColor.black),
+          style: TextStyles.font20WhiteBold.copyWith(color: AppColor.black),
         ),
         backgroundColor: AppColor.white,
       ),
@@ -32,7 +32,9 @@ class TestsScreen extends StatelessWidget {
             10.H,
             Text(
               test['desc'],
-              style: textStyleBody.copyWith(color: AppColor.black),
+              style: TextStyles.font16DarkBlueW500.copyWith(
+                color: AppColor.black,
+              ),
             ),
             20.H,
             Expanded(
@@ -52,11 +54,15 @@ class TestsScreen extends StatelessWidget {
                     child: ListTile(
                       title: Text(
                         '${filteredTests[index]['name']} ${index + 1}',
-                        style: textStyleBody.copyWith(color: AppColor.black),
+                        style: TextStyles.font16DarkBlueW500.copyWith(
+                          color: AppColor.black,
+                        ),
                       ),
                       subtitle: Text(
                         "${LocaleKeys.date.tr()} : ${DateFormat('yyyy-MM-dd').format(filteredTests[index]['dateTime'])}",
-                        style: textStyle.copyWith(color: AppColor.black),
+                        style: TextStyles.font12BlueW400.copyWith(
+                          color: AppColor.black,
+                        ),
                       ),
                       trailing: Icon(
                         Icons.arrow_forward_ios,

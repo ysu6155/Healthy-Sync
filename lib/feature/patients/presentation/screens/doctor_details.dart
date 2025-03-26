@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 
@@ -18,7 +18,10 @@ class DoctorDetails extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 48.sp,
-        title: Text(LocaleKeys.doctorDetails.tr(), style: textStyleTitle),
+        title: Text(
+          LocaleKeys.doctorDetails.tr(),
+          style: TextStyles.font20WhiteBold,
+        ),
         iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
         backgroundColor: AppColor.mainPink,
       ),
@@ -39,27 +42,31 @@ class DoctorDetails extends StatelessWidget {
           16.H,
           Text(
             "${LocaleKeys.name.tr()}:",
-            style: textStyleTitle.copyWith(color: AppColor.black),
+            style: TextStyles.font20WhiteBold.copyWith(color: AppColor.black),
           ),
           8.H,
           Text(
             " ${doctor["name"]}",
-            style: textStyleBody.copyWith(color: AppColor.black),
+            style: TextStyles.font16DarkBlueW500.copyWith(
+              color: AppColor.black,
+            ),
           ),
           8.H,
           Text(
             "${LocaleKeys.specialization.tr()}:",
-            style: textStyleTitle.copyWith(color: AppColor.black),
+            style: TextStyles.font20WhiteBold.copyWith(color: AppColor.black),
           ),
           8.H,
           Text(
             "${doctor["specialty"]}",
-            style: textStyleBody.copyWith(color: AppColor.black),
+            style: TextStyles.font16DarkBlueW500.copyWith(
+              color: AppColor.black,
+            ),
           ),
           8.H,
           Text(
             "${LocaleKeys.rating.tr()}:",
-            style: textStyleTitle.copyWith(color: AppColor.black),
+            style: TextStyles.font20WhiteBold.copyWith(color: AppColor.black),
           ),
           8.H,
           Row(
@@ -68,26 +75,33 @@ class DoctorDetails extends StatelessWidget {
               4.W,
               Text(
                 " ${doctor["rating"]}/5.0",
-                style: textStyleBody.copyWith(color: AppColor.black),
+                style: TextStyles.font16DarkBlueW500.copyWith(
+                  color: AppColor.black,
+                ),
               ),
             ],
           ),
           16.H,
           Text(
             "${LocaleKeys.AboutDoctor.tr()}:",
-            style: textStyleTitle.copyWith(color: AppColor.black),
+            style: TextStyles.font20WhiteBold.copyWith(color: AppColor.black),
           ),
           8.H,
           Text(
             doctor["about"] ?? LocaleKeys.NoAdditionalInformationProvided.tr(),
-            style: textStyleBody.copyWith(color: AppColor.black),
+            style: TextStyles.font16DarkBlueW500.copyWith(
+              color: AppColor.black,
+            ),
           ),
           16.H,
           CustomButton(
             name: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(LocaleKeys.callDoctor.tr(), style: textStyleTitle),
+                Text(
+                  LocaleKeys.callDoctor.tr(),
+                  style: TextStyles.font20WhiteBold,
+                ),
                 8.W,
                 Icon(Icons.call, color: AppColor.white, size: 20.sp),
               ],
@@ -99,7 +113,10 @@ class DoctorDetails extends StatelessWidget {
             name: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(LocaleKeys.chatWithDoctor.tr(), style: textStyleTitle),
+                Text(
+                  LocaleKeys.chatWithDoctor.tr(),
+                  style: TextStyles.font20WhiteBold,
+                ),
                 8.W,
                 Icon(Icons.chat, color: AppColor.white, size: 20.sp),
               ],

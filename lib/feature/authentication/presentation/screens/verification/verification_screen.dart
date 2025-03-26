@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/verification_cubit/cubit/verification_cubit.dart';
 import 'package:healthy_sync/feature/authentication/presentation/widgets/timer_widget.dart';
@@ -34,7 +35,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
         centerTitle: true,
         title: Text(
           LocaleKeys.verification.tr(),
-          style: textStyleTitle.copyWith(color: AppColor.black),
+          style: TextStyles.font12DarkBlueW400
         ),
       ),
       body: Padding(
@@ -52,20 +53,17 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 30.H,
                 Text(
                   LocaleKeys.enterTheCode.tr(),
-                  style: textStyle.copyWith(
-                    color: AppColor.black,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyles.font12DarkBlueW400
                 ),
                 16.H,
                 Text.rich(
                   TextSpan(
                     text: LocaleKeys.CodeSentTo.tr(),
-                    style: textStyleBody.copyWith(color: AppColor.black),
+                    style: TextStyles.font12DarkBlueW400,
                     children: [
                       TextSpan(
                         text: widget.phone,
-                        style: textStyleTitle.copyWith(color: AppColor.mainBlue),
+                        style: TextStyles.font12DarkBlueW400
                       ),
                     ],
                   ),
@@ -78,9 +76,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         Expanded(
                           child: Text(
                             LocaleKeys.Code.tr(),
-                            style: textStyleBody.copyWith(
-                              color: AppColor.black,
-                            ),
+                            style:TextStyles.font12DarkBlueW400
                           ),
                         ),
                         8.W,
@@ -117,7 +113,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           30.H,
                           Text(
                             cubitOTB.text ?? LocaleKeys.codeIsRequired.tr(),
-                            style: textStyleBody.copyWith(color: AppColor.red),
+                            style: TextStyles.font12DarkBlueW400
                           ),
                         ],
                       )
@@ -125,7 +121,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       30.H,
                     30.H,
                     CustomButton(
-                      name: Text(LocaleKeys.verify.tr(), style: textStyleTitle),
+                      name: Text(LocaleKeys.verify.tr(), style: TextStyles.font12DarkBlueW400),
                       onTap: () {
                         setState(() {
                           if (cubitOTB.pinController.text.length < 4) {

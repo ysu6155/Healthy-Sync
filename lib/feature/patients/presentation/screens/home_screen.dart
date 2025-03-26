@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/specializations_screen.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
@@ -43,11 +43,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Text(
                       "${LocaleKeys.hello.tr()} 👋",
-                      style: textStyleBody.copyWith(color: AppColor.black),
+                      style: TextStyles.font16DarkBlueW500.copyWith(
+                        color: AppColor.black,
+                      ),
                     ),
                     Text(
                       "Youssif Shaban",
-                      style: textStyleBody.copyWith(color: AppColor.black),
+                      style: TextStyles.font16DarkBlueW500.copyWith(
+                        color: AppColor.black,
+                      ),
                     ),
                   ],
                 ),
@@ -80,7 +84,9 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 child: Text(
                   LocaleKeys.specializations.tr(),
-                  style: textStyleTitle.copyWith(color: AppColor.black),
+                  style: TextStyles.font20WhiteBold.copyWith(
+                    color: AppColor.black,
+                  ),
                 ),
               ),
               TextButton(
@@ -96,7 +102,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: Text(
                   LocaleKeys.seeAll.tr(),
-                  style: textStyleBody.copyWith(color: AppColor.mainBlue),
+                  style: TextStyles.font16DarkBlueW500.copyWith(
+                    color: AppColor.mainBlue,
+                  ),
                 ),
               ),
             ],

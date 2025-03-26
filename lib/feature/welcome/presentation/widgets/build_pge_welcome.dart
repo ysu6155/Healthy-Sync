@@ -2,8 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
-import 'package:healthy_sync/core/themes/app_color.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 
 Widget buildPage({
   required String image,
@@ -25,12 +24,12 @@ Widget buildPage({
           children: [
             Text(
               title,
-              style: textStyleTitle.copyWith(color: AppColor.mainPink),
+              style: TextStyles.font20PinkBold,
             ),
             SizedBox(height: 10.h),
             Text(
               description,
-              style: textStyleBody.copyWith(color: AppColor.black),
+              style: TextStyles.font20PinkBold
             ),
             SizedBox(height: 20.h),
             

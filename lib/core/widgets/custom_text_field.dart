@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/Themes/light_theme.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -48,18 +49,18 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        // color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: AppColor.grey.withValues(alpha: 0.3),
-            spreadRadius: 2,
-            blurRadius: 4,
-            offset: Offset(0, 0),
-          ),
-        ],
-      ),
+                    decoration: BoxDecoration(
+                      // color: Colors.white,
+                      borderRadius: BorderRadius.circular(16.r),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColor.grey.withValues(alpha: 0.3),
+                          spreadRadius: 2,
+                          blurRadius: 4,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
+                    ),
       child: TextFormField(
         controller: controller,
         keyboardType: keyboardType,
@@ -70,7 +71,7 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
           filled: true,
           fillColor: AppColor.white,
-          hintStyle: textStyle.copyWith(color: AppColor.grey, fontSize: 12.sp),
+          hintStyle:  TextStyles.font12GreyW400,
           border: borderStyle(borderColor ?? AppColor.border),
           focusedBorder: borderStyle(borderColor ?? AppColor.border),
           enabledBorder: borderStyle(borderColor ?? AppColor.transparent),
@@ -86,7 +87,7 @@ class CustomTextField extends StatelessWidget {
                 fontSize: 16.sp,
               ),
           hintText: hintText,
-
+      
           suffixIcon:
               isPassword
                   ? IconButton(
@@ -100,13 +101,13 @@ class CustomTextField extends StatelessWidget {
                     onPressed: togglePasswordVisibility,
                   )
                   : null,
-          errorStyle: textStyle.copyWith(color: AppColor.red),
+          errorStyle: TextStyles.font12BlueW400.copyWith(color: AppColor.red),
         ),
-        style: textStyle.copyWith(
+        style: TextStyles.font12BlueW400.copyWith(
           fontSize: ResponsiveHelper.isMobile(context) ? 16.sp : 24.sp,
           color: AppColor.black,
         ),
-
+      
         validator: validator,
       ),
     );
