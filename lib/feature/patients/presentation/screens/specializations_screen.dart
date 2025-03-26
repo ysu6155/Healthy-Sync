@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/doctors_by_specialty_screen.dart';
 import 'package:healthy_sync/core/Models/data_specializations.dart';
-import 'package:healthy_sync/core/Themes/light_theme.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 
@@ -17,7 +17,7 @@ class SpecializationsAll extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 40.sp,
-        title: Text(LocaleKeys.specializations.tr(), style: textStyle),
+        title: Text(LocaleKeys.specializations.tr(), style: TextStyles.font20WhiteBold),
         iconTheme: IconThemeData(color: AppColor.white, size: 14.sp),
         backgroundColor: AppColor.mainPink,
       ),

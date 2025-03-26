@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/feature/patients/presentation/screens/doctor_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +24,7 @@ class _DoctorsSectionState extends State<DoctorsSection> {
       children: [
         Text(
           LocaleKeys.doctor.tr(),
-          style: textStyleTitle.copyWith(color: AppColor.black),
+          style: TextStyles.font20WhiteBold.copyWith(color: AppColor.black),
         ),
         16.H,
 

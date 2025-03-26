@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/constants/enum.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
@@ -13,7 +14,6 @@ import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cub
 import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_state.dart';
 import 'package:healthy_sync/feature/authentication/presentation/screens/forgot_password/forgot_password_screen.dart';
 import 'package:healthy_sync/feature/authentication/presentation/screens/signup/signup_screen.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
@@ -45,7 +45,7 @@ class FormLogin extends StatelessWidget {
               16.H,
               Text(
                 LocaleKeys.email.tr(),
-                style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+                style: TextStyles.font20DarkBlueBold,
               ),
               CustomTextField(
                 textInputAction: TextInputAction.next,
@@ -64,7 +64,7 @@ class FormLogin extends StatelessWidget {
 
               Text(
                 LocaleKeys.password.tr(),
-                style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+                style: TextStyles.font16DarkBlueW500,
               ),
               BlocBuilder<LoginCubit, LoginState>(
                 buildWhen:
@@ -125,9 +125,7 @@ class FormLogin extends StatelessWidget {
                       ),
                       Text(
                         LocaleKeys.rememberMe.tr(),
-                        style: textStyleBody.copyWith(
-                          color: AppColor.mainBlue2,
-                        ),
+                        style:  TextStyles.font16DarkBlueW500,
                       ),
                     ],
                   ),
@@ -139,15 +137,11 @@ class FormLogin extends StatelessWidget {
                       children: [
                         Text(
                           LocaleKeys.forgotPassword.tr(),
-                          style: textStyleBody.copyWith(
-                            color: AppColor.mainBlue2,
-                          ),
+                          style:  TextStyles.font16DarkBlueW500,
                         ),
                         Text(
                           LocaleKeys.Q.tr(),
-                          style: textStyleBody.copyWith(
-                            color: AppColor.mainPink,
-                          ),
+                          style: TextStyles.font16PinkW500,
                         ),
                       ],
                     ),
@@ -168,7 +162,7 @@ class FormLogin extends StatelessWidget {
                   ],
                 ),
                 child: CustomButton(
-                  name: Text(LocaleKeys.login.tr(), style: textStyleTitle),
+                  name: Text(LocaleKeys.login.tr(), style: TextStyles.font20WhiteBold),
                   onTap: () {
                     loginCubit.login(
                       RegisterParams(
@@ -185,7 +179,7 @@ class FormLogin extends StatelessWidget {
                 children: [
                   Text(
                     LocaleKeys.dontHaveAnAccount.tr(),
-                    style: textStyle.copyWith(color: AppColor.mainBlue2),
+                    style: TextStyles.font12DarkBlueW400
                   ),
                   TextButton(
                     onPressed: () {
@@ -193,7 +187,7 @@ class FormLogin extends StatelessWidget {
                     },
                     child: Text(
                       LocaleKeys.signUp.tr(),
-                      style: textStyle.copyWith(color: AppColor.mainBlue),
+                      style: TextStyles.font12BlueW400
                     ),
                   ),
                 ],

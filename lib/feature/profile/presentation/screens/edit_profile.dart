@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
@@ -42,7 +42,7 @@ class _EditProfileState extends State<EditProfile> {
         ),
         title: Text(
           LocaleKeys.editProfile.tr(),
-          style: textStyleTitle.copyWith(color: AppColor.mainPink),
+          style: TextStyles.font20WhiteBold.copyWith(color: AppColor.mainPink),
         ),
       ),
       body: BlocConsumer<ProfileCubit, ProfileState>(
@@ -109,7 +109,10 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 Gap(22),
                 CustomButton(
-                  name: Text("Update Profile", style: textStyleTitle),
+                  name: Text(
+                    "Update Profile",
+                    style: TextStyles.font20WhiteBold,
+                  ),
                   onTap: () {
                     profileCubit.updateProfile(
                       _imageFile,
@@ -158,7 +161,11 @@ class _EditProfileState extends State<EditProfile> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     IconButton(
-                      icon: Icon(Icons.photo, size: 40, color: AppColor.mainPink),
+                      icon: Icon(
+                        Icons.photo,
+                        size: 40,
+                        color: AppColor.mainPink,
+                      ),
                       onPressed: () {
                         Navigator.pop(context);
                         _pickImage(ImageSource.gallery);

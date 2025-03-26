@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:healthy_sync/core/service/local/shared_keys.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
@@ -42,7 +42,7 @@ class _IntroScreenState extends State<IntroScreen> {
             },
             child: Text(
               LocaleKeys.skip.tr(),
-              style: textStyleBody.copyWith(color: AppColor.mainPink),
+              style: TextStyles.font20PinkBold,
             ),
           ),
         ],
@@ -102,7 +102,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 CustomButton(
                   height: 45.sp,
                   width: 100.sp,
-                  name: Text('هيا بنا', style: textStyleTitle),
+                  name: Text('هيا بنا', style: TextStyles.font20WhiteBold),
                   onTap: () {
                     SharedHelper.sava(SharedKeys.isOnboardingShown, true);
                     context.pushReplacement(WelcomeScreen());

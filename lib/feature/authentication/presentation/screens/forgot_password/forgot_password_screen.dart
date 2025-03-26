@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 import 'package:healthy_sync/feature/authentication/presentation/screens/Verification/verification_screen.dart';
@@ -30,7 +30,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         centerTitle: true,
         iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
         backgroundColor: AppColor.mainPink,
-        title: Text(LocaleKeys.forgotPassword.tr(), style: textStyleTitle),
+        title: Text(LocaleKeys.forgotPassword.tr(), style: TextStyles.font20WhiteBold),
       ),
       body: SafeArea(
         top: false,
@@ -65,9 +65,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         CustomTextField(
                           controller: email,
                           labelText: LocaleKeys.emailPhone.tr(),
-                          labelStyle: textStyleTitle.copyWith(
-                            color: AppColor.black,
-                          ),
+                          labelStyle: TextStyles.font12DarkBlueW400,
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           hintText: LocaleKeys.enterYourEmailOrPhone.tr(),
                           keyboardType: TextInputType.emailAddress,
@@ -82,7 +80,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         CustomButton(
                           name: Text(
                             LocaleKeys.sendCode.tr(),
-                            style: textStyleTitle,
+                            style: TextStyles.font20WhiteBold,
                           ),
                           onTap: () {
                             if (formKey.currentState!.validate()) {

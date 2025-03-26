@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
@@ -14,7 +14,10 @@ class DoctorVisitScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.white,
       appBar: AppBar(
-        title: Text(LocaleKeys.visitDetails.tr(), style: textStyleTitle),
+        title: Text(
+          LocaleKeys.visitDetails.tr(),
+          style: TextStyles.font20WhiteBold,
+        ),
         iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
         backgroundColor: AppColor.mainPink,
         elevation: 4,
@@ -53,7 +56,10 @@ class DoctorVisitScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: textStyleTitle.copyWith(color: AppColor.black)),
+            Text(
+              title,
+              style: TextStyles.font20WhiteBold.copyWith(color: AppColor.black),
+            ),
             8.H,
             child,
           ],
@@ -79,11 +85,13 @@ class DoctorVisitScreen extends StatelessWidget {
           children: [
             Text(
               'Dr. Ahmed',
-              style: textStyleTitle.copyWith(color: AppColor.black),
+              style: TextStyles.font20WhiteBold.copyWith(color: AppColor.black),
             ),
             Text(
               'Cardiologist',
-              style: textStyleBody.copyWith(color: AppColor.black),
+              style: TextStyles.font16DarkBlueW500.copyWith(
+                color: AppColor.black,
+              ),
             ),
           ],
         ),
@@ -151,7 +159,9 @@ class DoctorVisitScreen extends StatelessWidget {
         Expanded(
           child: Text(
             text,
-            style: textStyleBody.copyWith(color: textColor ?? AppColor.black),
+            style: TextStyles.font16DarkBlueW500.copyWith(
+              color: textColor ?? AppColor.black,
+            ),
           ),
         ),
       ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/Themes/light_theme.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -30,7 +30,7 @@ class _ChatScreenState extends State<ChatScreen> {
         centerTitle: true,
         title: Text(
           "Medical Chat",
-          style: textStyle.copyWith(color: AppColor.black),
+          style: TextStyles.font16DarkBlueW500.copyWith(color: AppColor.black),
         ),
       ),
       body: SafeArea(
@@ -73,12 +73,12 @@ class _ChatScreenState extends State<ChatScreen> {
                         children: [
                           Text(
                             message['text']!,
-                            style: textStyle.copyWith(fontSize: 16.sp),
+                            style: TextStyles.font16DarkBlueW500.copyWith(fontSize: 16.sp),
                           ),
                           SizedBox(height: 5),
                           Text(
                             message['sender']!,
-                            style: textStyle.copyWith(
+                            style: TextStyles.font16DarkBlueW500.copyWith(
                               fontSize: 12.sp,
                               color: AppColor.mainPink,
                             ),

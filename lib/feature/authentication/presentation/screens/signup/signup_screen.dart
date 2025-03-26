@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/constants/enum.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
-import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/feature/authentication/presentation/widgets/form_signup.dart';
 
@@ -28,7 +27,7 @@ class SignUpScreen extends StatelessWidget {
               15.H,
               Text(
                 " ${LocaleKeys.signUp.tr()} ${handleUserType()}",
-                style: textStyleTitle.copyWith(color: AppColor.mainPink),
+                style: TextStyles.font20PinkBold,
               ),
               30.H,
               FormSignUp(userType: userType),

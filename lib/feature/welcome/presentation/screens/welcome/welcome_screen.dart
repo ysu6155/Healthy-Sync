@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/constants/enum.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/constants/app_assets.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/feature/authentication/presentation/screens/login/login_screen.dart';
@@ -44,15 +44,12 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                   50.H,
                   Text(
                     LocaleKeys.welcomeToHealthySync.tr(),
-                    style: textStyleTitle.copyWith(
-                      color: AppColor.mainPink,
-                      fontSize: 26.sp,
-                    ),
+                    style:TextStyles.font20PinkBold
                   ),
                   30.H,
                   Text(
                     LocaleKeys.joinNow.tr(),
-                    style: textStyleTitle.copyWith(color: AppColor.mainPink),
+                    style:TextStyles.font20PinkBold
                   ),
                   30.H,
                 ],
@@ -77,10 +74,11 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(LocaleKeys.LoginBy.tr(), style: textStyleTitle),
+                    Text(LocaleKeys.LoginBy.tr(), style: TextStyles.font20WhiteBold),
                     16.H,
                     CustomButton(
-                      name: Text(LocaleKeys.doctor.tr(), style: textStyleTitle),
+                      name: Text(LocaleKeys.doctor.tr(), style: TextStyles.font20WhiteBold
+                      ),
                       backgroundColor: AppColor.mainPink,
                       onTap: () {
                         context.push(LoginScreen(userType: UserType.doctor));
@@ -91,7 +89,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                       // border: Border.all(color: AppColor.black, width: 3.sp),
                       name: Text(
                         LocaleKeys.patient.tr(),
-                        style: textStyleTitle,
+                        style: TextStyles.font20WhiteBold,
                       ),
                       backgroundColor: AppColor.mainPink,
                       textColor: AppColor.black,

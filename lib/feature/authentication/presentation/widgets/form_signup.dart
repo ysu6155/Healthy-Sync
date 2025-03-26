@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/constants/enum.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
@@ -12,7 +13,6 @@ import 'package:healthy_sync/feature/authentication/presentation/cubit/signup_cu
 import 'package:healthy_sync/feature/authentication/presentation/cubit/signup_cubit/signup_state.dart';
 import 'package:healthy_sync/feature/authentication/presentation/widgets/custom_dropdown.dart';
 import 'package:healthy_sync/feature/authentication/presentation/screens/login/login_screen.dart';
-import 'package:healthy_sync/core/Themes/light_theme.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
@@ -95,7 +95,7 @@ class _FormSignUpState extends State<FormSignUp> {
                 ],
               ),
               child: CustomButton(
-                name: Text(LocaleKeys.signUp.tr(), style: textStyleTitle),
+                name: Text(LocaleKeys.signUp.tr(), style: TextStyles.font20WhiteBold),
                 onTap:
                     () => signUpCubit.register(
                       RegisterParams(
@@ -114,7 +114,7 @@ class _FormSignUpState extends State<FormSignUp> {
               children: [
                 Text(
                   LocaleKeys.alreadyHaveAnAccount.tr(),
-                  style: textStyle.copyWith(color: AppColor.mainBlue2),
+                  style: TextStyles.font12DarkBlueW400
                 ),
                 TextButton(
                   onPressed:
@@ -123,7 +123,7 @@ class _FormSignUpState extends State<FormSignUp> {
 
                   child: Text(
                     LocaleKeys.login.tr(),
-                    style: textStyle.copyWith(color: AppColor.mainBlue),
+                    style: TextStyles.font12BlueW400,
                   ),
                 ),
               ],
@@ -140,7 +140,7 @@ class _FormSignUpState extends State<FormSignUp> {
       children: [
         Text(
           LocaleKeys.name.tr(),
-          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+          style: TextStyles.font16DarkBlueW500
         ),
         8.H,
         CustomTextField(
@@ -159,7 +159,7 @@ class _FormSignUpState extends State<FormSignUp> {
       children: [
         Text(
           LocaleKeys.email.tr(),
-          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+          style: TextStyles.font16DarkBlueW500
         ),
         8.H,
         CustomTextField(
@@ -185,7 +185,7 @@ class _FormSignUpState extends State<FormSignUp> {
       children: [
         Text(
           LocaleKeys.age.tr(),
-          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+          style:TextStyles.font16DarkBlueW500
         ),
         8.H,
         CustomTextField(
@@ -206,7 +206,7 @@ class _FormSignUpState extends State<FormSignUp> {
       children: [
         Text(
           LocaleKeys.specialization.tr(),
-          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+          style: TextStyles.font16DarkBlueW500
         ),
         8.H,
         BlocBuilder<SignUpCubit, SignUpState>(
@@ -242,7 +242,7 @@ class _FormSignUpState extends State<FormSignUp> {
       children: [
         Text(
           LocaleKeys.phone.tr(),
-          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+          style:TextStyles.font16DarkBlueW500
         ),
         8.H,
         CustomTextField(
@@ -261,7 +261,7 @@ class _FormSignUpState extends State<FormSignUp> {
       children: [
         Text(
           LocaleKeys.city.tr(),
-          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+          style: TextStyles.font16DarkBlueW500
         ),
         8.H,
         BlocBuilder<SignUpCubit, SignUpState>(
@@ -293,7 +293,7 @@ class _FormSignUpState extends State<FormSignUp> {
       children: [
         Text(
           LocaleKeys.password.tr(),
-          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+          style: TextStyles.font16DarkBlueW500
         ),
         8.H,
         BlocBuilder<SignUpCubit, SignUpState>(
@@ -317,7 +317,7 @@ class _FormSignUpState extends State<FormSignUp> {
         16.H,
         Text(
           LocaleKeys.confirmPassword.tr(),
-          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+          style: TextStyles.font16DarkBlueW500,
         ),
         8.H,
         BlocBuilder<SignUpCubit, SignUpState>(
@@ -366,7 +366,7 @@ class _FormSignUpState extends State<FormSignUp> {
             ),
             Text(
               LocaleKeys.iAgreeToTermsAndConditions.tr(),
-              style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+              style: TextStyles.font16DarkBlueW500,
             ),
           ],
         );
@@ -380,7 +380,7 @@ class _FormSignUpState extends State<FormSignUp> {
       children: [
         Text(
           LocaleKeys.chronicDiseases.tr(),
-          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+          style: TextStyles.font16DarkBlueW500,
         ),
         8.H,
 
@@ -389,7 +389,7 @@ class _FormSignUpState extends State<FormSignUp> {
           children:
               signUpCubit.selectedDiseases.map((disease) {
                 return Chip(
-                  label: Text(disease, style: textStyleBody),
+                  label: Text(disease, style: TextStyles.font16DarkBlueW500),
                   backgroundColor: AppColor.secondary,
                   deleteIcon: Icon(
                     Icons.close,
@@ -450,7 +450,7 @@ class _FormSignUpState extends State<FormSignUp> {
       children: [
         Text(
           LocaleKeys.gender.tr(),
-          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+          style: TextStyles.font16DarkBlueW500,
         ),
         8.H,
         BlocBuilder<SignUpCubit, SignUpState>(

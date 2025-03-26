@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:healthy_sync/core/themes/light_theme.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
@@ -23,7 +23,7 @@ class TestDetailsScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(
           LocaleKeys.medicalTest.tr(),
-          style: textStyleTitle.copyWith(color: AppColor.black),
+          style: TextStyles.font16DarkBlueW500,
         ),
         backgroundColor: AppColor.white,
       ),
@@ -56,28 +56,36 @@ class TestDetailsScreen extends StatelessWidget {
             const Gap(20),
             Text(
               test['name'],
-              style: textStyleTitle.copyWith(color: AppColor.black),
+              style: TextStyles.font20WhiteBold.copyWith(color: AppColor.black),
             ),
             const Gap(10),
             Text(
               test['desc'],
-              style: textStyleBody.copyWith(color: AppColor.black),
+              style: TextStyles.font16DarkBlueW500.copyWith(
+                color: AppColor.black,
+              ),
             ),
             Gap(20),
             Text(
               LocaleKeys.details.tr(),
-              style: textStyleBody.copyWith(color: AppColor.black),
+              style: TextStyles.font16DarkBlueW500.copyWith(
+                color: AppColor.black,
+              ),
             ),
             Gap(4),
             Text(
               test['details'],
-              style: textStyleBody.copyWith(color: AppColor.black),
+              style: TextStyles.font16DarkBlueW500.copyWith(
+                color: AppColor.black,
+              ),
             ),
             Gap(20),
 
             Text(
               LocaleKeys.value.tr(),
-              style: textStyleBody.copyWith(color: AppColor.black),
+              style: TextStyles.font16DarkBlueW500.copyWith(
+                color: AppColor.black,
+              ),
             ),
             Gap(4),
             values is Map<String, dynamic>
@@ -87,13 +95,17 @@ class TestDetailsScreen extends StatelessWidget {
                       values.entries.map<Widget>((entry) {
                         return Text(
                           "${entry.key}: ${entry.value}",
-                          style: textStyleBody.copyWith(color: AppColor.black),
+                          style: TextStyles.font16DarkBlueW500.copyWith(
+                            color: AppColor.black,
+                          ),
                         );
                       }).toList(),
                 )
                 : Text(
                   LocaleKeys.noDataFound.tr(),
-                  style: textStyleBody.copyWith(color: AppColor.red),
+                  style: TextStyles.font16DarkBlueW500.copyWith(
+                    color: AppColor.red,
+                  ),
                 ),
             15.H,
             Row(
@@ -102,7 +114,9 @@ class TestDetailsScreen extends StatelessWidget {
                 10.W,
                 Text(
                   test['status'],
-                  style: textStyleTitle.copyWith(color: test['color']),
+                  style: TextStyles.font20WhiteBold.copyWith(
+                    color: test['color'],
+                  ),
                 ),
               ],
             ),
