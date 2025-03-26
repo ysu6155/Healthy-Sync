@@ -16,7 +16,7 @@ class DoctorVisitScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(LocaleKeys.visitDetails.tr(), style: textStyleTitle),
         iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
-        backgroundColor: AppColor.main,
+        backgroundColor: AppColor.mainPink,
         elevation: 4,
       ),
       body: ListView(
@@ -146,7 +146,7 @@ class DoctorVisitScreen extends StatelessWidget {
   }) {
     return Row(
       children: [
-        Icon(icon, color: iconColor ?? AppColor.main, size: 22.sp),
+        Icon(icon, color: iconColor ?? AppColor.mainPink, size: 22.sp),
         8.W,
         Expanded(
           child: Text(

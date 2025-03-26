@@ -19,7 +19,7 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
   Widget build(BuildContext context) {
     return Ink(
       decoration: BoxDecoration(
-        color: AppColor.main,
+        color: AppColor.mainBlue,
         borderRadius: BorderRadius.circular(16.r),
       ),
       padding: EdgeInsets.all(16.0),

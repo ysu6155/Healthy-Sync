@@ -39,7 +39,7 @@ class PatientHomeNavScreenState extends State<PatientHomeNavScreen> {
       body: _pages[_selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: AppColor.transparent,
-        color: AppColor.main,
+        color: AppColor.mainPink,
         buttonBackgroundColor: AppColor.secondary,
         animationDuration: Duration(milliseconds: 300),
         height: ResponsiveHelper.isMobile(context) ? 60 : 75,
@@ -54,7 +54,7 @@ class PatientHomeNavScreenState extends State<PatientHomeNavScreen> {
           SvgPicture.asset(
             AppAssets.chatBot,
             colorFilter: ColorFilter.mode(
-              _selectedIndex == 2 ? AppColor.main : AppColor.secondary,
+              _selectedIndex == 2 ? AppColor.mainPink : AppColor.secondary,
               BlendMode.srcIn,
             ),
             height: 32.sp,

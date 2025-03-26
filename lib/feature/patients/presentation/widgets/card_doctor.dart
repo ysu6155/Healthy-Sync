@@ -14,7 +14,7 @@ class CardDoctor extends StatelessWidget {
       minLeadingWidth: 0,
       contentPadding: EdgeInsets.all(10.sp),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
-      tileColor: AppColor.main, //colorSpecializations[index],
+      tileColor: AppColor.mainPink, //colorSpecializations[index],
 
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(16.r),

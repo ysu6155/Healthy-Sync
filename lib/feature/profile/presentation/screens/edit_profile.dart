@@ -34,7 +34,7 @@ class _EditProfileState extends State<EditProfile> {
         backgroundColor: AppColor.white,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: AppColor.main),
+          icon: Icon(Icons.arrow_back, color: AppColor.mainPink),
           onPressed: () {
             context.pop();
             context.read<ProfileCubit>().getProfileData();
@@ -42,7 +42,7 @@ class _EditProfileState extends State<EditProfile> {
         ),
         title: Text(
           LocaleKeys.editProfile.tr(),
-          style: textStyleTitle.copyWith(color: AppColor.main),
+          style: textStyleTitle.copyWith(color: AppColor.mainPink),
         ),
       ),
       body: BlocConsumer<ProfileCubit, ProfileState>(
@@ -86,7 +86,7 @@ class _EditProfileState extends State<EditProfile> {
                         right: 0,
                         child: CircleAvatar(
                           backgroundColor: AppColor.white,
-                          child: Icon(Icons.edit, color: AppColor.main),
+                          child: Icon(Icons.edit, color: AppColor.mainPink),
                         ),
                       ),
                     ],
@@ -158,7 +158,7 @@ class _EditProfileState extends State<EditProfile> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     IconButton(
-                      icon: Icon(Icons.photo, size: 40, color: AppColor.main),
+                      icon: Icon(Icons.photo, size: 40, color: AppColor.mainPink),
                       onPressed: () {
                         Navigator.pop(context);
                         _pickImage(ImageSource.gallery);
@@ -168,7 +168,7 @@ class _EditProfileState extends State<EditProfile> {
                       icon: Icon(
                         Icons.camera_alt,
                         size: 40,
-                        color: AppColor.main,
+                        color: AppColor.mainPink,
                       ),
                       onPressed: () {
                         Navigator.pop(context);

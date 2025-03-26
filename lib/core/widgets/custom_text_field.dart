@@ -4,7 +4,6 @@ import 'package:healthy_sync/core/Themes/light_theme.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 
-
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
@@ -20,6 +19,10 @@ class CustomTextField extends StatelessWidget {
   final TextInputAction textInputAction;
   final ValueChanged<String>? onFieldSubmitted;
   final FocusNode? focusNode;
+  final OutlineInputBorder? border;
+
+  final Color? borderColor;
+  final Color? fillColor;
 
   const CustomTextField({
     super.key,
@@ -37,50 +40,75 @@ class CustomTextField extends StatelessWidget {
     this.textInputAction = TextInputAction.done,
     this.onFieldSubmitted,
     this.focusNode,
+    this.border,
+    this.borderColor,
+    this.fillColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      keyboardType: keyboardType,
-      obscureText: isPassword && !isPasswordVisible,
-      textInputAction: textInputAction,
-      onFieldSubmitted: onFieldSubmitted,
-      focusNode: focusNode,
-      decoration: InputDecoration(
-        
-        floatingLabelBehavior: floatingLabelBehavior,
-        labelText: labelText,
-        labelStyle:
-            labelStyle ??
-            TextStyle(
-              color: AppColor.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 16.sp,
-            ),
-        hintText: hintText,
-        hintStyle: textStyle.copyWith(fontSize: 16.sp, color: AppColor.grey),
-        suffixIcon:
-            isPassword
-                ? IconButton(
-                  icon: Icon(
-                    !isPasswordVisible
-                        ? Icons.visibility
-                        : Icons.visibility_off,
-                    size: 20.sp,
-                  ),
-                  onPressed: togglePasswordVisibility,
-                )
-                : null,
-        errorStyle: textStyle.copyWith(color: AppColor.red),
+    return Container(
+      decoration: BoxDecoration(
+        // color: Colors.white,
+        borderRadius: BorderRadius.circular(16.r),
+        boxShadow: [
+          BoxShadow(
+            color: AppColor.grey.withValues(alpha: 0.3),
+            spreadRadius: 2,
+            blurRadius: 4,
+            offset: Offset(0, 0),
+          ),
+        ],
       ),
-      style: textStyle.copyWith(
-        fontSize: ResponsiveHelper.isMobile(context) ? 16.sp : 24.sp,
-        color: AppColor.black,
-      ),
+      child: TextFormField(
+        controller: controller,
+        keyboardType: keyboardType,
+        obscureText: isPassword && !isPasswordVisible,
+        textInputAction: textInputAction,
+        onFieldSubmitted: onFieldSubmitted,
+        focusNode: focusNode,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: AppColor.white,
+          hintStyle: textStyle.copyWith(color: AppColor.grey, fontSize: 12.sp),
+          border: borderStyle(borderColor ?? AppColor.border),
+          focusedBorder: borderStyle(borderColor ?? AppColor.border),
+          enabledBorder: borderStyle(borderColor ?? AppColor.transparent),
+          errorBorder: borderStyle(AppColor.red),
+          focusedErrorBorder: borderStyle(AppColor.red),
+          floatingLabelBehavior: floatingLabelBehavior,
+          labelText: labelText,
+          labelStyle:
+              labelStyle ??
+              TextStyle(
+                color: AppColor.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 16.sp,
+              ),
+          hintText: hintText,
 
-      validator: validator,
+          suffixIcon:
+              isPassword
+                  ? IconButton(
+                    icon: Icon(
+                      !isPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      size: 20.sp,
+                      color: AppColor.grey,
+                    ),
+                    onPressed: togglePasswordVisibility,
+                  )
+                  : null,
+          errorStyle: textStyle.copyWith(color: AppColor.red),
+        ),
+        style: textStyle.copyWith(
+          fontSize: ResponsiveHelper.isMobile(context) ? 16.sp : 24.sp,
+          color: AppColor.black,
+        ),
+
+        validator: validator,
+      ),
     );
   }
 }

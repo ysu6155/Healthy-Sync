@@ -30,7 +30,7 @@ class TimerWidgetState extends State<TimerWidget> {
         _remainingSeconds--;
         timerText = Text(
           '$_remainingSeconds ',
-          style: textStyleTitle.copyWith(color: AppColor.main),
+          style: textStyleTitle.copyWith(color: AppColor.mainPink),
         );
       });
       if (_remainingSeconds == 0) {
@@ -43,7 +43,7 @@ class TimerWidgetState extends State<TimerWidget> {
             },
             child: Text(
               LocaleKeys.resend.tr(),
-              style: textStyle.copyWith(color: AppColor.main),
+              style: textStyle.copyWith(color: AppColor.mainPink),
             ),
           );
         });

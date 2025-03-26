@@ -65,7 +65,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     children: [
                       TextSpan(
                         text: widget.phone,
-                        style: textStyleTitle.copyWith(color: AppColor.main),
+                        style: textStyleTitle.copyWith(color: AppColor.mainBlue),
                       ),
                     ],
                   ),

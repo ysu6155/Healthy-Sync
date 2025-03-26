@@ -48,7 +48,7 @@ class _DoctorsBySpecialtyScreenState extends State<DoctorsBySpecialtyScreen> {
           ],
         ),
         iconTheme: IconThemeData(color: AppColor.white, size: 16.sp),
-        backgroundColor: AppColor.main,
+        backgroundColor: AppColor.mainBlue,
       ),
       body:
           filteredDoctors.isEmpty
@@ -81,7 +81,7 @@ class _DoctorsBySpecialtyScreenState extends State<DoctorsBySpecialtyScreen> {
     return Ink(
       padding: EdgeInsets.all(8.sp),
       decoration: BoxDecoration(
-        color: AppColor.main,
+        color: AppColor.mainBlue,
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: Column(

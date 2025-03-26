@@ -48,7 +48,7 @@ class MedicalTestsScreen extends StatelessWidget {
                   return Ink(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),
-                      border: Border.all(color: AppColor.main, width: 2.w),
+                      border: Border.all(color: AppColor.mainPink, width: 2.w),
                     ),
 
                     child: Column(
@@ -57,7 +57,7 @@ class MedicalTestsScreen extends StatelessWidget {
                         Icon(
                           uniqueTests[index]['icon'],
                           size: 40.sp,
-                          color: AppColor.main,
+                          color: AppColor.mainPink,
                         ),
                         10.H,
                         Text(

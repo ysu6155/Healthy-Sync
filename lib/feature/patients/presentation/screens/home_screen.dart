@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               CircleAvatar(
                 radius: 20.r,
-                backgroundColor: AppColor.main,
+                backgroundColor: AppColor.mainBlue,
                 child: Icon(
                   Icons.notifications,
                   color: AppColor.white,
@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: Text(
                   LocaleKeys.seeAll.tr(),
-                  style: textStyleBody.copyWith(color: AppColor.main),
+                  style: textStyleBody.copyWith(color: AppColor.mainBlue),
                 ),
               ),
             ],

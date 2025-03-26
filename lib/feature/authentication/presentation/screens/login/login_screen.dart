@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:healthy_sync/core/constants/app_assets.dart';
 
 import 'package:healthy_sync/core/constants/enum.dart';
 import 'package:healthy_sync/core/themes/light_theme.dart';
@@ -16,14 +17,10 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(LocaleKeys.login.tr(), style: textStyleTitle),
-        centerTitle: true,
-        iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
-        backgroundColor: AppColor.main2,
-      ),
       // backgroundColor: AppColor.main,
-      body: CustomContainer(userType: userType),
+      body: SingleChildScrollView(
+        child: CustomContainer(userType: userType).paddingAll(16.sp),
+      ),
     );
   }
 }
@@ -34,16 +31,7 @@ class CustomContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      child: Container(
-        decoration: BoxDecoration(
-          // gradient: AppColor.secondaryGradient,
-          color: AppColor.main2,
-        ),
-        child: SingleChildScrollView(child: newMethod(userType)),
-      ),
-    );
+    return SafeArea(child: newMethod(userType));
   }
 
   Column newMethod(final UserType userType) {
@@ -54,27 +42,18 @@ class CustomContainer extends StatelessWidget {
     return Column(
       spacing: 8.sp,
       children: [
-        50.H,
-        Text(
-          LocaleKeys.welcomeToHealthySync.tr(),
-          style: textStyleTitle.copyWith(color: AppColor.main),
+        15.H,
+        Opacity(
+          opacity: 0.70,
+          child: Image.asset(AppAssets.logo, height: 200.h, fit: BoxFit.cover),
         ),
+
         Text(
           " ${LocaleKeys.loginToYourAccount.tr()} ${handleUserType()}",
-          style: textStyleBody,
+          style: textStyleTitle.copyWith(color: AppColor.mainPink),
         ),
-        30.H,
-        Container(
-          padding: EdgeInsets.all(24.r),
-          decoration: BoxDecoration(
-            color: AppColor.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(24.r),
-              topRight: Radius.circular(24.r),
-            ),
-          ),
-          child: FormLogin(userType: userType),
-        ),
+
+        FormLogin(userType: userType),
       ],
     );
   }

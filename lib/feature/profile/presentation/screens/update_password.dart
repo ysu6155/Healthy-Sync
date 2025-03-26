@@ -23,7 +23,7 @@ class UpdatePassword extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: AppColor.main),
+          icon: Icon(Icons.arrow_back, color: AppColor.mainPink),
           onPressed: () {
             context.pop();
             context.read<ProfileCubit>().getProfileData();

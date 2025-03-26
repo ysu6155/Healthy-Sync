@@ -29,7 +29,7 @@
   "joinNow": "انضم الآن",
   "readyToStartYourSync": "جاهز لبدء مزامنتك؟",
   "emailPhone": "البريد الإلكتروني/الهاتف",
-  "forgotPassword": "نسيت كلمة المرور؟",
+  "forgotPassword": "نسيت كلمة المرور",
   "login": "تسجيل الدخول",
   "rememberMe": "تذكرني",
   "dontHaveAnAccount": "ليس لديك حساب؟",
@@ -56,7 +56,7 @@
   "phoneIsRequired": "رقم الهاتف مطلوب",
   "genderIsRequired": "الجنس مطلوب",
   "confirmPasswordIsRequired": "تأكيد كلمة المرور مطلوب",
-  "loginToYourAccount": "تسجيل الدخول إلى حسابك",
+  "loginToYourAccount":"تسجيل الدخول إلى حساب",
   "notStable": "غير مستقر",
   "specializations": "التخصصات",
   "specialization": "التخصص",
@@ -162,6 +162,10 @@
   "tests": "الاختبارات",
   "Diabetes": "السكري",
   "enterChronicDiseases":"ادخل الامراض المزمنة",
-  "you":"من انت"
+  "you":"من انت",
+  "Q": "؟",
+  "chronicDiseases":"الامراض المزمنة",
+  "selectSpecialization":"قلب",
+  "specializationIsRequired": "التخصص مطلوب"
   
 }

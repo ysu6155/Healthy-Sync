@@ -36,7 +36,7 @@ class PharmacyHomeNavScreenState extends State<PharmacyHomeNavScreen> {
       body: _pages[_selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: AppColor.transparent,
-        color: AppColor.main,
+        color: AppColor.mainPink,
         buttonBackgroundColor: AppColor.secondary,
         animationDuration: Duration(milliseconds: 300),
         height: 60.sp,
@@ -51,7 +51,7 @@ class PharmacyHomeNavScreenState extends State<PharmacyHomeNavScreen> {
           SvgPicture.asset(
             AppAssets.chatBot,
             colorFilter: ColorFilter.mode(
-              _selectedIndex == 2 ? AppColor.main : AppColor.secondary,
+              _selectedIndex == 2 ? AppColor.mainPink : AppColor.secondary,
               BlendMode.srcIn,
             ),
             height: 32.sp,

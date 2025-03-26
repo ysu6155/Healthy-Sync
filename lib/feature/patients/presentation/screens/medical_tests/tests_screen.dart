@@ -46,7 +46,7 @@ class TestsScreen extends StatelessWidget {
                     elevation: 4,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.r),
-                      side: BorderSide(color: AppColor.main, width: 2.sp),
+                      side: BorderSide(color: AppColor.mainPink, width: 2.sp),
                     ),
                     margin: EdgeInsets.symmetric(vertical: 8.w),
                     child: ListTile(
@@ -60,7 +60,7 @@ class TestsScreen extends StatelessWidget {
                       ),
                       trailing: Icon(
                         Icons.arrow_forward_ios,
-                        color: AppColor.main,
+                        color: AppColor.mainPink,
                         size: 24.sp,
                       ),
                     ).withTapEffect(

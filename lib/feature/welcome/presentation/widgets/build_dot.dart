@@ -9,7 +9,7 @@ Widget buildDot({required int index, required currentPage}) {
     height: 10.sp,
     width: 10.w,
     decoration: BoxDecoration(
-      color: currentPage == index ? AppColor.main : AppColor.darkGrey,
+      color: currentPage == index ? AppColor.mainBlue : AppColor.darkGrey,
       borderRadius: BorderRadius.circular(5.r),
     ),
   );

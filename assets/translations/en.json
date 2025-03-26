@@ -162,6 +162,10 @@
 "tests": "Tests",
 "Diabetes": "Diabetes",
 "enterChronicDiseases":"Enter Diagnosis",
-"you":"How You"
+"you":"How You",
+"Q": "?",
+"chronicDiseases":"Chronic Diseases",
+"selectSpecialization":"Cardiology",
+"specializationIsRequired": "Specialization is required"
 
 }

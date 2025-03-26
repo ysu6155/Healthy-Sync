@@ -80,7 +80,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             message['sender']!,
                             style: textStyle.copyWith(
                               fontSize: 12.sp,
-                              color: AppColor.main,
+                              color: AppColor.mainPink,
                             ),
                           ),
                         ],

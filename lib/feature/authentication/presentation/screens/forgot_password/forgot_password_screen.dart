@@ -29,14 +29,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       appBar: AppBar(
         centerTitle: true,
         iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
-        backgroundColor: AppColor.main,
+        backgroundColor: AppColor.mainPink,
         title: Text(LocaleKeys.forgotPassword.tr(), style: textStyleTitle),
       ),
       body: SafeArea(
         top: false,
         child: Container(
           padding: EdgeInsets.only(top: 40.sp),
-          decoration: BoxDecoration(color: AppColor.main),
+          decoration: BoxDecoration(color: AppColor.mainPink),
           child: SingleChildScrollView(
             child: Column(
               children: [

@@ -19,7 +19,7 @@ class SpecializationsAll extends StatelessWidget {
         toolbarHeight: 40.sp,
         title: Text(LocaleKeys.specializations.tr(), style: textStyle),
         iconTheme: IconThemeData(color: AppColor.white, size: 14.sp),
-        backgroundColor: AppColor.main,
+        backgroundColor: AppColor.mainPink,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +45,7 @@ class SpecializationsAll extends StatelessWidget {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: AppColor.main,
+                      color: AppColor.mainPink,
                       borderRadius: BorderRadius.circular(16.r),
                     ),
                     child: Column(

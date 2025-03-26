@@ -45,14 +45,14 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                   Text(
                     LocaleKeys.welcomeToHealthySync.tr(),
                     style: textStyleTitle.copyWith(
-                      color: AppColor.main,
+                      color: AppColor.mainPink,
                       fontSize: 26.sp,
                     ),
                   ),
                   30.H,
                   Text(
                     LocaleKeys.joinNow.tr(),
-                    style: textStyleTitle.copyWith(color: AppColor.main),
+                    style: textStyleTitle.copyWith(color: AppColor.mainPink),
                   ),
                   30.H,
                 ],
@@ -81,7 +81,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                     16.H,
                     CustomButton(
                       name: Text(LocaleKeys.doctor.tr(), style: textStyleTitle),
-                      backgroundColor: AppColor.main,
+                      backgroundColor: AppColor.mainPink,
                       onTap: () {
                         context.push(LoginScreen(userType: UserType.doctor));
                       },
@@ -93,7 +93,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                         LocaleKeys.patient.tr(),
                         style: textStyleTitle,
                       ),
-                      backgroundColor: AppColor.main,
+                      backgroundColor: AppColor.mainPink,
                       textColor: AppColor.black,
                       onTap: () {
                         context.push(LoginScreen(userType: UserType.patient));

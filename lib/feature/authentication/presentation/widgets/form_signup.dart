@@ -30,6 +30,7 @@ class _FormSignUpState extends State<FormSignUp> {
   @override
   Widget build(BuildContext context) {
     SignUpCubit signUpCubit = BlocProvider.of<SignUpCubit>(context);
+
     return BlocListener<SignUpCubit, SignUpState>(
       listener: (context, state) {
         if (state is SignUpLoading) {
@@ -45,324 +46,84 @@ class _FormSignUpState extends State<FormSignUp> {
       child: Form(
         key: signUpCubit.formKey,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BlocBuilder<SignUpCubit, SignUpState>(
-              buildWhen: (previous, current) => current is AccountTypeSelected,
-              builder: (context, state) {
-                return CustomDropdown(
-                  labelText: LocaleKeys.accountType.tr(),
-                  value: signUpCubit.selectedAccountType,
-                  hint: LocaleKeys.patient.tr(),
-                  onChanged: signUpCubit.selectAccountType,
-                  validator:
-                      (value) =>
-                          value == null
-                              ? LocaleKeys.accountTypeIsRequired.tr()
-                              : null,
-                  items: [
-                    DropdownMenuItem(
-                      value: "doctor",
-                      child: Text(LocaleKeys.doctor.tr()),
-                    ),
-                    DropdownMenuItem(
-                      value: "patient",
-                      child: Text(LocaleKeys.patient.tr()),
-                    ),
-                    DropdownMenuItem(
-                      value: "lab",
-                      child: Text(LocaleKeys.lab.tr()),
-                    ),
-                    DropdownMenuItem(
-                      value: "admin",
-                      child: Text(LocaleKeys.admin.tr()),
-                    ),
-                  ],
-                );
-              },
-            ),
+            name(signUpCubit),
             16.H,
-            CustomTextField(
-              controller: signUpCubit.nameController,
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              hintText: LocaleKeys.youssifShaban.tr(),
-              labelText: LocaleKeys.name.tr(),
-              validator:
-                  (value) =>
-                      value!.isEmpty ? LocaleKeys.nameIsRequired.tr() : null,
-            ),
+            email(signUpCubit),
             16.H,
-            CustomTextField(
-              controller: signUpCubit.emailController,
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              hintText: LocaleKeys.exampleEmail.tr(),
-              labelText: LocaleKeys.email.tr(),
-              keyboardType: TextInputType.emailAddress,
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return LocaleKeys.emailIsRequired.tr();
-                }
-                return null;
-              },
+            UserSpecificContent(
+              userType: widget.userType,
+              doctorWidget: specialization(signUpCubit),
             ),
-            16.H,
-            CustomTextField(
-              controller: signUpCubit.ageController,
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              hintText: LocaleKeys.youssifAge.tr(),
-              labelText: LocaleKeys.age.tr(),
-              keyboardType: TextInputType.number,
-              // validator: (value) {
-              // if (value!.isEmpty) {
-              //  return LocaleKeys.ageIsRequired.tr();
-              //  }
-              //if (int.tryParse(value) == null) {
-              //return LocaleKeys.PleaseEnterAValidNumber.tr();
-              // }
-              //return null;
-              //},
+            UserSpecificContent(
+              userType: widget.userType,
+              otherWidget: age(signUpCubit),
             ),
-            16.H,
-            CustomTextField(
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              controller: signUpCubit.phoneController,
-              hintText: LocaleKeys.youssifPhone.tr(),
-              labelText: LocaleKeys.phone.tr(),
-              keyboardType: TextInputType.phone,
-              // validator: (value) {
-              // if (value!.isEmpty) {
-              // return LocaleKeys.phoneIsRequired.tr();
-              //}
-              //return null;
-              //},
-            ),
-            16.H,
-            BlocBuilder<SignUpCubit, SignUpState>(
-              buildWhen: (previous, current) => current is CitySelected,
-              builder: (context, state) {
-                return CustomDropdown(
-                  labelText: LocaleKeys.city.tr(),
-                  value: signUpCubit.selectedCity,
-                  hint: LocaleKeys.cityHint.tr(),
-                  onChanged: signUpCubit.selectCity,
-                  // validator:
-                  //     (value) =>
-                  //         value == null ? LocaleKeys.cityIsRequired.tr() : null,
-                  items:
-                      signUpCubit
-                          .getCities(context.locale.languageCode)
-                          .map(
-                            (city) => DropdownMenuItem(
-                              value: city,
-                              child: Text(city),
-                            ),
-                          )
-                          .toList(),
-                );
-              },
-            ),
-            16.H,
-            BlocBuilder<SignUpCubit, SignUpState>(
-              buildWhen: (previous, current) => current is GenderSelected,
-              builder: (context, state) {
-                return CustomDropdown(
-                  labelText: LocaleKeys.gender.tr(),
-                  value: signUpCubit.selectedGender,
-                  hint: LocaleKeys.maleGender.tr(),
-                  onChanged: signUpCubit.selectGender,
-                  validator:
-                      (value) =>
-                          value == null
-                              ? LocaleKeys.genderIsRequired.tr()
-                              : null,
-                  items: [
-                    DropdownMenuItem(
-                      value: "Male",
-                      child: Text(LocaleKeys.maleGender.tr()),
-                    ),
-                    DropdownMenuItem(
-                      value: "Female",
-                      child: Text(LocaleKeys.femaleGender.tr()),
-                    ),
-                  ],
-                );
-              },
-            ),
-            16.H,
-            BlocBuilder<SignUpCubit, SignUpState>(
-              buildWhen:
-                  (previous, current) => current is PasswordVisibilityToggled,
-              builder: (context, state) {
-                return CustomTextField(
-                  labelText: LocaleKeys.password.tr(),
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  controller: signUpCubit.passwordController,
-                  hintText: "*" * 8,
-                  isPassword: true,
-                  isPasswordVisible: signUpCubit.isPasswordVisible,
-                  togglePasswordVisibility:
-                      signUpCubit.togglePasswordVisibility,
-                  validator:
-                      (value) =>
-                          value!.isEmpty
-                              ? LocaleKeys.passwordIsRequired.tr()
-                              : null,
-                );
-              },
-            ),
-            16.H,
-            BlocBuilder<SignUpCubit, SignUpState>(
-              buildWhen:
-                  (previous, current) => current is PasswordVisibilityToggled,
-              builder: (context, state) {
-                return CustomTextField(
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  labelText: LocaleKeys.confirmPassword.tr(),
-                  controller: signUpCubit.confirmPasswordController,
-                  hintText: "*" * 8,
-                  isPassword: true,
-                  isPasswordVisible: signUpCubit.isPasswordVisible,
-                  togglePasswordVisibility: () {
-                    signUpCubit.togglePasswordVisibility();
-                  },
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return LocaleKeys.confirmPasswordIsRequired.tr();
-                    }
-                    if (value != signUpCubit.passwordController.text) {
-                      return LocaleKeys.PasswordDoesNotMatch.tr();
-                    }
-                    return null;
-                  },
-                );
-              },
-            ),
-            Column(
-              children: [
-                16.H,
 
-                Wrap(
-                  spacing: 8.0.sp,
-                  children:
-                      signUpCubit.selectedDiseases.map((disease) {
-                        return Chip(
-                          label: Text(disease, style: textStyleBody),
-                          backgroundColor: AppColor.secondary,
-                          deleteIcon: Icon(
-                            Icons.close,
-                            size: 18.sp,
-                            color: AppColor.white,
-                          ),
-                          onDeleted: () {
-                            setState(() {
-                              signUpCubit.selectedDiseases.remove(disease);
-                            });
-                          },
-                        );
-                      }).toList(),
-                ),
-                10.H,
-                Autocomplete<String>(
-                  optionsBuilder: (TextEditingValue textEditingValue) {
-                    if (textEditingValue.text.isEmpty) {
-                      return const Iterable<String>.empty();
-                    }
-                    return signUpCubit
-                        .getChronicDiseases(context.locale.languageCode)
-                        .where(
-                          (disease) => disease.contains(textEditingValue.text),
-                        );
-                  },
-                  onSelected: (String selection) {
-                    if (!signUpCubit.selectedDiseases.contains(selection)) {
-                      setState(() {
-                        signUpCubit.selectedDiseases.add(selection);
-                      });
-                    }
-                    signUpCubit.diseaseController.clear();
-                  },
-                  fieldViewBuilder: (
-                    context,
-                    controller,
-                    focusNode,
-                    onFieldSubmitted,
-                  ) {
-                    return CustomTextField(
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      hintText: LocaleKeys.Diabetes.tr(),
-                      controller: signUpCubit.diseaseController,
-                      focusNode: focusNode,
+            phone(signUpCubit),
+            16.H,
+            selectCity(signUpCubit),
+            16.H,
+            UserSpecificContent(
+              userType: widget.userType,
 
-                      labelText: LocaleKeys.enterChronicDiseases.tr(),
+              otherWidget: genderWidget(signUpCubit),
+            ),
 
-                      onFieldSubmitted: (value) {
-                        if (value.isNotEmpty &&
-                            !signUpCubit.selectedDiseases.contains(value)) {
-                          setState(() {
-                            signUpCubit.selectedDiseases.add(value);
-                          });
-                          signUpCubit.diseaseController.clear();
-                        }
-                      },
-                    );
-                  },
-                ),
-              ],
+            passwords(signUpCubit),
+            16.H,
+            UserSpecificContent(
+              userType: widget.userType,
+              otherWidget: chronicDiseases(signUpCubit, context),
             ),
 
             16.H,
-            BlocBuilder<SignUpCubit, SignUpState>(
-              buildWhen:
-                  (previous, current) => current is TermsAgreementToggled,
-              builder: (context, state) {
-                return Row(
-                  children: [
-                    Transform.scale(
-                      scale: ResponsiveHelper.isMobile(context) ? 1 : 1.5,
-                      child: Checkbox(
-                        value: signUpCubit.isAgreedToTerms,
-                        onChanged: (bool? value) {
-                          signUpCubit.toggleTermsAgreement(value ?? false);
-                        },
+            checkBox(signUpCubit),
+            12.H,
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16.r),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColor.black,
+
+                    spreadRadius: 0,
+                    blurRadius: 4,
+                    offset: Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: CustomButton(
+                name: Text(LocaleKeys.signUp.tr(), style: textStyleTitle),
+                onTap:
+                    () => signUpCubit.register(
+                      RegisterParams(
+                        email: signUpCubit.emailController.text,
+                        password: signUpCubit.passwordController.text,
+                        name: signUpCubit.nameController.text,
+                        passwordConfirmation:
+                            signUpCubit.confirmPasswordController.text,
+                        role: signUpCubit.selectedAccountType,
                       ),
                     ),
-                    Text(
-                      LocaleKeys.iAgreeToTermsAndConditions.tr(),
-                      style: textStyleBody.copyWith(color: AppColor.black),
-                    ),
-                  ],
-                );
-              },
-            ),
-            12.H,
-            CustomButton(
-              name: Text(LocaleKeys.signUp.tr(), style: textStyleTitle),
-              onTap:
-                  () => signUpCubit.register(
-                    RegisterParams(
-                      email: signUpCubit.emailController.text,
-                      password: signUpCubit.passwordController.text,
-                      name: signUpCubit.nameController.text,
-                      passwordConfirmation:
-                          signUpCubit.confirmPasswordController.text,
-                      role: signUpCubit.selectedAccountType,
-                    ),
-                  ),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   LocaleKeys.alreadyHaveAnAccount.tr(),
-                  style: textStyleBody.copyWith(color: AppColor.black),
+                  style: textStyle.copyWith(color: AppColor.mainBlue2),
                 ),
                 TextButton(
                   onPressed:
                       () =>
-                          context.push(LoginScreen(userType: widget.userType)),
+                          context.pushReplacement(LoginScreen(userType: widget.userType)),
 
                   child: Text(
                     LocaleKeys.login.tr(),
-                    style: textStyleBody.copyWith(color: AppColor.main),
+                    style: textStyle.copyWith(color: AppColor.mainBlue),
                   ),
                 ),
               ],
@@ -371,5 +132,372 @@ class _FormSignUpState extends State<FormSignUp> {
         ),
       ),
     );
+  }
+
+  Column name(SignUpCubit signUpCubit) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          LocaleKeys.name.tr(),
+          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+        ),
+        8.H,
+        CustomTextField(
+          controller: signUpCubit.nameController,
+          hintText: LocaleKeys.youssifShaban.tr(),
+          validator:
+              (value) => value!.isEmpty ? LocaleKeys.nameIsRequired.tr() : null,
+        ),
+      ],
+    );
+  }
+
+  Column email(SignUpCubit signUpCubit) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          LocaleKeys.email.tr(),
+          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+        ),
+        8.H,
+        CustomTextField(
+          controller: signUpCubit.emailController,
+
+          hintText: LocaleKeys.exampleEmail.tr(),
+
+          keyboardType: TextInputType.emailAddress,
+          validator: (value) {
+            if (value!.isEmpty) {
+              return LocaleKeys.emailIsRequired.tr();
+            }
+            return null;
+          },
+        ),
+      ],
+    );
+  }
+
+  Column age(SignUpCubit signUpCubit) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          LocaleKeys.age.tr(),
+          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+        ),
+        8.H,
+        CustomTextField(
+          controller: signUpCubit.ageController,
+
+          hintText: LocaleKeys.youssifAge.tr(),
+
+          keyboardType: TextInputType.number,
+        ),
+        16.H,
+      ],
+    );
+  }
+
+  Column specialization(SignUpCubit signUpCubit) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          LocaleKeys.specialization.tr(),
+          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+        ),
+        8.H,
+        BlocBuilder<SignUpCubit, SignUpState>(
+          buildWhen: (previous, current) => current is SpecializationSelected,
+          builder: (context, state) {
+            return CustomDropdown(
+              value: signUpCubit.selectedSpecialization,
+              hint: LocaleKeys.selectSpecialization.tr(),
+              onChanged: signUpCubit.selectSpecialization,
+              validator:
+                  (value) =>
+                      value == null
+                          ? LocaleKeys.specializationIsRequired.tr()
+                          : null,
+              items:
+                  signUpCubit.getSpecializations().map((specialization) {
+                    return DropdownMenuItem(
+                      value: specialization,
+                      child: Text(specialization),
+                    );
+                  }).toList(),
+            );
+          },
+        ),
+        16.H,
+      ],
+    );
+  }
+
+  Column phone(SignUpCubit signUpCubit) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          LocaleKeys.phone.tr(),
+          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+        ),
+        8.H,
+        CustomTextField(
+          controller: signUpCubit.phoneController,
+          hintText: LocaleKeys.youssifPhone.tr(),
+
+          keyboardType: TextInputType.phone,
+        ),
+      ],
+    );
+  }
+
+  Column selectCity(SignUpCubit signUpCubit) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          LocaleKeys.city.tr(),
+          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+        ),
+        8.H,
+        BlocBuilder<SignUpCubit, SignUpState>(
+          buildWhen: (previous, current) => current is CitySelected,
+          builder: (context, state) {
+            return CustomDropdown(
+              value: signUpCubit.selectedCity,
+              hint: LocaleKeys.cityHint.tr(),
+              onChanged: signUpCubit.selectCity,
+
+              items:
+                  signUpCubit
+                      .getCities(context.locale.languageCode)
+                      .map(
+                        (city) =>
+                            DropdownMenuItem(value: city, child: Text(city)),
+                      )
+                      .toList(),
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  Column passwords(SignUpCubit signUpCubit) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          LocaleKeys.password.tr(),
+          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+        ),
+        8.H,
+        BlocBuilder<SignUpCubit, SignUpState>(
+          buildWhen:
+              (previous, current) => current is PasswordVisibilityToggled,
+          builder: (context, state) {
+            return CustomTextField(
+              controller: signUpCubit.passwordController,
+              hintText: "*" * 8,
+              isPassword: true,
+              isPasswordVisible: signUpCubit.isPasswordVisible,
+              togglePasswordVisibility: signUpCubit.togglePasswordVisibility,
+              validator:
+                  (value) =>
+                      value!.isEmpty
+                          ? LocaleKeys.passwordIsRequired.tr()
+                          : null,
+            );
+          },
+        ),
+        16.H,
+        Text(
+          LocaleKeys.confirmPassword.tr(),
+          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+        ),
+        8.H,
+        BlocBuilder<SignUpCubit, SignUpState>(
+          buildWhen:
+              (previous, current) => current is PasswordVisibilityToggled,
+          builder: (context, state) {
+            return CustomTextField(
+              controller: signUpCubit.confirmPasswordController,
+              hintText: "*" * 8,
+              isPassword: true,
+              isPasswordVisible: signUpCubit.isPasswordVisible,
+              togglePasswordVisibility: () {
+                signUpCubit.togglePasswordVisibility();
+              },
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return LocaleKeys.confirmPasswordIsRequired.tr();
+                }
+                if (value != signUpCubit.passwordController.text) {
+                  return LocaleKeys.PasswordDoesNotMatch.tr();
+                }
+                return null;
+              },
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  BlocBuilder<SignUpCubit, SignUpState> checkBox(SignUpCubit signUpCubit) {
+    return BlocBuilder<SignUpCubit, SignUpState>(
+      buildWhen: (previous, current) => current is TermsAgreementToggled,
+      builder: (context, state) {
+        return Row(
+          children: [
+            Transform.scale(
+              scale: ResponsiveHelper.isMobile(context) ? 1 : 1.5,
+              child: Checkbox(
+                activeColor: AppColor.mainPink,
+                value: signUpCubit.isAgreedToTerms,
+                onChanged: (bool? value) {
+                  signUpCubit.toggleTermsAgreement(value ?? false);
+                },
+              ),
+            ),
+            Text(
+              LocaleKeys.iAgreeToTermsAndConditions.tr(),
+              style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Column chronicDiseases(SignUpCubit signUpCubit, BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          LocaleKeys.chronicDiseases.tr(),
+          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+        ),
+        8.H,
+
+        Wrap(
+          spacing: 8.0.sp,
+          children:
+              signUpCubit.selectedDiseases.map((disease) {
+                return Chip(
+                  label: Text(disease, style: textStyleBody),
+                  backgroundColor: AppColor.secondary,
+                  deleteIcon: Icon(
+                    Icons.close,
+                    size: 18.sp,
+                    color: AppColor.white,
+                  ),
+                  onDeleted: () {
+                    setState(() {
+                      signUpCubit.selectedDiseases.remove(disease);
+                    });
+                  },
+                );
+              }).toList(),
+        ),
+
+        Autocomplete<String>(
+          optionsBuilder: (TextEditingValue textEditingValue) {
+            if (textEditingValue.text.isEmpty) {
+              return const Iterable<String>.empty();
+            }
+            return signUpCubit
+                .getChronicDiseases(context.locale.languageCode)
+                .where((disease) => disease.contains(textEditingValue.text));
+          },
+          onSelected: (String selection) {
+            if (!signUpCubit.selectedDiseases.contains(selection)) {
+              setState(() {
+                signUpCubit.selectedDiseases.add(selection);
+              });
+            }
+            signUpCubit.diseaseController.clear();
+          },
+          fieldViewBuilder: (context, controller, focusNode, onFieldSubmitted) {
+            return CustomTextField(
+              hintText: LocaleKeys.Diabetes.tr(),
+              controller: signUpCubit.diseaseController,
+              focusNode: focusNode,
+
+              onFieldSubmitted: (value) {
+                if (value.isNotEmpty &&
+                    !signUpCubit.selectedDiseases.contains(value)) {
+                  setState(() {
+                    signUpCubit.selectedDiseases.add(value);
+                  });
+                  signUpCubit.diseaseController.clear();
+                }
+              },
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  Column genderWidget(SignUpCubit signUpCubit) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          LocaleKeys.gender.tr(),
+          style: textStyleBody.copyWith(color: AppColor.mainBlue2),
+        ),
+        8.H,
+        BlocBuilder<SignUpCubit, SignUpState>(
+          buildWhen: (previous, current) => current is GenderSelected,
+          builder: (context, state) {
+            return CustomDropdown(
+              value: signUpCubit.selectedGender,
+              hint: LocaleKeys.maleGender.tr(),
+              onChanged: signUpCubit.selectGender,
+              validator:
+                  (value) =>
+                      value == null ? LocaleKeys.genderIsRequired.tr() : null,
+              items: [
+                DropdownMenuItem(
+                  value: "Male",
+                  child: Text(LocaleKeys.maleGender.tr()),
+                ),
+                DropdownMenuItem(
+                  value: "Female",
+                  child: Text(LocaleKeys.femaleGender.tr()),
+                ),
+              ],
+            );
+          },
+        ),
+        16.H,
+      ],
+    );
+  }
+}
+
+class UserSpecificContent extends StatelessWidget {
+  final UserType userType;
+  final Widget? doctorWidget;
+  final Widget? otherWidget;
+
+  const UserSpecificContent({
+    super.key,
+    required this.userType,
+    this.doctorWidget,
+    this.otherWidget,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return userType == UserType.doctor
+        ? doctorWidget ?? SizedBox()
+        : otherWidget ?? SizedBox();
   }
 }

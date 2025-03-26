@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 sealed class AppColor {
   //static Color main = Color(0xff003445);
-  static Color main = Color(0xffD8037C);
-  static Color main2 = Color(0xfF7DA7ED);
+  static Color mainPink = Color(0xffD8037C);
+  static Color mainBlue = Color(0xfF7DA7ED);
+static Color mainBlue2 = Color(0xFF01018D);
+
   static Color secondary = Color(0xff0095C9);
   static Color backgroundColor = Color(0xffE2E2E2);
   static Color border = Color(0xff7DA7ED);
@@ -21,7 +23,7 @@ sealed class AppColor {
   static Color green = Color(0xff4CAF50);
   static Color white60 = Color(0x99FFFFFF);
   static LinearGradient primaryGradient = LinearGradient(
-    colors: [AppColor.main, AppColor.secondary],
+    colors: [AppColor.mainPink, AppColor.secondary],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );

@@ -20,7 +20,7 @@ class SpecializationsSection extends StatelessWidget {
             width: 100.w,
             padding: EdgeInsets.all(16.sp),
             decoration: BoxDecoration(
-              color: AppColor.main, //colorSpecializations[index],
+              color: AppColor.mainPink, //colorSpecializations[index],
               borderRadius: BorderRadius.circular(16.r),
             ),
             child: Icon(
@@ -45,7 +45,7 @@ class SpecializationsSection extends StatelessWidget {
 }
 
 List colorSpecializations = [
-  AppColor.main,
+  AppColor.mainPink,
   AppColor.secondary,
 
   AppColor.blue,

@@ -20,7 +20,7 @@ class DoctorDetails extends StatelessWidget {
         toolbarHeight: 48.sp,
         title: Text(LocaleKeys.doctorDetails.tr(), style: textStyleTitle),
         iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
-        backgroundColor: AppColor.main,
+        backgroundColor: AppColor.mainPink,
       ),
       body: ListView(
         children: [

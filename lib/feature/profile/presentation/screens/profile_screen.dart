@@ -81,7 +81,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       borderRadius: BorderRadius.circular(16.r),
                       boxShadow: [
                         BoxShadow(
-                          color: AppColor.main.withValues(alpha: .5),
+                          color: AppColor.mainPink.withValues(alpha: .5),
                           spreadRadius: 2,
                           blurRadius: 5,
                           offset: Offset(0, 3),
@@ -105,7 +105,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 style: TextStyle(
                                   fontSize: 20.sp,
                                   fontWeight: FontWeight.bold,
-                                  color: AppColor.main,
+                                  color: AppColor.mainPink,
                                 ),
                               ),
                               Text(state.email),
@@ -200,7 +200,7 @@ class ProfileItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.r),
         boxShadow: [
           BoxShadow(
-            color: AppColor.main.withValues(alpha: .5),
+            color: AppColor.mainPink.withValues(alpha: .5),
             spreadRadius: 2,
             blurRadius: 5,
             offset: Offset(0, 3),
@@ -208,7 +208,7 @@ class ProfileItem extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        leading: Icon(icon, color: AppColor.main),
+        leading: Icon(icon, color: AppColor.mainPink),
         title: Text(
           title,
           style: TextStyle(

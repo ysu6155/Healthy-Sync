@@ -65,6 +65,26 @@ class SignUpCubit extends Cubit<SignUpState> {
         chronicDiseasesByLanguage['en']!;
   }
 
+  String? selectedSpecialization;
+
+  void selectSpecialization(String? specialization) {
+    selectedSpecialization = specialization;
+    emit(SpecializationSelected(specialization));
+  }
+
+  List<String> getSpecializations() {
+    return [
+      "Cardiology", // قلب
+      "Dermatology", // جلدية
+      "Neurology", // مخ وأعصاب
+      "Orthopedics", // عظام
+      "Pediatrics", // أطفال
+      "Psychiatry", // نفسية
+      "Radiology", // أشعة
+      "Surgery", // جراحة
+    ];
+  }
+
   List<String> selectedDiseases = [];
   Map<String, List<String>> citiesByLanguage = {
     'ar': [
