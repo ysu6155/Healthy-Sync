@@ -111,10 +111,8 @@ class UpdatePassword extends StatelessWidget {
                 state is ProfileUpdateLoading
                     ? Center(child: CircularProgressIndicator())
                     : CustomButton(
-                      name: Text(
-                        LocaleKeys.changePassword.tr(),
-                        style: TextStyles.font20WhiteBold,
-                      ),
+                      name: LocaleKeys.changePassword.tr(),
+
                       onTap: () {
                         cubit.updatePassword();
                       },

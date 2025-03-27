@@ -102,7 +102,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 CustomButton(
                   height: 45.sp,
                   width: 100.sp,
-                  name: Text('هيا بنا', style: TextStyles.font20WhiteBold),
+                  name:" LocaleKeys.getStarted.tr(),",
                   onTap: () {
                     SharedHelper.sava(SharedKeys.isOnboardingShown, true);
                     context.pushReplacement(WelcomeScreen());

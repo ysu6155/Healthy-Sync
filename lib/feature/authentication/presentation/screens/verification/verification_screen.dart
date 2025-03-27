@@ -121,7 +121,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       30.H,
                     30.H,
                     CustomButton(
-                      name: Text(LocaleKeys.verify.tr(), style: TextStyles.font12DarkBlueW400),
+                      name:LocaleKeys.verify.tr(),
                       onTap: () {
                         setState(() {
                           if (cubitOTB.pinController.text.length < 4) {

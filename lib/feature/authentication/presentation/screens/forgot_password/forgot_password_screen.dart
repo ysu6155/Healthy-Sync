@@ -78,10 +78,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         ),
                         32.H,
                         CustomButton(
-                          name: Text(
-                            LocaleKeys.sendCode.tr(),
-                            style: TextStyles.font20WhiteBold,
-                          ),
+                          name: LocaleKeys.sendCode.tr(),
                           onTap: () {
                             if (formKey.currentState!.validate()) {
                               context.push(

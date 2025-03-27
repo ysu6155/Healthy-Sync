@@ -44,12 +44,12 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                   50.H,
                   Text(
                     LocaleKeys.welcomeToHealthySync.tr(),
-                    style:TextStyles.font20PinkBold
+                    style: TextStyles.font20PinkBold,
                   ),
                   30.H,
                   Text(
                     LocaleKeys.joinNow.tr(),
-                    style:TextStyles.font20PinkBold
+                    style: TextStyles.font20PinkBold,
                   ),
                   30.H,
                 ],
@@ -74,11 +74,13 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(LocaleKeys.LoginBy.tr(), style: TextStyles.font20WhiteBold),
+                    Text(
+                      LocaleKeys.LoginBy.tr(),
+                      style: TextStyles.font20WhiteBold,
+                    ),
                     16.H,
                     CustomButton(
-                      name: Text(LocaleKeys.doctor.tr(), style: TextStyles.font20WhiteBold
-                      ),
+                      name: LocaleKeys.doctor.tr(),
                       backgroundColor: AppColor.mainPink,
                       onTap: () {
                         context.push(LoginScreen(userType: UserType.doctor));
@@ -87,12 +89,9 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                     16.H,
                     CustomButton(
                       // border: Border.all(color: AppColor.black, width: 3.sp),
-                      name: Text(
-                        LocaleKeys.patient.tr(),
-                        style: TextStyles.font20WhiteBold,
-                      ),
+                      name: LocaleKeys.patient.tr(),
                       backgroundColor: AppColor.mainPink,
-                      textColor: AppColor.black,
+
                       onTap: () {
                         context.push(LoginScreen(userType: UserType.patient));
                       },

@@ -7,6 +7,7 @@ import 'package:healthy_sync/core/themes/styles.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
+  final EdgeInsetsGeometry? contentPadding;
   final String hintText;
   final IconData? icon;
   final TextInputType keyboardType;
@@ -44,23 +45,24 @@ class CustomTextField extends StatelessWidget {
     this.border,
     this.borderColor,
     this.fillColor,
+    this.contentPadding,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-                    decoration: BoxDecoration(
-                      // color: Colors.white,
-                      borderRadius: BorderRadius.circular(16.r),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColor.grey.withValues(alpha: 0.3),
-                          spreadRadius: 2,
-                          blurRadius: 4,
-                          offset: Offset(0, 0),
-                        ),
-                      ],
-                    ),
+      decoration: BoxDecoration(
+         color: Colors.white,
+        borderRadius: BorderRadius.circular(16.r),
+        boxShadow: [
+          BoxShadow(
+            color: AppColor.grey.withValues(alpha: 0.3),
+            spreadRadius: 2,
+            blurRadius: 4,
+            offset: Offset(0, 0),
+          ),
+        ],
+      ),
       child: TextFormField(
         controller: controller,
         keyboardType: keyboardType,
@@ -69,10 +71,14 @@ class CustomTextField extends StatelessWidget {
         onFieldSubmitted: onFieldSubmitted,
         focusNode: focusNode,
         decoration: InputDecoration(
+          isDense: true,
+          contentPadding:
+              contentPadding ??
+              EdgeInsets.symmetric(horizontal: 20.sp, vertical: 18.h),
           filled: true,
-          fillColor: AppColor.white,
-          hintStyle:  TextStyles.font12GreyW400,
-          border: borderStyle(borderColor ?? AppColor.border),
+          fillColor: fillColor ?? AppColor.white,
+          hintStyle: TextStyles.font12GreyW400,
+          border: border ?? borderStyle(borderColor ?? AppColor.border),
           focusedBorder: borderStyle(borderColor ?? AppColor.border),
           enabledBorder: borderStyle(borderColor ?? AppColor.transparent),
           errorBorder: borderStyle(AppColor.red),
@@ -87,18 +93,18 @@ class CustomTextField extends StatelessWidget {
                 fontSize: 16.sp,
               ),
           hintText: hintText,
-      
+
           suffixIcon:
               isPassword
-                  ? IconButton(
-                    icon: Icon(
+                  ? GestureDetector(
+                    onTap: togglePasswordVisibility,
+                    child: Icon(
                       !isPasswordVisible
-                          ? Icons.visibility
-                          : Icons.visibility_off,
+                          ? Icons.visibility_off
+                          : Icons.visibility,
                       size: 20.sp,
                       color: AppColor.grey,
                     ),
-                    onPressed: togglePasswordVisibility,
                   )
                   : null,
           errorStyle: TextStyles.font12BlueW400.copyWith(color: AppColor.red),
@@ -107,7 +113,7 @@ class CustomTextField extends StatelessWidget {
           fontSize: ResponsiveHelper.isMobile(context) ? 16.sp : 24.sp,
           color: AppColor.black,
         ),
-      
+
         validator: validator,
       ),
     );

@@ -95,7 +95,7 @@ class _FormSignUpState extends State<FormSignUp> {
                 ],
               ),
               child: CustomButton(
-                name: Text(LocaleKeys.signUp.tr(), style: TextStyles.font20WhiteBold),
+                name: LocaleKeys.signUp.tr(),
                 onTap:
                     () => signUpCubit.register(
                       RegisterParams(

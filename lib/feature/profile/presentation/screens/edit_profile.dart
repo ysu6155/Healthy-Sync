@@ -109,10 +109,9 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 Gap(22),
                 CustomButton(
-                  name: Text(
+                  name:
                     "Update Profile",
-                    style: TextStyles.font20WhiteBold,
-                  ),
+                   
                   onTap: () {
                     profileCubit.updateProfile(
                       _imageFile,

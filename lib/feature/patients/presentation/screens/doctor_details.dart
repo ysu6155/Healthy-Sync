@@ -95,32 +95,12 @@ class DoctorDetails extends StatelessWidget {
           ),
           16.H,
           CustomButton(
-            name: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  LocaleKeys.callDoctor.tr(),
-                  style: TextStyles.font20WhiteBold,
-                ),
-                8.W,
-                Icon(Icons.call, color: AppColor.white, size: 20.sp),
-              ],
-            ),
+            name:  LocaleKeys.callDoctor.tr(),
             onTap: () {},
           ),
           8.H,
           CustomButton(
-            name: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  LocaleKeys.chatWithDoctor.tr(),
-                  style: TextStyles.font20WhiteBold,
-                ),
-                8.W,
-                Icon(Icons.chat, color: AppColor.white, size: 20.sp),
-              ],
-            ),
+            name:  LocaleKeys.chatWithDoctor.tr(),
             onTap: () {},
           ),
         ],

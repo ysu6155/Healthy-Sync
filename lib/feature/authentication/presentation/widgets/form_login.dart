@@ -162,7 +162,7 @@ class FormLogin extends StatelessWidget {
                   ],
                 ),
                 child: CustomButton(
-                  name: Text(LocaleKeys.login.tr(), style: TextStyles.font20WhiteBold),
+                  name: LocaleKeys.login.tr(),
                   onTap: () {
                     loginCubit.login(
                       RegisterParams(
