@@ -93,7 +93,7 @@ class CustomTextField extends StatelessWidget {
                 fontSize: 16.sp,
               ),
           hintText: hintText,
-
+      
           suffixIcon:
               isPassword
                   ? GestureDetector(
@@ -113,7 +113,7 @@ class CustomTextField extends StatelessWidget {
           fontSize: ResponsiveHelper.isMobile(context) ? 16.sp : 24.sp,
           color: AppColor.black,
         ),
-
+      
         validator: validator,
       ),
     );

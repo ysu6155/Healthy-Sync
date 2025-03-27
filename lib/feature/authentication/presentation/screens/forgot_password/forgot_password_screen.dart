@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 import 'package:healthy_sync/feature/authentication/presentation/screens/Verification/verification_screen.dart';
@@ -30,6 +31,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         centerTitle: true,
         iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
         backgroundColor: AppColor.mainPink,
+        title: Text(LocaleKeys.forgotPassword.tr(), style: TextStyles.font20WhiteBold),
         title: Text(LocaleKeys.forgotPassword.tr(), style: TextStyles.font20WhiteBold),
       ),
       body: SafeArea(
@@ -65,6 +67,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         CustomTextField(
                           controller: email,
                           labelText: LocaleKeys.emailPhone.tr(),
+                          labelStyle: TextStyles.font12DarkBlueW400,
                           labelStyle: TextStyles.font12DarkBlueW400,
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           hintText: LocaleKeys.enterYourEmailOrPhone.tr(),
