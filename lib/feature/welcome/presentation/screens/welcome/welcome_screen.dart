@@ -44,20 +44,12 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                   50.H,
                   Text(
                     LocaleKeys.welcomeToHealthySync.tr(),
-<<<<<<< HEAD
                     style: TextStyles.font20PinkBold,
-=======
-                    style:TextStyles.font20PinkBold
->>>>>>> af39066cc4430ec12c8a8ecb76155e8a0b169eae
                   ),
                   30.H,
                   Text(
                     LocaleKeys.joinNow.tr(),
-<<<<<<< HEAD
                     style: TextStyles.font20PinkBold,
-=======
-                    style:TextStyles.font20PinkBold
->>>>>>> af39066cc4430ec12c8a8ecb76155e8a0b169eae
                   ),
                   30.H,
                 ],
