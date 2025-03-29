@@ -32,6 +32,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         backgroundColor: AppColor.mainPink,
         title: Text(LocaleKeys.forgotPassword.tr(), style: TextStyles.font20WhiteBold),
        
+        
       ),
       body: SafeArea(
         top: false,
@@ -67,7 +68,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           controller: email,
                           labelText: LocaleKeys.emailPhone.tr(),
                           labelStyle: TextStyles.font12DarkBlueW400,
-                          
+                         
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           hintText: LocaleKeys.enterYourEmailOrPhone.tr(),
                           keyboardType: TextInputType.emailAddress,
