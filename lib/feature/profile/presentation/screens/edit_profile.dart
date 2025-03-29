@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
-import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
@@ -43,7 +42,6 @@ class _EditProfileState extends State<EditProfile> {
         ),
         title: Text(
           LocaleKeys.editProfile.tr(),
-          style: TextStyles.font20WhiteBold.copyWith(color: AppColor.mainPink),
           style: TextStyles.font20WhiteBold.copyWith(color: AppColor.mainPink),
         ),
       ),
@@ -167,11 +165,7 @@ class _EditProfileState extends State<EditProfile> {
                         size: 40,
                         color: AppColor.mainPink,
                       ),
-                      icon: Icon(
-                        Icons.photo,
-                        size: 40,
-                        color: AppColor.mainPink,
-                      ),
+                    
                       onPressed: () {
                         Navigator.pop(context);
                         _pickImage(ImageSource.gallery);
