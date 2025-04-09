@@ -25,4 +25,7 @@ sealed class AppAssets {
   static String loading3 = "$imagePath/loading3.json";
   static String loading4 = "$imagePath/loading4.json";
   static String welcome = "$imagePath/welcome.png";
+  static String chatSvg = "$iconPath/chat_talk_conversation_sms_bubble_icon-icons.com_59983.svg";
+  static String injectionSvg = "$iconPath/injection.svg";
+  static String pillsSvg = "$iconPath/pills.svg";
 }

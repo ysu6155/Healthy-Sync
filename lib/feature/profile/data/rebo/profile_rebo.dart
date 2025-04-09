@@ -24,7 +24,7 @@ class ProfileRepository {
     }
   }
 
-  static Future<Response> updateProfile( Map<String, dynamic> body) async {
+  static Future<Response> updateProfile(Map<String, dynamic> body) async {
     return await DioHelper.put(
       endPoints: EndPoints.updateUser,
       body: body,
@@ -47,7 +47,7 @@ class ProfileRepository {
   static Future<UpdateUser> updateUser() async {
     final response = await DioHelper.put(
       endPoints: EndPoints.updateUser,
-     
+
       headers: {
         "Authorization": "Bearer ${SharedHelper.get(SharedKeys.kToken)}",
       },

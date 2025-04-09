@@ -23,7 +23,7 @@ class FormLogin extends StatelessWidget {
   const FormLogin({super.key, required this.userType});
 
   @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
     LoginCubit loginCubit = BlocProvider.of<LoginCubit>(context);
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
@@ -43,10 +43,7 @@ class FormLogin extends StatelessWidget {
             spacing: 8.sp,
             children: [
               16.H,
-              Text(
-                LocaleKeys.email.tr(),
-                style: TextStyles.font20DarkBlueBold,
-              ),
+              Text(LocaleKeys.email.tr(), style: TextStyles.font20DarkBlueBold),
               CustomTextField(
                 textInputAction: TextInputAction.next,
                 controller: loginCubit.emailController,
@@ -125,7 +122,7 @@ class FormLogin extends StatelessWidget {
                       ),
                       Text(
                         LocaleKeys.rememberMe.tr(),
-                        style:  TextStyles.font16DarkBlueW500,
+                        style: TextStyles.font16DarkBlueW500,
                       ),
                     ],
                   ),
@@ -137,7 +134,7 @@ class FormLogin extends StatelessWidget {
                       children: [
                         Text(
                           LocaleKeys.forgotPassword.tr(),
-                          style:  TextStyles.font16DarkBlueW500,
+                          style: TextStyles.font16DarkBlueW500,
                         ),
                         Text(
                           LocaleKeys.Q.tr(),
@@ -179,7 +176,7 @@ class FormLogin extends StatelessWidget {
                 children: [
                   Text(
                     LocaleKeys.dontHaveAnAccount.tr(),
-                    style: TextStyles.font12DarkBlueW400
+                    style: TextStyles.font12DarkBlueW400,
                   ),
                   TextButton(
                     onPressed: () {
@@ -187,7 +184,7 @@ class FormLogin extends StatelessWidget {
                     },
                     child: Text(
                       LocaleKeys.signUp.tr(),
-                      style: TextStyles.font12BlueW400
+                      style: TextStyles.font12BlueW400,
                     ),
                   ),
                 ],

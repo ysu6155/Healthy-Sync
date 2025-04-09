@@ -14,6 +14,7 @@ class DoctorVisitScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.white,
       appBar: AppBar(
+        toolbarHeight: 48.sp,
         title: Text(
           LocaleKeys.visitDetails.tr(),
           style: TextStyles.font20WhiteBold,
@@ -25,17 +26,35 @@ class DoctorVisitScreen extends StatelessWidget {
       body: ListView(
         children: [
           _buildCard(
-            title: LocaleKeys.doctorDetails.tr(),
-            child: _buildDoctorInfo(),
+            title: LocaleKeys.visitDetails.tr(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildDoctorInfo(),
+                12.H,
+                _buildTimeAndDate(context),
+                8.H,
+                _buildLocation(),
+              ],
+            ),
           ),
           _buildCard(
-            title: LocaleKeys.appointmentDetails.tr(),
-            child: _buildTimeAndDate(context),
+            title: LocaleKeys.symptoms.tr(),
+            child: _buildInfoRow(
+              Icons.description,
+              'ألم في الصدر وارتفاع ضغط الدم',
+            ),
           ),
-          _buildCard(title: LocaleKeys.address.tr(), child: _buildLocation()),
           _buildCard(
-            title: LocaleKeys.medicineDetails.tr(),
-            child: _buildDetails(),
+            title: LocaleKeys.medicine.tr(),
+            child: _buildInfoRow(
+              Icons.medical_services,
+              'أسبرين 100 مجم يوميًا',
+            ),
+          ),
+          _buildCard(
+            title: LocaleKeys.tests.tr(),
+            child: _buildInfoRow(Icons.analytics, 'ECG, فحص دم'),
           ),
           _buildCard(
             title: LocaleKeys.status.tr(),
@@ -48,6 +67,7 @@ class DoctorVisitScreen extends StatelessWidget {
 
   Widget _buildCard({required String title, required Widget child}) {
     return Card(
+      color: AppColor.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
       elevation: 3,
       margin: EdgeInsets.only(bottom: 16.sp),
@@ -84,11 +104,11 @@ class DoctorVisitScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Dr. Ahmed',
+              'د. أحمد',
               style: TextStyles.font20WhiteBold.copyWith(color: AppColor.black),
             ),
             Text(
-              'Cardiologist',
+              'أخصائي قلب',
               style: TextStyles.font16DarkBlueW500.copyWith(
                 color: AppColor.black,
               ),
@@ -113,28 +133,7 @@ class DoctorVisitScreen extends StatelessWidget {
   }
 
   Widget _buildLocation() {
-    return _buildInfoRow(Icons.location_on, ' 1234 Main St, Cairo, Egypt');
-  }
-
-  Widget _buildDetails() {
-    return Column(
-      children: [
-        _buildInfoRow(
-          Icons.description,
-          '${LocaleKeys.symptoms.tr()}: Chest Pain & High BP',
-        ),
-        8.H,
-        _buildInfoRow(
-          Icons.medical_services,
-          '${LocaleKeys.medicine.tr()}: Aspirin 100mg Daily',
-        ),
-        8.H,
-        _buildInfoRow(
-          Icons.analytics,
-          '${LocaleKeys.tests.tr()}: ECG, Blood Test',
-        ),
-      ],
-    );
+    return _buildInfoRow(Icons.location_on, '1234 Main St, القاهرة, مصر');
   }
 
   Widget _buildHealthStatus(BuildContext context) {

@@ -4,7 +4,10 @@ sealed class AppColor {
   //static Color main = Color(0xff003445);
   static Color mainPink = Color(0xffD8037C);
   static Color mainBlue = Color(0xfF7DA7ED);
-static Color mainBlue2 = Color(0xFF01018D);
+  static Color mainBlueVaryDark = Color.fromARGB(255, 1, 1, 101);
+  static Color cardColor = Color(0xfff8f4fc);
+
+  static Color mainBlueDark = Color(0xFF01018D);
 
   static Color secondary = Color(0xff0095C9);
   static Color backgroundColor = Color(0xffE2E2E2);

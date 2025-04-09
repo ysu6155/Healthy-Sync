@@ -3,5 +3,10 @@
   "editor.bracketPairColorization.enabled": false,
   "editor.guides.bracketPairs": true,
   "dart.flutterSdkPath": "~/dev/flutter_29",
-  "cSpell.words": ["allprojects", "Empoweringyoutoliveahealthierlife", "prefs"]
+  "cSpell.words": [
+    "allprojects",
+    "Empoweringyoutoliveahealthierlife",
+    "prefs",
+    "youssif"
+  ]
 }

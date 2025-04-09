@@ -1,5 +1,5 @@
 sealed class EndPoints {
-  static String baseUrl = "https://emr-system-production.up.railway.app/api/";
+  static String baseUrl = "https://emr-system-eosin.vercel.app/api/";
   //static String baseUrl = "https://codingarabic.online/api";
   static String auth = "auth";
   static String login = "$auth/login";

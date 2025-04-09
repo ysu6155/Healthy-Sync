@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/feature/patients/presentation/screens/doctors_by_specialty_screen.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/screens/doctors_by_specialty_screen.dart';
 import 'package:healthy_sync/core/Models/data_specializations.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';

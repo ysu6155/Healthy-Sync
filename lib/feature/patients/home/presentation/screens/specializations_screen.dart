@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
-import 'package:healthy_sync/feature/patients/presentation/screens/doctors_by_specialty_screen.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/screens/doctors_by_specialty_screen.dart';
 import 'package:healthy_sync/core/Models/data_specializations.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';

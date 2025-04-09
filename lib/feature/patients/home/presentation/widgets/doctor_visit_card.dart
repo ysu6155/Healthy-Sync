@@ -5,7 +5,7 @@ import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
-import 'package:healthy_sync/feature/patients/presentation/screens/doctor_visit_screen.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/screens/doctor_visit_screen.dart';
 
 class DoctorVisitCard extends StatefulWidget {
   const DoctorVisitCard({super.key});
@@ -51,9 +51,9 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
       children: [
         Icon(Icons.person, color: AppColor.white),
         8.W,
-        Text('Dr. John Doe', style: TextStyles.font20WhiteBold),
+        Text('د. جون ', style: TextStyles.font20WhiteBold),
         8.W,
-        Text('Cardiologist', style: TextStyles.font16DarkBlueW500),
+        Text('أخصائي قلب', style: TextStyles.font16DarkBlueW500),
       ],
     );
   }
@@ -92,7 +92,7 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
         Icon(Icons.location_on, color: AppColor.white),
         8.W,
         Text(
-          '${LocaleKeys.address.tr()}: 1234 Main St, Cairo',
+          '${LocaleKeys.address.tr()}: 1234 Main St, القاهرة',
           style: TextStyles.font16DarkBlueW500,
         ),
       ],
@@ -106,7 +106,7 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
         8.W,
         Expanded(
           child: Text(
-            '${LocaleKeys.symptoms.tr()}: The patient is experiencing chest pain.',
+            '${LocaleKeys.symptoms.tr()}: المريض يعاني من ألم في الصدر.',
             style: TextStyles.font16DarkBlueW500,
           ),
         ),
@@ -120,7 +120,7 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
         Icon(Icons.favorite, color: AppColor.white),
         8.W,
         Text(
-          '${LocaleKeys.status.tr()} : stable',
+          '${LocaleKeys.status.tr()} : مستقر',
           style: TextStyles.font16DarkBlueW500,
         ),
       ],

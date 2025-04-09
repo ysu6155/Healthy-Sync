@@ -25,9 +25,12 @@ class CustomTextField extends StatelessWidget {
 
   final Color? borderColor;
   final Color? fillColor;
+  final TextStyle? hintTextStyle;
+  final bool isEnabled;
 
   const CustomTextField({
     super.key,
+    this.hintTextStyle,
     required this.controller,
     required this.hintText,
     this.icon,
@@ -46,20 +49,22 @@ class CustomTextField extends StatelessWidget {
     this.borderColor,
     this.fillColor,
     this.contentPadding,
+    this.isEnabled = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-         color: Colors.white,
+        color: isEnabled ? Colors.white : null,
         borderRadius: BorderRadius.circular(16.r),
         boxShadow: [
           BoxShadow(
             color: AppColor.grey.withValues(alpha: 0.3),
-            spreadRadius: 2,
-            blurRadius: 4,
-            offset: Offset(0, 0),
+            // شادو خفيف جدًا
+            spreadRadius: 0.4, // نشر بسيط
+            blurRadius: 4.4, // ضبابية خفيفة
+            offset: Offset(0, 0.4), // ارتفاع بسيط للشادو
           ),
         ],
       ),
@@ -77,7 +82,7 @@ class CustomTextField extends StatelessWidget {
               EdgeInsets.symmetric(horizontal: 20.sp, vertical: 18.h),
           filled: true,
           fillColor: fillColor ?? AppColor.white,
-          hintStyle: TextStyles.font12GreyW400,
+          hintStyle: hintTextStyle ?? TextStyles.font12GreyW400,
           border: border ?? borderStyle(borderColor ?? AppColor.border),
           focusedBorder: borderStyle(borderColor ?? AppColor.border),
           enabledBorder: borderStyle(borderColor ?? AppColor.transparent),
@@ -93,7 +98,7 @@ class CustomTextField extends StatelessWidget {
                 fontSize: 16.sp,
               ),
           hintText: hintText,
-      
+
           suffixIcon:
               isPassword
                   ? GestureDetector(
@@ -113,7 +118,7 @@ class CustomTextField extends StatelessWidget {
           fontSize: ResponsiveHelper.isMobile(context) ? 16.sp : 24.sp,
           color: AppColor.black,
         ),
-      
+
         validator: validator,
       ),
     );

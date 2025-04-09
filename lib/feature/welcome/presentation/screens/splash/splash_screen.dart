@@ -3,7 +3,7 @@ import 'package:healthy_sync/core/service/local/shared_keys.dart';
 import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
-import 'package:healthy_sync/feature/patients/presentation/screens/patient_home_nav.dart';
+import 'package:healthy_sync/feature/patients/home_nav/presentation/screens/patient_home_nav.dart';
 import 'package:healthy_sync/feature/welcome/presentation/screens/intro/intro_screen.dart';
 
 class SplashScreen extends StatefulWidget {

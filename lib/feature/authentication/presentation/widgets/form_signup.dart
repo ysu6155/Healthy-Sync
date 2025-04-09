@@ -16,7 +16,7 @@ import 'package:healthy_sync/feature/authentication/presentation/screens/login/l
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
-import 'package:healthy_sync/feature/patients/presentation/screens/patient_home_nav.dart';
+import 'package:healthy_sync/feature/patients/home_nav/presentation/screens/patient_home_nav.dart';
 
 class FormSignUp extends StatefulWidget {
   final UserType userType;
