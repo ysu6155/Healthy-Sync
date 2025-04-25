@@ -35,7 +35,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
         centerTitle: true,
         title: Text(
           LocaleKeys.verification.tr(),
-          style: TextStyles.font12DarkBlueW400
+          style: TextStyles.font12DarkBlueW400,
         ),
       ),
       body: Padding(
@@ -53,7 +53,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 30.H,
                 Text(
                   LocaleKeys.enterTheCode.tr(),
-                  style: TextStyles.font12DarkBlueW400
+                  style: TextStyles.font12DarkBlueW400,
                 ),
                 16.H,
                 Text.rich(
@@ -63,7 +63,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     children: [
                       TextSpan(
                         text: widget.phone,
-                        style: TextStyles.font12DarkBlueW400
+                        style: TextStyles.font12DarkBlueW400,
                       ),
                     ],
                   ),
@@ -76,7 +76,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         Expanded(
                           child: Text(
                             LocaleKeys.Code.tr(),
-                            style:TextStyles.font12DarkBlueW400
+                            style: TextStyles.font12DarkBlueW400,
                           ),
                         ),
                         8.W,
@@ -92,9 +92,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       focusedPinTheme: defaultPinTheme,
                       submittedPinTheme: defaultPinTheme.copyWith(
                         decoration: BoxDecoration(
-                          color: AppColor.secondary,
+                          color: AppColor.mainBlue,
                           border: Border.all(
-                            color: AppColor.secondary,
+                            color: AppColor.mainBlue,
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(10),
@@ -113,7 +113,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           30.H,
                           Text(
                             cubitOTB.text ?? LocaleKeys.codeIsRequired.tr(),
-                            style: TextStyles.font12DarkBlueW400
+                            style: TextStyles.font12DarkBlueW400,
                           ),
                         ],
                       )
@@ -121,7 +121,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       30.H,
                     30.H,
                     CustomButton(
-                      name:LocaleKeys.verify.tr(),
+                      name: LocaleKeys.verify.tr(),
                       onTap: () {
                         setState(() {
                           if (cubitOTB.pinController.text.length < 4) {

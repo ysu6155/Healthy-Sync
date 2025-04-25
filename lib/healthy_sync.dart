@@ -6,12 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/Themes/light_theme.dart';
+import 'package:healthy_sync/core/constants/enum.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/signup_cubit/signup_cubit.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/verification_cubit/cubit/verification_cubit.dart';
+import 'package:healthy_sync/feature/authentication/presentation/screens/login/login_screen.dart';
 import 'package:healthy_sync/feature/chat/presentation/screens/chat_bot_screen.dart';
-import 'package:healthy_sync/feature/profile/cubit/profile_cubit.dart';
+import 'package:healthy_sync/feature/patients/profile/presentation/cubit/bmi/bmi_cubit.dart';
+import 'package:healthy_sync/feature/patients/profile/presentation/cubit/profile_cubit.dart';
 import 'package:healthy_sync/feature/welcome/presentation/screens/splash/splash_screen.dart';
 
 class HealthySync extends StatelessWidget {
@@ -25,6 +28,7 @@ class HealthySync extends StatelessWidget {
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => SignUpCubit()),
         BlocProvider(create: (context) => VerificationCubit()),
+        BlocProvider(create: (context) => BMICalculatorCubit()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
@@ -42,7 +46,7 @@ class HealthySync extends StatelessWidget {
           );
         },
         child: ResponsiveHelper.buildResponsiveUI(
-          mobile: SplashScreen(),
+          mobile:  SplashScreen(),
           tablet: SplashScreen(),
           web: ChatScreen(),
           context: context,

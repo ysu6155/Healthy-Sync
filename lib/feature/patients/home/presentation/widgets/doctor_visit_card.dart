@@ -53,7 +53,10 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
         8.W,
         Text('د. جون ', style: TextStyles.font20WhiteBold),
         8.W,
-        Text('أخصائي قلب', style: TextStyles.font16DarkBlueW500),
+        Text(
+          'أخصائي قلب',
+          style: TextStyles.font16DarkBlueW500.copyWith(color: AppColor.white),
+        ),
       ],
     );
   }
@@ -68,7 +71,9 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
             8.W,
             Text(
               '${LocaleKeys.time.tr()}: ١٢/١٢/٢٠٢١',
-              style: TextStyles.font16DarkBlueW500,
+              style: TextStyles.font16DarkBlueW500.copyWith(
+                color: AppColor.white,
+              ),
             ),
           ],
         ),
@@ -78,7 +83,9 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
             8.W,
             Text(
               '${LocaleKeys.date.tr()}: ١٢/١٢/٢٠٢١',
-              style: TextStyles.font16DarkBlueW500,
+              style: TextStyles.font16DarkBlueW500.copyWith(
+                color: AppColor.white,
+              ),
             ),
           ],
         ),
@@ -93,7 +100,7 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
         8.W,
         Text(
           '${LocaleKeys.address.tr()}: 1234 Main St, القاهرة',
-          style: TextStyles.font16DarkBlueW500,
+          style: TextStyles.font16DarkBlueW500.copyWith(color: AppColor.white),
         ),
       ],
     );
@@ -107,7 +114,9 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
         Expanded(
           child: Text(
             '${LocaleKeys.symptoms.tr()}: المريض يعاني من ألم في الصدر.',
-            style: TextStyles.font16DarkBlueW500,
+            style: TextStyles.font16DarkBlueW500.copyWith(
+              color: AppColor.white,
+            ),
           ),
         ),
       ],
@@ -121,7 +130,7 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
         8.W,
         Text(
           '${LocaleKeys.status.tr()} : مستقر',
-          style: TextStyles.font16DarkBlueW500,
+          style: TextStyles.font16DarkBlueW500.copyWith(color: AppColor.white),
         ),
       ],
     );

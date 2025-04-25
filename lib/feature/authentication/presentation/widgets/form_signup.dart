@@ -81,45 +81,38 @@ class _FormSignUpState extends State<FormSignUp> {
             16.H,
             checkBox(signUpCubit),
             12.H,
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16.r),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColor.black,
-
-                    spreadRadius: 0,
-                    blurRadius: 4,
-                    offset: Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: CustomButton(
-                name: LocaleKeys.signUp.tr(),
-                onTap:
-                    () => signUpCubit.register(
-                      RegisterParams(
-                        email: signUpCubit.emailController.text,
-                        password: signUpCubit.passwordController.text,
-                        name: signUpCubit.nameController.text,
-                        passwordConfirmation:
-                            signUpCubit.confirmPasswordController.text,
-                        role: signUpCubit.selectedAccountType,
-                      ),
+            CustomButton(
+              name: LocaleKeys.signUp.tr(),
+              onTap:
+                  () => signUpCubit.register(
+                    RegisterParams(
+                      email: signUpCubit.emailController.text,
+                      password: signUpCubit.passwordController.text,
+                      name: signUpCubit.nameController.text,
+                      passwordConfirmation:
+                          signUpCubit.confirmPasswordController.text,
+                      role: widget.userType.name,
+                      //  specialization: signUpCubit.specializationController.text,
+                      gender: signUpCubit.selectedGender,
+                      dateOfBirth: signUpCubit.ageController.text,
+                      //profilePhoto: signUpCubit.profilePhotoController.text,
+                      //chronicDiseases: signUpCubit.selectedDiseases,
+                      //city: signUpCubit.selectedCity,
                     ),
-              ),
+                  ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   LocaleKeys.alreadyHaveAnAccount.tr(),
-                  style: TextStyles.font12DarkBlueW400
+                  style: TextStyles.font12DarkBlueW400,
                 ),
                 TextButton(
                   onPressed:
-                      () =>
-                          context.pushReplacement(LoginScreen(userType: widget.userType)),
+                      () => context.pushReplacement(
+                        LoginScreen(userType: widget.userType),
+                      ),
 
                   child: Text(
                     LocaleKeys.login.tr(),
@@ -138,10 +131,7 @@ class _FormSignUpState extends State<FormSignUp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.name.tr(),
-          style: TextStyles.font16DarkBlueW500
-        ),
+        Text(LocaleKeys.name.tr(), style: TextStyles.font16DarkBlueW500),
         8.H,
         CustomTextField(
           controller: signUpCubit.nameController,
@@ -157,10 +147,7 @@ class _FormSignUpState extends State<FormSignUp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.email.tr(),
-          style: TextStyles.font16DarkBlueW500
-        ),
+        Text(LocaleKeys.email.tr(), style: TextStyles.font16DarkBlueW500),
         8.H,
         CustomTextField(
           controller: signUpCubit.emailController,
@@ -183,17 +170,29 @@ class _FormSignUpState extends State<FormSignUp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.age.tr(),
-          style:TextStyles.font16DarkBlueW500
-        ),
+        Text(LocaleKeys.age.tr(), style: TextStyles.font16DarkBlueW500),
         8.H,
-        CustomTextField(
-          controller: signUpCubit.ageController,
+        GestureDetector(
+          onTap: () async {
+            DateTime? pickedDate = await showDatePicker(
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(1900),
+              lastDate: DateTime.now(),
+            );
 
-          hintText: LocaleKeys.youssifAge.tr(),
-
-          keyboardType: TextInputType.number,
+            if (pickedDate != null) {
+              signUpCubit.ageController.text =
+                  "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
+            }
+          },
+          child: AbsorbPointer(
+            child: CustomTextField(
+              controller: signUpCubit.ageController,
+              hintText: LocaleKeys.age.tr(),
+              keyboardType: TextInputType.datetime,
+            ),
+          ),
         ),
         16.H,
       ],
@@ -206,7 +205,7 @@ class _FormSignUpState extends State<FormSignUp> {
       children: [
         Text(
           LocaleKeys.specialization.tr(),
-          style: TextStyles.font16DarkBlueW500
+          style: TextStyles.font16DarkBlueW500,
         ),
         8.H,
         BlocBuilder<SignUpCubit, SignUpState>(
@@ -240,10 +239,7 @@ class _FormSignUpState extends State<FormSignUp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.phone.tr(),
-          style:TextStyles.font16DarkBlueW500
-        ),
+        Text(LocaleKeys.phone.tr(), style: TextStyles.font16DarkBlueW500),
         8.H,
         CustomTextField(
           controller: signUpCubit.phoneController,
@@ -259,10 +255,7 @@ class _FormSignUpState extends State<FormSignUp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.city.tr(),
-          style: TextStyles.font16DarkBlueW500
-        ),
+        Text(LocaleKeys.city.tr(), style: TextStyles.font16DarkBlueW500),
         8.H,
         BlocBuilder<SignUpCubit, SignUpState>(
           buildWhen: (previous, current) => current is CitySelected,
@@ -291,10 +284,7 @@ class _FormSignUpState extends State<FormSignUp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.password.tr(),
-          style: TextStyles.font16DarkBlueW500
-        ),
+        Text(LocaleKeys.password.tr(), style: TextStyles.font16DarkBlueW500),
         8.H,
         BlocBuilder<SignUpCubit, SignUpState>(
           buildWhen:
@@ -390,7 +380,7 @@ class _FormSignUpState extends State<FormSignUp> {
               signUpCubit.selectedDiseases.map((disease) {
                 return Chip(
                   label: Text(disease, style: TextStyles.font16DarkBlueW500),
-                  backgroundColor: AppColor.secondary,
+                  backgroundColor: AppColor.mainBlue,
                   deleteIcon: Icon(
                     Icons.close,
                     size: 18.sp,
@@ -448,10 +438,7 @@ class _FormSignUpState extends State<FormSignUp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.gender.tr(),
-          style: TextStyles.font16DarkBlueW500,
-        ),
+        Text(LocaleKeys.gender.tr(), style: TextStyles.font16DarkBlueW500),
         8.H,
         BlocBuilder<SignUpCubit, SignUpState>(
           buildWhen: (previous, current) => current is GenderSelected,
@@ -465,11 +452,11 @@ class _FormSignUpState extends State<FormSignUp> {
                       value == null ? LocaleKeys.genderIsRequired.tr() : null,
               items: [
                 DropdownMenuItem(
-                  value: "Male",
+                  value: "male",
                   child: Text(LocaleKeys.maleGender.tr()),
                 ),
                 DropdownMenuItem(
-                  value: "Female",
+                  value: "female",
                   child: Text(LocaleKeys.femaleGender.tr()),
                 ),
               ],

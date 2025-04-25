@@ -17,13 +17,15 @@ import 'package:healthy_sync/feature/authentication/presentation/screens/signup/
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
+import 'package:healthy_sync/feature/doctors/home_nav/presentation/screens/doctor_home_nav.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/screens/home_screen.dart';
 
 class FormLogin extends StatelessWidget {
   final UserType userType;
   const FormLogin({super.key, required this.userType});
 
   @override
- Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     LoginCubit loginCubit = BlocProvider.of<LoginCubit>(context);
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
@@ -145,31 +147,18 @@ class FormLogin extends StatelessWidget {
                   ),
                 ],
               ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16.r),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColor.black,
-
-                      spreadRadius: 0,
-                      blurRadius: 4,
-                      offset: Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: CustomButton(
-                  name: LocaleKeys.login.tr(),
-                  onTap: () {
-                    loginCubit.login(
-                      RegisterParams(
-                        email: loginCubit.emailController.text,
-                        password: loginCubit.passwordController.text,
-                      ),
-                      context,
-                    );
-                  },
-                ),
+              CustomButton(
+                name: LocaleKeys.login.tr(),
+                onTap: () {
+                  context.pushAndRemoveUntil(DoctorHomeNavScreen());
+                  // loginCubit.login(
+                  //   RegisterParams(
+                  //     phone: loginCubit.emailController.text,
+                  //     password: loginCubit.passwordController.text,
+                  //   ),
+                  //   context,
+                  // );
+                },
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

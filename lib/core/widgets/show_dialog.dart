@@ -58,3 +58,34 @@ void showSuccessSnackBar(String message, BuildContext context) {
     ),
   );
 }
+void showErrorSnackBar (String message, BuildContext context ){
+   ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      backgroundColor: AppColor.red,
+      duration: const Duration(seconds: 2),
+      padding: EdgeInsets.all(
+        ResponsiveHelper.isMobile(context) ? 8.sp : 20.sp,
+      ),
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
+
+      //
+      width: MediaQuery.of(context).size.width - 40.sp,
+      content: Row(
+        children: [
+          Text(message, style: TextStyle(color: Colors.white, fontSize: 14.sp)),
+          const Spacer(),
+          TextButton(
+            onPressed: () {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            },
+            child: Text(
+              'حسنا',
+              style: TextStyle(color: Colors.white, fontSize: 14.sp),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}

@@ -70,7 +70,7 @@ class TestsScreen extends StatelessWidget {
                         size: 24.sp,
                       ),
                     ).withTapEffect(
-                      highlightColor: AppColor.secondary,
+                      highlightColor: AppColor.mainBlue,
                       onTap: () {
                         context.push(
                           TestDetailsScreen(test: filteredTests[index]),

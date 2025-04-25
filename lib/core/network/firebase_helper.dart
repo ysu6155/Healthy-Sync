@@ -37,8 +37,6 @@ class FirebaseHelper {
     await _auth.signOut();
   }
 
-
-
   // ✅ إضافة بيانات إلى Firestore
   static Future<void> addData(
     String collection,

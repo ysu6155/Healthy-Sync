@@ -9,11 +9,11 @@ sealed class AppColor {
 
   static Color mainBlueDark = Color(0xFF01018D);
 
-  static Color secondary = Color(0xff0095C9);
+  static Color textColorGray = Color(0xff959599);
   static Color backgroundColor = Color(0xffE2E2E2);
   static Color border = Color(0xff7DA7ED);
 
-  //  static Color secondary = Color(0xffFF5BA5);
+  //  static Color mainBlue = Color(0xffFF5BA5);
   static Color accent = Color(0xffFFA62B);
   static Color white = Color(0xffFFFFFF);
   static Color black = Color(0xff000000);
@@ -25,22 +25,7 @@ sealed class AppColor {
   static Color amber = Color(0xffFFC107);
   static Color green = Color(0xff4CAF50);
   static Color white60 = Color(0x99FFFFFF);
-  static LinearGradient primaryGradient = LinearGradient(
-    colors: [AppColor.mainPink, AppColor.secondary],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
-  static LinearGradient secondaryGradient = LinearGradient(
-    colors: [Color(0xFF4A00E0), Color(0xFFD9047D), Color(0xFFFF5BA5)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
 
-  static LinearGradient primaryGradientLight = LinearGradient(
-    colors: [AppColor.black, AppColor.white], // الألوان هنا
-    begin: Alignment.bottomRight,
-    end: Alignment.topLeft,
-  );
   static Color greenShade100 = Color(0xffC8E6C9);
   static Color redShade200 = Color(0xffFFCDD2);
   static Color orangeShade200 = Color(0xffFFE0B2);
@@ -53,4 +38,8 @@ sealed class AppColor {
   static Color brown = Color(0xff795548);
   static Color teal = Color(0xff009688);
   static Color pink = Color(0xffE91E63);
+  static Color underweight = Color(0xff00FF00);
+  static Color normal = Color(0xffFFFF00);
+  static Color overweight = Color(0xffFF0000);
+  static Color obesity = Color(0xffFF0000);
 }

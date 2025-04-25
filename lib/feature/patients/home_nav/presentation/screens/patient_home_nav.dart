@@ -12,7 +12,7 @@ import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/feature/patients/treatment_schedule/presentation/pages/treatment_schedule_screen.dart';
 
-import 'package:healthy_sync/feature/profile/presentation/screens/profile_screen.dart';
+import 'package:healthy_sync/feature/patients/profile/presentation/screens/profile_screen.dart';
 
 class PatientHomeNavScreen extends StatefulWidget {
   const PatientHomeNavScreen({super.key});
@@ -25,7 +25,7 @@ class PatientHomeNavScreenState extends State<PatientHomeNavScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    HomeScreen(),
+    HomePatientScreen(),
     TreatmentScheduleScreen(),
     ChatScreen(),
     MedicalTestsScreen(),
@@ -35,8 +35,6 @@ class PatientHomeNavScreenState extends State<PatientHomeNavScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-
       extendBody: true,
       body: _pages[_selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(

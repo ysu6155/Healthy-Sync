@@ -12,14 +12,14 @@ import 'package:healthy_sync/feature/patients/home/presentation/widgets/doctor_v
 import 'package:healthy_sync/feature/patients/home/presentation/widgets/doctors_section.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/widgets/specializations.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomePatientScreen extends StatefulWidget {
+  const HomePatientScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomePatientScreen> createState() => _HomePatientScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomePatientScreenState extends State<HomePatientScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,9 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: Text(
                   LocaleKeys.seeAll.tr(),
-                  style: TextStyles.font16DarkBlueW500.copyWith(
-                    color: AppColor.mainBlue,
-                  ),
+                  style: TextStyles.font16DarkBlueW500,
                 ),
               ),
             ],

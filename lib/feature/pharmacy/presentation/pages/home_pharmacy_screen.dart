@@ -15,9 +15,7 @@ class HomePharmacy extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Colors.blue,
       ),
-      body:Column(
-        
-      )
+      body: Column(),
     );
   }
 }

@@ -27,7 +27,6 @@ class CustomDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-     
       decoration: BoxDecoration(
         color: AppColor.white,
         borderRadius: BorderRadius.circular(16.r),
@@ -41,23 +40,18 @@ class CustomDropdown extends StatelessWidget {
         ],
       ),
       child: DropdownButtonFormField<String>(
-        
         decoration: InputDecoration(
           border: InputBorder.none,
 
-          focusedBorder: borderStyle(borderColor ?? AppColor.border),
-          enabledBorder: borderStyle(borderColor ?? AppColor.transparent),
-          errorBorder: borderStyle(AppColor.red),
-          focusedErrorBorder: borderStyle(AppColor.red),
-         
+          focusedBorder: borderStyle(borderColor ?? AppColor.border,  16.r),
+          enabledBorder: borderStyle(borderColor ?? AppColor.transparent, 16.r),
+          errorBorder: borderStyle(AppColor.red, 16.r),
+          focusedErrorBorder: borderStyle(AppColor.red, 16.r),
         ),
         iconSize: 25.sp,
         isExpanded: true,
         value: value,
-        hint: Text(
-          hint,
-          style: TextStyles.font12GreyW400,
-        ),
+        hint: Text(hint, style: TextStyles.font12GreyW400),
         onChanged: onChanged,
         validator: validator,
         items: items,

@@ -9,7 +9,7 @@ import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/feature/pharmacy/presentation/pages/home_pharmacy_screen.dart';
 import 'package:healthy_sync/feature/pharmacy/presentation/pages/medication_orders.dart';
 import 'package:healthy_sync/feature/pharmacy/presentation/pages/medicine_lookup.dart';
-import 'package:healthy_sync/feature/profile/presentation/screens/profile_screen.dart';
+import 'package:healthy_sync/feature/patients/profile/presentation/screens/profile_screen.dart';
 
 class PharmacyHomeNavScreen extends StatefulWidget {
   const PharmacyHomeNavScreen({super.key});
@@ -37,7 +37,7 @@ class PharmacyHomeNavScreenState extends State<PharmacyHomeNavScreen> {
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: AppColor.transparent,
         color: AppColor.mainPink,
-        buttonBackgroundColor: AppColor.secondary,
+        buttonBackgroundColor: AppColor.mainBlue,
         animationDuration: Duration(milliseconds: 300),
         height: 60.sp,
         index: _selectedIndex,
@@ -49,9 +49,9 @@ class PharmacyHomeNavScreenState extends State<PharmacyHomeNavScreen> {
           ),
           Icon(Icons.notifications, size: 25.sp, color: AppColor.white),
           SvgPicture.asset(
-            AppAssets.chatBot,
+            AppAssets.homeIcon,
             colorFilter: ColorFilter.mode(
-              _selectedIndex == 2 ? AppColor.mainPink : AppColor.secondary,
+              _selectedIndex == 2 ? AppColor.mainPink : AppColor.mainBlue,
               BlendMode.srcIn,
             ),
             height: 32.sp,

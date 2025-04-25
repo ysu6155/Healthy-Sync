@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
-import 'package:healthy_sync/core/models/data_specializations.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
+import 'package:healthy_sync/feature/patients/home/data/data.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/screens/doctor_details.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';

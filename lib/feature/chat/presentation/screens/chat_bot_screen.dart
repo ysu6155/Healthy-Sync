@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
+import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -28,10 +29,7 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         backgroundColor: AppColor.white,
         centerTitle: true,
-        title: Text(
-          "Medical Chat",
-          style: TextStyles.font16DarkBlueW500.copyWith(color: AppColor.black),
-        ),
+        title: Text("Medical Chat", style: TextStyles.font20DarkBlueBold),
       ),
       body: SafeArea(
         child: Column(
@@ -53,7 +51,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                       padding: EdgeInsets.all(12.sp),
                       decoration: BoxDecoration(
-                        color: isMe ? AppColor.secondary : Colors.grey[300],
+                        color: isMe ? AppColor.mainBlue : Colors.grey[300],
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(15.r),
                           topRight: Radius.circular(15.r),
@@ -73,7 +71,9 @@ class _ChatScreenState extends State<ChatScreen> {
                         children: [
                           Text(
                             message['text']!,
-                            style: TextStyles.font16DarkBlueW500.copyWith(fontSize: 16.sp),
+                            style: TextStyles.font16DarkBlueW500.copyWith(
+                              fontSize: 16.sp,
+                            ),
                           ),
                           SizedBox(height: 5),
                           Text(
@@ -95,12 +95,10 @@ class _ChatScreenState extends State<ChatScreen> {
               child: Row(
                 children: [
                   Expanded(
-                    child: TextField(
+                    child: CustomTextField(
                       controller: _messageController,
-                      decoration: InputDecoration(
-                        hintText: "Type a message...",
-                        border: OutlineInputBorder(),
-                      ),
+                      hintText: "Type a message...",
+                      borderColor: AppColor.mainPink,
                     ),
                   ),
                   IconButton(icon: Icon(Icons.send), onPressed: _sendMessage),

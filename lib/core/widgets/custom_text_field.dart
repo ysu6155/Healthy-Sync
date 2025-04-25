@@ -6,7 +6,7 @@ import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
 
 class CustomTextField extends StatelessWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final EdgeInsetsGeometry? contentPadding;
   final String hintText;
   final IconData? icon;
@@ -22,16 +22,18 @@ class CustomTextField extends StatelessWidget {
   final ValueChanged<String>? onFieldSubmitted;
   final FocusNode? focusNode;
   final OutlineInputBorder? border;
-
+  final Color? iconColor;
   final Color? borderColor;
   final Color? fillColor;
   final TextStyle? hintTextStyle;
   final bool isEnabled;
-
+  final double? borderRadius;
+  final IconData? suffixIcon;
   const CustomTextField({
     super.key,
     this.hintTextStyle,
-    required this.controller,
+    this.borderRadius,
+    this.controller,
     required this.hintText,
     this.icon,
     this.keyboardType = TextInputType.text,
@@ -50,14 +52,16 @@ class CustomTextField extends StatelessWidget {
     this.fillColor,
     this.contentPadding,
     this.isEnabled = true,
+    this.iconColor,
+    this.suffixIcon,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: isEnabled ? Colors.white : null,
-        borderRadius: BorderRadius.circular(16.r),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(borderRadius ?? 16.r),
         boxShadow: [
           BoxShadow(
             color: AppColor.grey.withValues(alpha: 0.3),
@@ -69,6 +73,7 @@ class CustomTextField extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        enabled: isEnabled,
         controller: controller,
         keyboardType: keyboardType,
         obscureText: isPassword && !isPasswordVisible,
@@ -83,11 +88,19 @@ class CustomTextField extends StatelessWidget {
           filled: true,
           fillColor: fillColor ?? AppColor.white,
           hintStyle: hintTextStyle ?? TextStyles.font12GreyW400,
-          border: border ?? borderStyle(borderColor ?? AppColor.border),
-          focusedBorder: borderStyle(borderColor ?? AppColor.border),
-          enabledBorder: borderStyle(borderColor ?? AppColor.transparent),
-          errorBorder: borderStyle(AppColor.red),
-          focusedErrorBorder: borderStyle(AppColor.red),
+          border:
+              border ??
+              borderStyle(borderColor ?? AppColor.border, borderRadius ?? 16.r),
+          focusedBorder: borderStyle(
+            borderColor ?? AppColor.border,
+            borderRadius ?? 16.r,
+          ),
+          enabledBorder: borderStyle(
+            borderColor ?? AppColor.transparent,
+            borderRadius ?? 16.r,
+          ),
+          errorBorder: borderStyle(AppColor.red, borderRadius ?? 16.r),
+          focusedErrorBorder: borderStyle(AppColor.red, borderRadius ?? 16.r),
           floatingLabelBehavior: floatingLabelBehavior,
           labelText: labelText,
           labelStyle:
@@ -98,15 +111,18 @@ class CustomTextField extends StatelessWidget {
                 fontSize: 16.sp,
               ),
           hintText: hintText,
-
+          prefixIcon:
+              icon != null
+                  ? Icon(icon, size: 25.sp, color: iconColor ?? AppColor.black)
+                  : null,
           suffixIcon:
               isPassword
                   ? GestureDetector(
                     onTap: togglePasswordVisibility,
                     child: Icon(
                       !isPasswordVisible
-                          ? Icons.visibility_off
-                          : Icons.visibility,
+                          ?  Icons.visibility_off
+                          :  Icons.visibility,
                       size: 20.sp,
                       color: AppColor.grey,
                     ),

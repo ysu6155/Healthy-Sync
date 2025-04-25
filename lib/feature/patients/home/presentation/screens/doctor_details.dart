@@ -159,18 +159,11 @@ class DoctorDetails extends StatelessWidget {
   }
 
   Widget _buildAppointmentsCard(BuildContext context) {
-    // Sample available appointments data
-    final List<Map<String, dynamic>> availableAppointments = [
-      {'time': '09:00 ص', 'date': 'الإثنين 15 يونيو', 'available': true},
-      {'time': '11:30 ص', 'date': 'الإثنين 15 يونيو', 'available': true},
-      {'time': '02:00 م', 'date': 'الإثنين 15 يونيو', 'available': false},
-      {'time': '04:30 م', 'date': 'الإثنين 15 يونيو', 'available': true},
-      {'time': '10:00 ص', 'date': 'الثلاثاء 16 يونيو', 'available': true},
-    ];
+    // استخدام المواعيد الخاصة بالطبيب مباشرة
+    List<dynamic> appointments = doctor['appointments'] ?? [];
 
     return Card(
       color: AppColor.cardColor,
-
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
       child: Padding(
@@ -187,8 +180,8 @@ class DoctorDetails extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15.h),
-            // Appointments List
-            ...availableAppointments.map((appointment) {
+            // عرض المواعيد المتاحة
+            ...appointments.map((appointment) {
               return Padding(
                 padding: EdgeInsets.only(bottom: 15.h),
                 child: Container(
@@ -257,12 +250,10 @@ class DoctorDetails extends StatelessWidget {
                                 ),
                               ],
                             ),
-
                             padding: EdgeInsets.symmetric(
                               horizontal: 15.w,
                               vertical: 8.h,
                             ),
-
                             child: Text(
                               'احجز الان',
                               style: TextStyle(
@@ -283,7 +274,6 @@ class DoctorDetails extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8.r),
                             border: Border.all(color: Colors.red, width: 1.sp),
                           ),
-
                           child: Text(
                             'غير متاح',
                             style: TextStyle(

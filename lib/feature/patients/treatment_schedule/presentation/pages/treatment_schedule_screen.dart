@@ -41,7 +41,15 @@ class _TreatmentScheduleScreenState extends State<TreatmentScheduleScreen> {
       'type': 'حبوب',
     },
     {
-      'name': 'ينrsydtfuyguhijoeshtrdtfygkuhlijawrgesthrdtfygي 5 مع',
+      'name': 'فوروسيميد 20 مع',
+      'time': '19:00',
+      'taken': false,
+      'remaining': 10,
+      'lastTaken': null,
+      'type': 'حبوب',
+    },
+    {
+      'name': 'اسبرين 81 مع',
       'time': '19:00',
       'taken': false,
       'remaining': 10,
@@ -53,6 +61,13 @@ class _TreatmentScheduleScreenState extends State<TreatmentScheduleScreen> {
   List<Map<String, dynamic>> tests = [
     {'name': 'تحليل سكر تراكمي', 'date': '2023-12-15', 'done': false},
     {'name': 'تحليل وظائف كبد', 'date': '2023-12-20', 'done': true},
+    {'name': 'تحليل وظائف كلى', 'date': '2023-12-25', 'done': false},
+    {'name': 'تحليل دهون ثلاثية', 'date': '2023-12-30', 'done': true},
+    {'name': 'تحليل كوليسترول', 'date': '2023-12-31', 'done': false},
+    {'name': 'تحليل فيتامين د', 'date': '2023-12-31', 'done': false},
+    {'name': 'تحليل فيتامين ب12', 'date': '2023-12-31', 'done': false},
+    {'name': 'تحليل CBC', 'date': '2023-12-31', 'done': false},
+    {'name': 'تحليل CRP', 'date': '2023-12-31', 'done': false},
   ];
 
   final DateTime _selectedDate = DateTime.now();
@@ -203,7 +218,8 @@ class _TreatmentScheduleScreenState extends State<TreatmentScheduleScreen> {
             ),
           ),
           SizedBox(height: 8.h),
-          Expanded(
+          AnimatedSwitcher(
+            duration: Duration(milliseconds: 300),
             child:
                 _currentTabIndex == 0
                     ? _buildMedicationsList()
@@ -264,6 +280,8 @@ class _MedicationCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+
               children: [
                 Expanded(
                   flex: 10,
@@ -309,6 +327,8 @@ class _MedicationCard extends StatelessWidget {
                   )
                 else
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+
                     children: [
                       Text(
                         "تاكيد التناول",
@@ -346,7 +366,7 @@ class _MedicationCard extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                   decoration: BoxDecoration(
                     color: AppColor.mainBlue.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(8.r),
+                    borderRadius: BorderRadius.circular(12.r),
                   ),
                   child:
                       medication['type'] == "حبوب"
@@ -418,6 +438,7 @@ class _TestCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   flex: 10,

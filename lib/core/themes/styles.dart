@@ -13,6 +13,11 @@ class TextStyles {
     fontSize: 20.sp,
     fontWeight: FontWeight.bold,
   );
+  static TextStyle font16WhiteW500 = TextStyle(
+    color: AppColor.white,
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w500,
+  );
   static TextStyle font20DarkBlueBold = TextStyle(
     color: AppColor.mainBlueDark,
     fontSize: 20.sp,

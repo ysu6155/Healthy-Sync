@@ -159,8 +159,8 @@ class MedicalTestsScreen extends StatelessWidget {
   //                       ],
   //                     ),
   //                   ).withTapEffect(
-  //                     highlightColor: AppColor.secondary,
-  //                     splashColor: AppColor.secondary,
+  //                     highlightColor: AppColor.mainBlue,
+  //                     splashColor: AppColor.mainBlue,
   //                     onTap: () {
   //                       context.push(TestsScreen(test: uniqueTests[index]));
   //                     },
