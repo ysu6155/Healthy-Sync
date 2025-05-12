@@ -17,25 +17,87 @@ class SpecializationsSection extends StatelessWidget {
         padding: EdgeInsetsDirectional.only(start: 16.sp),
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return Ink(
-            width: 100.w,
-            padding: EdgeInsets.all(16.sp),
-            decoration: BoxDecoration(
-              color: AppColor.mainPink, //colorSpecializations[index],
-              borderRadius: BorderRadius.circular(16.r),
-            ),
-            child: Icon(
-              specializations[index]['icon'] as IconData,
-              color: AppColor.white,
-              size: 30.sp,
-            ),
-          ).withTapEffect(
-            onTap:
-                () => context.push(
-                  DoctorsBySpecialtyScreen(
-                    selectedSpecialty: specializations[index],
-                  ),
+          return InkWell(
+            onTap: () {
+              context.push(
+                DoctorsBySpecialtyScreen(
+                  selectedSpecialty: specializations[index],
                 ),
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [
+                    AppColor.mainBlue,
+                    AppColor.mainBlue.withOpacity(0.85),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(16.r),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColor.mainBlue.withOpacity(0.1),
+                    blurRadius: 8,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Stack(
+                children: [
+                  // عناصر زخرفية
+                  Positioned(
+                    right: -10.w,
+                    top: -10.h,
+                    child: Container(
+                      width: 60.w,
+                      height: 60.h,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white.withOpacity(0.1),
+                      ),
+                    ),
+                  ),
+                  // محتوى البطاقة
+                  Padding(
+                    padding: EdgeInsets.all(16.sp),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(12.sp),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.15),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            specializations[index]['icon'] as IconData,
+                            color: Colors.white,
+                            size: 28.sp,
+                          ),
+                        ),
+                        12.H,
+                        Expanded(
+                          child: Text(
+                            specializations[index]['name'] as String,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15.sp,
+                              height: 1.2,
+                            ),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           );
         },
         separatorBuilder: (context, index) => 16.W,
@@ -48,7 +110,6 @@ class SpecializationsSection extends StatelessWidget {
 List colorSpecializations = [
   AppColor.mainPink,
   AppColor.mainBlue,
-
   AppColor.blue,
   AppColor.green,
   AppColor.purple,

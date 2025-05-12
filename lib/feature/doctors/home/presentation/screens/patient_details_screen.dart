@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
-import 'package:healthy_sync/core/themes/styles.dart';
-import 'package:healthy_sync/core/helpers/extensions.dart';
+
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/screens/prescription_screen.dart';

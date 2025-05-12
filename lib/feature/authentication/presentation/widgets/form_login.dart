@@ -17,8 +17,8 @@ import 'package:healthy_sync/feature/authentication/presentation/screens/signup/
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
-import 'package:healthy_sync/feature/doctors/home_nav/presentation/screens/doctor_home_nav.dart';
-import 'package:healthy_sync/feature/patients/home/presentation/screens/home_screen.dart';
+import 'package:healthy_sync/feature/lab/home_nav/presentation/screens/lab_nav.dart';
+import 'package:healthy_sync/feature/patients/home_nav/presentation/screens/patient_home_nav.dart';
 
 class FormLogin extends StatelessWidget {
   final UserType userType;
@@ -49,10 +49,8 @@ class FormLogin extends StatelessWidget {
               CustomTextField(
                 textInputAction: TextInputAction.next,
                 controller: loginCubit.emailController,
-
                 hintText: LocaleKeys.exampleEmail.tr(),
                 keyboardType: TextInputType.emailAddress,
-
                 validator: (value) {
                   if (value!.isEmpty) {
                     return LocaleKeys.emailIsRequired.tr();
@@ -60,31 +58,26 @@ class FormLogin extends StatelessWidget {
                   return null;
                 },
               ),
-
               Text(
                 LocaleKeys.password.tr(),
                 style: TextStyles.font16DarkBlueW500,
               ),
               BlocBuilder<LoginCubit, LoginState>(
-                buildWhen:
-                    (previous, current) =>
-                        current is LoginPasswordVisibilityToggled,
+                buildWhen: (previous, current) =>
+                    current is LoginPasswordVisibilityToggled,
                 builder: (context, state) {
                   return CustomTextField(
                     borderColor: AppColor.mainPink,
                     textInputAction: TextInputAction.done,
-                    onFieldSubmitted:
-                        (value) => loginCubit.login(
-                          RegisterParams(
-                            email: loginCubit.emailController.text,
-                            password: loginCubit.passwordController.text,
-                          ),
-                          context,
-                        ),
+                    onFieldSubmitted: (value) => loginCubit.login(
+                      RegisterParams(
+                        email: loginCubit.emailController.text,
+                        password: loginCubit.passwordController.text,
+                      ),
+                      context,
+                    ),
                     controller: loginCubit.passwordController,
-
                     keyboardType: TextInputType.visiblePassword,
-
                     hintText: "*" * 8,
                     isPassword: true,
                     isPasswordVisible: loginCubit.isPasswordVisible,
@@ -106,9 +99,8 @@ class FormLogin extends StatelessWidget {
                   Row(
                     children: [
                       BlocBuilder<LoginCubit, LoginState>(
-                        buildWhen:
-                            (previous, current) =>
-                                current is LoginRememberMeToggled,
+                        buildWhen: (previous, current) =>
+                            current is LoginRememberMeToggled,
                         builder: (context, state) {
                           return Transform.scale(
                             scale: ResponsiveHelper.isMobile(context) ? 1 : 1.5,
@@ -150,7 +142,7 @@ class FormLogin extends StatelessWidget {
               CustomButton(
                 name: LocaleKeys.login.tr(),
                 onTap: () {
-                  context.pushAndRemoveUntil(DoctorHomeNavScreen());
+                   context.pushAndRemoveUntil(const PatientHomeNavScreen());
                   // loginCubit.login(
                   //   RegisterParams(
                   //     phone: loginCubit.emailController.text,

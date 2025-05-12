@@ -53,7 +53,7 @@ class CustomTextField extends StatelessWidget {
     this.contentPadding,
     this.isEnabled = true,
     this.iconColor,
-    this.suffixIcon,
+    this.suffixIcon, 
   });
 
   @override

@@ -8,12 +8,10 @@ import 'package:healthy_sync/feature/chat/presentation/screens/chat_bot_screen.d
 import 'package:healthy_sync/feature/doctors/home/presentation/screens/appointments_screen.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/screens/booked_appointments_screen.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/screens/home_screen.dart';
-import 'package:healthy_sync/feature/patients/medical_tests/presentation/screens/medical_tests_screen.dart';
 
-import 'package:healthy_sync/feature/patients/home/presentation/screens/home_screen.dart';
 import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
-import 'package:healthy_sync/feature/patients/treatment_schedule/presentation/pages/treatment_schedule_screen.dart';
+import 'package:healthy_sync/feature/doctors/profile/presentation/screens/profile_screen.dart';
 
 import 'package:healthy_sync/feature/patients/profile/presentation/screens/profile_screen.dart';
 
@@ -32,7 +30,7 @@ class DoctorHomeNavScreenState extends State<DoctorHomeNavScreen> {
     AppointmentsScreen(),
     ChatScreen(),
     BookedAppointmentsScreen(),
-    ProfileScreen(),
+    ProfileDoctorScreen(),
   ];
 
   @override

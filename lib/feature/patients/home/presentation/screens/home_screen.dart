@@ -29,12 +29,10 @@ class _HomePatientScreenState extends State<HomePatientScreen> {
             children: [
               CircleAvatar(
                 radius: 30.r,
-                backgroundImage:
-                    Image.network(
-                      "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-
-                      fit: BoxFit.cover,
-                    ).image,
+                backgroundImage: Image.network(
+                  "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                  fit: BoxFit.cover,
+                ).image,
               ),
               16.W,
               Expanded(
@@ -77,15 +75,28 @@ class _HomePatientScreenState extends State<HomePatientScreen> {
             ],
           ).paddingAll(16.sp),
           16.H,
-          DoctorVisitCard().paddingSymmetric(horizontal: 16.w),
+          const DoctorVisitCard().paddingSymmetric(horizontal: 16.w),
           16.H,
           Row(
             children: [
+              Container(
+                padding: EdgeInsets.all(8.sp),
+                decoration: BoxDecoration(
+                  color: AppColor.mainBlue.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+                child: Icon(
+                  Icons.medical_services_outlined,
+                  color: AppColor.mainBlue,
+                  size: 20.sp,
+                ),
+              ),
+              12.W,
               Expanded(
                 child: Text(
                   LocaleKeys.specializations.tr(),
                   style: TextStyles.font20WhiteBold.copyWith(
-                    color: AppColor.black,
+                    color: AppColor.mainBlueDark,
                   ),
                 ),
               ),
@@ -95,7 +106,7 @@ class _HomePatientScreenState extends State<HomePatientScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return SpecializationsAll();
+                        return const SpecializationsAll();
                       },
                     ),
                   );
@@ -108,9 +119,9 @@ class _HomePatientScreenState extends State<HomePatientScreen> {
             ],
           ).paddingSymmetric(horizontal: 16.0.sp),
           8.H,
-          SpecializationsSection(),
+          const SpecializationsSection(),
           16.H,
-          DoctorsSection(),
+          const DoctorsSection(),
         ],
       ),
     );

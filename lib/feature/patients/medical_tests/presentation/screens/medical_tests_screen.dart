@@ -8,164 +8,373 @@ import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/feature/patients/home/data/data.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/screens/health_tips.dart';
-import 'package:healthy_sync/feature/patients/medical_tests/presentation/screens/tests_screen.dart';
+import 'package:healthy_sync/feature/patients/medical_tests/presentation/screens/lab_test_details_screen.dart';
+import 'package:healthy_sync/feature/patients/medical_tests/presentation/screens/lab_tests_screen.dart';
+import 'package:healthy_sync/feature/patients/medical_tests/presentation/screens/xray_screen.dart';
+import 'package:healthy_sync/feature/patients/medical_tests/data/dummy_data.dart';
+import 'package:healthy_sync/feature/patients/medical_tests/presentation/screens/xray_details_screen.dart';
 
 class MedicalTestsScreen extends StatelessWidget {
   const MedicalTestsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final uniqueTests =
-        tests
-            .fold<Map<String, Map<String, dynamic>>>({}, (acc, test) {
-              acc[test['name']] = test;
-              return acc;
-            })
-            .values
-            .toList();
-
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        toolbarHeight: 48.sp,
+        toolbarHeight: 56.sp,
         centerTitle: true,
+        elevation: 0,
         title: Text(
-          LocaleKeys.tests.tr(),
+          "التحاليل والأشعة",
           style: TextStyles.font16DarkBlueW500,
         ),
         backgroundColor: AppColor.white,
       ),
-      body: ListView(
-        children: [
-          HealthTips(),
-          20.H,
-          Padding(
-            padding: EdgeInsets.all(16.0.sp),
-            child: Column(
-              children: [
-                GridView.count(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 10.sp,
-                  mainAxisSpacing: 10.sp,
-                  childAspectRatio:
-                      ResponsiveHelper.isMobile(context) ? .8.sp : .5.sp,
-                  children: [
-                    _buildCard("التقارير", Icons.arrow_forward_ios),
-                    _buildTapCard(
-                      "التحاليل",
-                      Icons.arrow_forward_ios,
-                      () => context.push(TestsScreen(test: uniqueTests[0])),
-                    ),
-                    _buildCard("الأشعة", Icons.arrow_forward_ios),
-                  ],
-                ),
-                15.H,
-                Text("اخر التحاليل", style: TextStyles.font16DarkBlueW500),
-                20.H,
-                ListTile(
-                  onTap: () {
-                    context.push(TestsScreen(test: uniqueTests[1]));
-                  },
-                  leading: Icon(
-                    Icons.bloodtype,
-                    size: 20.sp,
-                    color: AppColor.mainPink,
-                  ),
-                  title: Text(
-                    "تحليل سكر",
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            HealthTips(),
+            16.H,
+            Padding(
+              padding: EdgeInsets.all(16.sp),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "الخدمات",
                     style: TextStyles.font16DarkBlueW500,
                   ),
-                  subtitle: Text(
-                    "2023-10-01",
-                    style: TextStyles.font12DarkBlueW400,
+                  16.H,
+                  GridView.count(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 12.sp,
+                    crossAxisSpacing: 12.sp,
+                    childAspectRatio: 1.5,
+                    children: [
+                      _buildServiceCard(
+                        "التحاليل الطبية",
+                        Icons.science_outlined,
+                        AppColor.mainBlue,
+                        () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LabTestsScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                      _buildServiceCard(
+                        "الأشعة",
+                        Icons.medical_information_outlined,
+                        AppColor.mainPink,
+                        () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const XrayScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 20.sp,
-                    color: AppColor.mainPink,
+                ],
+              ),
+            ),
+            // قسم آخر التحاليل والأشعة
+            Padding(
+              padding: EdgeInsets.all(16.sp),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "آخر التحاليل والأشعة",
+                        style: TextStyles.font16DarkBlueW500,
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                  16.H,
+                  ...MedicalTestsData.getRecentTests()
+                      .map((test) => _buildTestCard(context, test)),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildCard(String title, IconData icon) {
-    return Card(
-      color: AppColor.white,
-      elevation: 4,
-      child: Padding(
-        padding: EdgeInsets.all(16.sp),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              style: TextStyles.font16DarkBlueW500,
-              textAlign: TextAlign.center,
-            ),
-            10.H,
-            Icon(icon, size: 20.sp, color: AppColor.mainPink),
+            // قسم الخدمات
           ],
         ),
       ),
     );
   }
 
-  // ✅ كارد فيه OnTap
-  Widget _buildTapCard(String title, IconData icon, VoidCallback onTap) {
-    return InkWell(onTap: onTap, child: _buildCard(title, icon));
+  Widget _buildTestCard(BuildContext context, Map<String, dynamic> test) {
+    final isLabTest = test['type']?.toString().contains('تحليل') ?? false;
+    final isCompleted = test['status'] == 'مكتمل';
+
+    return Container(
+      margin: EdgeInsets.only(bottom: 12.sp),
+      decoration: BoxDecoration(
+        color: AppColor.white,
+        borderRadius: BorderRadius.circular(12.r),
+        boxShadow: [
+          BoxShadow(
+            color: AppColor.grey.withValues(alpha: 0.3),
+            // شادو خفيف جدًا
+            spreadRadius: 0.4, // نشر بسيط
+            blurRadius: 4.4, // ضبابية خفيفة
+            offset: Offset(0, 0.4), // ارتفاع بسيط للشادو
+          ),
+        ],
+      ),
+      child: ListTile(
+        onTap: () {
+          if (isCompleted) {
+            if (isLabTest) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LabTestDetailsScreen(
+                    testData: test,
+                  ),
+                ),
+              );
+            } else {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => XrayDetailsScreen(
+                    xrayData: test,
+                  ),
+                ),
+              );
+            }
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  'النتائج غير متاحة بعد',
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: Colors.white,
+                  ),
+                ),
+                backgroundColor: AppColor.orange,
+                behavior: SnackBarBehavior.floating,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+              ),
+            );
+          }
+        },
+        contentPadding: EdgeInsets.all(12.sp),
+        leading: Container(
+          padding: EdgeInsets.all(8.sp),
+          decoration: BoxDecoration(
+            color: _getTypeColor(test['type']).withOpacity(0.1),
+            borderRadius: BorderRadius.circular(8.r),
+          ),
+          child: Icon(
+            _getTypeIcon(test['type']),
+            size: 24.sp,
+            color: _getTypeColor(test['type']),
+          ),
+        ),
+        title: Row(
+          children: [
+            Expanded(
+              child: Text(
+                test['name'] ?? '',
+                style: TextStyle(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w600,
+                  color: AppColor.mainBlueDark,
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 8.sp,
+                vertical: 4.sp,
+              ),
+              decoration: BoxDecoration(
+                color: isCompleted
+                    ? AppColor.green.withOpacity(0.1)
+                    : AppColor.orange.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              child: Text(
+                test['status'] ?? '',
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  color: isCompleted ? AppColor.green : AppColor.orange,
+                ),
+              ),
+            ),
+          ],
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            8.H,
+            Row(
+              children: [
+                Icon(
+                  Icons.calendar_today_outlined,
+                  size: 14.sp,
+                  color: AppColor.grey,
+                ),
+                4.W,
+                Text(
+                  test['date'] ?? '',
+                  style: TextStyles.font12GreyW400,
+                ),
+                16.W,
+                Icon(
+                  Icons.person_outline,
+                  size: 14.sp,
+                  color: AppColor.grey,
+                ),
+                4.W,
+                Text(
+                  test['doctor'] ?? '',
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    color: AppColor.mainBlue,
+                  ),
+                ),
+              ],
+            ),
+            4.H,
+            Text(
+              test['type'] ?? '',
+              style: TextStyle(
+                fontSize: 12.sp,
+                color: _getTypeColor(test['type']),
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
-  //  Expanded(
-  //               child: GridView.builder(
-  //                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-  //                   crossAxisCount: 2,
-  //                   crossAxisSpacing: 10.sp,
-  //                   mainAxisSpacing: 10.sp,
-  //                   childAspectRatio: 1.sp,
-  //                 ),
-  //                 itemCount: uniqueTests.length,
-  //                 itemBuilder: (context, index) {
-  //                   return Ink(
-  //                     decoration: BoxDecoration(
-  //                       borderRadius: BorderRadius.circular(10.r),
-  //                       border: Border.all(color: AppColor.mainPink, width: 2.w),
-  //                     ),
+  Widget _buildServiceCard(
+    String title,
+    IconData icon,
+    Color color,
+    VoidCallback onTap,
+  ) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColor.white,
+        borderRadius: BorderRadius.circular(12.r),
+        boxShadow: [
+          BoxShadow(
+            color: AppColor.grey.withValues(alpha: 0.3),
+            // شادو خفيف جدًا
+            spreadRadius: 0.4, // نشر بسيط
+            blurRadius: 4.4, // ضبابية خفيفة
+            offset: Offset(0, 0.4), // ارتفاع بسيط للشادو
+          ),
+        ],
+      ),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12.r),
+        child: Container(
+          padding: EdgeInsets.all(16.sp),
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12.r),
+            border: Border.all(
+              color: color.withOpacity(0.2),
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 32.sp,
+                color: color,
+              ),
+              12.H,
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600,
+                  color: color,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
-  //                     child: Column(
-  //                       mainAxisAlignment: MainAxisAlignment.center,
-  //                       children: [
-  //                         Icon(
-  //                           uniqueTests[index]['icon'],
-  //                           size: 40.sp,
-  //                           color: AppColor.mainPink,
-  //                         ),
-  //                         10.H,
-  //                         Text(
-  //                           uniqueTests[index]['name'],
-  //                           style: TextStyles.font16DarkBlueW500
-  //                         ),
-  //                         5.H,
-  //                         Text(
-  //                           uniqueTests[index]['desc'],
-  //                           textAlign: TextAlign.center,
-  //                           style:TextStyles.font16DarkBlueW500
-  //                         ),
-  //                       ],
-  //                     ),
-  //                   ).withTapEffect(
-  //                     highlightColor: AppColor.mainBlue,
-  //                     splashColor: AppColor.mainBlue,
-  //                     onTap: () {
-  //                       context.push(TestsScreen(test: uniqueTests[index]));
-  //                     },
-  //                   );
-  //                 },
-  //               ),
-  //             ),
+  Color _getTypeColor(String? type) {
+    if (type == null) return AppColor.mainBlue;
+
+    if (type.contains('تحليل')) {
+      switch (type) {
+        case 'تحليل دم':
+          return AppColor.mainBlue;
+        case 'تحليل بول':
+          return AppColor.mainPink;
+        case 'تحليل براز':
+          return AppColor.green;
+        default:
+          return AppColor.mainBlue;
+      }
+    } else {
+      switch (type) {
+        case 'أشعة سينية':
+          return AppColor.mainBlue;
+        case 'رنين مغناطيسي':
+          return AppColor.mainPink;
+        case 'أشعة مقطعية':
+          return AppColor.green;
+        default:
+          return AppColor.mainBlue;
+      }
+    }
+  }
+
+  IconData _getTypeIcon(String? type) {
+    if (type == null) return Icons.science_outlined;
+
+    if (type.contains('تحليل')) {
+      switch (type) {
+        case 'تحليل دم':
+          return Icons.bloodtype_outlined;
+        case 'تحليل بول':
+          return Icons.water_drop_outlined;
+        case 'تحليل براز':
+          return Icons.science_outlined;
+        default:
+          return Icons.science_outlined;
+      }
+    } else {
+      switch (type) {
+        case 'أشعة سينية':
+        case 'رنين مغناطيسي':
+        case 'أشعة مقطعية':
+          return Icons.medical_information_outlined;
+        default:
+          return Icons.medical_information_outlined;
+      }
+    }
+  }
 }

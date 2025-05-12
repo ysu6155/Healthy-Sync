@@ -22,14 +22,14 @@ import 'package:healthy_sync/feature/welcome/presentation/screens/intro/intro_sc
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+class ProfilePatientScreen extends StatefulWidget {
+  const ProfilePatientScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<ProfilePatientScreen> createState() => _ProfilePatientScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ProfilePatientScreenState extends State<ProfilePatientScreen> {
   @override
   void initState() {
     super.initState();
@@ -89,10 +89,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       borderRadius: BorderRadius.circular(16.r),
                       boxShadow: [
                         BoxShadow(
-                          color:
-                              SharedHelper.get(SharedKeys.gender) == "male"
-                                  ? AppColor.mainBlue.withValues(alpha: .5)
-                                  : AppColor.mainPink.withValues(alpha: .5),
+                          color: SharedHelper.get(SharedKeys.gender) == "Male"
+                              ? AppColor.mainBlue.withValues(alpha: .5)
+                              : AppColor.mainPink.withValues(alpha: .5),
                           spreadRadius: 2,
                           blurRadius: 4,
                           offset: Offset(0, 0),
@@ -105,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           radius: 50.r,
                           // backgroundImage: NetworkImage(state.image ),
                         ),
-                        Gap(16),
+                        const Gap(16),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,10 +156,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     width: 200.sp, // حددت العرض
                                     height: 200.sp, // حددت الارتفاع
                                     child: QrImageView(
-                                      data:
-                                          SharedHelper.get(
-                                            SharedKeys.id,
-                                          ).toString(),
+                                      data: SharedHelper.get(
+                                        SharedKeys.id,
+                                      ).toString(),
                                       version: QrVersions.auto,
                                       size: 200.0,
                                     ),
@@ -194,13 +192,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     value: SharedHelper.get(SharedKeys.dateOfBirth).toString(),
                     icon: Icons.calendar_today,
                   ),
-                  // if (SharedHelper.get(SharedKeys.role) == "doctor")
-                  ProfileItem(
-                    title: LocaleKeys.specialization.tr(),
-                    value: "السكري",
-                    icon: Icons.medical_services,
-                  ),
-                  // if (SharedHelper.get(SharedKeys.role) == "patient")
+
                   ProfileItem(
                     title: "الامراض المزمنه",
                     onTap: () {
@@ -208,28 +200,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     },
                     icon: Icons.medical_services,
                   ),
-                  //  if (SharedHelper.get(SharedKeys.gender) == "female")
-                  ProfileItem(
-                    title: "هيّا ",
-                    icon: Icons.monitor_weight,
-                    onTap:
-                        () => {
-                          context.push(
-                            MultiProvider(
-                              providers: [
-                                ChangeNotifierProvider(
-                                  create: (_) => CycleProvider(),
-                                ),
-                              ],
-                              child: WomanCycleScreen(),
-                            ),
+                  if (SharedHelper.get(SharedKeys.gender) == "female")
+                    ProfileItem(
+                      title: "هيّا ",
+                      icon: Icons.monitor_weight,
+                      onTap: () => {
+                        context.push(
+                          MultiProvider(
+                            providers: [
+                              ChangeNotifierProvider(
+                                create: (_) => CycleProvider(),
+                              ),
+                            ],
+                            child: const WomanCycleScreen(),
                           ),
-                        },
-                  ),
+                        ),
+                      },
+                    ),
                   // if (SharedHelper.get(SharedKeys.gender) == "male")
                   ProfileItem(
                     title: "BMI الكتل العضليه",
-
                     icon: Icons.monitor_weight,
                     onTap: () => {context.push(BMICalculatorScreen())},
                   ),
@@ -332,17 +322,15 @@ class ProfileItem extends StatelessWidget {
             color: AppColor.black,
           ),
         ),
-        subtitle:
-            value != null
-                ? Text(
-                  value!,
-                  style: TextStyle(fontSize: 14.sp, color: AppColor.grey),
-                )
-                : null,
-        trailing:
-            onTap != null
-                ? Icon(Icons.arrow_forward_ios, color: AppColor.grey)
-                : null,
+        subtitle: value != null
+            ? Text(
+                value!,
+                style: TextStyle(fontSize: 14.sp, color: AppColor.grey),
+              )
+            : null,
+        trailing: onTap != null
+            ? Icon(Icons.arrow_forward_ios, color: AppColor.grey)
+            : null,
         onTap: onTap,
       ),
     );

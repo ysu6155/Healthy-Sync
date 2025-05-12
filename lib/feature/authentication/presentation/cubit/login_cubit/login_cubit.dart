@@ -10,6 +10,7 @@ import 'package:healthy_sync/feature/authentication/data/models/request/register
 import 'package:healthy_sync/feature/authentication/data/repo/auth_repo.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_state.dart';
 import 'package:healthy_sync/feature/doctors/home_nav/presentation/screens/doctor_home_nav.dart';
+import 'package:healthy_sync/feature/lab/home_nav/presentation/screens/lab_nav.dart';
 import 'package:healthy_sync/feature/patients/home_nav/presentation/screens/patient_home_nav.dart';
 
 class LoginCubit extends Cubit<LoginState> {
@@ -44,15 +45,17 @@ class LoginCubit extends Cubit<LoginState> {
       await SharedHelper.sava(SharedKeys.role, response.user?.role);
       await SharedHelper.sava(SharedKeys.id, response.user?.id);
       await SharedHelper.sava(SharedKeys.kToken, response.token);
-      // await SharedHelper.sava(SharedKeys.gender, response.user?.gender);
+       await SharedHelper.sava(SharedKeys.gender, response.user?.gender);
       emit(LoginSuccess());
       String role = response.user?.role ?? "patient";
       log("User role: $role");
       if (role == "patient") {
-        context.pushAndRemoveUntil(PatientHomeNavScreen());
+        context.pushAndRemoveUntil(const PatientHomeNavScreen());
       } else if (role == "doctor") {
-        context.pushAndRemoveUntil(DoctorHomeNavScreen());
-      } else if (role == "admin") {}
+        context.pushAndRemoveUntil(const DoctorHomeNavScreen());
+      } else if (role == "lab") {
+        context.pushAndRemoveUntil(const LabHomeNavScreen());
+      }
     } catch (e, stackTrace) {
       log("🔥 Login Error: $e");
       log("📌 StackTrace: $stackTrace");

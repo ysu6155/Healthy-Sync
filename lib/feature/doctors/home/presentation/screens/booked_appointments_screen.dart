@@ -1,11 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
-import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/feature/doctors/home/data/appointment_data.dart';
 import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
-import 'package:intl/intl.dart';
 
 class BookedAppointmentsScreen extends StatelessWidget {
   const BookedAppointmentsScreen({super.key});
@@ -100,17 +99,38 @@ class BookedAppointmentsScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    CircleAvatar(
-                                      radius: 25.r,
-                                      backgroundColor: Colors.grey[200],
-                                      child: Icon(
-                                        Icons.person,
-                                        color: Colors.grey[600],
-                                        size: 30.sp,
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black.withOpacity(
+                                              0.3,
+                                            ),
+                                            spreadRadius: 0.4,
+                                            blurRadius: 4.4,
+                                            offset: const Offset(0, 0.4),
+                                          ),
+                                        ],
+                                      ),
+                                      child: CircleAvatar(
+                                        backgroundColor: Colors.white,
+                                        radius: 50.r,
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                            700.r,
+                                          ),
+                                          child: Icon(
+                                            Icons.person,
+                                            size: 50.sp,
+                                            color: Colors.grey[600],
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                    SizedBox(width: 12.w),
+                                    SizedBox(width: 15.w),
                                     Expanded(
                                       child: Column(
                                         crossAxisAlignment:
@@ -118,65 +138,173 @@ class BookedAppointmentsScreen extends StatelessWidget {
                                         children: [
                                           Text(
                                             patient.name ?? 'مريض',
-                                            style:
-                                                TextStyles.font16DarkBlueW500,
+                                            style: TextStyle(
+                                              fontSize: 18.sp,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                            ),
                                           ),
-                                          SizedBox(height: 4.h),
+                                          SizedBox(height: 5.h),
                                           Text(
                                             '${patient.age} سنة',
                                             style: TextStyle(
-                                              fontSize: 14.sp,
-                                              color: Colors.grey[600],
+                                              fontSize: 16.sp,
+                                              color: AppColor.mainBlue,
                                             ),
+                                          ),
+                                          SizedBox(height: 10.h),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.phone,
+                                                color: Colors.grey,
+                                                size: 18.sp,
+                                              ),
+                                              SizedBox(width: 5.w),
+                                              Text(
+                                                patient.phone ?? '',
+                                                style: TextStyle(
+                                                  fontSize: 14.sp,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(height: 5.h),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.email,
+                                                color: Colors.grey,
+                                                size: 18.sp,
+                                              ),
+                                              SizedBox(width: 5.w),
+                                              Expanded(
+                                                child: Text(
+                                                  patient.email ?? '',
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                    fontSize: 14.sp,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ],
                                       ),
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 16.h),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.access_time,
-                                      color: AppColor.mainBlue,
-                                      size: 24.sp,
-                                    ),
-                                    SizedBox(width: 8.w),
-                                    Text(
-                                      appointment.time ?? '',
-                                      style: TextStyles.font16DarkBlueW500,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 12.h),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.medical_services,
-                                      color: Colors.grey,
-                                      size: 18.sp,
-                                    ),
-                                    SizedBox(width: 8.w),
-                                    Text(
-                                      appointment.type ?? '',
-                                      style: TextStyle(
-                                        fontSize: 14.sp,
-                                        color: Colors.grey[600],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                if (appointment.notes?.isNotEmpty ?? false) ...[
-                                  SizedBox(height: 8.h),
-                                  Text(
-                                    appointment.notes ?? '',
-                                    style: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: Colors.grey[600],
-                                    ),
+                                SizedBox(height: 20.h),
+                                Text(
+                                  'العنوان: ${patient.address}',
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: Colors.grey[700],
+                                    height: 1.5,
                                   ),
-                                ],
+                                ),
+                                SizedBox(height: 20.h),
+                                Container(
+                                  padding: EdgeInsets.all(15.w),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.grey[300]!,
+                                    ),
+                                    borderRadius: BorderRadius.circular(10.r),
+                                    color: Colors.white,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.access_time,
+                                            color: AppColor.mainBlue,
+                                            size: 24.sp,
+                                          ),
+                                          SizedBox(width: 10.w),
+                                          Text(
+                                            'موعد الكشف',
+                                            style: TextStyle(
+                                              fontSize: 16.sp,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5.h),
+                                      Text(
+                                        appointment.time ?? '',
+                                        style: TextStyle(
+                                          fontSize: 14.sp,
+                                          color: Colors.grey[600],
+                                        ),
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.medical_services,
+                                            color: AppColor.mainBlue,
+                                            size: 24.sp,
+                                          ),
+                                          SizedBox(width: 10.w),
+                                          Text(
+                                            'نوع الكشف',
+                                            style: TextStyle(
+                                              fontSize: 16.sp,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5.h),
+                                      Text(
+                                        appointment.type ?? '',
+                                        style: TextStyle(
+                                          fontSize: 14.sp,
+                                          color: Colors.grey[600],
+                                        ),
+                                      ),
+                                      if (appointment.notes?.isNotEmpty ??
+                                          false) ...[
+                                        SizedBox(height: 10.h),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.note,
+                                              color: AppColor.mainBlue,
+                                              size: 24.sp,
+                                            ),
+                                            SizedBox(width: 10.w),
+                                            Text(
+                                              'ملاحظات',
+                                              style: TextStyle(
+                                                fontSize: 16.sp,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 5.h),
+                                        Text(
+                                          appointment.notes ?? '',
+                                          style: TextStyle(
+                                            fontSize: 14.sp,
+                                            color: Colors.grey[600],
+                                          ),
+                                        ),
+                                      ],
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
                           ),

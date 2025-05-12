@@ -29,7 +29,7 @@ class PatientHomeNavScreenState extends State<PatientHomeNavScreen> {
     TreatmentScheduleScreen(),
     ChatScreen(),
     MedicalTestsScreen(),
-    ProfileScreen(),
+    ProfilePatientScreen(),
   ];
 
   @override

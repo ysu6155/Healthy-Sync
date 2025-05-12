@@ -5,143 +5,447 @@ import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
+import 'package:healthy_sync/feature/patients/home/data/models/doctor_visit.dart';
 
 class DoctorVisitScreen extends StatelessWidget {
-  const DoctorVisitScreen({super.key});
+  final DoctorVisit visit;
+
+  const DoctorVisitScreen({
+    super.key,
+    required this.visit,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.white,
       appBar: AppBar(
-        toolbarHeight: 48.sp,
+        toolbarHeight: 56.sp,
         title: Text(
           LocaleKeys.visitDetails.tr(),
-          style: TextStyles.font20WhiteBold,
+          style: TextStyle(
+            fontSize: 17.sp,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
-        iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
-        backgroundColor: AppColor.mainPink,
-        elevation: 4,
-      ),
-      body: ListView(
-        children: [
-          _buildCard(
-            title: LocaleKeys.visitDetails.tr(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildDoctorInfo(),
-                12.H,
-                _buildTimeAndDate(context),
-                8.H,
-                _buildLocation(),
+        iconTheme: IconThemeData(color: AppColor.white, size: 22.sp),
+        backgroundColor: AppColor.mainBlue,
+        elevation: 0,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                AppColor.mainBlue,
+                AppColor.mainBlue.withOpacity(0.85),
               ],
             ),
           ),
-          _buildCard(
-            title: LocaleKeys.symptoms.tr(),
-            child: _buildInfoRow(
-              Icons.description,
-              'ألم في الصدر وارتفاع ضغط الدم',
-            ),
-          ),
-          _buildCard(
-            title: LocaleKeys.medicine.tr(),
-            child: _buildInfoRow(
-              Icons.medical_services,
-              'أسبرين 100 مجم يوميًا',
-            ),
-          ),
-          _buildCard(
-            title: LocaleKeys.tests.tr(),
-            child: _buildInfoRow(Icons.analytics, 'ECG, فحص دم'),
-          ),
-          _buildCard(
-            title: LocaleKeys.status.tr(),
-            child: _buildHealthStatus(context),
-          ),
-        ],
-      ).paddingAll(16.sp),
-    );
-  }
-
-  Widget _buildCard({required String title, required Widget child}) {
-    return Card(
-      color: AppColor.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
-      elevation: 3,
-      margin: EdgeInsets.only(bottom: 16.sp),
-      child: Padding(
-        padding: EdgeInsets.all(16.sp),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: TextStyles.font20WhiteBold.copyWith(color: AppColor.black),
-            ),
-            8.H,
-            child,
-          ],
         ),
       ),
-    );
-  }
-
-  Widget _buildDoctorInfo() {
-    return Row(
-      children: [
-        CircleAvatar(
-          radius: 30.r,
-          backgroundImage:
-              Image.network(
-                "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-                fit: BoxFit.cover,
-              ).image,
-        ),
-        12.W,
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      body: SingleChildScrollView(
+        child: Column(
           children: [
-            Text(
-              'د. أحمد',
-              style: TextStyles.font20WhiteBold.copyWith(color: AppColor.black),
+            // معلومات الطبيب
+            Container(
+              margin: EdgeInsets.fromLTRB(12.sp, 8.sp, 12.sp, 4.sp),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [
+                    AppColor.mainBlue,
+                    AppColor.mainBlue.withOpacity(0.85),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(16.r),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColor.mainBlue.withOpacity(0.15),
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Stack(
+                children: [
+                  // عناصر زخرفية
+                  Positioned(
+                    right: -15.w,
+                    top: -15.h,
+                    child: Container(
+                      width: 80.w,
+                      height: 80.h,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white.withOpacity(0.08),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: -10.w,
+                    bottom: -10.h,
+                    child: Container(
+                      width: 50.w,
+                      height: 50.h,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white.withOpacity(0.08),
+                      ),
+                    ),
+                  ),
+                  // محتوى معلومات الطبيب
+                  Padding(
+                    padding: EdgeInsets.all(14.sp),
+                    child: Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // صورة الطبيب
+                            Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: Colors.white,
+                                  width: 2.w,
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.08),
+                                    blurRadius: 8,
+                                    offset: const Offset(0, 3),
+                                  ),
+                                ],
+                              ),
+                              child: CircleAvatar(
+                                radius: 32.r,
+                                backgroundColor: Colors.white,
+                                child: Icon(
+                                  Icons.person_outline,
+                                  size: 32.sp,
+                                  color: AppColor.mainBlue,
+                                ),
+                              ),
+                            ),
+                            10.W,
+                            // معلومات الطبيب
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    visit.doctorName,
+                                    style: TextStyle(
+                                      fontSize: 17.sp,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      height: 1.2,
+                                    ),
+                                  ),
+                                  6.H,
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 10.sp,
+                                      vertical: 4.sp,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.15),
+                                      borderRadius: BorderRadius.circular(12.r),
+                                    ),
+                                    child: Text(
+                                      visit.specialization,
+                                      style: TextStyle(
+                                        fontSize: 13.sp,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                  10.H,
+                                  // معلومات إضافية
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: _buildDoctorInfoItem(
+                                          Icons.star,
+                                          "4.9",
+                                          "التقييم",
+                                        ),
+                                      ),
+                                      8.W,
+                                      Expanded(
+                                        child: _buildDoctorInfoItem(
+                                          Icons.work_outline,
+                                          "10+",
+                                          "سنوات الخبرة",
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  10.H,
+                                  // رقم الهاتف
+                                  Container(
+                                    width: 1.sw,
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 10.sp,
+                                      vertical: 6.sp,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.12),
+                                      borderRadius: BorderRadius.circular(10.r),
+                                      border: Border.all(
+                                        color: Colors.white.withOpacity(0.15),
+                                        width: 0.8.w,
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          padding: EdgeInsets.all(5.sp),
+                                          decoration: BoxDecoration(
+                                            color:
+                                                Colors.white.withOpacity(0.15),
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Icon(
+                                            Icons.phone_outlined,
+                                            color: Colors.white,
+                                            size: 14.sp,
+                                          ),
+                                        ),
+                                        6.W,
+                                        Text(
+                                          "01234567890",
+                                          style: TextStyle(
+                                            fontSize: 14.sp,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w600,
+                                            letterSpacing: 0.3,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Text(
-              'أخصائي قلب',
-              style: TextStyles.font16DarkBlueW500.copyWith(
-                color: AppColor.black,
+            // باقي المحتوى
+            Padding(
+              padding: EdgeInsets.fromLTRB(12.sp, 0, 12.sp, 12.sp),
+              child: Column(
+                children: [
+                  8.H,
+                  _buildVisitInfoCard(),
+                  10.H,
+                  _buildDiagnosisCard(),
+                  10.H,
+                  _buildTreatmentCard(),
+                  10.H,
+                  _buildRecommendationsCard(),
+                ],
               ),
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 
-  Widget _buildTimeAndDate(BuildContext context) {
-    return Column(
-      children: [
-        _buildInfoRow(Icons.access_time, '${LocaleKeys.time.tr()}: ١٢:٠٠ م'),
-        8.H,
-        _buildInfoRow(
-          Icons.calendar_today,
-          '${LocaleKeys.date.tr()}: ١٢/١٢/٢٠٢١',
+  Widget _buildVisitInfoCard() {
+    return _buildCard(
+      title: LocaleKeys.visitDetails.tr(),
+      icon: Icons.calendar_today_outlined,
+      child: Column(
+        children: [
+          _buildInfoRow(
+            Icons.access_time,
+            "${LocaleKeys.time.tr()}: ${visit.time}",
+          ),
+          12.H,
+          _buildInfoRow(
+            Icons.calendar_today,
+            "${LocaleKeys.date.tr()}: ${visit.date}",
+          ),
+          12.H,
+          _buildInfoRow(
+            Icons.health_and_safety,
+            "${LocaleKeys.status.tr()}: ${visit.status}",
+            iconColor: AppColor.green,
+            textColor: AppColor.green,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDiagnosisCard() {
+    return _buildCard(
+      title: "التشخيص",
+      icon: Icons.medical_information_outlined,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: EdgeInsets.all(12.sp),
+            decoration: BoxDecoration(
+              color: AppColor.mainBlue.withOpacity(0.05),
+              borderRadius: BorderRadius.circular(8.r),
+              border: Border.all(
+                color: AppColor.mainBlue.withOpacity(0.1),
+              ),
+            ),
+            child: Text(
+              visit.diagnosis,
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: AppColor.mainBlueDark,
+                height: 1.5,
+              ),
+            ),
+          ),
+          16.H,
+          Text(
+            LocaleKeys.symptoms.tr(),
+            style: TextStyles.font16DarkBlueW500,
+          ),
+          8.H,
+          Container(
+            padding: EdgeInsets.all(12.sp),
+            decoration: BoxDecoration(
+              color: AppColor.mainBlue.withOpacity(0.05),
+              borderRadius: BorderRadius.circular(8.r),
+              border: Border.all(
+                color: AppColor.mainBlue.withOpacity(0.1),
+              ),
+            ),
+            child: Text(
+              visit.symptoms,
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: AppColor.mainBlueDark,
+                height: 1.5,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTreatmentCard() {
+    return _buildCard(
+      title: "العلاج",
+      icon: Icons.medical_services_outlined,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: EdgeInsets.all(12.sp),
+            decoration: BoxDecoration(
+              color: AppColor.mainPink.withOpacity(0.05),
+              borderRadius: BorderRadius.circular(8.r),
+              border: Border.all(
+                color: AppColor.mainPink.withOpacity(0.1),
+              ),
+            ),
+            child: Text(
+              visit.treatment,
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: AppColor.mainBlueDark,
+                height: 1.5,
+              ),
+            ),
+          ),
+          16.H,
+          Text(
+            LocaleKeys.medicine.tr(),
+            style: TextStyles.font16DarkBlueW500,
+          ),
+          8.H,
+          ...visit.medications.map((med) => _buildMedicationItem(med)),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRecommendationsCard() {
+    return _buildCard(
+      title: "التوصيات",
+      icon: Icons.lightbulb_outline,
+      child: Column(
+        children: visit.recommendations
+            .map((rec) => _buildRecommendationItem(rec))
+            .toList(),
+      ),
+    );
+  }
+
+  Widget _buildCard({
+    required String title,
+    required IconData icon,
+    required Widget child,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(14.r),
+        boxShadow: [
+          BoxShadow(
+            color: AppColor.mainBlue.withOpacity(0.08),
+            blurRadius: 8,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(14.sp),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(6.sp),
+                  decoration: BoxDecoration(
+                    color: AppColor.mainBlue.withOpacity(0.08),
+                    borderRadius: BorderRadius.circular(8.r),
+                  ),
+                  child: Icon(
+                    icon,
+                    color: AppColor.mainBlue,
+                    size: 18.sp,
+                  ),
+                ),
+                8.W,
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w600,
+                    color: AppColor.mainBlueDark,
+                  ),
+                ),
+              ],
+            ),
+            12.H,
+            child,
+          ],
         ),
-      ],
-    );
-  }
-
-  Widget _buildLocation() {
-    return _buildInfoRow(Icons.location_on, '1234 Main St, القاهرة, مصر');
-  }
-
-  Widget _buildHealthStatus(BuildContext context) {
-    return _buildInfoRow(
-      Icons.health_and_safety,
-      LocaleKeys.stable.tr(),
-      iconColor: AppColor.green,
-      textColor: AppColor.green,
+      ),
     );
   }
 
@@ -153,17 +457,130 @@ class DoctorVisitScreen extends StatelessWidget {
   }) {
     return Row(
       children: [
-        Icon(icon, color: iconColor ?? AppColor.mainPink, size: 22.sp),
-        8.W,
+        Icon(
+          icon,
+          color: iconColor ?? AppColor.mainBlue,
+          size: 22.sp,
+        ),
+        12.W,
         Expanded(
           child: Text(
             text,
-            style: TextStyles.font16DarkBlueW500.copyWith(
-              color: textColor ?? AppColor.black,
+            style: TextStyle(
+              fontSize: 14.sp,
+              color: textColor ?? AppColor.mainBlueDark,
             ),
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildMedicationItem(String medication) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 8.sp),
+      padding: EdgeInsets.all(12.sp),
+      decoration: BoxDecoration(
+        color: AppColor.mainPink.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(8.r),
+        border: Border.all(
+          color: AppColor.mainPink.withOpacity(0.1),
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.medication_outlined,
+            size: 20.sp,
+            color: AppColor.mainPink,
+          ),
+          12.W,
+          Expanded(
+            child: Text(
+              medication,
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: AppColor.mainBlueDark,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRecommendationItem(String recommendation) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 8.sp),
+      padding: EdgeInsets.all(12.sp),
+      decoration: BoxDecoration(
+        color: AppColor.green.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(8.r),
+        border: Border.all(
+          color: AppColor.green.withOpacity(0.1),
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.check_circle_outline,
+            size: 20.sp,
+            color: AppColor.green,
+          ),
+          12.W,
+          Expanded(
+            child: Text(
+              recommendation,
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: AppColor.mainBlueDark,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDoctorInfoItem(IconData icon, String value, String label) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 10.sp,
+        vertical: 6.sp,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.12),
+        borderRadius: BorderRadius.circular(10.r),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.15),
+        ),
+      ),
+      child: Column(
+        children: [
+          Icon(
+            icon,
+            color: Colors.white,
+            size: 16.sp,
+          ),
+          4.H,
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 14.sp,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          2.H,
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 11.sp,
+              color: Colors.white.withOpacity(0.9),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

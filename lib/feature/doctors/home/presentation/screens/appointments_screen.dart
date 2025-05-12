@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
-import 'package:healthy_sync/core/helpers/extensions.dart';
+import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/feature/doctors/home/data/appointment_data.dart';
-import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
-import 'package:intl/intl.dart';
 
 class AppointmentsScreen extends StatefulWidget {
   //final Patient patient;
@@ -48,7 +46,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 16.h),
-              Container(
+              SizedBox(
                 height: 300.h,
                 child: ListView.builder(
                   itemCount: 7,
@@ -171,10 +169,9 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
         elevation: 0,
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
+      body: Padding(
         padding: EdgeInsets.all(20.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             Text(
               'المواعيد المتاحة',
@@ -338,26 +335,9 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                     ),
                     if (selectedTimes.isNotEmpty) ...[
                       SizedBox(height: 24.h),
-                      Container(
-                        width: double.infinity,
-                        height: 50.h,
-                        decoration: BoxDecoration(
-                          color: AppColor.mainPink,
-                          borderRadius: BorderRadius.circular(15.r),
-                        ),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            onTap: _saveAppointments,
-                            borderRadius: BorderRadius.circular(15.r),
-                            child: Center(
-                              child: Text(
-                                'حفظ المواعيد المتاحة',
-                                style: TextStyles.font20WhiteBold,
-                              ),
-                            ),
-                          ),
-                        ),
+                      CustomButton(
+                        name: 'حفظ المواعيد المتاحة',
+                        onTap: () => _saveAppointments(),
                       ),
                     ],
                   ],

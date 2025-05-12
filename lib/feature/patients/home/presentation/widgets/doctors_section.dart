@@ -23,20 +23,45 @@ class _DoctorsSectionState extends State<DoctorsSection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.doctor.tr(),
-          style: TextStyles.font20WhiteBold.copyWith(color: AppColor.black),
+        // عنوان القسم
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+          child: Row(
+            children: [
+              Container(
+                padding: EdgeInsets.all(8.sp),
+                decoration: BoxDecoration(
+                  color: AppColor.mainBlue.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+                child: Icon(
+                  Icons.medical_services_outlined,
+                  color: AppColor.mainBlue,
+                  size: 20.sp,
+                ),
+              ),
+              12.W,
+              Text(
+                LocaleKeys.doctor.tr(),
+                style: TextStyle(
+                  fontSize: 17.sp,
+                  fontWeight: FontWeight.bold,
+                  color: AppColor.mainBlueDark,
+                ),
+              ),
+            ],
+          ),
         ),
-        16.H,
-
+        // قائمة الأطباء
         GridView.builder(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
           itemCount: doctors.length,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 1,
-            crossAxisSpacing: 16.w,
-            mainAxisSpacing: 16.sp,
+            crossAxisSpacing: 12.w,
+            mainAxisSpacing: 12.h,
             childAspectRatio:
                 ResponsiveHelper.isMobile(context) ? 3.6.sp : 2.sp,
           ),
@@ -48,6 +73,6 @@ class _DoctorsSectionState extends State<DoctorsSection> {
           },
         ),
       ],
-    ).paddingSymmetric(horizontal: 16.w);
+    );
   }
 }

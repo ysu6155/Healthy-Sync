@@ -3,30 +3,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/feature/chat/presentation/screens/chat_bot_screen.dart';
+import 'package:healthy_sync/feature/lab/home/presentation/screens/home_lab_screen.dart';
+import 'package:healthy_sync/feature/lab/pharmacy/presentation/pages/drug_info_screen.dart';
+
 import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
-import 'package:healthy_sync/feature/pharmacy/presentation/pages/home_pharmacy_screen.dart';
-import 'package:healthy_sync/feature/pharmacy/presentation/pages/medication_orders.dart';
-import 'package:healthy_sync/feature/pharmacy/presentation/pages/medicine_lookup.dart';
+import 'package:healthy_sync/feature/lab/profile/presentation/screens/profile_screen.dart';
+import 'package:healthy_sync/feature/lab/report/presentation/pages/report.dart';
+
 import 'package:healthy_sync/feature/patients/profile/presentation/screens/profile_screen.dart';
 
-class PharmacyHomeNavScreen extends StatefulWidget {
-  const PharmacyHomeNavScreen({super.key});
+class LabHomeNavScreen extends StatefulWidget {
+  const LabHomeNavScreen({super.key});
 
   @override
-  PharmacyHomeNavScreenState createState() => PharmacyHomeNavScreenState();
+  LabHomeNavScreenState createState() => LabHomeNavScreenState();
 }
 
-class PharmacyHomeNavScreenState extends State<PharmacyHomeNavScreen> {
+class LabHomeNavScreenState extends State<LabHomeNavScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    HomePharmacy(),
-    MedicineLookup(),
-    ChatScreen(),
-    MedicationOrders(),
-    ProfileScreen(),
+    const HomeLabScreen(),
+    const DrugInfoScreen(),
+    const ChatScreen(),
+    Report(),
+    const ProfileLabScreen(),
   ];
 
   @override
@@ -37,26 +41,20 @@ class PharmacyHomeNavScreenState extends State<PharmacyHomeNavScreen> {
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: AppColor.transparent,
         color: AppColor.mainPink,
-        buttonBackgroundColor: AppColor.mainBlue,
+        buttonBackgroundColor: AppColor.mainPink,
         animationDuration: Duration(milliseconds: 300),
-        height: 60.sp,
+        height: ResponsiveHelper.isMobile(context) ? 60 : 75,
         index: _selectedIndex,
         items: [
+          Icon(Icons.home, size: 25.sp, color: AppColor.white),
+          Icon(Icons.info, size: 25.sp, color: AppColor.white),
           SvgPicture.asset(
-            AppAssets.homeIcon,
-            colorFilter: ColorFilter.mode(AppColor.white, BlendMode.srcIn),
+            AppAssets.chatSvg,
             height: 25.sp,
+            width: 25.sp,
+            colorFilter: ColorFilter.mode(AppColor.white, BlendMode.srcIn),
           ),
-          Icon(Icons.notifications, size: 25.sp, color: AppColor.white),
-          SvgPicture.asset(
-            AppAssets.homeIcon,
-            colorFilter: ColorFilter.mode(
-              _selectedIndex == 2 ? AppColor.mainPink : AppColor.mainBlue,
-              BlendMode.srcIn,
-            ),
-            height: 32.sp,
-          ),
-          Icon(Icons.medical_services, size: 25.sp, color: AppColor.white),
+          Icon(Icons.analytics, size: 25.sp, color: AppColor.white),
           Icon(Icons.person, size: 25.sp, color: AppColor.white),
         ],
         onTap: (index) {
