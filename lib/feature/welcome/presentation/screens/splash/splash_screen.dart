@@ -25,7 +25,7 @@ class SplashScreenState extends State<SplashScreen> {
 
   Future<void> navigateToNextScreen() async {
     await Future.delayed(const Duration(seconds: 3));
-    context.pushReplacement(const PatientHomeNavScreen());
+    context.pushReplacement(const IntroScreen());
     if (token != null) {
       // if (SharedHelper.get(SharedKeys.role) == "patient") {
       //   context.pushReplacement(const PatientHomeNavScreen());

@@ -7,9 +7,15 @@ import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:healthy_sync/feature/patients/home/data/models/doctor_visit.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key});
+  final DoctorVisit visit;
+
+  const ChatScreen({
+    super.key,
+    this.visit = DoctorVisit.lastVisit,
+  });
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -23,18 +29,18 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    // إضافة رسائل تجريبية مع تغيير الترتيب
+    // إضافة رسائل تجريبية باستخدام بيانات الزيارة
     messages = [
-      {
-        'text': 'نعم بالتأكيد، ما هو الوقت المناسب لك؟',
-        'sender': 'user',
-        'time': '09:34',
-        'isRead': true,
-      },
       {
         'text': 'مرحباً، هل يمكنني تحديد موعد معك غداً؟',
         'sender': 'me',
         'time': '09:30',
+        'isRead': true,
+      },
+      {
+        'text': 'نعم بالتأكيد، ما هو الوقت المناسب لك؟',
+        'sender': 'user',
+        'time': '09:34',
         'isRead': true,
       },
     ];
@@ -104,16 +110,7 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              AppColor.mainBlue.withOpacity(0.05),
-              Colors.white,
-            ],
-          ),
-        ),
+        decoration: BoxDecoration(color: AppColor.white),
         child: SafeArea(
           child: Column(
             children: [
@@ -145,7 +142,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               height: 32.sp,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Colors.white.withOpacity(0.2),
+                                color: AppColor.mainBlue.withOpacity(0.1),
                               ),
                               child: Icon(
                                 Icons.person_outline_rounded,
@@ -176,10 +173,11 @@ class _ChatScreenState extends State<ChatScreen> {
                                 ),
                                 boxShadow: [
                                   BoxShadow(
-                                    color:
-                                        (isMe ? AppColor.mainBlue : Colors.grey)
-                                            .withOpacity(0.1),
-                                    blurRadius: 8,
+                                    color: (isMe
+                                            ? AppColor.mainBlue
+                                            : AppColor.grey)
+                                        .withOpacity(0.4),
+                                    blurRadius: 16,
                                     offset: const Offset(0, 2),
                                   ),
                                 ],

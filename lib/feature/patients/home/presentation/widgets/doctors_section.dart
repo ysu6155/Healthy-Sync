@@ -63,7 +63,7 @@ class _DoctorsSectionState extends State<DoctorsSection> {
             crossAxisSpacing: 12.w,
             mainAxisSpacing: 12.h,
             childAspectRatio:
-                ResponsiveHelper.isMobile(context) ? 3.6.sp : 2.sp,
+                ResponsiveHelper.isMobile(context) ? 3.1.sp : 2.sp,
           ),
           itemBuilder: (context, index) {
             dynamic doctor = doctors[index];

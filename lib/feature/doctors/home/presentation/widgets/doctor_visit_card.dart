@@ -5,6 +5,7 @@ import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
+import 'package:healthy_sync/feature/patients/home/data/models/doctor_visit.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/screens/doctor_visit_screen.dart';
 
 class DoctorVisitCard extends StatefulWidget {
@@ -38,11 +39,13 @@ class _DoctorVisitCardState extends State<DoctorVisitCard> {
         ],
       ),
     ).withTapEffect(
-      onTap:
-          () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const DoctorVisitScreen()),
-          ),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const DoctorVisitScreen(
+                  visit: DoctorVisit.lastVisit,
+                )),
+      ),
     );
   }
 

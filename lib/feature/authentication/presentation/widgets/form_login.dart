@@ -142,7 +142,7 @@ class FormLogin extends StatelessWidget {
               CustomButton(
                 name: LocaleKeys.login.tr(),
                 onTap: () {
-                   context.pushAndRemoveUntil(const PatientHomeNavScreen());
+                  context.pushAndRemoveUntil(const PatientHomeNavScreen());
                   // loginCubit.login(
                   //   RegisterParams(
                   //     phone: loginCubit.emailController.text,

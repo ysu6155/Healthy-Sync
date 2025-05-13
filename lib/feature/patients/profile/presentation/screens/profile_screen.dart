@@ -200,23 +200,23 @@ class _ProfilePatientScreenState extends State<ProfilePatientScreen> {
                     },
                     icon: Icons.medical_services,
                   ),
-                  if (SharedHelper.get(SharedKeys.gender) == "female")
-                    ProfileItem(
-                      title: "هيّا ",
-                      icon: Icons.monitor_weight,
-                      onTap: () => {
-                        context.push(
-                          MultiProvider(
-                            providers: [
-                              ChangeNotifierProvider(
-                                create: (_) => CycleProvider(),
-                              ),
-                            ],
-                            child: const WomanCycleScreen(),
-                          ),
+                  // if (SharedHelper.get(SharedKeys.gender) == "female")
+                  ProfileItem(
+                    title: "هيّا ",
+                    icon: Icons.monitor_weight,
+                    onTap: () => {
+                      context.push(
+                        MultiProvider(
+                          providers: [
+                            ChangeNotifierProvider(
+                              create: (_) => CycleProvider(),
+                            ),
+                          ],
+                          child: const WomanCycleScreen(),
                         ),
-                      },
-                    ),
+                      ),
+                    },
+                  ),
                   // if (SharedHelper.get(SharedKeys.gender) == "male")
                   ProfileItem(
                     title: "BMI الكتل العضليه",

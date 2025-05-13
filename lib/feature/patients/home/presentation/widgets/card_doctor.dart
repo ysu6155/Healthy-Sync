@@ -17,79 +17,99 @@ class CardDoctor extends StatelessWidget {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            AppColor.mainBlue,
-            AppColor.mainBlue.withOpacity(0.85),
+            const Color(0xFFF8FAFC), // لون أبيض فاتح جداً
+            const Color(0xFFF1F5F9), // لون رمادي فاتح جداً
+            const Color(0xFFE2E8F0), // لون رمادي فاتح
           ],
+          stops: const [0.0, 0.5, 1.0],
         ),
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-            color: AppColor.mainBlue.withOpacity(0.15),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
+            color: const Color(0xFFCBD5E0).withOpacity(0.3),
+            blurRadius: 15,
+            offset: const Offset(0, 8),
+            spreadRadius: 2,
+          ),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 6,
+            offset: const Offset(0, 3),
           ),
         ],
       ),
       child: Stack(
         children: [
-          // عناصر زخرفية
+          // عناصر زخرفية محسنة
           Positioned(
-            right: -15.w,
-            top: -15.h,
+            right: -20.w,
+            top: -20.h,
             child: Container(
-              width: 70.w,
-              height: 70.h,
+              width: 100.w,
+              height: 100.h,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.1),
+                gradient: RadialGradient(
+                  colors: [
+                    const Color(0xFFE2E8F0).withOpacity(0.4),
+                    const Color(0xFFE2E8F0).withOpacity(0.1),
+                  ],
+                  stops: const [0.3, 1.0],
+                ),
               ),
             ),
           ),
           Positioned(
-            left: -10.w,
-            bottom: -10.h,
+            left: -15.w,
+            bottom: -15.h,
             child: Container(
-              width: 50.w,
-              height: 50.h,
+              width: 80.w,
+              height: 80.h,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.1),
+                gradient: RadialGradient(
+                  colors: [
+                    const Color(0xFFE2E8F0).withOpacity(0.4),
+                    const Color(0xFFE2E8F0).withOpacity(0.1),
+                  ],
+                  stops: const [0.3, 1.0],
+                ),
               ),
             ),
           ),
           // محتوى البطاقة
           Padding(
-            padding: EdgeInsets.all(12.sp),
+            padding: EdgeInsets.all(16.sp),
             child: Row(
               children: [
-                // صورة الطبيب
+                // صورة الطبيب مع تحسين الإطار
                 Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(14.r),
+                    borderRadius: BorderRadius.circular(18.r),
                     border: Border.all(
-                      color: Colors.white.withOpacity(0.2),
+                      color: const Color(0xFFCBD5E0).withOpacity(0.6),
                       width: 2,
                     ),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.1),
-                        blurRadius: 8,
-                        offset: const Offset(0, 2),
+                        blurRadius: 10,
+                        offset: const Offset(0, 5),
                       ),
                     ],
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12.r),
+                    borderRadius: BorderRadius.circular(16.r),
                     child: CachedNetworkImage(
                       imageUrl: doctor["image"]!,
-                      height: 70.sp,
-                      width: 70.sp,
+                      height: 75.sp,
+                      width: 75.sp,
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                12.W,
-                // معلومات الطبيب
+                16.W,
+                // معلومات الطبيب مع تحسين التصميم
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,30 +118,41 @@ class CardDoctor extends StatelessWidget {
                       Text(
                         doctor["name"]!,
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16.sp,
+                          color: const Color(0xFF1E293B),
+                          fontSize: 17.sp,
                           fontWeight: FontWeight.bold,
                           height: 1.2,
+                          letterSpacing: 0.2,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      4.H,
+                      6.H,
                       Container(
                         padding: EdgeInsets.symmetric(
-                          horizontal: 8.sp,
-                          vertical: 4.sp,
+                          horizontal: 10.sp,
+                          vertical: 5.sp,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.15),
-                          borderRadius: BorderRadius.circular(6.r),
+                          gradient: LinearGradient(
+                            colors: [
+                              const Color(0xFFE2E8F0).withOpacity(0.6),
+                              const Color(0xFFE2E8F0).withOpacity(0.4),
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(8.r),
+                          border: Border.all(
+                            color: const Color(0xFFCBD5E0).withOpacity(0.6),
+                            width: 1,
+                          ),
                         ),
                         child: Text(
                           doctor["specialty"]!,
                           style: TextStyle(
-                            color: Colors.white,
+                            color: const Color(0xFF475569),
                             fontSize: 13.sp,
                             fontWeight: FontWeight.w500,
+                            letterSpacing: 0.1,
                           ),
                         ),
                       ),
@@ -129,29 +160,45 @@ class CardDoctor extends StatelessWidget {
                     ],
                   ),
                 ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.star_rounded,
-                      color: AppColor.amber,
-                      size: 16.sp,
+                // تقييم الطبيب مع تحسين التصميم
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10.sp,
+                    vertical: 6.sp,
+                  ),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        const Color(0xFFE2E8F0).withOpacity(0.6),
+                        const Color(0xFFE2E8F0).withOpacity(0.4),
+                      ],
                     ),
-                    4.W,
-                    Text(
-                      "${doctor["rating"] ?? 0}",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    8.W,
-                    Container(
+                    borderRadius: BorderRadius.circular(10.r),
+                    border: Border.all(
+                      color: const Color(0xFFCBD5E0).withOpacity(0.6),
                       width: 1,
-                      height: 12.sp,
-                      color: Colors.white.withOpacity(0.3),
                     ),
-                  ],
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.star_rounded,
+                        color: AppColor.amber,
+                        size: 18.sp,
+                      ),
+                      4.W,
+                      Text(
+                        "${doctor["rating"] ?? 0}",
+                        style: TextStyle(
+                          color: const Color(0xFF475569),
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.2,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

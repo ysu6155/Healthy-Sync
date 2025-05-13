@@ -15,32 +15,25 @@ class SpecializationsAll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.white,
+      // backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
         toolbarHeight: 56.sp,
         title: Text(
           LocaleKeys.specializations.tr(),
           style: TextStyle(
-            fontSize: 17.sp,
+            color: const Color(0xFF1E293B),
+            fontSize: 20.sp,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            letterSpacing: 0.2,
           ),
         ),
-        iconTheme: IconThemeData(color: AppColor.white, size: 22.sp),
-        backgroundColor: AppColor.mainBlue,
+        iconTheme: IconThemeData(
+          color: const Color(0xFF1E293B),
+          size: 24.sp,
+        ),
+        backgroundColor: const Color(0xFFF8FAFC),
         elevation: 0,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                AppColor.mainBlue,
-                AppColor.mainBlue.withOpacity(0.85),
-              ],
-            ),
-          ),
-        ),
+        centerTitle: true,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,9 +104,9 @@ class SpecializationsAll extends StatelessWidget {
               itemCount: specializations.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 12.w,
-                mainAxisSpacing: 12.h,
-                childAspectRatio: 1.1,
+                crossAxisSpacing: 16.w,
+                mainAxisSpacing: 16.h,
+                childAspectRatio: 0.85,
               ),
               itemBuilder: (context, index) {
                 return InkWell(
@@ -130,31 +123,63 @@ class SpecializationsAll extends StatelessWidget {
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
                         colors: [
-                          AppColor.mainBlue,
-                          AppColor.mainBlue.withOpacity(0.85),
+                          const Color(0xFFF8FAFC),
+                          const Color(0xFFF1F5F9),
+                          const Color(0xFFE2E8F0),
                         ],
+                        stops: const [0.0, 0.5, 1.0],
                       ),
-                      borderRadius: BorderRadius.circular(16.r),
+                      borderRadius: BorderRadius.circular(20.r),
                       boxShadow: [
                         BoxShadow(
-                          color: AppColor.mainBlue.withOpacity(0.1),
-                          blurRadius: 8,
-                          offset: const Offset(0, 4),
+                          color: const Color(0xFFCBD5E0).withOpacity(0.3),
+                          blurRadius: 15,
+                          offset: const Offset(0, 8),
+                          spreadRadius: 2,
+                        ),
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.05),
+                          blurRadius: 6,
+                          offset: const Offset(0, 3),
                         ),
                       ],
                     ),
                     child: Stack(
                       children: [
-                        // عناصر زخرفية
+                        // عناصر زخرفية محسنة
                         Positioned(
-                          right: -10.w,
-                          top: -10.h,
+                          right: -20.w,
+                          top: -20.h,
                           child: Container(
-                            width: 60.w,
-                            height: 60.h,
+                            width: 100.w,
+                            height: 100.h,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Colors.white.withOpacity(0.1),
+                              gradient: RadialGradient(
+                                colors: [
+                                  const Color(0xFFE2E8F0).withOpacity(0.4),
+                                  const Color(0xFFE2E8F0).withOpacity(0.1),
+                                ],
+                                stops: const [0.3, 1.0],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          left: -15.w,
+                          bottom: -15.h,
+                          child: Container(
+                            width: 80.w,
+                            height: 80.h,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: RadialGradient(
+                                colors: [
+                                  const Color(0xFFE2E8F0).withOpacity(0.4),
+                                  const Color(0xFFE2E8F0).withOpacity(0.1),
+                                ],
+                                stops: const [0.3, 1.0],
+                              ),
                             ),
                           ),
                         ),
@@ -165,25 +190,35 @@ class SpecializationsAll extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                padding: EdgeInsets.all(12.sp),
+                                padding: EdgeInsets.all(16.sp),
                                 decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.15),
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      const Color(0xFFE2E8F0).withOpacity(0.6),
+                                      const Color(0xFFE2E8F0).withOpacity(0.4),
+                                    ],
+                                  ),
                                   shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: const Color(0xFFCBD5E0)
+                                        .withOpacity(0.6),
+                                    width: 1,
+                                  ),
                                 ),
                                 child: Icon(
                                   specializations[index]['icon'] as IconData,
-                                  color: Colors.white,
-                                  size: 28.sp,
+                                  size: 32.sp,
+                                  color: const Color(0xFF475569),
                                 ),
                               ),
-                              12.H,
+                              SizedBox(height: 12.h),
                               Text(
                                 specializations[index]['name'] as String,
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: const Color(0xFF1E293B),
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 15.sp,
-                                  height: 1.2,
+                                  letterSpacing: 0.1,
                                 ),
                                 textAlign: TextAlign.center,
                                 maxLines: 2,
