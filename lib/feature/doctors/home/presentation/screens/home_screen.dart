@@ -12,6 +12,7 @@ import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/screens/patient_details_screen.dart';
 import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/widgets/card_patient.dart';
 
 class HomeDoctorScreen extends StatefulWidget {
   const HomeDoctorScreen({super.key});
@@ -160,7 +161,8 @@ class _HomeDoctorScreenState extends State<HomeDoctorScreen> {
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 1,
-              childAspectRatio: 3.1,
+              childAspectRatio:
+                  ResponsiveHelper.isMobile(context) ? 2.6.sp : 1.4.sp,
               mainAxisSpacing: 16.h,
               crossAxisSpacing: 16.w,
             ),
@@ -177,69 +179,7 @@ class _HomeDoctorScreenState extends State<HomeDoctorScreen> {
                     ),
                   );
                 },
-                child: Container(
-                  padding: EdgeInsets.all(16.sp),
-                  decoration: BoxDecoration(
-                    color: AppColor.mainBlue,
-                    borderRadius: BorderRadius.circular(16.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColor.grey.withValues(alpha: 0.3),
-                        spreadRadius: 2,
-                        blurRadius: 4,
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 80.r,
-                        height: 80.r,
-                        decoration: BoxDecoration(
-                          color: AppColor.white,
-                          borderRadius: BorderRadius.circular(16.r),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16.r),
-                          child: CachedNetworkImage(
-                            imageUrl: patient.image ?? '',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      16.W,
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              patient.name ?? '',
-                              style: TextStyles.font20WhiteBold,
-                            ),
-                            Text(
-                              "${patient.age} سنة",
-                              style: TextStyles.font16WhiteW500,
-                            ),
-                            Text("ذكر", style: TextStyles.font16WhiteW500),
-                          ],
-                        ),
-                      ),
-                      16.W,
-                      Container(
-                        width: 40.r,
-                        height: 40.r,
-                        decoration: BoxDecoration(
-                          color: AppColor.transparent,
-                          borderRadius: BorderRadius.circular(16.r),
-                        ),
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          color: AppColor.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                child: CardPatient(patient: patient),
               );
             },
           ),

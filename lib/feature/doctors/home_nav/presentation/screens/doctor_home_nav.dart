@@ -1,4 +1,5 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -43,19 +44,36 @@ class DoctorHomeNavScreenState extends State<DoctorHomeNavScreen> {
         color: AppColor.mainPink,
         buttonBackgroundColor: AppColor.mainPink,
         animationDuration: Duration(milliseconds: 300),
-        height: ResponsiveHelper.isMobile(context) ? 60 : 75,
+        height: ResponsiveHelper.isMobile(context) ? 60 : 100,
         index: _selectedIndex,
         items: [
-          Icon(Icons.home, size: 25.sp, color: AppColor.white),
-          Icon(Icons.notifications, size: 25.sp, color: AppColor.white),
-          SvgPicture.asset(
-            AppAssets.chatSvg,
-            height: 25.sp,
-            width: 25.sp,
-            colorFilter: ColorFilter.mode(AppColor.white, BlendMode.srcIn),
+          CurvedNavigationBarItem(
+            child: Icon(Icons.home, size: 25.sp, color: AppColor.white),
+            // label: 'Home',
           ),
-          Icon(Icons.calendar_month, size: 25.sp, color: AppColor.white),
-          Icon(Icons.person, size: 25.sp, color: AppColor.white),
+          CurvedNavigationBarItem(
+            child:
+                Icon(Icons.notifications, size: 25.sp, color: AppColor.white),
+            // label: 'Notifications',
+          ),
+          CurvedNavigationBarItem(
+            child: SvgPicture.asset(
+              AppAssets.chatSvg,
+              height: 25.sp,
+              width: 25.sp,
+              colorFilter: ColorFilter.mode(AppColor.white, BlendMode.srcIn),
+            ),
+            //  label: 'Chat',
+          ),
+          CurvedNavigationBarItem(
+            child:
+                Icon(Icons.calendar_month, size: 25.sp, color: AppColor.white),
+            //  label: 'Calendar',
+          ),
+          CurvedNavigationBarItem(
+            child: Icon(Icons.person, size: 25.sp, color: AppColor.white),
+            //  label: 'Profile',
+          ),
         ],
         onTap: (index) {
           setState(() {

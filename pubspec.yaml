@@ -47,6 +47,7 @@ dependencies:
   shared_preferences: ^2.2.3
   shimmer: ^3.0.0
   smooth_page_indicator: ^1.2.1
+  curved_labeled_navigation_bar: ^2.0.6
 
 # build_runner: ^2.4.7
 dev_dependencies:
