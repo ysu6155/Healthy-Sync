@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
+import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 
 class XrayDetailsScreen extends StatelessWidget {
   final Map<String, dynamic> xrayData;
@@ -80,7 +81,7 @@ class XrayDetailsScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
         title: Text(
-          "تفاصيل الأشعة",
+          LocaleKeys.xrayDetails.tr(),
           style: TextStyles.font16DarkBlueW500,
         ),
         backgroundColor: AppColor.white,
@@ -109,27 +110,27 @@ class XrayDetailsScreen extends StatelessWidget {
             24.H,
             // معلومات الأشعة
             _buildInfoSection(
-              title: "معلومات الفحص",
+              title: LocaleKeys.examInfo.tr(),
               children: [
                 _buildInfoRow(
                   icon: Icons.medical_information_outlined,
-                  title: "نوع الأشعة",
+                  title: LocaleKeys.xrayType.tr(),
                   value: xrayData['type'] ?? '',
                   color: _getTypeColor(xrayData['type']),
                 ),
                 _buildInfoRow(
                   icon: Icons.description_outlined,
-                  title: "وصف الفحص",
+                  title: LocaleKeys.examDescription.tr(),
                   value: xrayData['description'] ?? '',
                 ),
                 _buildInfoRow(
                   icon: Icons.calendar_today_outlined,
-                  title: "تاريخ الفحص",
+                  title: LocaleKeys.examDate.tr(),
                   value: xrayData['date'] ?? '',
                 ),
                 _buildInfoRow(
                   icon: Icons.person_outline,
-                  title: "الطبيب",
+                  title: LocaleKeys.doctor.tr(),
                   value: xrayData['doctor'] ?? '',
                 ),
               ],
@@ -137,7 +138,7 @@ class XrayDetailsScreen extends StatelessWidget {
             24.H,
             // النتائج
             _buildInfoSection(
-              title: "النتائج",
+              title: LocaleKeys.results.tr(),
               children: [
                 Container(
                   padding: EdgeInsets.all(16.sp),
@@ -160,7 +161,7 @@ class XrayDetailsScreen extends StatelessWidget {
                           ),
                           8.W,
                           Text(
-                            "الحالة",
+                            LocaleKeys.status.tr(),
                             style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.w600,
@@ -197,9 +198,13 @@ class XrayDetailsScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8.r),
                   ),
                 ),
-                icon: Icon(Icons.download_outlined, size: 20.sp),
+                icon: Icon(
+                  Icons.download_outlined,
+                  size: 20.sp,
+                  color: AppColor.white,
+                ),
                 label: Text(
-                  "تحميل التقرير",
+                  LocaleKeys.downloadReport.tr(),
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w600,

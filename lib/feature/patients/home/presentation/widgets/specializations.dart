@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
+import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/feature/patients/home/data/data.dart';
 
 import 'package:healthy_sync/feature/patients/home/presentation/screens/doctors_by_specialty_screen.dart';
@@ -108,14 +110,14 @@ class SpecializationsSection extends StatelessWidget {
                             ),
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: const Color(0xFFCBD5E0).withOpacity(0.6),
+                              color: AppColor.mainBlue.withOpacity(0.6),
                               width: 1,
                             ),
                           ),
                           child: Icon(
                             specializations[index]['icon'] as IconData,
                             size: 24.sp,
-                            color: const Color(0xFF475569),
+                            color: AppColor.mainBlue,
                           ),
                         ),
                         SizedBox(height: 8.h),

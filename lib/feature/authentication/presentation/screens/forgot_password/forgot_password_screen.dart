@@ -28,6 +28,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return Scaffold(
       backgroundColor: AppColor.white,
       appBar: AppBar(
+        toolbarHeight: 48.sp,
         centerTitle: true,
         iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
         backgroundColor: AppColor.mainPink,
@@ -39,6 +40,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
+            spacing: 12.sp,
             children: [
               Image.asset(
                 AppAssets.forgotPassword,
@@ -46,19 +48,25 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 height: 130.sp,
                 fit: BoxFit.cover,
               ),
-              32.H,
+              24.H,
               Form(
                 key: formKey,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 16.sp,
                   children: [
-                    16.H,
+                    Text(
+                      LocaleKeys.enterYourEmailOrPhone.tr(),
+                      style: TextStyles.font16DarkBlueW500.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     CustomTextField(
                       controller: email,
-                      labelText: LocaleKeys.emailPhone.tr(),
-                      labelStyle: TextStyles.font12DarkBlueW400,
-
+                      // labelText: LocaleKeys.emailPhone.tr(),
+                      // labelStyle: TextStyles.font12DarkBlueW400,
                       floatingLabelBehavior: FloatingLabelBehavior.always,
-                      hintText: LocaleKeys.enterYourEmailOrPhone.tr(),
+                      hintText: LocaleKeys.exampleEmail.tr(),
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -67,7 +75,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         return null;
                       },
                     ),
-                    32.H,
+                    4.H,
                     CustomButton(
                       name: LocaleKeys.sendCode.tr(),
                       onTap: () {
@@ -79,10 +87,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   ],
                 ),
               ),
-              32.H,
-              //AnimatedCard(),
-              32.H,
-              CyberCard(),
             ],
           ).paddingAll(16.sp),
         ),

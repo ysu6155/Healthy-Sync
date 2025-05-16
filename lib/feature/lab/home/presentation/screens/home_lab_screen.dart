@@ -30,11 +30,10 @@ class _HomeLabScreenState extends State<HomeLabScreen> {
             children: [
               CircleAvatar(
                 radius: 30.r,
-                backgroundImage:
-                    Image.network(
-                      "https://b.top4top.io/p_3401vpliv1.jpg",
-                      fit: BoxFit.cover,
-                    ).image,
+                backgroundImage: Image.network(
+                  "https://b.top4top.io/p_3401vpliv1.jpg",
+                  fit: BoxFit.cover,
+                ).image,
               ),
               16.W,
               Expanded(
@@ -173,9 +172,8 @@ class _HomeLabScreenState extends State<HomeLabScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder:
-                          (context) =>
-                              LabPatientDetailsScreen(patient: patient),
+                      builder: (context) =>
+                          LabPatientDetailsScreen(patient: patient),
                     ),
                   );
                 },

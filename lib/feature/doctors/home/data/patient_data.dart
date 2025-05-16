@@ -66,5 +66,4 @@ final List<Patient> patients = [
     currentMedications: ['أملوديبين 5 مجم'],
     surgicalHistory: ['عملية كسر في الساق - 2019'],
   ),
- 
 ];

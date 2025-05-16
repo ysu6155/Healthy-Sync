@@ -32,10 +32,9 @@ class _DoctorsBySpecialtyScreenState extends State<DoctorsBySpecialtyScreen> {
 
   void filterDoctors() {
     // بص يا جو، هنا بنفلتر الدكاترة اللي تخصصهم بيساوي التخصص المختار
-    filteredDoctors =
-        doctors
-            .where((doctor) => doctor['specialty'] == selectedSpecialty)
-            .toList();
+    filteredDoctors = doctors
+        .where((doctor) => doctor['specialty'] == selectedSpecialty)
+        .toList();
   }
 
   @override
@@ -56,36 +55,35 @@ class _DoctorsBySpecialtyScreenState extends State<DoctorsBySpecialtyScreen> {
         iconTheme: IconThemeData(color: AppColor.white, size: 16.sp),
         backgroundColor: AppColor.mainBlue,
       ),
-      body:
-          filteredDoctors.isEmpty
-              ? Center(
-                child: Text(
-                  "لا يوجد أطباء لهذا التخصص",
-                  style: TextStyles.font16DarkBlueW500,
-                ),
-              )
-              : GridView.builder(
-                itemCount: filteredDoctors.length,
-                padding: EdgeInsets.symmetric(
-                  horizontal: 16.sp,
-                  vertical: 16.w,
-                ),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  crossAxisSpacing: 16.w,
-                  mainAxisSpacing: 16.sp,
-                  childAspectRatio:
-                      ResponsiveHelper.isMobile(context) ? 3.5.sp : 2.sp,
-                ),
-                itemBuilder: (context, index) {
-                  final doctor = filteredDoctors[index];
-                  return CardDoctor(doctor: doctor, index: index).withTapEffect(
-                    onTap: () {
-                      context.push(DoctorDetails(doctor: doctor));
-                    },
-                  );
-                },
+      body: filteredDoctors.isEmpty
+          ? Center(
+              child: Text(
+                "لا يوجد أطباء لهذا التخصص",
+                style: TextStyles.font16DarkBlueW500,
               ),
+            )
+          : GridView.builder(
+              itemCount: filteredDoctors.length,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16.sp,
+                vertical: 16.w,
+              ),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 1,
+                crossAxisSpacing: 16.w,
+                mainAxisSpacing: 16.sp,
+                childAspectRatio:
+                    ResponsiveHelper.isMobile(context) ? 3.1.sp : 1.6.sp,
+              ),
+              itemBuilder: (context, index) {
+                final doctor = filteredDoctors[index];
+                return CardDoctor(doctor: doctor, index: index).withTapEffect(
+                  onTap: () {
+                    context.push(DoctorDetails(doctor: doctor));
+                  },
+                );
+              },
+            ),
     );
   }
 }

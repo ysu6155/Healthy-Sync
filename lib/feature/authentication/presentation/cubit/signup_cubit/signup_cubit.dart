@@ -179,8 +179,9 @@ class SignUpCubit extends Cubit<SignUpState> {
       SharedHelper.sava(SharedKeys.name, result.data?.newUser?.name);
       SharedHelper.sava(SharedKeys.email, result.data?.newUser?.email);
       SharedHelper.sava(SharedKeys.gender, result.data?.newUser?.gender);
-      SharedHelper.sava(SharedKeys.dateOfBirth, result.data?.newUser?.dateOfBirth);
-      
+      SharedHelper.sava(
+          SharedKeys.dateOfBirth, result.data?.newUser?.dateOfBirth);
+
       emit(SignUpSuccess());
     } catch (e) {
       emit(SignUpError(e.toString()));

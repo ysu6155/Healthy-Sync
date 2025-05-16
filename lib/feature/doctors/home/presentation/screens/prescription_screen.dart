@@ -81,22 +81,20 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
   }
 
   void _savePrescription() {
-    final medications =
-        _medications
-            .map(
-              (med) => Medication(
-                name: med['name']!.text,
-                dosage: med['dosage']!.text,
-                duration: med['duration']!.text,
-              ),
-            )
-            .toList();
+    final medications = _medications
+        .map(
+          (med) => Medication(
+            name: med['name']!.text,
+            dosage: med['dosage']!.text,
+            duration: med['duration']!.text,
+          ),
+        )
+        .toList();
 
-    final requiredTests =
-        _testControllers
-            .map((controller) => controller.text)
-            .where((test) => test.isNotEmpty)
-            .toList();
+    final requiredTests = _testControllers
+        .map((controller) => controller.text)
+        .where((test) => test.isNotEmpty)
+        .toList();
 
     final prescription = Prescription(
       id: DateTime.now().millisecondsSinceEpoch.toString(),

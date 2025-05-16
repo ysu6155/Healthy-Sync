@@ -82,13 +82,12 @@ class PatientDetailsScreen extends StatelessWidget {
                         width: 100.w,
                         height: 100.h,
                         fit: BoxFit.cover,
-                        placeholder:
-                            (context, url) => Container(
-                              color: Colors.grey[200],
-                              child: Icon(Icons.person, size: 50.sp),
-                            ),
-                        errorWidget:
-                            (context, url, error) => const Icon(Icons.error),
+                        placeholder: (context, url) => Container(
+                          color: Colors.grey[200],
+                          child: Icon(Icons.person, size: 50.sp),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                       ),
                     ),
                   ),
@@ -185,9 +184,8 @@ class PatientDetailsScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder:
-                            (context) =>
-                                PrescriptionsListScreen(patient: patient),
+                        builder: (context) =>
+                            PrescriptionsListScreen(patient: patient),
                       ),
                     );
                   },

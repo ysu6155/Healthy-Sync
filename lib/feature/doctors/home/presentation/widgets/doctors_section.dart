@@ -28,7 +28,6 @@ class _DoctorsSectionState extends State<DoctorsSection> {
           style: TextStyles.font20WhiteBold.copyWith(color: AppColor.black),
         ),
         16.H,
-
         GridView.builder(
           itemCount: doctors.length,
           shrinkWrap: true,

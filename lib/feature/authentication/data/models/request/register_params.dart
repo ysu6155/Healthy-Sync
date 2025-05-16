@@ -12,21 +12,19 @@ class RegisterParams {
   List<String>? chronicDiseases;
   String? city;
 
-
-  RegisterParams({
-    this.name,
-    this.email,
-    this.phone,
-    this.password,
-    this.passwordConfirmation,
-    this.role,
-    this.specialization,
-    this.gender,
-    this.dateOfBirth,
-    this.profilePhoto,
-    this.chronicDiseases,
-    this.city
-  });
+  RegisterParams(
+      {this.name,
+      this.email,
+      this.phone,
+      this.password,
+      this.passwordConfirmation,
+      this.role,
+      this.specialization,
+      this.gender,
+      this.dateOfBirth,
+      this.profilePhoto,
+      this.chronicDiseases,
+      this.city});
 
   factory RegisterParams.fromJson(Map<String, dynamic> json) {
     return RegisterParams(
@@ -46,17 +44,17 @@ class RegisterParams {
   }
 
   Map<String, dynamic> toJson() => {
-    'name': name,
-    'email': email,
-    'phone': phone,
-    'password': password,
-    'password_confirmation': passwordConfirmation,
-    'role': role,
-    'specialization': specialization,
-    'gender': gender,
-    'date_of_birth': dateOfBirth,
-    'profilePhoto': profilePhoto,
-    'chronicDiseases': chronicDiseases,
-    'city': city
-  };
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'password': password,
+        'password_confirmation': passwordConfirmation,
+        'role': role,
+        'specialization': specialization,
+        'gender': gender,
+        'date_of_birth': dateOfBirth,
+        'profilePhoto': profilePhoto,
+        'chronicDiseases': chronicDiseases,
+        'city': city
+      };
 }

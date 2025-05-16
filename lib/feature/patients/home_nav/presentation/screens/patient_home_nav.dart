@@ -40,14 +40,12 @@ class PatientHomeNavScreenState extends State<PatientHomeNavScreen> {
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: AppColor.transparent,
         color: AppColor.mainBlue,
-
         buttonBackgroundColor: AppColor.mainBlue,
         animationDuration: Duration(milliseconds: 300),
         height: ResponsiveHelper.isMobile(context) ? 60 : 75,
         index: _selectedIndex,
         items: [
           Icon(Icons.home, size: 25.sp, color: AppColor.white),
-
           Icon(Icons.notifications, size: 25.sp, color: AppColor.white),
           SvgPicture.asset(
             AppAssets.chatSvg,

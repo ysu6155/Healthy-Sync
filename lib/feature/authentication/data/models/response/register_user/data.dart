@@ -6,11 +6,10 @@ class Data {
   Data({this.newUser});
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    newUser:
-        json['newUser'] == null
+        newUser: json['newUser'] == null
             ? null
             : NewUser.fromJson(json['newUser'] as Map<String, dynamic>),
-  );
+      );
 
   Map<String, dynamic> toJson() => {'newUser': newUser?.toJson()};
 }

@@ -42,7 +42,7 @@ class FormLogin extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 8.sp,
+            spacing: 16.sp,
             children: [
               16.H,
               Text(LocaleKeys.email.tr(), style: TextStyles.font20DarkBlueBold),
@@ -142,14 +142,14 @@ class FormLogin extends StatelessWidget {
               CustomButton(
                 name: LocaleKeys.login.tr(),
                 onTap: () {
-                  context.pushAndRemoveUntil(const PatientHomeNavScreen());
-                  // loginCubit.login(
-                  //   RegisterParams(
-                  //     phone: loginCubit.emailController.text,
-                  //     password: loginCubit.passwordController.text,
-                  //   ),
-                  //   context,
-                  // );
+                  // context.pushAndRemoveUntil(const PatientHomeNavScreen());
+                  loginCubit.login(
+                    RegisterParams(
+                      phone: loginCubit.emailController.text,
+                      password: loginCubit.passwordController.text,
+                    ),
+                    context,
+                  );
                 },
               ),
               Row(
@@ -161,7 +161,7 @@ class FormLogin extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      context.pushReplacement(SignUpScreen(userType: userType));
+                      context.push(SignUpScreen(userType: userType));
                     },
                     child: Text(
                       LocaleKeys.signUp.tr(),

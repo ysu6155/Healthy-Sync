@@ -59,73 +59,71 @@ class _ChronicDiseasesScreenState extends State<ChronicDiseasesScreen> {
         backgroundColor: AppColor.white,
         elevation: 0,
       ),
-      body:
-          _chronicDiseases.isEmpty
-              ? Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.medical_services,
-                      size: 60.sp,
-                      color: Colors.grey[400],
+      body: _chronicDiseases.isEmpty
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.medical_services,
+                    size: 60.sp,
+                    color: Colors.grey[400],
+                  ),
+                  SizedBox(height: 16.sp),
+                  Text(
+                    'لا توجد أمراض مسجلة',
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      color: Colors.grey[600],
                     ),
-                    SizedBox(height: 16.sp),
-                    Text(
-                      'لا توجد أمراض مسجلة',
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                  ],
-                ),
-              )
-              : ListView.builder(
-                padding: EdgeInsets.all(16.sp),
-                itemCount: _chronicDiseases.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    margin: EdgeInsets.only(bottom: 12.sp),
-                    elevation: 3,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                    child: ListTile(
-                      contentPadding: EdgeInsets.symmetric(
-                        horizontal: 16.sp,
-                        vertical: 16.sp,
-                      ),
-                      leading: Container(
-                        padding: EdgeInsets.all(8.sp),
-                        decoration: BoxDecoration(
-                          color: AppColor.mainBlue.withOpacity(0.1),
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(
-                          Icons.medical_services,
-                          color: AppColor.mainBlue,
-                        ),
-                      ),
-                      title: Text(
-                        _chronicDiseases[index],
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      trailing: IconButton(
-                        icon: Icon(Icons.delete, color: Colors.red[400]),
-                        onPressed: () => _showDeleteDialog(index),
-                      ),
-                    ),
-                  );
-                },
+                  ),
+                ],
               ),
+            )
+          : ListView.builder(
+              padding: EdgeInsets.all(16.sp),
+              itemCount: _chronicDiseases.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  margin: EdgeInsets.only(bottom: 12.sp),
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 16.sp,
+                      vertical: 16.sp,
+                    ),
+                    leading: Container(
+                      padding: EdgeInsets.all(8.sp),
+                      decoration: BoxDecoration(
+                        color: AppColor.mainBlue.withOpacity(0.1),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.medical_services,
+                        color: AppColor.mainBlue,
+                      ),
+                    ),
+                    title: Text(
+                      _chronicDiseases[index],
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete, color: Colors.red[400]),
+                      onPressed: () => _showDeleteDialog(index),
+                    ),
+                  ),
+                );
+              },
+            ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColor.mainBlue,
         elevation: 4,
-
         onPressed: () => _showAddDiseaseDialog(),
         child: Icon(Icons.add, color: Colors.white, size: 28.sp),
       ),
@@ -145,7 +143,6 @@ class _ChronicDiseasesScreenState extends State<ChronicDiseasesScreen> {
               child: Column(
                 spacing: 16.sp,
                 mainAxisSize: MainAxisSize.min,
-
                 children: [
                   Text(
                     'إضافة مرض مزمن',
@@ -162,7 +159,6 @@ class _ChronicDiseasesScreenState extends State<ChronicDiseasesScreen> {
                       fillColor: AppColor.cardColor,
                       controller: _diseaseController,
                       hintText: "اسم المرض",
-
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'الرجاء إدخال اسم المرض';
@@ -171,7 +167,6 @@ class _ChronicDiseasesScreenState extends State<ChronicDiseasesScreen> {
                       },
                     ),
                   ),
-
                   Row(
                     children: [
                       Expanded(

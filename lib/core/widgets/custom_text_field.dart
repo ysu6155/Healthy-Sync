@@ -53,7 +53,7 @@ class CustomTextField extends StatelessWidget {
     this.contentPadding,
     this.isEnabled = true,
     this.iconColor,
-    this.suffixIcon, 
+    this.suffixIcon,
   });
 
   @override
@@ -82,14 +82,12 @@ class CustomTextField extends StatelessWidget {
         focusNode: focusNode,
         decoration: InputDecoration(
           isDense: true,
-          contentPadding:
-              contentPadding ??
+          contentPadding: contentPadding ??
               EdgeInsets.symmetric(horizontal: 20.sp, vertical: 18.h),
           filled: true,
           fillColor: fillColor ?? AppColor.white,
           hintStyle: hintTextStyle ?? TextStyles.font12GreyW400,
-          border:
-              border ??
+          border: border ??
               borderStyle(borderColor ?? AppColor.border, borderRadius ?? 16.r),
           focusedBorder: borderStyle(
             borderColor ?? AppColor.border,
@@ -103,38 +101,34 @@ class CustomTextField extends StatelessWidget {
           focusedErrorBorder: borderStyle(AppColor.red, borderRadius ?? 16.r),
           floatingLabelBehavior: floatingLabelBehavior,
           labelText: labelText,
-          labelStyle:
-              labelStyle ??
+          labelStyle: labelStyle ??
               TextStyle(
                 color: AppColor.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 16.sp,
               ),
           hintText: hintText,
-          prefixIcon:
-              icon != null
-                  ? Icon(icon, size: 25.sp, color: iconColor ?? AppColor.black)
-                  : null,
-          suffixIcon:
-              isPassword
-                  ? GestureDetector(
-                    onTap: togglePasswordVisibility,
-                    child: Icon(
-                      !isPasswordVisible
-                          ?  Icons.visibility_off
-                          :  Icons.visibility,
-                      size: 20.sp,
-                      color: AppColor.grey,
-                    ),
-                  )
-                  : null,
+          prefixIcon: icon != null
+              ? Icon(icon, size: 25.sp, color: iconColor ?? AppColor.black)
+              : null,
+          suffixIcon: isPassword
+              ? GestureDetector(
+                  onTap: togglePasswordVisibility,
+                  child: Icon(
+                    !isPasswordVisible
+                        ? Icons.visibility_off
+                        : Icons.visibility,
+                    size: 20.sp,
+                    color: AppColor.grey,
+                  ),
+                )
+              : null,
           errorStyle: TextStyles.font12BlueW400.copyWith(color: AppColor.red),
         ),
         style: TextStyles.font12BlueW400.copyWith(
           fontSize: ResponsiveHelper.isMobile(context) ? 16.sp : 24.sp,
           color: AppColor.black,
         ),
-
         validator: validator,
       ),
     );

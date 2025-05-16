@@ -141,16 +141,15 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final availableAppointments =
-        appointments
-            .where(
-              (appointment) =>
-                  appointment.status == 'available' &&
-                  appointment.date?.year == selectedDate.year &&
-                  appointment.date?.month == selectedDate.month &&
-                  appointment.date?.day == selectedDate.day,
-            )
-            .toList();
+    final availableAppointments = appointments
+        .where(
+          (appointment) =>
+              appointment.status == 'available' &&
+              appointment.date?.year == selectedDate.year &&
+              appointment.date?.month == selectedDate.month &&
+              appointment.date?.day == selectedDate.day,
+        )
+        .toList();
 
     return Scaffold(
       backgroundColor: Colors.grey[200],
@@ -210,26 +209,25 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                       Wrap(
                         spacing: 8.w,
                         runSpacing: 8.h,
-                        children:
-                            availableAppointments.map((appointment) {
-                              return Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 12.w,
-                                  vertical: 8.h,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: AppColor.mainBlue,
-                                  borderRadius: BorderRadius.circular(8.r),
-                                ),
-                                child: Text(
-                                  appointment.time ?? '',
-                                  style: TextStyle(
-                                    color: AppColor.white,
-                                    fontSize: 14.sp,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
+                        children: availableAppointments.map((appointment) {
+                          return Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 12.w,
+                              vertical: 8.h,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColor.mainBlue,
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
+                            child: Text(
+                              appointment.time ?? '',
+                              style: TextStyle(
+                                color: AppColor.white,
+                                fontSize: 14.sp,
+                              ),
+                            ),
+                          );
+                        }).toList(),
                       ),
                   ],
                 ),
@@ -287,51 +285,46 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                     Wrap(
                       spacing: 8.w,
                       runSpacing: 8.h,
-                      children:
-                          availableTimes.map((time) {
-                            final isSelected = selectedTimes.contains(time);
+                      children: availableTimes.map((time) {
+                        final isSelected = selectedTimes.contains(time);
 
-                            return InkWell(
-                              onTap: () {
-                                setState(() {
-                                  if (isSelected) {
-                                    selectedTimes.remove(time);
-                                  } else {
-                                    selectedTimes.add(time);
-                                  }
-                                });
-                              },
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 12.w,
-                                  vertical: 8.h,
-                                ),
-                                decoration: BoxDecoration(
-                                  color:
-                                      isSelected
-                                          ? AppColor.mainBlue
-                                          : Colors.white,
-                                  border: Border.all(
-                                    color:
-                                        isSelected
-                                            ? AppColor.mainBlue
-                                            : Colors.grey[300]!,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.r),
-                                ),
-                                child: Text(
-                                  time,
-                                  style: TextStyle(
-                                    color:
-                                        isSelected
-                                            ? AppColor.white
-                                            : Colors.grey[600],
-                                    fontSize: 14.sp,
-                                  ),
-                                ),
+                        return InkWell(
+                          onTap: () {
+                            setState(() {
+                              if (isSelected) {
+                                selectedTimes.remove(time);
+                              } else {
+                                selectedTimes.add(time);
+                              }
+                            });
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 12.w,
+                              vertical: 8.h,
+                            ),
+                            decoration: BoxDecoration(
+                              color:
+                                  isSelected ? AppColor.mainBlue : Colors.white,
+                              border: Border.all(
+                                color: isSelected
+                                    ? AppColor.mainBlue
+                                    : Colors.grey[300]!,
                               ),
-                            );
-                          }).toList(),
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
+                            child: Text(
+                              time,
+                              style: TextStyle(
+                                color: isSelected
+                                    ? AppColor.white
+                                    : Colors.grey[600],
+                                fontSize: 14.sp,
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
                     ),
                     if (selectedTimes.isNotEmpty) ...[
                       SizedBox(height: 24.h),

@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:healthy_sync/core/network/dio_helper.dart';
 import 'package:healthy_sync/core/network/end_points.dart';
 import 'package:healthy_sync/feature/authentication/data/models/request/register_params.dart';
-import 'package:healthy_sync/feature/authentication/data/models/response/login_user/login_user.dart';
+import 'package:healthy_sync/feature/authentication/data/models/response/loginuser/loginuser.dart';
 import 'package:healthy_sync/feature/authentication/data/models/response/register_user/register_user.dart';
 
 class AuthRepo {

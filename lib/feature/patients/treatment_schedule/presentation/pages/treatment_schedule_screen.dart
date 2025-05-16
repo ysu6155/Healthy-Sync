@@ -98,7 +98,6 @@ class _TreatmentScheduleScreenState extends State<TreatmentScheduleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.white,
-
       appBar: AppBar(
         toolbarHeight: 48.sp,
         backgroundColor: AppColor.white,
@@ -160,21 +159,18 @@ class _TreatmentScheduleScreenState extends State<TreatmentScheduleScreen> {
                         horizontal: 16.w,
                       ),
                       decoration: BoxDecoration(
-                        color:
-                            _currentTabIndex == 0
-                                ? AppColor.mainBlue
-                                : Colors.grey[300],
+                        color: _currentTabIndex == 0
+                            ? AppColor.mainBlue
+                            : Colors.grey[300],
                         borderRadius: BorderRadius.circular(8.r),
                       ),
-
                       child: Center(
                         child: Text(
                           'الأدوية',
                           style: TextStyle(
-                            color:
-                                _currentTabIndex == 0
-                                    ? AppColor.white
-                                    : AppColor.black,
+                            color: _currentTabIndex == 0
+                                ? AppColor.white
+                                : AppColor.black,
                             fontSize: 14.sp,
                           ),
                         ),
@@ -193,20 +189,17 @@ class _TreatmentScheduleScreenState extends State<TreatmentScheduleScreen> {
                       ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.r),
-                        color:
-                            _currentTabIndex == 1
-                                ? AppColor.mainBlue
-                                : Colors.grey[300],
+                        color: _currentTabIndex == 1
+                            ? AppColor.mainBlue
+                            : Colors.grey[300],
                       ),
-
                       child: Center(
                         child: Text(
                           'التحاليل',
                           style: TextStyle(
-                            color:
-                                _currentTabIndex == 1
-                                    ? AppColor.white
-                                    : AppColor.black,
+                            color: _currentTabIndex == 1
+                                ? AppColor.white
+                                : AppColor.black,
                             fontSize: 14.sp,
                           ),
                         ),
@@ -220,10 +213,9 @@ class _TreatmentScheduleScreenState extends State<TreatmentScheduleScreen> {
           SizedBox(height: 8.h),
           AnimatedSwitcher(
             duration: Duration(milliseconds: 300),
-            child:
-                _currentTabIndex == 0
-                    ? _buildMedicationsList()
-                    : _buildTestsList(),
+            child: _currentTabIndex == 0
+                ? _buildMedicationsList()
+                : _buildTestsList(),
           ),
 
           /// SizedBox(height: 60.h),
@@ -281,7 +273,6 @@ class _MedicationCard extends StatelessWidget {
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-
               children: [
                 Expanded(
                   flex: 10,
@@ -328,7 +319,6 @@ class _MedicationCard extends StatelessWidget {
                 else
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-
                     children: [
                       Text(
                         "تاكيد التناول",
@@ -338,7 +328,6 @@ class _MedicationCard extends StatelessWidget {
                           fontSize: 12.sp,
                         ),
                       ),
-
                       Row(
                         children: [
                           IconButton(
@@ -368,26 +357,25 @@ class _MedicationCard extends StatelessWidget {
                     color: AppColor.mainBlue.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12.r),
                   ),
-                  child:
-                      medication['type'] == "حبوب"
-                          ? SvgPicture.asset(
-                            AppAssets.pillsSvg,
-                            height: 20.sp,
-                            width: 20.sp,
-                            colorFilter: ColorFilter.mode(
-                              AppColor.mainBlueDark,
-                              BlendMode.srcIn,
-                            ),
-                          )
-                          : SvgPicture.asset(
-                            AppAssets.injectionSvg,
-                            height: 20.sp,
-                            width: 20.sp,
-                            colorFilter: ColorFilter.mode(
-                              AppColor.mainBlueDark,
-                              BlendMode.srcIn,
-                            ),
+                  child: medication['type'] == "حبوب"
+                      ? SvgPicture.asset(
+                          AppAssets.pillsSvg,
+                          height: 20.sp,
+                          width: 20.sp,
+                          colorFilter: ColorFilter.mode(
+                            AppColor.mainBlueDark,
+                            BlendMode.srcIn,
                           ),
+                        )
+                      : SvgPicture.asset(
+                          AppAssets.injectionSvg,
+                          height: 20.sp,
+                          width: 20.sp,
+                          colorFilter: ColorFilter.mode(
+                            AppColor.mainBlueDark,
+                            BlendMode.srcIn,
+                          ),
+                        ),
                 ),
               ],
             ),

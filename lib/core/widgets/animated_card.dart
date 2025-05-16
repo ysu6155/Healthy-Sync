@@ -70,14 +70,12 @@ class BorderPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint =
-        Paint()
-          ..shader = LinearGradient(
-            colors: [Color(0xFF00B7FF), Color(0xFFFF30FF)],
-          ).createShader(Rect.fromLTWH(0, 0, size.width, size.height))
-          ..strokeWidth =
-              5 // إرجاع سمك البورد
-          ..style = PaintingStyle.stroke;
+    final paint = Paint()
+      ..shader = LinearGradient(
+        colors: [Color(0xFF00B7FF), Color(0xFFFF30FF)],
+      ).createShader(Rect.fromLTWH(0, 0, size.width, size.height))
+      ..strokeWidth = 5 // إرجاع سمك البورد
+      ..style = PaintingStyle.stroke;
 
     final rect = Rect.fromLTWH(5, 5, size.width - 10, size.height - 10);
     final path = Path();

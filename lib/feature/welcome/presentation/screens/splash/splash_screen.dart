@@ -6,6 +6,7 @@ import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/feature/doctors/home_nav/presentation/screens/doctor_home_nav.dart';
 import 'package:healthy_sync/feature/lab/home_nav/presentation/screens/lab_nav.dart';
 import 'package:healthy_sync/feature/patients/home_nav/presentation/screens/patient_home_nav.dart';
+
 import 'package:healthy_sync/feature/welcome/presentation/screens/intro/intro_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -25,17 +26,17 @@ class SplashScreenState extends State<SplashScreen> {
 
   Future<void> navigateToNextScreen() async {
     await Future.delayed(const Duration(seconds: 3));
-    context.pushReplacement(const IntroScreen());
+    
     if (token != null) {
-      // if (SharedHelper.get(SharedKeys.role) == "patient") {
-      //   context.pushReplacement(const PatientHomeNavScreen());
-      // } else if (SharedHelper.get(SharedKeys.role) == "doctor") {
-      //   context.pushReplacement(const DoctorHomeNavScreen());
-      // } else if (SharedHelper.get(SharedKeys.role) == "lab") {
-      //   context.pushReplacement(const LabHomeNavScreen());
-      // } else {
-      //   context.pushReplacement(const IntroScreen());
-      // }
+      if (SharedHelper.get(SharedKeys.role) == "patient") {
+        context.pushReplacement(const PatientHomeNavScreen());
+      } else if (SharedHelper.get(SharedKeys.role) == "doctor") {
+        context.pushReplacement(const DoctorHomeNavScreen());
+      } else if (SharedHelper.get(SharedKeys.role) == "lab") {
+        context.pushReplacement(const LabHomeNavScreen());
+      } else {
+        context.pushReplacement(const IntroScreen());
+      }
     }
   }
 

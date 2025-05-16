@@ -20,24 +20,24 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    id: json['id'] as int?,
-    name: json['name'] as String?,
-    email: json['email'] as String?,
-    address: json['address'] as dynamic,
-    city: json['city'] as dynamic,
-    phone: json['phone'] as dynamic,
-    emailVerified: json['email_verified'] as bool?,
-    image: json['image'] as String?,
-  );
+        id: json['id'] as int?,
+        name: json['name'] as String?,
+        email: json['email'] as String?,
+        address: json['address'] as dynamic,
+        city: json['city'] as dynamic,
+        phone: json['phone'] as dynamic,
+        emailVerified: json['email_verified'] as bool?,
+        image: json['image'] as String?,
+      );
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'name': name,
-    'email': email,
-    'address': address,
-    'city': city,
-    'phone': phone,
-    'email_verified': emailVerified,
-    'image': image,
-  };
+        'id': id,
+        'name': name,
+        'email': email,
+        'address': address,
+        'city': city,
+        'phone': phone,
+        'email_verified': emailVerified,
+        'image': image,
+      };
 }

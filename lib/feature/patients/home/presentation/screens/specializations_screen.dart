@@ -200,15 +200,14 @@ class SpecializationsAll extends StatelessWidget {
                                   ),
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    color: const Color(0xFFCBD5E0)
-                                        .withOpacity(0.6),
+                                    color: AppColor.mainBlue.withOpacity(0.6),
                                     width: 1,
                                   ),
                                 ),
                                 child: Icon(
                                   specializations[index]['icon'] as IconData,
                                   size: 32.sp,
-                                  color: const Color(0xFF475569),
+                                  color: AppColor.mainBlue,
                                 ),
                               ),
                               SizedBox(height: 12.h),

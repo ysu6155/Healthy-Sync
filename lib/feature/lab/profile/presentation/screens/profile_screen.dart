@@ -147,7 +147,6 @@ class ProfileLabScreen extends StatelessWidget {
               ),
             ),
             const Gap(16),
-           
             ProfileItem(
               title: "تعديل الملف الشخصي",
               icon: Icons.edit,
@@ -155,7 +154,6 @@ class ProfileLabScreen extends StatelessWidget {
                 context.push(const EditProfileLab());
               },
             ),
-            
             ProfileItem(
               title: "تغيير كلمة المرور",
               icon: Icons.password,

@@ -18,21 +18,18 @@ final List<Map<String, dynamic>> tests = [
         'صفائح دموية': '${(240 + i * 5)} ×10^9/لتر',
       },
       'dateTime': DateTime(2025, 3, 10 - i),
-      'status':
-          i % 3 == 0
-              ? 'مكتمل'
-              : i % 3 == 1
+      'status': i % 3 == 0
+          ? 'مكتمل'
+          : i % 3 == 1
               ? 'في انتظار النتائج'
               : 'مطلوب إعادة',
-      'color':
-          i % 3 == 0
-              ? AppColor.green
-              : i % 3 == 1
+      'color': i % 3 == 0
+          ? AppColor.green
+          : i % 3 == 1
               ? AppColor.orange
               : AppColor.red,
     },
   ],
-
   for (int i = 0; i < 5; i++) ...[
     {
       'name': 'تحليل ESR',
@@ -47,7 +44,6 @@ final List<Map<String, dynamic>> tests = [
       'color': i % 2 == 0 ? AppColor.green : AppColor.red,
     },
   ],
-
   for (int i = 0; i < 4; i++) ...[
     {
       'name': 'تحليل سكر الدم',
@@ -65,7 +61,6 @@ final List<Map<String, dynamic>> tests = [
       'color': i % 3 == 0 ? AppColor.green : AppColor.yellow,
     },
   ],
-
   for (int i = 0; i < 7; i++) ...[
     {
       'name': 'تحليل دهون الدم',

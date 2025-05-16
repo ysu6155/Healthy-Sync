@@ -18,7 +18,6 @@ OutlineInputBorder borderStyle(Color color, double borderRadius) {
 final defaultPinTheme = PinTheme(
   width: 80.sp,
   height: 80.sp,
-
   textStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
   decoration: BoxDecoration(
     border: Border.all(color: AppColor.border, width: 2.w),

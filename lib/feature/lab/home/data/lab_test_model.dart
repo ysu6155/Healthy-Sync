@@ -16,4 +16,4 @@ class LabTestPDF {
     required this.patient,
     this.imagePath,
   });
-} 
+}

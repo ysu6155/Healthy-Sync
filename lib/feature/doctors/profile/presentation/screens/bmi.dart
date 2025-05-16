@@ -142,14 +142,14 @@ class BMICalculatorScreen extends StatelessWidget {
   }
 
   TextStyle _labelStyle() => TextStyle(
-    color: AppColor.mainPink,
-    fontSize: 18.sp,
-    fontWeight: FontWeight.w500,
-  );
+        color: AppColor.mainPink,
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w500,
+      );
 
   TextStyle _numberStyle() => TextStyle(
-    fontSize: 36.sp,
-    fontWeight: FontWeight.bold,
-    color: AppColor.white,
-  );
+        fontSize: 36.sp,
+        fontWeight: FontWeight.bold,
+        color: AppColor.white,
+      );
 }

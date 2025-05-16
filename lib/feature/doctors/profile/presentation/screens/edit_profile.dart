@@ -61,7 +61,6 @@ class _EditProfileState extends State<EditProfile> {
             ).showSnackBar(SnackBar(content: Text(state.message)));
           }
         },
-
         builder: (context, state) {
           return Padding(
             padding: EdgeInsets.all(16.sp),
@@ -74,11 +73,10 @@ class _EditProfileState extends State<EditProfile> {
                         onTap: _showImagePicker,
                         child: CircleAvatar(
                           radius: 70.r,
-                          backgroundImage:
-                              _imageFile != null
-                                  ? FileImage(_imageFile!)
-                                  : AssetImage(AppAssets.personImage)
-                                      as ImageProvider,
+                          backgroundImage: _imageFile != null
+                              ? FileImage(_imageFile!)
+                              : AssetImage(AppAssets.personImage)
+                                  as ImageProvider,
                         ),
                       ),
                       Positioned(
@@ -110,7 +108,6 @@ class _EditProfileState extends State<EditProfile> {
                 Gap(22),
                 CustomButton(
                   name: "Update Profile",
-
                   onTap: () {
                     profileCubit.updateProfile(
                       _imageFile,
@@ -144,48 +141,46 @@ class _EditProfileState extends State<EditProfile> {
   void _showImagePicker() {
     showModalBottomSheet(
       context: context,
-      builder:
-          (_) => Container(
-            padding: EdgeInsets.all(16),
-            height: 150,
-            child: Column(
+      builder: (_) => Container(
+        padding: EdgeInsets.all(16),
+        height: 150,
+        child: Column(
+          children: [
+            Text(
+              "Choose Profile Picture",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            Gap(10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  "Choose Profile Picture",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                IconButton(
+                  icon: Icon(
+                    Icons.photo,
+                    size: 40,
+                    color: AppColor.mainPink,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _pickImage(ImageSource.gallery);
+                  },
                 ),
-                Gap(10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.photo,
-                        size: 40,
-                        color: AppColor.mainPink,
-                      ),
-
-                      onPressed: () {
-                        Navigator.pop(context);
-                        _pickImage(ImageSource.gallery);
-                      },
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.camera_alt,
-                        size: 40,
-                        color: AppColor.mainPink,
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                        _pickImage(ImageSource.camera);
-                      },
-                    ),
-                  ],
+                IconButton(
+                  icon: Icon(
+                    Icons.camera_alt,
+                    size: 40,
+                    color: AppColor.mainPink,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _pickImage(ImageSource.camera);
+                  },
                 ),
               ],
             ),
-          ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
+import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 
 class LabTestDetailsScreen extends StatelessWidget {
   final Map<String, dynamic> testData;
@@ -137,7 +138,7 @@ class LabTestDetailsScreen extends StatelessWidget {
             24.H,
             // نتائج التحليل
             _buildInfoSection(
-              title: "نتائج التحليل",
+              title: LocaleKeys.testResults.tr(),
               children: [
                 if (testData['results'] != null)
                   ...(testData['results'] as List)
@@ -163,7 +164,7 @@ class LabTestDetailsScreen extends StatelessWidget {
                           ),
                           8.W,
                           Text(
-                            "ملاحظات الطبيب",
+                            LocaleKeys.doctorNotes.tr(),
                             style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.w600,
@@ -200,9 +201,13 @@ class LabTestDetailsScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8.r),
                   ),
                 ),
-                icon: Icon(Icons.download_outlined, size: 20.sp),
+                icon: Icon(
+                  Icons.download_outlined,
+                  size: 20.sp,
+                  color: AppColor.white,
+                ),
                 label: Text(
-                  "تحميل التقرير",
+                  LocaleKeys.downloadReport.tr(),
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w600,
@@ -280,7 +285,7 @@ class LabTestDetailsScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "النتيجة",
+                      LocaleKeys.result.tr(),
                       style: TextStyle(
                         fontSize: 12.sp,
                         color: AppColor.grey,
@@ -303,7 +308,7 @@ class LabTestDetailsScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "المعدل الطبيعي",
+                      LocaleKeys.referenceRange.tr(),
                       style: TextStyle(
                         fontSize: 12.sp,
                         color: AppColor.grey,

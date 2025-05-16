@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
+import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/feature/doctors/home/data/prescription_data.dart';
 import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
 import 'package:intl/intl.dart';
@@ -22,7 +24,7 @@ class PrescriptionsListScreen extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: 60.h,
         title: Text(
-          'الروشتات السابقة',
+          LocaleKeys.prescriptions.tr(),
           style: TextStyle(
             color: Colors.black,
             fontSize: 20.sp,
@@ -37,7 +39,7 @@ class PrescriptionsListScreen extends StatelessWidget {
       body: patientPrescriptions.isEmpty
           ? Center(
               child: Text(
-                'لا توجد روشتات سابقة',
+                LocaleKeys.noPrescriptions.tr(),
                 style: TextStyles.font16DarkBlueW500,
               ),
             )
@@ -67,7 +69,7 @@ class PrescriptionsListScreen extends StatelessWidget {
                               ),
                               SizedBox(width: 8.w),
                               Text(
-                                'روشته ${index + 1}',
+                                '${LocaleKeys.prescription.tr()} ${index + 1}',
                                 style: TextStyles.font16DarkBlueW500,
                               ),
                             ],
@@ -94,7 +96,7 @@ class PrescriptionsListScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 8.h),
                           Text(
-                            'الأعراض:',
+                            LocaleKeys.symptoms.tr(),
                             style: TextStyles.font16DarkBlueW500,
                           ),
                           SizedBox(height: 4.h),
@@ -109,7 +111,7 @@ class PrescriptionsListScreen extends StatelessWidget {
                               false) ...[
                             SizedBox(height: 8.h),
                             Text(
-                              'التحاليل المطلوبة:',
+                              LocaleKeys.requiredTests.tr(),
                               style: TextStyles.font16DarkBlueW500,
                             ),
                             SizedBox(height: 4.h),
@@ -140,7 +142,7 @@ class PrescriptionsListScreen extends StatelessWidget {
                           ],
                           SizedBox(height: 8.h),
                           Text(
-                            'الأدوية:',
+                            LocaleKeys.medications.tr(),
                             style: TextStyles.font16DarkBlueW500,
                           ),
                           SizedBox(height: 4.h),
@@ -173,7 +175,7 @@ class PrescriptionsListScreen extends StatelessWidget {
                           if (prescription.notes?.isNotEmpty ?? false) ...[
                             SizedBox(height: 8.h),
                             Text(
-                              'ملاحظات:',
+                              LocaleKeys.notes.tr(),
                               style: TextStyles.font16DarkBlueW500,
                             ),
                             SizedBox(height: 4.h),

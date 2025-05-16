@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
+import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 
 class CardDoctor extends StatelessWidget {
   const CardDoctor({super.key, required this.doctor, required this.index});
@@ -147,7 +149,7 @@ class CardDoctor extends StatelessWidget {
                           ),
                         ),
                         child: Text(
-                          doctor["specialty"]!,
+                          LocaleKeys.rating.tr(),
                           style: TextStyle(
                             color: const Color(0xFF475569),
                             fontSize: 13.sp,

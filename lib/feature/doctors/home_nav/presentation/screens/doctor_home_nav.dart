@@ -47,7 +47,6 @@ class DoctorHomeNavScreenState extends State<DoctorHomeNavScreen> {
         index: _selectedIndex,
         items: [
           Icon(Icons.home, size: 25.sp, color: AppColor.white),
-
           Icon(Icons.notifications, size: 25.sp, color: AppColor.white),
           SvgPicture.asset(
             AppAssets.chatSvg,

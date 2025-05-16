@@ -30,12 +30,11 @@ class SpecializationsSection extends StatelessWidget {
               size: 30.sp,
             ),
           ).withTapEffect(
-            onTap:
-                () => context.push(
-                  DoctorsBySpecialtyScreen(
-                    selectedSpecialty: specializations[index],
-                  ),
-                ),
+            onTap: () => context.push(
+              DoctorsBySpecialtyScreen(
+                selectedSpecialty: specializations[index],
+              ),
+            ),
           );
         },
         separatorBuilder: (context, index) => 16.W,
@@ -48,7 +47,6 @@ class SpecializationsSection extends StatelessWidget {
 List colorSpecializations = [
   AppColor.mainPink,
   AppColor.mainBlue,
-
   AppColor.blue,
   AppColor.green,
   AppColor.purple,

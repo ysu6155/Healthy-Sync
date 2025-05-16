@@ -15,11 +15,10 @@ showLoadingDialog(BuildContext context) {
   showDialog(
     context: context,
     barrierDismissible: false,
-    builder:
-        (context) => Dialog(
-          backgroundColor: AppColor.transparent,
-          child: Center(child: Lottie.asset(AppAssets.loading3)),
-        ),
+    builder: (context) => Dialog(
+      backgroundColor: AppColor.transparent,
+      child: Center(child: Lottie.asset(AppAssets.loading3)),
+    ),
   );
 }
 
@@ -58,8 +57,9 @@ void showSuccessSnackBar(String message, BuildContext context) {
     ),
   );
 }
-void showErrorSnackBar (String message, BuildContext context ){
-   ScaffoldMessenger.of(context).showSnackBar(
+
+void showErrorSnackBar(String message, BuildContext context) {
+  ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       backgroundColor: AppColor.red,
       duration: const Duration(seconds: 2),

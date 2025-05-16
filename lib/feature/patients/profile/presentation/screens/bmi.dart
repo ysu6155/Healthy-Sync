@@ -123,16 +123,17 @@ class BMICalculatorScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24.r),
-        border: Border.all(color: resultColor.withOpacity(0.15), width: 1.5),
+        border:
+            Border.all(color: resultColor.withValues(alpha: 0.15), width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: resultColor.withOpacity(0.06),
+            color: resultColor.withValues(alpha: 0.06),
             blurRadius: 20,
             offset: const Offset(0, 8),
             spreadRadius: 1,
           ),
           BoxShadow(
-            color: Colors.black.withOpacity(0.03),
+            color: Colors.black.withValues(alpha: 0.03),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
@@ -151,8 +152,8 @@ class BMICalculatorScreen extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    resultColor.withOpacity(0.08),
-                    resultColor.withOpacity(0.03),
+                    resultColor.withValues(alpha: 0.08),
+                    resultColor.withValues(alpha: 0.03),
                   ],
                   stops: const [0.3, 1.0],
                 ),
@@ -169,8 +170,8 @@ class BMICalculatorScreen extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    resultColor.withOpacity(0.08),
-                    resultColor.withOpacity(0.03),
+                    resultColor.withValues(alpha: 0.08),
+                    resultColor.withValues(alpha: 0.03),
                   ],
                   stops: const [0.3, 1.0],
                 ),
@@ -186,7 +187,7 @@ class BMICalculatorScreen extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(8.sp),
                     decoration: BoxDecoration(
-                      color: resultColor.withOpacity(0.1),
+                      color: resultColor.withValues(alpha: 0.1),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
@@ -211,10 +212,10 @@ class BMICalculatorScreen extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 14.h),
                 decoration: BoxDecoration(
-                  color: resultColor.withOpacity(0.06),
+                  color: resultColor.withValues(alpha: 0.06),
                   borderRadius: BorderRadius.circular(16.r),
                   border: Border.all(
-                    color: resultColor.withOpacity(0.1),
+                    color: resultColor.withValues(alpha: 0.1),
                     width: 1,
                   ),
                 ),
@@ -235,7 +236,7 @@ class BMICalculatorScreen extends StatelessWidget {
                   color: Colors.grey[50],
                   borderRadius: BorderRadius.circular(16.r),
                   border: Border.all(
-                    color: resultColor.withOpacity(0.08),
+                    color: resultColor.withValues(alpha: 0.08),
                     width: 1,
                   ),
                 ),
@@ -267,27 +268,26 @@ class BMICalculatorScreen extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 12.h),
       padding: EdgeInsets.all(20.sp),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            // const Color(0xFFF8FAFC),
-            const Color(0xFFF1F5F9),
-            const Color(0xFFE2E8F0),
-            AppColor.mainBlue,
+            Color(0xFFF8FAFC), // لون أبيض فاتح جداً
+            Color(0xFFF1F5F9), // لون رمادي فاتح جداً
+            Color(0xFFE2E8F0), // لون رمادي فاتح
           ],
-          stops: const [0.0, 0.5, 1.0],
+          stops: [0.0, 0.5, 1.0],
         ),
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFCBD5E0).withOpacity(0.1),
+            color: const Color(0xFFCBD5E0).withValues(alpha: 0.3),
             blurRadius: 15,
-            offset: const Offset(0, 6),
-            spreadRadius: 1,
+            offset: const Offset(0, 8),
+            spreadRadius: 2,
           ),
           BoxShadow(
-            color: Colors.black.withOpacity(0.02),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 6,
             offset: const Offset(0, 3),
           ),
@@ -306,8 +306,8 @@ class BMICalculatorScreen extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    Colors.grey[200]!.withOpacity(0.2),
-                    Colors.grey[200]!.withOpacity(0.05),
+                    Colors.grey[200]!.withValues(alpha: 0.2),
+                    Colors.grey[200]!.withValues(alpha: 0.05),
                   ],
                   stops: const [0.3, 1.0],
                 ),
@@ -360,7 +360,7 @@ class BMICalculatorScreen extends StatelessWidget {
         border: Border.all(color: Colors.grey[300]!, width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 8,
             offset: const Offset(0, 3),
           ),
@@ -383,22 +383,22 @@ class BMICalculatorScreen extends StatelessWidget {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            const Color(0xFFF1F5F9),
-            const Color(0xFFE2E8F0),
-            AppColor.mainBlue,
+            const Color(0xFFF8FAFC), // لون أبيض فاتح جداً
+            const Color(0xFFF1F5F9), // لون رمادي فاتح جداً
+            const Color(0xFFE2E8F0), // لون رمادي فاتح
           ],
           stops: const [0.0, 0.5, 1.0],
         ),
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFCBD5E0).withOpacity(0.1),
+            color: const Color(0xFFCBD5E0).withValues(alpha: 0.3),
             blurRadius: 15,
-            offset: const Offset(0, 6),
-            spreadRadius: 1,
+            offset: const Offset(0, 8),
+            spreadRadius: 2,
           ),
           BoxShadow(
-            color: Colors.black.withOpacity(0.02),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 6,
             offset: const Offset(0, 3),
           ),

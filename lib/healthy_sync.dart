@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +41,7 @@ class HealthySync extends StatelessWidget {
           );
         },
         child: ResponsiveHelper.buildResponsiveUI(
-          mobile:  SplashScreen(),
+          mobile: SplashScreen(),
           tablet: SplashScreen(),
           web: ChatScreen(),
           context: context,
@@ -51,4 +50,3 @@ class HealthySync extends StatelessWidget {
     );
   }
 }
-

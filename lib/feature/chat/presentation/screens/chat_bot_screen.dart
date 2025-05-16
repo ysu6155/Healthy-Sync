@@ -235,7 +235,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                     ),
                                   ] else
                                     Text(
-                                      message['text']!,
+                                      LocaleKeys.message.tr(),
                                       style: TextStyle(
                                         color: isMe
                                             ? Colors.white

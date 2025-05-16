@@ -17,7 +17,6 @@ class CustomDropdown extends StatelessWidget {
     super.key,
     required this.value,
     required this.hint,
-
     required this.items,
     required this.onChanged,
     this.validator,
@@ -42,8 +41,7 @@ class CustomDropdown extends StatelessWidget {
       child: DropdownButtonFormField<String>(
         decoration: InputDecoration(
           border: InputBorder.none,
-
-          focusedBorder: borderStyle(borderColor ?? AppColor.border,  16.r),
+          focusedBorder: borderStyle(borderColor ?? AppColor.border, 16.r),
           enabledBorder: borderStyle(borderColor ?? AppColor.transparent, 16.r),
           errorBorder: borderStyle(AppColor.red, 16.r),
           focusedErrorBorder: borderStyle(AppColor.red, 16.r),

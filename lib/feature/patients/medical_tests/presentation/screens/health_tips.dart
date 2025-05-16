@@ -34,19 +34,16 @@ class _HealthTipsState extends State<HealthTips> {
                 imageUrl: healthTips[index],
                 fit: BoxFit.fill,
                 width: double.infinity,
-
-                placeholder:
-                    (context, url) => Center(
-                      child: CircularProgressIndicator(color: AppColor.pink),
-                    ),
-                errorWidget:
-                    (context, url, error) => Center(
-                      child: Icon(
-                        Icons.broken_image,
-                        size: 50.sp,
-                        color: AppColor.mainPink,
-                      ),
-                    ),
+                placeholder: (context, url) => Center(
+                  child: CircularProgressIndicator(color: AppColor.pink),
+                ),
+                errorWidget: (context, url, error) => Center(
+                  child: Icon(
+                    Icons.broken_image,
+                    size: 50.sp,
+                    color: AppColor.mainPink,
+                  ),
+                ),
               ),
             );
           },

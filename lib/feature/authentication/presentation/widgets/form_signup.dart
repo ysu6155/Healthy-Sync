@@ -43,11 +43,9 @@ class _FormSignUpState extends State<FormSignUp> {
             context.pushReplacement(const DoctorHomeNavScreen());
           } else if (widget.userType == UserType.patient) {
             context.pushReplacement(const PatientHomeNavScreen());
-          }
-          else if (widget.userType == UserType.lab) {
+          } else if (widget.userType == UserType.lab) {
             context.pushReplacement(const LabHomeNavScreen());
           }
-
         } else if (state is SignUpError) {
           Navigator.pop(context);
           showErrorToast(context, state.error);

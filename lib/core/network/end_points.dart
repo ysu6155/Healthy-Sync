@@ -1,5 +1,5 @@
 sealed class EndPoints {
-  static String baseUrl = "https://emr-system-eosin.vercel.app/";
+  static String baseUrl = "https://emr-system-henna.vercel.app/";
   static String auth = "auth";
   static String login = "$auth/login";
   static String register = "$auth/signup";

@@ -82,11 +82,10 @@ class DoctorDetails extends StatelessWidget {
                         width: 100.w,
                         height: 100.h,
                         fit: BoxFit.cover,
-                        placeholder:
-                            (context, url) => Container(
-                              color: Colors.grey[200],
-                              child: Icon(Icons.person, size: 50.sp),
-                            ),
+                        placeholder: (context, url) => Container(
+                          color: Colors.grey[200],
+                          child: Icon(Icons.person, size: 50.sp),
+                        ),
                         errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                     ),
@@ -187,16 +186,14 @@ class DoctorDetails extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color:
-                          appointment['available']
-                              ? Colors.grey[300]!
-                              : Colors.red[100]!,
+                      color: appointment['available']
+                          ? Colors.grey[300]!
+                          : Colors.red[100]!,
                     ),
                     borderRadius: BorderRadius.circular(10.r),
-                    color:
-                        appointment['available']
-                            ? Colors.white
-                            : Colors.grey[50],
+                    color: appointment['available']
+                        ? Colors.white
+                        : Colors.grey[50],
                   ),
                   padding: EdgeInsets.all(15.w),
                   child: Row(
@@ -210,20 +207,18 @@ class DoctorDetails extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 16.sp,
                               fontWeight: FontWeight.bold,
-                              color:
-                                  appointment['available']
-                                      ? Colors.black
-                                      : Colors.grey,
+                              color: appointment['available']
+                                  ? Colors.black
+                                  : Colors.grey,
                             ),
                           ),
                           Text(
                             appointment['date'],
                             style: TextStyle(
                               fontSize: 14.sp,
-                              color:
-                                  appointment['available']
-                                      ? Colors.grey[600]
-                                      : Colors.grey,
+                              color: appointment['available']
+                                  ? Colors.grey[600]
+                                  : Colors.grey,
                             ),
                           ),
                         ],
@@ -296,27 +291,26 @@ class DoctorDetails extends StatelessWidget {
   void _confirmAppointment(BuildContext context, String date, String time) {
     showDialog(
       context: context,
-      builder:
-          (context) => AlertDialog(
-            title: Text('تأكيد الحجز', style: TextStyle(fontSize: 18.sp)),
-            content: Text(
-              'هل تريد تأكيد حجز موعد يوم $date الساعة $time؟',
-              style: TextStyle(fontSize: 16.sp),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text('إلغاء', style: TextStyle(fontSize: 14.sp)),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  showSuccessSnackBar('تم تأكيد الحجز بنجاح', context);
-                },
-                child: Text('تأكيد', style: TextStyle(fontSize: 14.sp)),
-              ),
-            ],
+      builder: (context) => AlertDialog(
+        title: Text('تأكيد الحجز', style: TextStyle(fontSize: 18.sp)),
+        content: Text(
+          'هل تريد تأكيد حجز موعد يوم $date الساعة $time؟',
+          style: TextStyle(fontSize: 16.sp),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('إلغاء', style: TextStyle(fontSize: 14.sp)),
           ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              showSuccessSnackBar('تم تأكيد الحجز بنجاح', context);
+            },
+            child: Text('تأكيد', style: TextStyle(fontSize: 14.sp)),
+          ),
+        ],
+      ),
     );
   }
 }

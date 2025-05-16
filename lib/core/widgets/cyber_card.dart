@@ -56,28 +56,27 @@ class _CyberCardState extends State<CyberCard> {
               boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 5)],
             ),
             child: Column(
-              children:
-                  options.map((option) {
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selectedOption = option;
-                          isExpanded = false;
-                        });
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 12,
-                          horizontal: 16,
-                        ),
-                        width: double.infinity,
-                        child: Text(
-                          option,
-                          style: TextStyle(fontSize: 16, color: Colors.black87),
-                        ),
-                      ),
-                    );
-                  }).toList(),
+              children: options.map((option) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedOption = option;
+                      isExpanded = false;
+                    });
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 16,
+                    ),
+                    width: double.infinity,
+                    child: Text(
+                      option,
+                      style: TextStyle(fontSize: 16, color: Colors.black87),
+                    ),
+                  ),
+                );
+              }).toList(),
             ),
           ),
       ],

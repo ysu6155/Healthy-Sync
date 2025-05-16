@@ -17,7 +17,6 @@ class CardDoctor extends StatelessWidget {
         color: AppColor.mainPink,
         borderRadius: BorderRadius.circular(16.r),
       ),
-
       child: Row(
         children: [
           ClipRRect(

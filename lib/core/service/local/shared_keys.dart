@@ -20,6 +20,4 @@ sealed class SharedKeys {
   static const String ovulationDay = "ovulationDay";
   static const String periodLength = "periodLength";
   static const String ovulationLength = "ovulationLength";
-
-
 }

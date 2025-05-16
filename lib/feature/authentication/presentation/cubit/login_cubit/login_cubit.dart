@@ -38,14 +38,14 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginLoading());
     try {
       final response = await AuthRepo.login(params);
-      log(response.user.toString() );
+      log(response.user.toString());
       log("Login response: ${response.user?.name}");
       log("Login response: ${response.user?.email}");
       log("Login response: ${response.user?.role}");
       await SharedHelper.sava(SharedKeys.role, response.user?.role);
       await SharedHelper.sava(SharedKeys.id, response.user?.id);
       await SharedHelper.sava(SharedKeys.kToken, response.token);
-       await SharedHelper.sava(SharedKeys.gender, response.user?.gender);
+      //   await SharedHelper.sava(SharedKeys.gender, response.user?);
       emit(LoginSuccess());
       String role = response.user?.role ?? "patient";
       log("User role: $role");

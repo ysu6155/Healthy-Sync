@@ -65,8 +65,7 @@ class _WomanCycleScreenState extends State<WomanCycleScreen> {
     if (index < periodLength) return Colors.pink[200]!;
     if (index == ovulationDay) return Colors.amberAccent;
     if (index >= ovulationDay - ovulationLength + 2 &&
-        index <= ovulationDay + 1)
-      return Colors.lightGreen; // فترة التبويض
+        index <= ovulationDay + 1) return Colors.lightGreen; // فترة التبويض
 
     if (index >= cycleLength - 5) return Colors.deepOrangeAccent;
     return Colors.grey[300]!;
@@ -85,10 +84,9 @@ class _WomanCycleScreenState extends State<WomanCycleScreen> {
     final today = DateTime.now();
     final days = cycleDays;
     final selectedDate = (days.isNotEmpty) ? days[selectedDayIndex] : today;
-    final nextCycleDate =
-        (startDate != null)
-            ? startDate!.add(Duration(days: cycleLength))
-            : null;
+    final nextCycleDate = (startDate != null)
+        ? startDate!.add(Duration(days: cycleLength))
+        : null;
     final radius = 140.0;
     final dotSize = 25.0;
 
@@ -144,13 +142,11 @@ class _WomanCycleScreenState extends State<WomanCycleScreen> {
                 ),
               ],
             ),
-
           if (startDate == null)
             Text(
               " لا توجد دوره مسجله",
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-
           10.H,
           Center(
             child: SizedBox(
@@ -169,7 +165,6 @@ class _WomanCycleScreenState extends State<WomanCycleScreen> {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: getDayColor(selectedDayIndex),
-
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.pink.withOpacity(0.4),
@@ -242,10 +237,9 @@ class _WomanCycleScreenState extends State<WomanCycleScreen> {
                             color: getDayColor(index),
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color:
-                                  isSelected
-                                      ? AppColor.mainBlue
-                                      : isCurrentDay
+                              color: isSelected
+                                  ? AppColor.mainBlue
+                                  : isCurrentDay
                                       ? AppColor.mainBlueDark
                                       : Colors.transparent,
                               width: (isSelected || isCurrentDay) ? 3 : 0,
@@ -356,33 +350,32 @@ class _WomanCycleScreenState extends State<WomanCycleScreen> {
   void _showHistoryDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder:
-          (ctx) => AlertDialog(
-            title: const Text("سجل الدورات"),
-            content: SizedBox(
-              width: double.maxFinite,
-              child: ListView.builder(
-                itemCount: cycleHistory.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: const Icon(Icons.date_range),
-                    title: Text(
-                      DateFormat(
-                        'd MMMM yyyy',
-                        'ar',
-                      ).format(cycleHistory[index]),
-                    ),
-                  );
-                },
-              ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(ctx),
-                child: const Text("إغلاق"),
-              ),
-            ],
+      builder: (ctx) => AlertDialog(
+        title: const Text("سجل الدورات"),
+        content: SizedBox(
+          width: double.maxFinite,
+          child: ListView.builder(
+            itemCount: cycleHistory.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                leading: const Icon(Icons.date_range),
+                title: Text(
+                  DateFormat(
+                    'd MMMM yyyy',
+                    'ar',
+                  ).format(cycleHistory[index]),
+                ),
+              );
+            },
           ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text("إغلاق"),
+          ),
+        ],
+      ),
     );
   }
 
@@ -501,7 +494,6 @@ class _WomanCycleTipsState extends State<WomanCycleTips> {
   }
 }
 
-
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -518,9 +510,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void initState() {
     super.initState();
     final provider = Provider.of<CycleProvider>(context, listen: false);
-    _cycleController = TextEditingController(text: provider.cycleLength.toString());
-    _periodController = TextEditingController(text: provider.periodLength.toString());
-    _ovulationController = TextEditingController(text: provider.ovulationLength.toString());
+    _cycleController =
+        TextEditingController(text: provider.cycleLength.toString());
+    _periodController =
+        TextEditingController(text: provider.periodLength.toString());
+    _ovulationController =
+        TextEditingController(text: provider.ovulationLength.toString());
   }
 
   @override
@@ -565,10 +560,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onPressed: () async {
                   final cycle = int.tryParse(_cycleController.text) ?? 28;
                   final period = int.tryParse(_periodController.text) ?? 7;
-                  final ovulation = int.tryParse(_ovulationController.text) ?? 5;
+                  final ovulation =
+                      int.tryParse(_ovulationController.text) ?? 5;
 
                   if (cycle > 0 && period > 0 && ovulation > 0) {
-                    final provider = Provider.of<CycleProvider>(context, listen: false);
+                    final provider =
+                        Provider.of<CycleProvider>(context, listen: false);
                     await provider.updateSettings(
                       cycleLength: cycle,
                       periodLength: period,
@@ -584,7 +581,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   backgroundColor: Colors.pink[400],
                   padding: EdgeInsets.symmetric(vertical: 14.h),
                 ),
-                child:  Text(  "حفظ التعديلات",
+                child: Text(
+                  "حفظ التعديلات",
                   style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
@@ -631,9 +629,12 @@ class CycleProvider extends ChangeNotifier {
 
   Future<void> _loadSettings() async {
     _cycleLength = await SharedHelper.get(SharedKeys.cycleLength) as int? ?? 28;
-    _periodLength = await SharedHelper.get(SharedKeys.periodLength) as int? ?? 7;
-    _ovulationDay = await SharedHelper.get(SharedKeys.ovulationDay) as int? ?? 14;
-    _ovulationLength = await SharedHelper.get(SharedKeys.ovulationLength) as int? ?? 5;
+    _periodLength =
+        await SharedHelper.get(SharedKeys.periodLength) as int? ?? 7;
+    _ovulationDay =
+        await SharedHelper.get(SharedKeys.ovulationDay) as int? ?? 14;
+    _ovulationLength =
+        await SharedHelper.get(SharedKeys.ovulationLength) as int? ?? 5;
     notifyListeners();
   }
 
@@ -645,11 +646,11 @@ class CycleProvider extends ChangeNotifier {
     _cycleLength = cycleLength;
     _periodLength = periodLength;
     _ovulationLength = ovulationLength;
-    
+
     await SharedHelper.sava(SharedKeys.cycleLength, cycleLength);
     await SharedHelper.sava(SharedKeys.periodLength, periodLength);
     await SharedHelper.sava(SharedKeys.ovulationLength, ovulationLength);
-    
+
     notifyListeners();
   }
 
@@ -679,7 +680,8 @@ class CycleProvider extends ChangeNotifier {
   String getDayType(int index) {
     if (index < _periodLength) return 'فترة الدورة';
     if (index == _ovulationDay) return 'أفضل يوم تبويض';
-    if (index >= _ovulationDay - 3 && index <= _ovulationDay + 1) return 'فترة التبويض';
+    if (index >= _ovulationDay - 3 && index <= _ovulationDay + 1)
+      return 'فترة التبويض';
     if (index >= _cycleLength - 5) return 'قبل الدورة';
     return 'يوم عادي';
   }
