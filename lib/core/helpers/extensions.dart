@@ -25,30 +25,32 @@ extension PaddingExtension on Widget {
     double right = 0,
     double top = 0,
     double bottom = 0,
-  }) => Padding(
-    padding: EdgeInsets.only(
-      left: left,
-      right: right,
-      top: top,
-      bottom: bottom,
-    ),
-    child: this,
-  );
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          left: left,
+          right: right,
+          top: top,
+          bottom: bottom,
+        ),
+        child: this,
+      );
 
   Widget paddingDirectional({
     double start = 0,
     double end = 0,
     double top = 0,
     double bottom = 0,
-  }) => Padding(
-    padding: EdgeInsetsDirectional.only(
-      start: start,
-      end: end,
-      top: top,
-      bottom: bottom,
-    ),
-    child: this,
-  );
+  }) =>
+      Padding(
+        padding: EdgeInsetsDirectional.only(
+          start: start,
+          end: end,
+          top: top,
+          bottom: bottom,
+        ),
+        child: this,
+      );
 }
 
 extension VisibilityExtension on Widget {
@@ -142,6 +144,7 @@ extension NavigationExtensions on BuildContext {
     );
   }
 }
+
 extension UserTypeExtension on String {
   bool canShow(List<String> allowedUsers) {
     return allowedUsers.contains(this);

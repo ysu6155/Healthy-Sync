@@ -35,7 +35,9 @@ class CustomContainer extends StatelessWidget {
 
   Column newMethod(final UserType userType) {
     String handleUserType() {
-      return userType == UserType.doctor ? 'دكتور' : 'مريض';
+      return userType == UserType.doctor
+          ? LocaleKeys.doctor.tr()
+          : LocaleKeys.patient.tr();
     }
 
     return Column(
@@ -46,12 +48,10 @@ class CustomContainer extends StatelessWidget {
           opacity: 0.70,
           child: Image.asset(AppAssets.logo, height: 200.h, fit: BoxFit.cover),
         ),
-
         Text(
           " ${LocaleKeys.loginToYourAccount.tr()} ${handleUserType()}",
           style: TextStyles.font20PinkBold,
         ),
-
         FormLogin(userType: userType),
       ],
     );

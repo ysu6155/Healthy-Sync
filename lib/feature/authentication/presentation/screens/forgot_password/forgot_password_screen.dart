@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
+import 'package:healthy_sync/core/widgets/cyber_card.dart';
 import 'package:healthy_sync/feature/authentication/presentation/screens/Verification/verification_screen.dart';
 
 import 'package:healthy_sync/core/helpers/extensions.dart';
@@ -27,76 +28,67 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return Scaffold(
       backgroundColor: AppColor.white,
       appBar: AppBar(
+        toolbarHeight: 48.sp,
         centerTitle: true,
         iconTheme: IconThemeData(color: AppColor.white, size: 24.sp),
         backgroundColor: AppColor.mainPink,
-        title: Text(LocaleKeys.forgotPassword.tr(), style: TextStyles.font20WhiteBold),
-       
-        
+        title: Text(
+          LocaleKeys.forgotPassword.tr(),
+          style: TextStyles.font20WhiteBold,
+        ),
       ),
       body: SafeArea(
-        top: false,
-        child: Container(
-          padding: EdgeInsets.only(top: 40.sp),
-          decoration: BoxDecoration(color: AppColor.mainPink),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Image.asset(
-                  AppAssets.forgotPassword,
-                  width: 130.w,
-                  height: 130.sp,
-                  fit: BoxFit.cover,
-                ),
-                32.H,
-                Container(
-                  width: 1.sw,
-                  padding: EdgeInsets.all(24.sp),
-                  decoration: BoxDecoration(
-                    color: AppColor.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(24.r),
-                      topRight: Radius.circular(24.r),
+        child: SingleChildScrollView(
+          child: Column(
+            spacing: 12.sp,
+            children: [
+              Image.asset(
+                AppAssets.forgotPassword,
+                width: 130.w,
+                height: 130.sp,
+                fit: BoxFit.cover,
+              ),
+              24.H,
+              Form(
+                key: formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 16.sp,
+                  children: [
+                    Text(
+                      LocaleKeys.enterYourEmailOrPhone.tr(),
+                      style: TextStyles.font16DarkBlueW500.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  child: Form(
-                    key: formKey,
-                    child: Column(
-                      children: [
-                        16.H,
-                        CustomTextField(
-                          controller: email,
-                          labelText: LocaleKeys.emailPhone.tr(),
-                          labelStyle: TextStyles.font12DarkBlueW400,
-                         
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          hintText: LocaleKeys.enterYourEmailOrPhone.tr(),
-                          keyboardType: TextInputType.emailAddress,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return LocaleKeys.emailIsRequired.tr();
-                            }
-                            return null;
-                          },
-                        ),
-                        32.H,
-                        CustomButton(
-                          name: LocaleKeys.sendCode.tr(),
-                          onTap: () {
-                            if (formKey.currentState!.validate()) {
-                              context.push(
-                                VerificationScreen(phone: email.text),
-                              );
-                            }
-                          },
-                        ),
-                      ],
+                    CustomTextField(
+                      controller: email,
+                      // labelText: LocaleKeys.emailPhone.tr(),
+                      // labelStyle: TextStyles.font12DarkBlueW400,
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintText: LocaleKeys.exampleEmail.tr(),
+                      keyboardType: TextInputType.emailAddress,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return LocaleKeys.emailIsRequired.tr();
+                        }
+                        return null;
+                      },
                     ),
-                  ),
+                    4.H,
+                    CustomButton(
+                      name: LocaleKeys.sendCode.tr(),
+                      onTap: () {
+                        if (formKey.currentState!.validate()) {
+                          context.push(VerificationScreen(phone: email.text));
+                        }
+                      },
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
+              ),
+            ],
+          ).paddingAll(16.sp),
         ),
       ),
     );

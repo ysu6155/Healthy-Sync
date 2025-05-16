@@ -4,7 +4,7 @@ import 'package:healthy_sync/core/themes/app_color.dart';
 
 class TextStyles {
   static TextStyle font12DarkBlueW400 = TextStyle(
-    color: AppColor.mainBlue2,
+    color: AppColor.mainBlueDark,
     fontSize: 12.sp,
     fontWeight: FontWeight.w400,
   );
@@ -13,8 +13,13 @@ class TextStyles {
     fontSize: 20.sp,
     fontWeight: FontWeight.bold,
   );
+  static TextStyle font16WhiteW500 = TextStyle(
+    color: AppColor.white,
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w500,
+  );
   static TextStyle font20DarkBlueBold = TextStyle(
-    color: AppColor.mainBlue2,
+    color: AppColor.mainBlueDark,
     fontSize: 20.sp,
     fontWeight: FontWeight.bold,
   );
@@ -30,7 +35,7 @@ class TextStyles {
     fontWeight: FontWeight.w500,
   );
   static TextStyle font16DarkBlueW500 = TextStyle(
-    color: AppColor.mainBlue2,
+    color: AppColor.mainBlueDark,
     fontSize: 16.sp,
     fontWeight: FontWeight.w500,
   );
@@ -54,5 +59,4 @@ class TextStyles {
     fontSize: 12.sp,
     fontWeight: FontWeight.w400,
   );
-  
 }

@@ -13,6 +13,7 @@ class CustomButton extends StatelessWidget {
   final double? height;
   final double? width;
   final double? borderRadius;
+  final bool? trueBoxShadow;
 
   const CustomButton({
     super.key,
@@ -24,22 +25,41 @@ class CustomButton extends StatelessWidget {
     this.height,
     this.width,
     this.borderRadius,
+    this.trueBoxShadow,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Ink(
-      width: width?.w ?? 1.sw,
-      height: height?.sp ?? 48.sp,
+    return Container(
       decoration: BoxDecoration(
         border: border ?? Border.all(color: AppColor.transparent, width: 2.sp),
         // gradient: backgroundColor ?? AppColor.primaryGradient,
         color: backgroundColor ?? AppColor.mainPink,
         borderRadius: BorderRadius.circular(borderRadius?.r ?? 16.r),
+
+        boxShadow: [
+          BoxShadow(
+            color: AppColor.black,
+            spreadRadius: 0,
+            blurRadius: 4,
+            offset: Offset(0, 4),
+          ),
+        ],
       ),
-      child: Center(
-        child: Text(name, style: textStyle ?? TextStyles.font20WhiteBold),
-      ),
-    ).withTapEffect(onTap: onTap);
+      child: Ink(
+        width: width?.w ?? 1.sw,
+        height: height?.sp ?? 48.sp,
+        decoration: BoxDecoration(
+          border:
+              border ?? Border.all(color: AppColor.transparent, width: 2.sp),
+          // gradient: backgroundColor ?? AppColor.primaryGradient,
+          color: backgroundColor ?? AppColor.mainPink,
+          borderRadius: BorderRadius.circular(borderRadius?.r ?? 16.r),
+        ),
+        child: Center(
+          child: Text(name, style: textStyle ?? TextStyles.font20WhiteBold),
+        ),
+      ).withTapEffect(onTap: onTap),
+    );
   }
 }

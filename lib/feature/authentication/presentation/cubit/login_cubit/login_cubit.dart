@@ -9,7 +9,9 @@ import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/feature/authentication/data/models/request/register_params.dart';
 import 'package:healthy_sync/feature/authentication/data/repo/auth_repo.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_state.dart';
-import 'package:healthy_sync/feature/patients/presentation/screens/patient_home_nav.dart';
+import 'package:healthy_sync/feature/doctors/home_nav/presentation/screens/doctor_home_nav.dart';
+import 'package:healthy_sync/feature/lab/home_nav/presentation/screens/lab_nav.dart';
+import 'package:healthy_sync/feature/patients/home_nav/presentation/screens/patient_home_nav.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
@@ -36,19 +38,23 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginLoading());
     try {
       final response = await AuthRepo.login(params);
-      log(response.user?.name ?? "5");
-      log(response.user?.email ?? "13");
-      log(response.token ?? "14");
+      log(response.user.toString());
+      log("Login response: ${response.user?.name}");
+      log("Login response: ${response.user?.email}");
+      log("Login response: ${response.user?.role}");
+      await SharedHelper.sava(SharedKeys.role, response.user?.role);
+      await SharedHelper.sava(SharedKeys.id, response.user?.id);
       await SharedHelper.sava(SharedKeys.kToken, response.token);
-      await SharedHelper.sava(SharedKeys.name, response.user?.name);
-      await SharedHelper.sava(SharedKeys.email, response.user?.email);
-      //await SharedHelper.sava(SharedKeys.image, response.data?.newUser?.profilePhoto);
-      // await SharedHelper.sava(SharedKeys.role, response.data?.newUser?.role);
-
+      //   await SharedHelper.sava(SharedKeys.gender, response.user?);
       emit(LoginSuccess());
-
-      if (context.mounted) {
+      String role = response.user?.role ?? "patient";
+      log("User role: $role");
+      if (role == "patient") {
         context.pushAndRemoveUntil(const PatientHomeNavScreen());
+      } else if (role == "doctor") {
+        context.pushAndRemoveUntil(const DoctorHomeNavScreen());
+      } else if (role == "lab") {
+        context.pushAndRemoveUntil(const LabHomeNavScreen());
       }
     } catch (e, stackTrace) {
       log("🔥 Login Error: $e");

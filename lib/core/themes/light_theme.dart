@@ -8,19 +8,16 @@ ThemeData themeLight = ThemeData(
   scaffoldBackgroundColor: AppColor.white,
 );
 
-
-
-OutlineInputBorder borderStyle(Color color) {
+OutlineInputBorder borderStyle(Color color, double borderRadius) {
   return OutlineInputBorder(
     borderSide: BorderSide(color: color, width: 2.0.w),
-    borderRadius: BorderRadius.circular(16.r),
+    borderRadius: BorderRadius.circular(borderRadius ?? 16.r),
   );
 }
 
 final defaultPinTheme = PinTheme(
   width: 80.sp,
   height: 80.sp,
-
   textStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
   decoration: BoxDecoration(
     border: Border.all(color: AppColor.border, width: 2.w),

@@ -16,7 +16,9 @@ import 'package:healthy_sync/feature/authentication/presentation/screens/login/l
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
-import 'package:healthy_sync/feature/patients/presentation/screens/patient_home_nav.dart';
+import 'package:healthy_sync/feature/doctors/home_nav/presentation/screens/doctor_home_nav.dart';
+import 'package:healthy_sync/feature/lab/home_nav/presentation/screens/lab_nav.dart';
+import 'package:healthy_sync/feature/patients/home_nav/presentation/screens/patient_home_nav.dart';
 
 class FormSignUp extends StatefulWidget {
   final UserType userType;
@@ -37,7 +39,13 @@ class _FormSignUpState extends State<FormSignUp> {
           showLoadingDialog(context);
         } else if (state is SignUpSuccess) {
           Navigator.pop(context);
-          context.pushAndRemoveUntil(PatientHomeNavScreen());
+          if (widget.userType == UserType.doctor) {
+            context.pushReplacement(const DoctorHomeNavScreen());
+          } else if (widget.userType == UserType.patient) {
+            context.pushReplacement(const PatientHomeNavScreen());
+          } else if (widget.userType == UserType.lab) {
+            context.pushReplacement(const LabHomeNavScreen());
+          }
         } else if (state is SignUpError) {
           Navigator.pop(context);
           showErrorToast(context, state.error);
@@ -60,53 +68,38 @@ class _FormSignUpState extends State<FormSignUp> {
               userType: widget.userType,
               otherWidget: age(signUpCubit),
             ),
-
             phone(signUpCubit),
             16.H,
             selectCity(signUpCubit),
             16.H,
-            UserSpecificContent(
-              userType: widget.userType,
-
-              otherWidget: genderWidget(signUpCubit),
-            ),
-
+            genderWidget(signUpCubit),
             passwords(signUpCubit),
             16.H,
             UserSpecificContent(
               userType: widget.userType,
               otherWidget: chronicDiseases(signUpCubit, context),
             ),
-
             16.H,
             checkBox(signUpCubit),
             12.H,
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16.r),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColor.black,
-
-                    spreadRadius: 0,
-                    blurRadius: 4,
-                    offset: Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: CustomButton(
-                name: LocaleKeys.signUp.tr(),
-                onTap:
-                    () => signUpCubit.register(
-                      RegisterParams(
-                        email: signUpCubit.emailController.text,
-                        password: signUpCubit.passwordController.text,
-                        name: signUpCubit.nameController.text,
-                        passwordConfirmation:
-                            signUpCubit.confirmPasswordController.text,
-                        role: signUpCubit.selectedAccountType,
-                      ),
-                    ),
+            CustomButton(
+              name: LocaleKeys.signUp.tr(),
+              onTap: () => signUpCubit.register(
+                RegisterParams(
+                  email: signUpCubit.emailController.text,
+                  password: signUpCubit.passwordController.text,
+                  name: signUpCubit.nameController.text,
+                  passwordConfirmation:
+                      signUpCubit.confirmPasswordController.text,
+                  role: widget.userType.name,
+                  phone: signUpCubit.phoneController.text,
+                  //  specialization: signUpCubit.specializationController.text,
+                  gender: signUpCubit.selectedGender,
+                  dateOfBirth: signUpCubit.ageController.text,
+                  //profilePhoto: signUpCubit.profilePhotoController.text,
+                  //chronicDiseases: signUpCubit.selectedDiseases,
+                  //city: signUpCubit.selectedCity,
+                ),
               ),
             ),
             Row(
@@ -114,13 +107,12 @@ class _FormSignUpState extends State<FormSignUp> {
               children: [
                 Text(
                   LocaleKeys.alreadyHaveAnAccount.tr(),
-                  style: TextStyles.font12DarkBlueW400
+                  style: TextStyles.font12DarkBlueW400,
                 ),
                 TextButton(
-                  onPressed:
-                      () =>
-                          context.pushReplacement(LoginScreen(userType: widget.userType)),
-
+                  onPressed: () => context.pushReplacement(
+                    LoginScreen(userType: widget.userType),
+                  ),
                   child: Text(
                     LocaleKeys.login.tr(),
                     style: TextStyles.font12BlueW400,
@@ -138,16 +130,13 @@ class _FormSignUpState extends State<FormSignUp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.name.tr(),
-          style: TextStyles.font16DarkBlueW500
-        ),
+        Text(LocaleKeys.name.tr(), style: TextStyles.font16DarkBlueW500),
         8.H,
         CustomTextField(
           controller: signUpCubit.nameController,
           hintText: LocaleKeys.youssifShaban.tr(),
-          validator:
-              (value) => value!.isEmpty ? LocaleKeys.nameIsRequired.tr() : null,
+          validator: (value) =>
+              value!.isEmpty ? LocaleKeys.nameIsRequired.tr() : null,
         ),
       ],
     );
@@ -157,16 +146,11 @@ class _FormSignUpState extends State<FormSignUp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.email.tr(),
-          style: TextStyles.font16DarkBlueW500
-        ),
+        Text(LocaleKeys.email.tr(), style: TextStyles.font16DarkBlueW500),
         8.H,
         CustomTextField(
           controller: signUpCubit.emailController,
-
           hintText: LocaleKeys.exampleEmail.tr(),
-
           keyboardType: TextInputType.emailAddress,
           validator: (value) {
             if (value!.isEmpty) {
@@ -183,17 +167,29 @@ class _FormSignUpState extends State<FormSignUp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.age.tr(),
-          style:TextStyles.font16DarkBlueW500
-        ),
+        Text(LocaleKeys.age.tr(), style: TextStyles.font16DarkBlueW500),
         8.H,
-        CustomTextField(
-          controller: signUpCubit.ageController,
+        GestureDetector(
+          onTap: () async {
+            DateTime? pickedDate = await showDatePicker(
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(1900),
+              lastDate: DateTime.now(),
+            );
 
-          hintText: LocaleKeys.youssifAge.tr(),
-
-          keyboardType: TextInputType.number,
+            if (pickedDate != null) {
+              signUpCubit.ageController.text =
+                  "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
+            }
+          },
+          child: AbsorbPointer(
+            child: CustomTextField(
+              controller: signUpCubit.ageController,
+              hintText: LocaleKeys.age.tr(),
+              keyboardType: TextInputType.datetime,
+            ),
+          ),
         ),
         16.H,
       ],
@@ -206,7 +202,7 @@ class _FormSignUpState extends State<FormSignUp> {
       children: [
         Text(
           LocaleKeys.specialization.tr(),
-          style: TextStyles.font16DarkBlueW500
+          style: TextStyles.font16DarkBlueW500,
         ),
         8.H,
         BlocBuilder<SignUpCubit, SignUpState>(
@@ -216,18 +212,15 @@ class _FormSignUpState extends State<FormSignUp> {
               value: signUpCubit.selectedSpecialization,
               hint: LocaleKeys.selectSpecialization.tr(),
               onChanged: signUpCubit.selectSpecialization,
-              validator:
-                  (value) =>
-                      value == null
-                          ? LocaleKeys.specializationIsRequired.tr()
-                          : null,
-              items:
-                  signUpCubit.getSpecializations().map((specialization) {
-                    return DropdownMenuItem(
-                      value: specialization,
-                      child: Text(specialization),
-                    );
-                  }).toList(),
+              validator: (value) => value == null
+                  ? LocaleKeys.specializationIsRequired.tr()
+                  : null,
+              items: signUpCubit.getSpecializations().map((specialization) {
+                return DropdownMenuItem(
+                  value: specialization,
+                  child: Text(specialization),
+                );
+              }).toList(),
             );
           },
         ),
@@ -240,15 +233,11 @@ class _FormSignUpState extends State<FormSignUp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.phone.tr(),
-          style:TextStyles.font16DarkBlueW500
-        ),
+        Text(LocaleKeys.phone.tr(), style: TextStyles.font16DarkBlueW500),
         8.H,
         CustomTextField(
           controller: signUpCubit.phoneController,
           hintText: LocaleKeys.youssifPhone.tr(),
-
           keyboardType: TextInputType.phone,
         ),
       ],
@@ -259,10 +248,7 @@ class _FormSignUpState extends State<FormSignUp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.city.tr(),
-          style: TextStyles.font16DarkBlueW500
-        ),
+        Text(LocaleKeys.city.tr(), style: TextStyles.font16DarkBlueW500),
         8.H,
         BlocBuilder<SignUpCubit, SignUpState>(
           buildWhen: (previous, current) => current is CitySelected,
@@ -271,15 +257,12 @@ class _FormSignUpState extends State<FormSignUp> {
               value: signUpCubit.selectedCity,
               hint: LocaleKeys.cityHint.tr(),
               onChanged: signUpCubit.selectCity,
-
-              items:
-                  signUpCubit
-                      .getCities(context.locale.languageCode)
-                      .map(
-                        (city) =>
-                            DropdownMenuItem(value: city, child: Text(city)),
-                      )
-                      .toList(),
+              items: signUpCubit
+                  .getCities(context.locale.languageCode)
+                  .map(
+                    (city) => DropdownMenuItem(value: city, child: Text(city)),
+                  )
+                  .toList(),
             );
           },
         ),
@@ -291,14 +274,11 @@ class _FormSignUpState extends State<FormSignUp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.password.tr(),
-          style: TextStyles.font16DarkBlueW500
-        ),
+        Text(LocaleKeys.password.tr(), style: TextStyles.font16DarkBlueW500),
         8.H,
         BlocBuilder<SignUpCubit, SignUpState>(
-          buildWhen:
-              (previous, current) => current is PasswordVisibilityToggled,
+          buildWhen: (previous, current) =>
+              current is PasswordVisibilityToggled,
           builder: (context, state) {
             return CustomTextField(
               controller: signUpCubit.passwordController,
@@ -306,11 +286,8 @@ class _FormSignUpState extends State<FormSignUp> {
               isPassword: true,
               isPasswordVisible: signUpCubit.isPasswordVisible,
               togglePasswordVisibility: signUpCubit.togglePasswordVisibility,
-              validator:
-                  (value) =>
-                      value!.isEmpty
-                          ? LocaleKeys.passwordIsRequired.tr()
-                          : null,
+              validator: (value) =>
+                  value!.isEmpty ? LocaleKeys.passwordIsRequired.tr() : null,
             );
           },
         ),
@@ -321,8 +298,8 @@ class _FormSignUpState extends State<FormSignUp> {
         ),
         8.H,
         BlocBuilder<SignUpCubit, SignUpState>(
-          buildWhen:
-              (previous, current) => current is PasswordVisibilityToggled,
+          buildWhen: (previous, current) =>
+              current is PasswordVisibilityToggled,
           builder: (context, state) {
             return CustomTextField(
               controller: signUpCubit.confirmPasswordController,
@@ -383,28 +360,25 @@ class _FormSignUpState extends State<FormSignUp> {
           style: TextStyles.font16DarkBlueW500,
         ),
         8.H,
-
         Wrap(
           spacing: 8.0.sp,
-          children:
-              signUpCubit.selectedDiseases.map((disease) {
-                return Chip(
-                  label: Text(disease, style: TextStyles.font16DarkBlueW500),
-                  backgroundColor: AppColor.secondary,
-                  deleteIcon: Icon(
-                    Icons.close,
-                    size: 18.sp,
-                    color: AppColor.white,
-                  ),
-                  onDeleted: () {
-                    setState(() {
-                      signUpCubit.selectedDiseases.remove(disease);
-                    });
-                  },
-                );
-              }).toList(),
+          children: signUpCubit.selectedDiseases.map((disease) {
+            return Chip(
+              label: Text(disease, style: TextStyles.font16DarkBlueW500),
+              backgroundColor: AppColor.mainBlue,
+              deleteIcon: Icon(
+                Icons.close,
+                size: 18.sp,
+                color: AppColor.white,
+              ),
+              onDeleted: () {
+                setState(() {
+                  signUpCubit.selectedDiseases.remove(disease);
+                });
+              },
+            );
+          }).toList(),
         ),
-
         Autocomplete<String>(
           optionsBuilder: (TextEditingValue textEditingValue) {
             if (textEditingValue.text.isEmpty) {
@@ -427,7 +401,6 @@ class _FormSignUpState extends State<FormSignUp> {
               hintText: LocaleKeys.Diabetes.tr(),
               controller: signUpCubit.diseaseController,
               focusNode: focusNode,
-
               onFieldSubmitted: (value) {
                 if (value.isNotEmpty &&
                     !signUpCubit.selectedDiseases.contains(value)) {
@@ -448,10 +421,7 @@ class _FormSignUpState extends State<FormSignUp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.gender.tr(),
-          style: TextStyles.font16DarkBlueW500,
-        ),
+        Text(LocaleKeys.gender.tr(), style: TextStyles.font16DarkBlueW500),
         8.H,
         BlocBuilder<SignUpCubit, SignUpState>(
           buildWhen: (previous, current) => current is GenderSelected,
@@ -460,16 +430,15 @@ class _FormSignUpState extends State<FormSignUp> {
               value: signUpCubit.selectedGender,
               hint: LocaleKeys.maleGender.tr(),
               onChanged: signUpCubit.selectGender,
-              validator:
-                  (value) =>
-                      value == null ? LocaleKeys.genderIsRequired.tr() : null,
+              validator: (value) =>
+                  value == null ? LocaleKeys.genderIsRequired.tr() : null,
               items: [
                 DropdownMenuItem(
-                  value: "Male",
+                  value: "male",
                   child: Text(LocaleKeys.maleGender.tr()),
                 ),
                 DropdownMenuItem(
-                  value: "Female",
+                  value: "female",
                   child: Text(LocaleKeys.femaleGender.tr()),
                 ),
               ],

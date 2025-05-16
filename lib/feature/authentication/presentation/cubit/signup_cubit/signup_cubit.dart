@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_sync/core/service/local/shared_keys.dart';
@@ -137,12 +139,6 @@ class SignUpCubit extends Cubit<SignUpState> {
   String? selectedCity;
   bool isPasswordVisible = false;
   bool isAgreedToTerms = false;
-  String? selectedAccountType;
-
-  void selectAccountType(String? accountType) {
-    selectedAccountType = accountType;
-    emit(AccountTypeSelected(selectedAccountType));
-  }
 
   void togglePasswordVisibility() {
     isPasswordVisible = !isPasswordVisible;
@@ -178,9 +174,18 @@ class SignUpCubit extends Cubit<SignUpState> {
       final result = await AuthRepo.register(params);
 
       SharedHelper.sava(SharedKeys.kToken, result.token);
+      SharedHelper.sava(SharedKeys.id, result.data?.newUser?.id);
+      SharedHelper.sava(SharedKeys.role, result.data?.newUser?.role);
+      SharedHelper.sava(SharedKeys.name, result.data?.newUser?.name);
+      SharedHelper.sava(SharedKeys.email, result.data?.newUser?.email);
+      SharedHelper.sava(SharedKeys.gender, result.data?.newUser?.gender);
+      SharedHelper.sava(
+          SharedKeys.dateOfBirth, result.data?.newUser?.dateOfBirth);
+
       emit(SignUpSuccess());
     } catch (e) {
       emit(SignUpError(e.toString()));
+      log(e.toString());
     }
   }
 }

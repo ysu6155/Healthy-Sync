@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const signUp = 'signUp';
   static const pleaseSignUpToGetStarted = 'pleaseSignUpToGetStarted';
   static const name = 'name';
@@ -24,7 +24,8 @@ abstract class  LocaleKeys {
   static const seeAll = 'seeAll';
   static const home = 'home';
   static const welcomeToHealthySync = 'welcomeToHealthySync';
-  static const Empoweringyoutoliveahealthierlife = 'Empoweringyoutoliveahealthierlife';
+  static const Empoweringyoutoliveahealthierlife =
+      'Empoweringyoutoliveahealthierlife';
   static const Empowering = 'Empowering';
   static const next = 'next';
   static const easyToUse = 'easyToUse';
@@ -65,7 +66,8 @@ abstract class  LocaleKeys {
   static const specializations = 'specializations';
   static const specialization = 'specialization';
   static const AboutDoctor = 'AboutDoctor';
-  static const NoAdditionalInformationProvided = 'NoAdditionalInformationProvided';
+  static const NoAdditionalInformationProvided =
+      'NoAdditionalInformationProvided';
   static const callDoctor = 'callDoctor';
   static const chatWithDoctor = 'chatWithDoctor';
   static const maleGender = 'maleGender';
@@ -171,5 +173,53 @@ abstract class  LocaleKeys {
   static const chronicDiseases = 'chronicDiseases';
   static const selectSpecialization = 'selectSpecialization';
   static const specializationIsRequired = 'specializationIsRequired';
-
+  static const healthySync = 'healthySync';
+  static const welcomeTo = 'welcomeTo';
+  static const registerNow = 'registerNow';
+  static const description = 'description';
+  static const description1 = 'description1';
+  static const height = 'height';
+  static const weight = 'weight';
+  static const cm = 'cm';
+  static const BMIcalculator = 'BMIcalculator';
+  static const calculate = 'calculate';
+  static const bmi = 'bmi';
+  static const yourBMI = 'yourBMI';
+  static const underweight = 'underweight';
+  static const normal = 'normal';
+  static const overweight = 'overweight';
+  static const obesity = 'obesity';
+  static const obesityClass = 'obesityClass';
+  static const yourResult = 'yourResult';
+  static const reCalculate = 'reCalculate';
+  static const underweightDescription = 'underweightDescription';
+  static const normalDescription = 'normalDescription';
+  static const overweightDescription = 'overweightDescription';
+  static const obesityDescription = 'obesityDescription';
+  static const obesityClassDescription = 'obesityClassDescription';
+  static const languageXNaw = 'languageXNaw';
+  static const findPatient = 'findPatient';
+  static const recentPatients = 'recentPatients';
+  static const requiredTests = 'requiredTests';
+  static const testResults = 'testResults';
+  static const doctorNotes = 'doctorNotes';
+  static const result = 'result';
+  static const results = 'results';
+  static const years = 'years';
+  static const visitType = 'visitType';
+  static const prescriptions = 'prescriptions';
+  static const prescription = 'prescription';
+  static const noPrescriptions = 'noPrescriptions';
+  static const medications = 'medications';
+  static const bookedAppointments = 'bookedAppointments';
+  static const noBookedAppointments = 'noBookedAppointments';
+  static const appointmentTime = 'appointmentTime';
+  static const xrayDetails = 'xrayDetails';
+  static const examInfo = 'examInfo';
+  static const xrayType = 'xrayType';
+  static const examDescription = 'examDescription';
+  static const examDate = 'examDate';
+  static const downloadReport = 'downloadReport';
+  static const message = 'message';
+  static const whoAreYou = 'whoAreYou';
 }

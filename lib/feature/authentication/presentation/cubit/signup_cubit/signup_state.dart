@@ -34,10 +34,6 @@ class TermsAgreementToggled extends SignUpState {
   TermsAgreementToggled(this.isAgreed);
 }
 
-class AccountTypeSelected extends SignUpState {
-  final String? selectedAccountType;
-  AccountTypeSelected(this.selectedAccountType);
-}
 class SpecializationSelected extends SignUpState {
   final String? specialization;
   SpecializationSelected(this.specialization);

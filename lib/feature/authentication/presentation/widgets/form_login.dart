@@ -17,6 +17,8 @@ import 'package:healthy_sync/feature/authentication/presentation/screens/signup/
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
+import 'package:healthy_sync/feature/lab/home_nav/presentation/screens/lab_nav.dart';
+import 'package:healthy_sync/feature/patients/home_nav/presentation/screens/patient_home_nav.dart';
 
 class FormLogin extends StatelessWidget {
   final UserType userType;
@@ -40,20 +42,15 @@ class FormLogin extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 8.sp,
+            spacing: 16.sp,
             children: [
               16.H,
-              Text(
-                LocaleKeys.email.tr(),
-                style: TextStyles.font20DarkBlueBold,
-              ),
+              Text(LocaleKeys.email.tr(), style: TextStyles.font20DarkBlueBold),
               CustomTextField(
                 textInputAction: TextInputAction.next,
                 controller: loginCubit.emailController,
-
                 hintText: LocaleKeys.exampleEmail.tr(),
                 keyboardType: TextInputType.emailAddress,
-
                 validator: (value) {
                   if (value!.isEmpty) {
                     return LocaleKeys.emailIsRequired.tr();
@@ -61,31 +58,26 @@ class FormLogin extends StatelessWidget {
                   return null;
                 },
               ),
-
               Text(
                 LocaleKeys.password.tr(),
                 style: TextStyles.font16DarkBlueW500,
               ),
               BlocBuilder<LoginCubit, LoginState>(
-                buildWhen:
-                    (previous, current) =>
-                        current is LoginPasswordVisibilityToggled,
+                buildWhen: (previous, current) =>
+                    current is LoginPasswordVisibilityToggled,
                 builder: (context, state) {
                   return CustomTextField(
                     borderColor: AppColor.mainPink,
                     textInputAction: TextInputAction.done,
-                    onFieldSubmitted:
-                        (value) => loginCubit.login(
-                          RegisterParams(
-                            email: loginCubit.emailController.text,
-                            password: loginCubit.passwordController.text,
-                          ),
-                          context,
-                        ),
+                    onFieldSubmitted: (value) => loginCubit.login(
+                      RegisterParams(
+                        email: loginCubit.emailController.text,
+                        password: loginCubit.passwordController.text,
+                      ),
+                      context,
+                    ),
                     controller: loginCubit.passwordController,
-
                     keyboardType: TextInputType.visiblePassword,
-
                     hintText: "*" * 8,
                     isPassword: true,
                     isPasswordVisible: loginCubit.isPasswordVisible,
@@ -107,9 +99,8 @@ class FormLogin extends StatelessWidget {
                   Row(
                     children: [
                       BlocBuilder<LoginCubit, LoginState>(
-                        buildWhen:
-                            (previous, current) =>
-                                current is LoginRememberMeToggled,
+                        buildWhen: (previous, current) =>
+                            current is LoginRememberMeToggled,
                         builder: (context, state) {
                           return Transform.scale(
                             scale: ResponsiveHelper.isMobile(context) ? 1 : 1.5,
@@ -125,7 +116,7 @@ class FormLogin extends StatelessWidget {
                       ),
                       Text(
                         LocaleKeys.rememberMe.tr(),
-                        style:  TextStyles.font16DarkBlueW500,
+                        style: TextStyles.font16DarkBlueW500,
                       ),
                     ],
                   ),
@@ -137,7 +128,7 @@ class FormLogin extends StatelessWidget {
                       children: [
                         Text(
                           LocaleKeys.forgotPassword.tr(),
-                          style:  TextStyles.font16DarkBlueW500,
+                          style: TextStyles.font16DarkBlueW500,
                         ),
                         Text(
                           LocaleKeys.Q.tr(),
@@ -148,46 +139,33 @@ class FormLogin extends StatelessWidget {
                   ),
                 ],
               ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16.r),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColor.black,
-
-                      spreadRadius: 0,
-                      blurRadius: 4,
-                      offset: Offset(0, 4),
+              CustomButton(
+                name: LocaleKeys.login.tr(),
+                onTap: () {
+                  // context.pushAndRemoveUntil(const PatientHomeNavScreen());
+                  loginCubit.login(
+                    RegisterParams(
+                      phone: loginCubit.emailController.text,
+                      password: loginCubit.passwordController.text,
                     ),
-                  ],
-                ),
-                child: CustomButton(
-                  name: LocaleKeys.login.tr(),
-                  onTap: () {
-                    loginCubit.login(
-                      RegisterParams(
-                        email: loginCubit.emailController.text,
-                        password: loginCubit.passwordController.text,
-                      ),
-                      context,
-                    );
-                  },
-                ),
+                    context,
+                  );
+                },
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     LocaleKeys.dontHaveAnAccount.tr(),
-                    style: TextStyles.font12DarkBlueW400
+                    style: TextStyles.font12DarkBlueW400,
                   ),
                   TextButton(
                     onPressed: () {
-                      context.pushReplacement(SignUpScreen(userType: userType));
+                      context.push(SignUpScreen(userType: userType));
                     },
                     child: Text(
                       LocaleKeys.signUp.tr(),
-                      style: TextStyles.font12BlueW400
+                      style: TextStyles.font12BlueW400,
                     ),
                   ),
                 ],
