@@ -9,12 +9,21 @@ import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/cubit/bmi/bmi_cubit.dart';
 
 class BMICalculatorScreen extends StatelessWidget {
-  const BMICalculatorScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => BMICalculatorCubit(),
+      child: const BMICalculatorView(),
+    );
+  }
+}
+
+class BMICalculatorView extends StatelessWidget {
+  const BMICalculatorView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<BMICalculatorCubit>();
-
     return Scaffold(
       backgroundColor: AppColor.white,
       appBar: AppBar(
@@ -62,7 +71,7 @@ class BMICalculatorScreen extends StatelessWidget {
                           child: _buildValueCard(
                             title: LocaleKeys.weight.tr(),
                             value: cubit.weight,
-                            onAdd: () => cubit.updateWeight(cubit.weight + 0.1),
+                            onAdd: () => cubit.updateWeight(cubit.weight + 1),
                             onRemove: () =>
                                 cubit.updateWeight(cubit.weight - 0.1),
                           ),
@@ -352,8 +361,8 @@ class BMICalculatorScreen extends StatelessWidget {
 
   Widget _circleButton(IconData icon, VoidCallback onPressed) {
     return Container(
-      width: 42,
-      height: 42,
+      width: 42.sp,
+      height: 42.sp,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: Colors.grey[50],

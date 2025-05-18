@@ -215,5 +215,6 @@
   "examDate": "تاريخ الفحص",
   "downloadReport": "تحميل التقرير",
   "whoAreYou": "من انت",
-  "message": "الرسالة"
+  "message": "الرسالة",
+  "loading": "جاري التحميل..."
 }

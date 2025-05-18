@@ -17,36 +17,22 @@ class HealthySync extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => ProfileCubit()),
-        BlocProvider(create: (context) => LoginCubit()),
-        BlocProvider(create: (context) => SignUpCubit()),
-        BlocProvider(create: (context) => VerificationCubit()),
-        BlocProvider(create: (context) => BMICalculatorCubit()),
-      ],
-      child: ScreenUtilInit(
-        designSize: const Size(375, 812),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (_, child) {
-          return MaterialApp(
-            theme: themeLight,
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.locale,
-            debugShowCheckedModeBanner: false,
-            title: 'Healthy Sync',
-            home: child,
-          );
-        },
-        child: ResponsiveHelper.buildResponsiveUI(
-          mobile: SplashScreen(),
-          tablet: SplashScreen(),
-          web: ChatScreen(),
-          context: context,
-        ),
-      ),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) {
+        return MaterialApp(
+          theme: themeLight,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          debugShowCheckedModeBanner: false,
+          title: 'Healthy Sync',
+          home: child,
+        );
+      },
+      child: const SplashScreen(),
     );
   }
 }

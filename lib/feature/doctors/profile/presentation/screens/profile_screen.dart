@@ -110,7 +110,7 @@ class _ProfileDoctorScreenState extends State<ProfileDoctorScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                SharedHelper.get(SharedKeys.name) ?? "Name",
+                                SharedHelper.get(SharedKeys.name) as String,
                                 style: TextStyle(
                                   fontSize: 20.sp,
                                   fontWeight: FontWeight.bold,
@@ -118,14 +118,14 @@ class _ProfileDoctorScreenState extends State<ProfileDoctorScreen> {
                                 ),
                               ),
                               Text(
-                                SharedHelper.get(SharedKeys.email) ?? "Email",
+                                SharedHelper.get(SharedKeys.email) as String,
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   color: AppColor.grey,
                                 ),
                               ),
                               Text(
-                                SharedHelper.get(SharedKeys.phone) ?? "Phone",
+                                SharedHelper.get(SharedKeys.phone) as String,
                                 style: TextStyle(
                                   fontSize: 14.sp,
                                   color: AppColor.grey,
@@ -199,36 +199,9 @@ class _ProfileDoctorScreenState extends State<ProfileDoctorScreen> {
                     icon: Icons.medical_services,
                   ),
                   // if (SharedHelper.get(SharedKeys.role) == "patient")
-                  ProfileItem(
-                    title: "الامراض المزمنه",
-                    onTap: () {
-                      context.push(ChronicDiseasesScreen());
-                    },
-                    icon: Icons.medical_services,
-                  ),
+
                   //  if (SharedHelper.get(SharedKeys.gender) == "female")
-                  ProfileItem(
-                    title: "هيّا ",
-                    icon: Icons.monitor_weight,
-                    onTap: () => {
-                      context.push(
-                        MultiProvider(
-                          providers: [
-                            ChangeNotifierProvider(
-                              create: (_) => CycleProvider(),
-                            ),
-                          ],
-                          child: WomanCycleScreen(),
-                        ),
-                      ),
-                    },
-                  ),
-                  // if (SharedHelper.get(SharedKeys.gender) == "male")
-                  ProfileItem(
-                    title: "BMI الكتل العضليه",
-                    icon: Icons.monitor_weight,
-                    onTap: () => {context.push(BMICalculatorScreen())},
-                  ),
+
                   ProfileItem(
                     title: LocaleKeys.editProfile.tr(),
                     icon: Icons.person,

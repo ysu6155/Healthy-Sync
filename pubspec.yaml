@@ -13,7 +13,6 @@ dependencies:
   carousel_slider: ^5.0.0
   cloud_firestore: ^5.6.5
   cupertino_icons: ^1.0.2
-  curved_navigation_bar: ^1.0.3
   dio: ^5.3.3
   easy_localization: ^3.0.3
   file_picker: ^9.2.3

@@ -17,7 +17,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class SplashScreenState extends State<SplashScreen> {
-  String? token = SharedHelper.get(SharedKeys.kToken);
+  String? token = SharedHelper.get(SharedKeys.kToken) as String?;
   @override
   void initState() {
     super.initState();

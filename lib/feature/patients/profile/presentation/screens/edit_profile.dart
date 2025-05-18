@@ -13,18 +13,38 @@ import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 import 'package:healthy_sync/core/widgets/show_dialog.dart';
+import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/signup_cubit/signup_cubit.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/cubit/profile_cubit.dart';
 import 'package:image_picker/image_picker.dart';
 
-class EditProfile extends StatefulWidget {
+class EditProfile extends StatelessWidget {
   const EditProfile({super.key});
 
   @override
-  State<EditProfile> createState() => _EditProfileState();
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ProfileCubit(),
+        ),
+        BlocProvider(
+          create: (context) => SignUpCubit(),
+        ),
+      ],
+      child: const EditProfileView(),
+    );
+  }
 }
 
-class _EditProfileState extends State<EditProfile> {
+class EditProfileView extends StatefulWidget {
+  const EditProfileView({super.key});
+
+  @override
+  State<EditProfileView> createState() => _EditProfileViewState();
+}
+
+class _EditProfileViewState extends State<EditProfileView> {
   @override
   Widget build(BuildContext context) {
     final signUpCubit = context.read<SignUpCubit>();

@@ -17,7 +17,9 @@ sealed class SharedKeys {
   static const String weight = "weight";
   static const String age = "age";
   static const String cycleLength = "cycleLength";
-  static const String ovulationDay = "ovulationDay";
   static const String periodLength = "periodLength";
+  static const String ovulationDay = "ovulationDay";
   static const String ovulationLength = "ovulationLength";
+  static const String startDate = "startDate";
+  static const String cycleHistory = "cycleHistory";
 }

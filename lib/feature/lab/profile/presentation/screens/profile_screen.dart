@@ -74,7 +74,7 @@ class ProfileLabScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          SharedHelper.get(SharedKeys.name) ?? "Alfa Lab",
+                          SharedHelper.get(SharedKeys.name) as String,
                           style: TextStyle(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.bold,
@@ -82,14 +82,14 @@ class ProfileLabScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          SharedHelper.get(SharedKeys.email) ?? "Email",
+                          SharedHelper.get(SharedKeys.email) as String,
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: AppColor.grey,
                           ),
                         ),
                         Text(
-                          SharedHelper.get(SharedKeys.phone) ?? "Phone",
+                          SharedHelper.get(SharedKeys.phone) as String,
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: AppColor.grey,

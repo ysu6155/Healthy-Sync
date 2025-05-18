@@ -1,10 +1,14 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/feature/chat/presentation/screens/chat_bot_screen.dart';
+import 'package:healthy_sync/feature/doctors/profile/presentation/cubit/profile_cubit.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/cubit/home_cubit.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/screens/medical_tests_screen.dart';
 
 import 'package:healthy_sync/feature/patients/home/presentation/screens/home_screen.dart';
@@ -25,11 +29,14 @@ class PatientHomeNavScreenState extends State<PatientHomeNavScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    HomePatientScreen(),
+    BlocProvider(
+      create: (context) => HomeCubit()..loadData(),
+      child: const HomePatientScreen(),
+    ),
     TreatmentScheduleScreen(),
     ChatScreen(),
     MedicalTestsScreen(),
-    ProfilePatientScreen(),
+    const ProfilePatientScreen(),
   ];
 
   @override
@@ -42,19 +49,35 @@ class PatientHomeNavScreenState extends State<PatientHomeNavScreen> {
         color: AppColor.mainBlue,
         buttonBackgroundColor: AppColor.mainBlue,
         animationDuration: Duration(milliseconds: 300),
-        height: ResponsiveHelper.isMobile(context) ? 60 : 75,
+        height: ResponsiveHelper.isMobile(context) ? 60 : 90,
         index: _selectedIndex,
         items: [
-          Icon(Icons.home, size: 25.sp, color: AppColor.white),
-          Icon(Icons.notifications, size: 25.sp, color: AppColor.white),
-          SvgPicture.asset(
-            AppAssets.chatSvg,
-            height: 25.sp,
-            width: 25.sp,
-            colorFilter: ColorFilter.mode(AppColor.white, BlendMode.srcIn),
+          CurvedNavigationBarItem(
+            child: Icon(Icons.home, size: 25.sp, color: AppColor.white),
+            // label: 'Home',
           ),
-          Icon(Icons.medical_services, size: 25.sp, color: AppColor.white),
-          Icon(Icons.person, size: 25.sp, color: AppColor.white),
+          CurvedNavigationBarItem(
+            child:
+                Icon(Icons.notifications, size: 25.sp, color: AppColor.white),
+            //label: 'Notifications',
+          ),
+          CurvedNavigationBarItem(
+            child: SvgPicture.asset(
+              AppAssets.chatSvg,
+              height: 25.sp,
+              width: 25.sp,
+              colorFilter: ColorFilter.mode(AppColor.white, BlendMode.srcIn),
+            ),
+            // label: 'Chat',
+          ),
+          CurvedNavigationBarItem(
+            child: Icon(Icons.medical_services,
+                size: 25.sp, color: AppColor.white),
+            // label: 'Medical Tests',
+          ),
+          CurvedNavigationBarItem(
+            child: Icon(Icons.person, size: 25.sp, color: AppColor.white),
+          ),
         ],
         onTap: (index) {
           setState(() {

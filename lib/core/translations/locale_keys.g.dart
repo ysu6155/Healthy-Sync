@@ -222,4 +222,5 @@ abstract class LocaleKeys {
   static const downloadReport = 'downloadReport';
   static const message = 'message';
   static const whoAreYou = 'whoAreYou';
+  static const loading = 'loading';
 }

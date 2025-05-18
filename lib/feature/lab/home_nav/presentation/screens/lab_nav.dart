@@ -1,4 +1,5 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,8 +13,6 @@ import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/feature/lab/profile/presentation/screens/profile_screen.dart';
 import 'package:healthy_sync/feature/lab/report/presentation/pages/report.dart';
-
-import 'package:healthy_sync/feature/patients/profile/presentation/screens/profile_screen.dart';
 
 class LabHomeNavScreen extends StatefulWidget {
   const LabHomeNavScreen({super.key});
@@ -43,19 +42,29 @@ class LabHomeNavScreenState extends State<LabHomeNavScreen> {
         color: AppColor.mainPink,
         buttonBackgroundColor: AppColor.mainPink,
         animationDuration: Duration(milliseconds: 300),
-        height: ResponsiveHelper.isMobile(context) ? 60 : 75,
+        height: ResponsiveHelper.isMobile(context) ? 60 : 90,
         index: _selectedIndex,
         items: [
-          Icon(Icons.home, size: 25.sp, color: AppColor.white),
-          Icon(Icons.info, size: 25.sp, color: AppColor.white),
-          SvgPicture.asset(
-            AppAssets.chatSvg,
-            height: 25.sp,
-            width: 25.sp,
-            colorFilter: ColorFilter.mode(AppColor.white, BlendMode.srcIn),
+          CurvedNavigationBarItem(
+            child: Icon(Icons.home, size: 25.sp, color: AppColor.white),
           ),
-          Icon(Icons.analytics, size: 25.sp, color: AppColor.white),
-          Icon(Icons.person, size: 25.sp, color: AppColor.white),
+          CurvedNavigationBarItem(
+            child: Icon(Icons.info, size: 25.sp, color: AppColor.white),
+          ),
+          CurvedNavigationBarItem(
+            child: SvgPicture.asset(
+              AppAssets.chatSvg,
+              height: 25.sp,
+              width: 25.sp,
+              colorFilter: ColorFilter.mode(AppColor.white, BlendMode.srcIn),
+            ),
+          ),
+          CurvedNavigationBarItem(
+            child: Icon(Icons.analytics, size: 25.sp, color: AppColor.white),
+          ),
+          CurvedNavigationBarItem(
+            child: Icon(Icons.person, size: 25.sp, color: AppColor.white),
+          ),
         ],
         onTap: (index) {
           setState(() {

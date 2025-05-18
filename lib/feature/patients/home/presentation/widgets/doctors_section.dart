@@ -10,14 +10,14 @@ import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/widgets/card_doctor.dart';
 
-class DoctorsSection extends StatefulWidget {
-  const DoctorsSection({super.key});
+class DoctorsSection extends StatelessWidget {
+  final List<Map<String, dynamic>> doctors;
 
-  @override
-  State<DoctorsSection> createState() => _DoctorsSectionState();
-}
+  const DoctorsSection({
+    super.key,
+    required this.doctors,
+  });
 
-class _DoctorsSectionState extends State<DoctorsSection> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -66,7 +66,7 @@ class _DoctorsSectionState extends State<DoctorsSection> {
                 ResponsiveHelper.isMobile(context) ? 3.1.sp : 1.6.sp,
           ),
           itemBuilder: (context, index) {
-            dynamic doctor = doctors[index];
+            final doctor = doctors[index];
             return CardDoctor(doctor: doctor, index: index).withTapEffect(
               onTap: () => context.push(DoctorDetails(doctor: doctor)),
             );

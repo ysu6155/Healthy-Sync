@@ -12,6 +12,7 @@ import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/show_dialog.dart';
+import 'package:healthy_sync/feature/patients/profile/presentation/cubit/woman_cycle_cubit.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/screens/bmi.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/screens/chronic_diseases_screen.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/cubit/profile_cubit.dart';
@@ -31,247 +32,252 @@ class ProfilePatientScreen extends StatefulWidget {
 
 class _ProfilePatientScreenState extends State<ProfilePatientScreen> {
   @override
-  void initState() {
-    super.initState();
-    context.read<ProfileCubit>().getProfileData();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 48.sp,
-        backgroundColor: AppColor.white,
-        title: Text(
-          LocaleKeys.profile.tr(),
-          style: TextStyle(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.bold,
-            color: AppColor.black,
+    return BlocProvider(
+      create: (context) => ProfileCubit()..getProfileData(),
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 48.sp,
+          backgroundColor: AppColor.white,
+          title: Text(
+            LocaleKeys.profile.tr(),
+            style: TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.bold,
+              color: AppColor.black,
+            ),
           ),
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.logout, color: AppColor.black, size: 25.sp),
+              onPressed: () {
+                SharedHelper.clear();
+                context.pushAndRemoveUntil(const IntroScreen());
+              },
+            ),
+          ],
         ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.logout, color: AppColor.black, size: 25.sp),
-            onPressed: () {
-              SharedHelper.clear();
-              context.pushAndRemoveUntil(const IntroScreen());
+        body: SafeArea(
+          bottom: false,
+          child: BlocConsumer<ProfileCubit, ProfileState>(
+            listener: (context, state) {
+              if (state is ProfileError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.message),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+              }
             },
-          ),
-        ],
-      ),
-      body: SafeArea(
-        bottom: false,
-        child: BlocConsumer<ProfileCubit, ProfileState>(
-          listener: (context, state) {
-            if (state is ProfileError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.message),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            }
-          },
-          builder: (context, state) {
-            if (state is ProfileLoading) {
-              return showLoading();
-            } else if (state is ProfileError) {
-              log(SharedHelper.get(SharedKeys.gender).toString());
-              return ListView(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(16.sp),
-                    margin: EdgeInsets.all(16.sp),
-                    decoration: BoxDecoration(
-                      color: AppColor.white,
-                      borderRadius: BorderRadius.circular(16.r),
-                      boxShadow: [
-                        BoxShadow(
-                          color: SharedHelper.get(SharedKeys.gender) == "Male"
-                              ? AppColor.mainBlue.withValues(alpha: .5)
-                              : AppColor.mainPink.withValues(alpha: .5),
-                          spreadRadius: 2,
-                          blurRadius: 4,
-                          offset: Offset(0, 0),
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 50.r,
-                          // backgroundImage: NetworkImage(state.image ),
-                        ),
-                        const Gap(16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                SharedHelper.get(SharedKeys.name) ?? "Name",
-                                style: TextStyle(
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColor.mainPink,
-                                ),
-                              ),
-                              Text(
-                                SharedHelper.get(SharedKeys.email) ?? "Email",
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: AppColor.grey,
-                                ),
-                              ),
-                              Text(
-                                SharedHelper.get(SharedKeys.phone) ?? "Phone",
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: AppColor.grey,
-                                ),
-                              ),
-                            ],
+            builder: (context, state) {
+              if (state is ProfileLoading) {
+                return showLoading();
+              } else if (state is ProfileError) {
+                log(SharedHelper.get(SharedKeys.gender).toString());
+                return ListView(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(16.sp),
+                      margin: EdgeInsets.all(16.sp),
+                      decoration: BoxDecoration(
+                        color: AppColor.white,
+                        borderRadius: BorderRadius.circular(16.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: SharedHelper.get(SharedKeys.gender) == "Male"
+                                ? AppColor.mainBlue.withValues(alpha: .5)
+                                : AppColor.mainPink.withValues(alpha: .5),
+                            spreadRadius: 2,
+                            blurRadius: 4,
+                            offset: Offset(0, 0),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  backgroundColor: AppColor.white,
-                                  title: Center(
-                                    child: Text(
-                                      "QR Code",
-                                      style: TextStyle(
-                                        fontSize: 24.sp,
-                                        fontWeight: FontWeight.bold,
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 50.r,
+                            // backgroundImage: NetworkImage(state.image ),
+                          ),
+                          const Gap(16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  SharedHelper.get(SharedKeys.name) ?? "",
+                                  style: TextStyle(
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColor.mainPink,
+                                  ),
+                                ),
+                                Text(
+                                  SharedHelper.get(SharedKeys.email) ?? "",
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: AppColor.grey,
+                                  ),
+                                ),
+                                Text(
+                                  SharedHelper.get(SharedKeys.phone) ?? "",
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: AppColor.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    backgroundColor: AppColor.white,
+                                    title: Center(
+                                      child: Text(
+                                        "QR Code",
+                                        style: TextStyle(
+                                          fontSize: 24.sp,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  content: Container(
-                                    color: Colors.white,
-                                    alignment: Alignment.center,
-                                    width: 200.sp, // حددت العرض
-                                    height: 200.sp, // حددت الارتفاع
-                                    child: QrImageView(
-                                      data: SharedHelper.get(
-                                        SharedKeys.id,
-                                      ).toString(),
-                                      version: QrVersions.auto,
-                                      size: 200.0,
+                                    content: Container(
+                                      color: Colors.white,
+                                      alignment: Alignment.center,
+                                      width: 200.sp, // حددت العرض
+                                      height: 200.sp, // حددت الارتفاع
+                                      child: QrImageView(
+                                        data: SharedHelper.get(
+                                          SharedKeys.id,
+                                        ).toString(),
+                                        version: QrVersions.auto,
+                                        size: 200.0,
+                                      ),
                                     ),
-                                  ),
-                                  actions: [
-                                    CustomButton(
-                                      onTap: () {
-                                        Navigator.of(
-                                          context,
-                                        ).pop(); // بص يا جو، دي هتقفل الـ dialog
-                                      },
-                                      name: LocaleKeys.cancel.tr(),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
-                          child: Icon(
-                            Icons.qr_code,
-                            color: AppColor.mainPink,
-                            size: 24.sp,
+                                    actions: [
+                                      CustomButton(
+                                        onTap: () {
+                                          Navigator.of(
+                                            context,
+                                          ).pop(); // بص يا جو، دي هتقفل الـ dialog
+                                        },
+                                        name: LocaleKeys.cancel.tr(),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: Icon(
+                              Icons.qr_code,
+                              color: AppColor.mainPink,
+                              size: 24.sp,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    ProfileItem(
+                      title: LocaleKeys.age.tr(),
+                      value:
+                          SharedHelper.get(SharedKeys.dateOfBirth).toString(),
+                      icon: Icons.calendar_today,
+                    ),
+
+                    ProfileItem(
+                      title: "الامراض المزمنه",
+                      onTap: () {
+                        context.push(ChronicDiseasesScreen());
+                      },
+                      icon: Icons.medical_services,
+                    ),
+                    // if (SharedHelper.get(SharedKeys.gender) == "female")
+                    ProfileItem(
+                      title: "هيّا ",
+                      icon: Icons.monitor_weight,
+                      onTap: () => {
+                        context.push(
+                          MultiProvider(
+                            providers: [
+                              BlocProvider(
+                                create: (_) => WomanCycleCubit(),
+                              ),
+                            ],
+                            child: const WomanCycleScreen(),
                           ),
                         ),
-                      ],
+                      },
                     ),
-                  ),
+                    // if (SharedHelper.get(SharedKeys.gender) == "male")
+                    ProfileItem(
+                      title: "BMI الكتل العضليه",
+                      icon: Icons.monitor_weight,
+                      onTap: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BMICalculatorScreen(),
+                          ),
+                        )
+                      },
+                    ),
+                    ProfileItem(
+                      title: LocaleKeys.editProfile.tr(),
+                      icon: Icons.person,
+                      onTap: () {
+                        context.push(const EditProfile());
+                      },
+                    ),
+                    ProfileItem(
+                      title: LocaleKeys.changePassword.tr(),
+                      icon: Icons.password,
+                      onTap: () {
+                        context.push(const UpdatePassword());
+                      },
+                    ),
 
-                  ProfileItem(
-                    title: LocaleKeys.age.tr(),
-                    value: SharedHelper.get(SharedKeys.dateOfBirth).toString(),
-                    icon: Icons.calendar_today,
-                  ),
+                    ProfileItem(
+                      title: LocaleKeys.language.tr(),
+                      value: LocaleKeys.languageNaw.tr(),
+                      icon: Icons.language,
+                      onTap: () {
+                        setState(() {
+                          if (context.locale.toString() == 'ar') {
+                            context.setLocale(Locale('en'));
+                          } else {
+                            context.setLocale(Locale('ar'));
+                          }
+                        });
+                      },
+                    ),
 
-                  ProfileItem(
-                    title: "الامراض المزمنه",
-                    onTap: () {
-                      context.push(ChronicDiseasesScreen());
-                    },
-                    icon: Icons.medical_services,
-                  ),
-                  // if (SharedHelper.get(SharedKeys.gender) == "female")
-                  ProfileItem(
-                    title: "هيّا ",
-                    icon: Icons.monitor_weight,
-                    onTap: () => {
-                      context.push(
-                        MultiProvider(
-                          providers: [
-                            ChangeNotifierProvider(
-                              create: (_) => CycleProvider(),
-                            ),
-                          ],
-                          child: const WomanCycleScreen(),
-                        ),
-                      ),
-                    },
-                  ),
-                  // if (SharedHelper.get(SharedKeys.gender) == "male")
-                  ProfileItem(
-                    title: "BMI الكتل العضليه",
-                    icon: Icons.monitor_weight,
-                    onTap: () => {context.push(BMICalculatorScreen())},
-                  ),
-                  ProfileItem(
-                    title: LocaleKeys.editProfile.tr(),
-                    icon: Icons.person,
-                    onTap: () {
-                      context.push(const EditProfile());
-                    },
-                  ),
-                  ProfileItem(
-                    title: LocaleKeys.changePassword.tr(),
-                    icon: Icons.password,
-                    onTap: () {
-                      context.push(const UpdatePassword());
-                    },
-                  ),
-
-                  ProfileItem(
-                    title: LocaleKeys.language.tr(),
-                    value: LocaleKeys.languageNaw.tr(),
-                    icon: Icons.language,
-                    onTap: () {
-                      setState(() {
-                        if (context.locale.toString() == 'ar') {
-                          context.setLocale(Locale('en'));
-                        } else {
-                          context.setLocale(Locale('ar'));
-                        }
-                      });
-                    },
-                  ),
-
-                  ProfileItem(
-                    title: LocaleKeys.logout.tr(),
-                    icon: Icons.logout,
-                    onTap: () {
-                      SharedHelper.removeKey(SharedKeys.kToken);
-                      context.pushAndRemoveUntil(IntroScreen());
-                    },
-                  ),
-                  Gap(15),
-                ],
+                    ProfileItem(
+                      title: LocaleKeys.logout.tr(),
+                      icon: Icons.logout,
+                      onTap: () {
+                        SharedHelper.removeKey(SharedKeys.kToken);
+                        context.pushAndRemoveUntil(IntroScreen());
+                      },
+                    ),
+                    Gap(15),
+                  ],
+                );
+              }
+              return Center(
+                child: Text(
+                  "Failed to load profile",
+                  style: TextStyle(color: AppColor.red, fontSize: 18.sp),
+                ),
               );
-            }
-            return Center(
-              child: Text(
-                "Failed to load profile",
-                style: TextStyle(color: AppColor.red, fontSize: 18.sp),
-              ),
-            );
-          },
+            },
+          ),
         ),
       ),
     );

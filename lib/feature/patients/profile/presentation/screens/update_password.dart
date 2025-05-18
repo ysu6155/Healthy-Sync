@@ -19,6 +19,25 @@ class UpdatePassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ProfileCubit(),
+        ),
+        BlocProvider(
+          create: (context) => LoginCubit(),
+        ),
+      ],
+      child: const UpdatePasswordView(),
+    );
+  }
+}
+
+class UpdatePasswordView extends StatelessWidget {
+  const UpdatePasswordView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     LoginCubit loginCubit = BlocProvider.of<LoginCubit>(context);
     return Scaffold(
       appBar: AppBar(
