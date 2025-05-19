@@ -343,29 +343,4 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
     );
   }
 
-  Color _getStatusColor(String status) {
-    switch (status) {
-      case 'booked':
-        return AppColor.mainBlue;
-      case 'completed':
-        return Colors.green;
-      case 'cancelled':
-        return AppColor.red;
-      default:
-        return Colors.grey;
-    }
-  }
-
-  String _getStatusText(String status) {
-    switch (status) {
-      case 'booked':
-        return 'محجوز';
-      case 'completed':
-        return 'مكتمل';
-      case 'cancelled':
-        return 'ملغي';
-      default:
-        return 'متاح';
-    }
-  }
 }

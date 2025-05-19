@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
-import 'package:healthy_sync/core/themes/styles.dart';
-import 'package:healthy_sync/feature/patients/home/data/data.dart';
+
 import 'package:healthy_sync/feature/patients/home/presentation/screens/doctor_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

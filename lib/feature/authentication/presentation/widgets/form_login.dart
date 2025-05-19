@@ -8,7 +8,7 @@ import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
-import 'package:healthy_sync/core/widgets/show_dialog.dart';
+import 'package:healthy_sync/core/widgets/shows.dart';
 import 'package:healthy_sync/feature/authentication/data/models/request/register_params.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_state.dart';

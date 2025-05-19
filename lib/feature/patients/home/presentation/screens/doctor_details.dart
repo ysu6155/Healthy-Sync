@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
-import 'package:healthy_sync/core/widgets/show_dialog.dart';
+import 'package:healthy_sync/core/widgets/shows.dart';
 
 class DoctorDetails extends StatelessWidget {
   final Map<String, dynamic> doctor;

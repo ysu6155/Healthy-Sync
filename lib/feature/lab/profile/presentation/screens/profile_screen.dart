@@ -9,7 +9,6 @@ import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/feature/lab/profile/presentation/screens/edit_profile.dart';
-import 'package:healthy_sync/feature/lab/report/presentation/pages/report.dart';
 import 'package:healthy_sync/feature/welcome/presentation/screens/intro/intro_screen.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 

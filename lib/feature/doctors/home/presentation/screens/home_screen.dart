@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/themes/styles.dart';

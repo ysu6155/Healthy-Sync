@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
-import 'package:healthy_sync/core/widgets/show_dialog.dart';
+import 'package:healthy_sync/core/widgets/shows.dart';
 
 class ChronicDiseasesScreen extends StatefulWidget {
   const ChronicDiseasesScreen({super.key});

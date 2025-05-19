@@ -6,6 +6,7 @@ import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
+import 'package:healthy_sync/core/widgets/shows.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/lab_test_details/cubit/lab_test_details_cubit.dart';
 
 class LabTestDetailsScreen extends StatelessWidget {
@@ -35,7 +36,7 @@ class LabTestDetailsScreen extends StatelessWidget {
         body: BlocBuilder<LabTestDetailsCubit, LabTestDetailsState>(
           builder: (context, state) {
             if (state is LabTestDetailsLoading) {
-              return _buildLoadingIndicator();
+              return showLoading();
             }
 
             if (state is LabTestDetailsLoaded) {
@@ -185,35 +186,6 @@ class LabTestDetailsScreen extends StatelessWidget {
             return const SizedBox.shrink();
           },
         ),
-      ),
-    );
-  }
-
-  Widget _buildLoadingIndicator() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 60.w,
-            height: 60.w,
-            decoration: BoxDecoration(
-              color: AppColor.mainBlue.withOpacity(0.1),
-              shape: BoxShape.circle,
-            ),
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(AppColor.mainBlue),
-              strokeWidth: 3.w,
-            ),
-          ),
-          16.H,
-          Text(
-            LocaleKeys.loading.tr(),
-            style: TextStyles.font16DarkBlueW500.copyWith(
-              color: AppColor.mainBlueDark,
-            ),
-          ),
-        ],
       ),
     );
   }

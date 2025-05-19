@@ -89,3 +89,25 @@ void showErrorSnackBar(String message, BuildContext context) {
     ),
   );
 }
+
+Widget buildLoading() {
+  return Center(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 60.w,
+          height: 60.w,
+          decoration: BoxDecoration(
+            color: AppColor.mainBlue.withOpacity(0.1),
+            shape: BoxShape.circle,
+          ),
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(AppColor.mainBlue),
+            strokeWidth: 3.w,
+          ),
+        ),
+      ],
+    ),
+  );
+}

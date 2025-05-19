@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
-import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 
@@ -226,7 +225,7 @@ class _DrugInfoScreenState extends State<DrugInfoScreen> {
     final brandName = _getStringValue(drugData, "brand_name");
     final genericName = _getStringValue(drugData, "generic_name");
     final labelerName = _getStringValue(drugData, "labeler_name");
-    final packaging = _getStringValue(drugData, "packaging");
+    //final packaging = _getStringValue(drugData, "packaging");
     final marketingStartDate =
         _getStringValue(drugData, "marketing_start_date");
     final listingExpirationDate =
@@ -497,33 +496,7 @@ class _DrugInfoScreenState extends State<DrugInfoScreen> {
     return value.toString();
   }
 
-  String _getStringValue1(List<String>? data, int index) {
-    if (data == null || index < 0 || index >= data.length) return "غير متوفر";
+ 
 
-    final value = data[index];
-    if (value.isEmpty) return "غير متوفر";
-
-    return value;
-  }
-
-  // Helper method to clean pharmaceutical classification values
-  String _cleanPharmClassValue(String value) {
-    if (value == "غير متوفر") return value;
-
-    return value
-        .replaceAll(" [MoA]", "")
-        .replaceAll(" [CS]", "")
-        .replaceAll(" [EPC]", "");
-  }
-
-  // Helper method to get first item from a list
-  String _getFirstItemFromList(dynamic value) {
-    if (value == null) return "غير متوفر";
-
-    if (value is List && value.isNotEmpty) {
-      return value[0].toString();
-    }
-
-    return "غير متوفر";
-  }
+ 
 }

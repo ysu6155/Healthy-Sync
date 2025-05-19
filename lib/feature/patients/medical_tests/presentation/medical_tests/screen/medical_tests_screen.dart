@@ -1,18 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
-import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
-import 'package:healthy_sync/feature/patients/home/data/data.dart';
+import 'package:healthy_sync/core/widgets/shows.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/widget/health_tips.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/lab_test_details/screen/lab_test_details_screen.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/lab_tests/screen/lab_tests_screen.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/xray_tests/screens/xray_screen.dart';
-import 'package:healthy_sync/feature/patients/medical_tests/data/dummy_data.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/xray_details/screen/xray_details_screen.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/medical_tests/cubit/medical_tests_cubit.dart';
 
@@ -38,7 +34,7 @@ class MedicalTestsScreen extends StatelessWidget {
         body: BlocBuilder<MedicalTestsCubit, MedicalTestsState>(
           builder: (context, state) {
             if (state is MedicalTestsLoading) {
-              return _buildLoadingIndicator();
+              return showLoading();
             }
 
             return RefreshIndicator(
@@ -47,7 +43,7 @@ class MedicalTestsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    HealthTips(),
+                    const HealthTips(),
                     16.H,
                     Padding(
                       padding: EdgeInsets.all(16.sp),
@@ -127,35 +123,6 @@ class MedicalTestsScreen extends StatelessWidget {
             );
           },
         ),
-      ),
-    );
-  }
-
-  Widget _buildLoadingIndicator() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 60.w,
-            height: 60.w,
-            decoration: BoxDecoration(
-              color: AppColor.mainBlue.withOpacity(0.1),
-              shape: BoxShape.circle,
-            ),
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(AppColor.mainBlue),
-              strokeWidth: 3.w,
-            ),
-          ),
-          16.H,
-          Text(
-            LocaleKeys.loading.tr(),
-            style: TextStyles.font16DarkBlueW500.copyWith(
-              color: AppColor.mainBlueDark,
-            ),
-          ),
-        ],
       ),
     );
   }

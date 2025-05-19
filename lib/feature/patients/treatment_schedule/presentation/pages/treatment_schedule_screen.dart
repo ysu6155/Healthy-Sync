@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
-import 'package:healthy_sync/core/widgets/show_dialog.dart';
+import 'package:healthy_sync/core/widgets/shows.dart';
 
 class TreatmentScheduleScreen extends StatefulWidget {
   const TreatmentScheduleScreen({super.key});

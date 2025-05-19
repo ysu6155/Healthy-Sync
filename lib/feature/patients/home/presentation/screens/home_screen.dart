@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
+import 'package:healthy_sync/core/widgets/shows.dart';
 import 'package:healthy_sync/feature/patients/home/data/models/doctor_visit.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/screens/specializations_screen.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
@@ -25,7 +26,7 @@ class HomePatientScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           body: state.isLoading
-              ? _buildLoadingIndicator()
+              ? showLoading()
               : RefreshIndicator(
                   onRefresh: () => context.read<HomeCubit>().refresh(),
                   child: ListView(
@@ -33,7 +34,7 @@ class HomePatientScreen extends StatelessWidget {
                       _buildHeader(context),
                       16.H,
                       state.isVisitLoading
-                          ? _buildSectionLoading()
+                          ? buildLoading()
                           : DoctorVisitCard(
                               visit: DoctorVisit(
                               doctorName: state.visitData?.doctorName ?? '',
@@ -54,13 +55,13 @@ class HomePatientScreen extends StatelessWidget {
                       _buildSpecializationsHeader(context),
                       8.H,
                       state.isSpecializationsLoading
-                          ? _buildSectionLoading()
+                          ? buildLoading()
                           : SpecializationsSection(
                               specializations: state.specializations,
                             ),
                       16.H,
                       state.isDoctorsLoading
-                          ? _buildSectionLoading()
+                          ? buildLoading()
                           : DoctorsSection(
                               doctors: state.doctors,
                             ),
@@ -69,63 +70,6 @@ class HomePatientScreen extends StatelessWidget {
                 ),
         );
       },
-    );
-  }
-
-  Widget _buildLoadingIndicator() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 60.w,
-            height: 60.w,
-            decoration: BoxDecoration(
-              color: AppColor.mainBlue.withOpacity(0.1),
-              shape: BoxShape.circle,
-            ),
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(AppColor.mainBlue),
-              strokeWidth: 3.w,
-            ),
-          ),
-          16.H,
-          Text(
-            LocaleKeys.loading.tr(),
-            style: TextStyles.font16DarkBlueW500.copyWith(
-              color: AppColor.mainBlueDark,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSectionLoading() {
-    return Container(
-      height: 100.h,
-      margin: EdgeInsets.symmetric(vertical: 8.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Center(
-        child: SizedBox(
-          width: 30.w,
-          height: 30.w,
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(AppColor.mainBlue),
-            strokeWidth: 2.w,
-          ),
-        ),
-      ),
     );
   }
 

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
-import 'package:healthy_sync/core/themes/styles.dart';
-import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
 import 'package:healthy_sync/feature/lab/home/data/lab_test_model.dart';
 
 class LabTestDetailsScreen extends StatelessWidget {

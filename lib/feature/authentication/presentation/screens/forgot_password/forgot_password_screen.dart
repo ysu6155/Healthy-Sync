@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
-import 'package:healthy_sync/core/widgets/cyber_card.dart';
 import 'package:healthy_sync/feature/authentication/presentation/screens/Verification/verification_screen.dart';
 
 import 'package:healthy_sync/core/helpers/extensions.dart';

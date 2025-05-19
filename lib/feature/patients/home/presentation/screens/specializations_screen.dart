@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/screens/doctors_by_specialty_screen.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
@@ -234,28 +233,6 @@ class SpecializationsAll extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildFilterChip(String label, bool isSelected) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12.sp, vertical: 6.sp),
-      decoration: BoxDecoration(
-        color: isSelected ? AppColor.mainBlue : Colors.grey[100],
-        borderRadius: BorderRadius.circular(20.r),
-        border: Border.all(
-          color: isSelected ? AppColor.mainBlue : Colors.grey[300]!,
-          width: 1.w,
-        ),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(
-          color: isSelected ? Colors.white : Colors.grey[700],
-          fontSize: 13.sp,
-          fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-        ),
       ),
     );
   }

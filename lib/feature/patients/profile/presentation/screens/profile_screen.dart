@@ -11,7 +11,7 @@ import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
-import 'package:healthy_sync/core/widgets/show_dialog.dart';
+import 'package:healthy_sync/core/widgets/shows.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/cubit/woman_cycle_cubit.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/screens/bmi.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/screens/chronic_diseases_screen.dart';

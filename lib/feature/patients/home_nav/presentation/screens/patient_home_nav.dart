@@ -7,7 +7,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/feature/chat/presentation/screens/chat_bot_screen.dart';
-import 'package:healthy_sync/feature/doctors/profile/presentation/cubit/profile_cubit.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/cubit/home_cubit.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/medical_tests/screen/medical_tests_screen.dart';
 

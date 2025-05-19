@@ -3,14 +3,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:healthy_sync/core/constants/enum.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
-import 'package:healthy_sync/feature/authentication/presentation/screens/login/login_screen.dart';
 import 'package:healthy_sync/feature/welcome/presentation/screens/intro/role_selection_page.dart';
 import 'package:healthy_sync/feature/welcome/presentation/widgets/build_dot.dart'
     show buildDot;

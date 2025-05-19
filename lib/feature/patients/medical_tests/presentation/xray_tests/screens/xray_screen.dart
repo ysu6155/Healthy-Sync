@@ -1,11 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
-import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
+import 'package:healthy_sync/core/widgets/shows.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/xray_details/screen/xray_details_screen.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/xray_tests/cubit/xray_tests_cubit.dart';
 
@@ -31,7 +30,7 @@ class XrayScreen extends StatelessWidget {
         body: BlocBuilder<XrayTestsCubit, XrayTestsState>(
           builder: (context, state) {
             if (state is XrayTestsLoading) {
-              return _buildLoadingIndicator();
+              return showLoading();
             }
 
             return RefreshIndicator(
@@ -156,35 +155,6 @@ class XrayScreen extends StatelessWidget {
             fontSize: 14.sp,
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildLoadingIndicator() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 60.w,
-            height: 60.w,
-            decoration: BoxDecoration(
-              color: AppColor.mainBlue.withOpacity(0.1),
-              shape: BoxShape.circle,
-            ),
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(AppColor.mainBlue),
-              strokeWidth: 3.w,
-            ),
-          ),
-          16.H,
-          Text(
-            LocaleKeys.loading.tr(),
-            style: TextStyles.font16DarkBlueW500.copyWith(
-              color: AppColor.mainBlueDark,
-            ),
-          ),
-        ],
       ),
     );
   }

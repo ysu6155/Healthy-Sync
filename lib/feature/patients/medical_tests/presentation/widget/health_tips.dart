@@ -35,7 +35,7 @@ class _HealthTipsState extends State<HealthTips> {
                 fit: BoxFit.fill,
                 width: double.infinity,
                 placeholder: (context, url) => Center(
-                  child: CircularProgressIndicator(color: AppColor.pink),
+                  child: CircularProgressIndicator(color: AppColor.mainBlue),
                 ),
                 errorWidget: (context, url, error) => Center(
                   child: Icon(
