@@ -216,5 +216,8 @@
   "downloadReport": "تحميل التقرير",
   "whoAreYou": "من انت",
   "message": "الرسالة",
-  "loading": "جاري التحميل..."
+  "loading": "جاري التحميل...",
+  "treatmentSchedule": "جدول العلاج",
+  "markAsCompleted": "تمييز كمنتهي",
+  "days": "الأيام"
 }

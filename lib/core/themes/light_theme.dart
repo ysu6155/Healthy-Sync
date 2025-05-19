@@ -11,7 +11,7 @@ ThemeData themeLight = ThemeData(
 OutlineInputBorder borderStyle(Color color, double borderRadius) {
   return OutlineInputBorder(
     borderSide: BorderSide(color: color, width: 2.0.w),
-    borderRadius: BorderRadius.circular(borderRadius ?? 16.r),
+    borderRadius: BorderRadius.circular(borderRadius ),
   );
 }
 

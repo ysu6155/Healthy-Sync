@@ -105,14 +105,14 @@ class _WomanCycleScreenState extends State<WomanCycleScreen> {
             icon: const Icon(Icons.history),
             onPressed: () => _showHistoryDialog(context),
           ),
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () async {
-              context.push(SettingsScreen());
+          // IconButton(
+          //   icon: const Icon(Icons.settings),
+          //   onPressed: () async {
+          //     context.push(SettingsScreen());
 
-              await loadSettings();
-            },
-          ),
+          //     await loadSettings();
+          //   },
+          // ),
         ],
       ),
       backgroundColor: Colors.white,

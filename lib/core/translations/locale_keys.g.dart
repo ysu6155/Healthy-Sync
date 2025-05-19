@@ -223,4 +223,7 @@ abstract class LocaleKeys {
   static const message = 'message';
   static const whoAreYou = 'whoAreYou';
   static const loading = 'loading';
+  static const String treatmentSchedule = 'treatmentSchedule';
+  static const String markAsCompleted = 'markAsCompleted';
+  static const String days = 'days';
 }

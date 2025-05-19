@@ -32,10 +32,10 @@ class PatientHomeNavScreenState extends State<PatientHomeNavScreen> {
       create: (context) => HomeCubit()..loadData(),
       child: const HomePatientScreen(),
     ),
-    TreatmentScheduleScreen(),
-    ChatScreen(),
-    MedicalTestsScreen(),
-    const ProfilePatientScreen(),
+    const TreatmentScheduleScreen(),
+    const ChatScreen(),
+    const MedicalTestsScreen(),
+     const ProfilePatientScreen(),
   ];
 
   @override

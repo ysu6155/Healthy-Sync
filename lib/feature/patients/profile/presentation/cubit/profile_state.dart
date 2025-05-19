@@ -1,66 +1,38 @@
 part of 'profile_cubit.dart';
 
-abstract class ProfileState {
-  List<Object?> get props => [];
-}
+abstract class ProfileState {}
 
 class ProfileInitial extends ProfileState {}
 
 class ProfileLoading extends ProfileState {}
 
 class ProfileLoaded extends ProfileState {
-  final String name;
-  final String email;
-  final String image;
-  final String? phone;
-  final String? address;
-  final String? city;
+  final Map<String, dynamic> profile;
 
-  ProfileLoaded({
-    required this.name,
-    required this.email,
-    required this.image,
-    this.address,
-    this.city,
-    this.phone,
-  });
-
-  @override
-  List<Object?> get props => [name, email, image];
+  ProfileLoaded({required this.profile});
 }
 
 class ProfileError extends ProfileState {
   final String message;
-  ProfileError(this.message);
 
-  @override
-  List<Object?> get props => [message];
+  ProfileError(this.message);
 }
 
 class ProfileSuccess extends ProfileState {
   final String message;
 
   ProfileSuccess(this.message);
-
-  @override
-  List<Object> get props => [message];
 }
 
 class ProfileUpdateError extends ProfileState {
   final String message;
   ProfileUpdateError(this.message);
-
-  @override
-  List<Object?> get props => [message];
 }
 
 class ProfileUpdateSuccess extends ProfileState {
   final String message;
 
   ProfileUpdateSuccess(this.message);
-
-  @override
-  List<Object> get props => [message];
 }
 
 class ProfileUpdateLoading extends ProfileState {}

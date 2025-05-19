@@ -216,5 +216,8 @@
 "downloadReport": "Download Report",
 "whoAreYou": "Who are you",
 "message": "Message",
-"loading": "Loading..."
+"loading": "Loading...",
+"treatmentSchedule": "Treatment Schedule",
+"markAsCompleted": "Mark as Completed",
+"days": "Days"
 }

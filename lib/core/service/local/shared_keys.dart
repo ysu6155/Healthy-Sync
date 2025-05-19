@@ -1,5 +1,14 @@
 sealed class SharedKeys {
   static const String kToken = 'token';
+  static const String kUser = 'user';
+  static const String kLanguage = 'language';
+  static const String kGender = 'gender';
+  static const String kCycleLength = 'cycleLength';
+  static const String kPeriodLength = 'periodLength';
+  static const String kNotificationDays = 'notificationDays';
+  static const String kEndNotification = 'endNotification';
+  static const String kHideNotifications = 'hideNotifications';
+  static const String kAppLock = 'appLock';
   static const String name = "name";
   static const String email = "email";
   static const String image = "image";
@@ -22,4 +31,13 @@ sealed class SharedKeys {
   static const String ovulationLength = "ovulationLength";
   static const String startDate = "startDate";
   static const String cycleHistory = "cycleHistory";
+  static const String notificationDays = "notificationDays";
+  static const String endNotification = "endNotification";
+  static const String hideNotifications = "hideNotifications";
+  static const String appLock = "appLock";
+  static const String womanCycle = "womanCycle";
+  static const String womanCycleSettings = "womanCycleSettings";
+  static const String womanCycleHistory = "womanCycleHistory";
+  static const String womanCycleTips = "womanCycleTips";
+  
 }
