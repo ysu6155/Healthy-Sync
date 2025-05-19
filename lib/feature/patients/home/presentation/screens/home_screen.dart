@@ -19,9 +19,6 @@ import 'package:healthy_sync/feature/patients/home/presentation/cubit/home_state
 class HomePatientScreen extends StatelessWidget {
   const HomePatientScreen({super.key});
 
- 
-
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
@@ -166,7 +163,7 @@ class HomePatientScreen extends StatelessWidget {
           radius: 20.r,
           backgroundColor: AppColor.mainBlue,
           child: Icon(
-            Icons.notifications,
+            Icons.language,
             color: AppColor.white,
             size: 20.sp,
           ),

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
@@ -7,109 +8,154 @@ import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/feature/patients/home/data/data.dart';
-import 'package:healthy_sync/feature/patients/medical_tests/presentation/screens/health_tips.dart';
-import 'package:healthy_sync/feature/patients/medical_tests/presentation/screens/lab_test_details_screen.dart';
-import 'package:healthy_sync/feature/patients/medical_tests/presentation/screens/lab_tests_screen.dart';
-import 'package:healthy_sync/feature/patients/medical_tests/presentation/screens/xray_screen.dart';
+import 'package:healthy_sync/feature/patients/medical_tests/presentation/widget/health_tips.dart';
+import 'package:healthy_sync/feature/patients/medical_tests/presentation/lab_test_details/screen/lab_test_details_screen.dart';
+import 'package:healthy_sync/feature/patients/medical_tests/presentation/lab_tests/screen/lab_tests_screen.dart';
+import 'package:healthy_sync/feature/patients/medical_tests/presentation/xray_tests/screens/xray_screen.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/data/dummy_data.dart';
-import 'package:healthy_sync/feature/patients/medical_tests/presentation/screens/xray_details_screen.dart';
+import 'package:healthy_sync/feature/patients/medical_tests/presentation/xray_details/screen/xray_details_screen.dart';
+import 'package:healthy_sync/feature/patients/medical_tests/presentation/medical_tests/cubit/medical_tests_cubit.dart';
 
 class MedicalTestsScreen extends StatelessWidget {
   const MedicalTestsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        toolbarHeight: 56.sp,
-        centerTitle: true,
-        elevation: 0,
-        title: Text(
-          "التحاليل والأشعة",
-          style: TextStyles.font16DarkBlueW500,
+    return BlocProvider(
+      create: (context) => MedicalTestsCubit()..loadData(),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          toolbarHeight: 56.sp,
+          centerTitle: true,
+          elevation: 0,
+          title: Text(
+            "التحاليل والأشعة",
+            style: TextStyles.font16DarkBlueW500,
+          ),
+          backgroundColor: AppColor.white,
         ),
-        backgroundColor: AppColor.white,
+        body: BlocBuilder<MedicalTestsCubit, MedicalTestsState>(
+          builder: (context, state) {
+            if (state is MedicalTestsLoading) {
+              return _buildLoadingIndicator();
+            }
+
+            return RefreshIndicator(
+              onRefresh: () => context.read<MedicalTestsCubit>().refresh(),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    HealthTips(),
+                    16.H,
+                    Padding(
+                      padding: EdgeInsets.all(16.sp),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "الخدمات",
+                            style: TextStyles.font16DarkBlueW500,
+                          ),
+                          16.H,
+                          GridView.count(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 12.sp,
+                            crossAxisSpacing: 12.sp,
+                            childAspectRatio: 1.5,
+                            children: [
+                              _buildServiceCard(
+                                "التحاليل الطبية",
+                                Icons.science_outlined,
+                                AppColor.mainBlue,
+                                () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const LabTestsScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                              _buildServiceCard(
+                                "الأشعة",
+                                Icons.medical_information_outlined,
+                                AppColor.mainPink,
+                                () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const XrayScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    // قسم آخر التحاليل والأشعة
+                    Padding(
+                      padding: EdgeInsets.all(16.sp),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "آخر التحاليل والأشعة",
+                                style: TextStyles.font16DarkBlueW500,
+                              ),
+                            ],
+                          ),
+                          16.H,
+                          if (state is MedicalTestsLoaded)
+                            ...state.recentTests
+                                .map((test) => _buildTestCard(context, test)),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            HealthTips(),
-            16.H,
-            Padding(
-              padding: EdgeInsets.all(16.sp),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "الخدمات",
-                    style: TextStyles.font16DarkBlueW500,
-                  ),
-                  16.H,
-                  GridView.count(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 12.sp,
-                    crossAxisSpacing: 12.sp,
-                    childAspectRatio: 1.5,
-                    children: [
-                      _buildServiceCard(
-                        "التحاليل الطبية",
-                        Icons.science_outlined,
-                        AppColor.mainBlue,
-                        () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LabTestsScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                      _buildServiceCard(
-                        "الأشعة",
-                        Icons.medical_information_outlined,
-                        AppColor.mainPink,
-                        () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const XrayScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+    );
+  }
+
+  Widget _buildLoadingIndicator() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 60.w,
+            height: 60.w,
+            decoration: BoxDecoration(
+              color: AppColor.mainBlue.withOpacity(0.1),
+              shape: BoxShape.circle,
             ),
-            // قسم آخر التحاليل والأشعة
-            Padding(
-              padding: EdgeInsets.all(16.sp),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "آخر التحاليل والأشعة",
-                        style: TextStyles.font16DarkBlueW500,
-                      ),
-                    ],
-                  ),
-                  16.H,
-                  ...MedicalTestsData.getRecentTests()
-                      .map((test) => _buildTestCard(context, test)),
-                ],
-              ),
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(AppColor.mainBlue),
+              strokeWidth: 3.w,
             ),
-            // قسم الخدمات
-          ],
-        ),
+          ),
+          16.H,
+          Text(
+            LocaleKeys.loading.tr(),
+            style: TextStyles.font16DarkBlueW500.copyWith(
+              color: AppColor.mainBlueDark,
+            ),
+          ),
+        ],
       ),
     );
   }
