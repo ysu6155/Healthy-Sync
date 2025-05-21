@@ -109,6 +109,7 @@ final specializations = [
 final List<Map<String, dynamic>> doctors = [
   {
     "name": "د. أحمد",
+    "id": "1",
     "specialty": "أخصائي قلب",
     "image":
         "https://img.freepik.com/free-photo/businesswoman-short-hair-specialist-frustrated-touching_1134-975.jpg",
@@ -124,6 +125,7 @@ final List<Map<String, dynamic>> doctors = [
   },
   {
     "name": "د. هاجر",
+    "id": "2",
     "specialty": "أخصائي أسنان",
     "image":
         "https://img.freepik.com/free-photo/portrait-smiling-young-woman-doctor-healthcare-medical-worker-pointing-fingers-left-showing-clini_1258-88108.jpg", // صورة لامرأة (دكتورة أسنان)
@@ -138,6 +140,7 @@ final List<Map<String, dynamic>> doctors = [
   },
   {
     "name": "د. يوسف",
+    "id": "3",
     "specialty": "أخصائي جراحة عامة",
     "image":
         "https://img.freepik.com/free-photo/doctor-with-his-arms-crossed-white-background_1368-5790.jpg", // صورة لشخص (دكتور جراحة)
@@ -152,6 +155,7 @@ final List<Map<String, dynamic>> doctors = [
   },
   {
     "name": "د. مريم",
+    "id": "3",
     "specialty": "أخصائية نساء وتوليد",
     "image":
         "https://i.pinimg.com/474x/20/f0/3d/20f03d2dc59c8f04ddcb6d6b602a0ebb.jpg", // صورة لامرأة (دكتورة نساء وتوليد)

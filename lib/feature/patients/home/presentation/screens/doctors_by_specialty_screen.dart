@@ -79,7 +79,7 @@ class _DoctorsBySpecialtyScreenState extends State<DoctorsBySpecialtyScreen> {
                 final doctor = filteredDoctors[index];
                 return CardDoctor(doctor: doctor, index: index).withTapEffect(
                   onTap: () {
-                    context.push(DoctorDetails(doctor: doctor));
+                    context.push(DoctorDetails(doctorId: doctor['id']));
                   },
                 );
               },

@@ -1,49 +1,90 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/widgets/shows.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/cubit/doctor_details_cubit.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/cubit/doctor_details_state.dart';
 
 class DoctorDetails extends StatelessWidget {
-  final Map<String, dynamic> doctor;
+  final String doctorId;
 
-  const DoctorDetails({super.key, required this.doctor});
+  const DoctorDetails({super.key, required this.doctorId});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        toolbarHeight: 60.h,
-        title: Text(
-          'تفاصيل الطبيب',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: Colors.grey[200],
-        iconTheme: const IconThemeData(color: Colors.black),
-        elevation: 0,
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(20.w),
-        child: Column(
-          children: [
-            // Card 1: Doctor Information with Image and Experience
-            _buildDoctorCard(context),
-            SizedBox(height: 20.h),
-            // Card 2: Available Appointments
-            _buildAppointmentsCard(context),
-          ],
-        ),
+    return BlocProvider(
+      create: (context) => DoctorDetailsCubit()..loadDoctorDetails(doctorId),
+      child: BlocBuilder<DoctorDetailsCubit, DoctorDetailsState>(
+        builder: (context, state) {
+          return Scaffold(
+            backgroundColor: Colors.grey[200],
+            appBar: AppBar(
+              toolbarHeight: 60.h,
+              title: Text(
+                'تفاصيل الطبيب',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              backgroundColor: Colors.grey[200],
+              iconTheme: const IconThemeData(color: Colors.black),
+              elevation: 0,
+              centerTitle: true,
+            ),
+            body: _buildBody(context, state),
+          );
+        },
       ),
     );
   }
 
-  Widget _buildDoctorCard(BuildContext context) {
+  Widget _buildBody(BuildContext context, DoctorDetailsState state) {
+    if (state is DoctorDetailsLoading) {
+      return showLoading();
+    }
+
+    if (state is DoctorDetailsError) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(state.message),
+            ElevatedButton(
+              onPressed: () {
+                context.read<DoctorDetailsCubit>().loadDoctorDetails(doctorId);
+              },
+              child: const Text('إعادة المحاولة'),
+            ),
+          ],
+        ),
+      );
+    }
+
+    if (state is DoctorDetailsLoaded) {
+      final doctor = state.doctor.first;
+      return RefreshIndicator(
+        onRefresh: () => context.read<DoctorDetailsCubit>().refresh(doctorId),
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(20.w),
+          child: Column(
+            children: [
+              _buildDoctorCard(context, doctor),
+              SizedBox(height: 20.h),
+              _buildAppointmentsCard(context, doctor),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return const SizedBox.shrink();
+  }
+
+  Widget _buildDoctorCard(BuildContext context, Map<String, dynamic> doctor) {
     return Card(
       color: AppColor.cardColor,
       elevation: 4,
@@ -157,8 +198,8 @@ class DoctorDetails extends StatelessWidget {
     );
   }
 
-  Widget _buildAppointmentsCard(BuildContext context) {
-    // استخدام المواعيد الخاصة بالطبيب مباشرة
+  Widget _buildAppointmentsCard(
+      BuildContext context, Map<String, dynamic> doctor) {
     List<dynamic> appointments = doctor['appointments'] ?? [];
 
     return Card(
@@ -179,7 +220,6 @@ class DoctorDetails extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15.h),
-            // عرض المواعيد المتاحة
             ...appointments.map((appointment) {
               return Padding(
                 padding: EdgeInsets.only(bottom: 15.h),
@@ -223,60 +263,62 @@ class DoctorDetails extends StatelessWidget {
                           ),
                         ],
                       ),
-                      if (appointment['available'])
-                        InkWell(
-                          onTap: () {
-                            _confirmAppointment(
-                              context,
-                              appointment['date'],
-                              appointment['time'],
-                            );
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: AppColor.mainBlue,
-                              borderRadius: BorderRadius.circular(8.r),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black,
-                                  spreadRadius: 0.4,
-                                  blurRadius: 4.4,
-                                  offset: Offset(0, 0.4),
+                      appointment['available']
+                          ? InkWell(
+                              onTap: () {
+                                _confirmAppointment(
+                                  context,
+                                  appointment['date'],
+                                  appointment['time'],
+                                );
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: AppColor.mainBlue,
+                                  borderRadius: BorderRadius.circular(8.r),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Colors.black,
+                                      spreadRadius: 0.4,
+                                      blurRadius: 4.4,
+                                      offset: Offset(0, 0.4),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 15.w,
-                              vertical: 8.h,
-                            ),
-                            child: Text(
-                              'احجز الان',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: Colors.white,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 8.w,
+                                  vertical: 6.h,
+                                ),
+                                child: Text(
+                                  'احجز الان',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 8.w,
+                                vertical: 6.h,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColor.white,
+                                borderRadius: BorderRadius.circular(8.r),
+                                border: Border.all(
+                                  color: Colors.red,
+                                ),
+                              ),
+                              child: Text(
+                                'غير متاح',
+                                style: TextStyle(
+                                  fontSize: 14.sp,
+                                  color: Colors.red,
+                                ),
                               ),
                             ),
-                          ),
-                        )
-                      else
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 15.w,
-                            vertical: 8.h,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8.r),
-                            border: Border.all(color: Colors.red, width: 1.sp),
-                          ),
-                          child: Text(
-                            'غير متاح',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              color: Colors.red,
-                            ),
-                          ),
-                        ),
                     ],
                   ),
                 ),
@@ -292,22 +334,20 @@ class DoctorDetails extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('تأكيد الحجز', style: TextStyle(fontSize: 18.sp)),
-        content: Text(
-          'هل تريد تأكيد حجز موعد يوم $date الساعة $time؟',
-          style: TextStyle(fontSize: 16.sp),
-        ),
+        title: const Text('تأكيد الحجز'),
+        content: Text('هل تريد حجز موعد في $date الساعة $time؟'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('إلغاء', style: TextStyle(fontSize: 14.sp)),
+            child: const Text('إلغاء'),
           ),
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              showSuccessSnackBar('تم تأكيد الحجز بنجاح', context);
+
+              showSuccessSnackBar('تم حجز الموعد بنجاح', context);
             },
-            child: Text('تأكيد', style: TextStyle(fontSize: 14.sp)),
+            child: const Text('تأكيد'),
           ),
         ],
       ),

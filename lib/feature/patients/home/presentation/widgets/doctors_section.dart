@@ -67,7 +67,16 @@ class DoctorsSection extends StatelessWidget {
           itemBuilder: (context, index) {
             final doctor = doctors[index];
             return CardDoctor(doctor: doctor, index: index).withTapEffect(
-              onTap: () => context.push(DoctorDetails(doctor: doctor)),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DoctorDetails(
+                      doctorId: doctor['id'].toString(),
+                    ),
+                  ),
+                );
+              },
             );
           },
         ),
