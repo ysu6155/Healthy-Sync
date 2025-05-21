@@ -226,4 +226,5 @@ abstract class LocaleKeys {
   static const String treatmentSchedule = 'treatmentSchedule';
   static const String markAsCompleted = 'markAsCompleted';
   static const String days = 'days';
+  static const retry = 'retry';
 }

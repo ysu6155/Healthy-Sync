@@ -7,10 +7,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/feature/chat/presentation/screens/chat_bot_screen.dart';
-import 'package:healthy_sync/feature/patients/home/presentation/cubit/home_cubit.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/home/cubit/home_cubit.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/medical_tests/screen/medical_tests_screen.dart';
 
-import 'package:healthy_sync/feature/patients/home/presentation/screens/home_screen.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/home/screen/home_screen.dart';
 import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/feature/patients/treatment_schedule/presentation/pages/treatment_schedule_screen.dart';

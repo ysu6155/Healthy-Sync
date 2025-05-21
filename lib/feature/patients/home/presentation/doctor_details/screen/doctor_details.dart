@@ -4,8 +4,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/widgets/shows.dart';
-import 'package:healthy_sync/feature/patients/home/presentation/cubit/doctor_details_cubit.dart';
-import 'package:healthy_sync/feature/patients/home/presentation/cubit/doctor_details_state.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/doctor_details/cubit/doctor_details_cubit.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/doctor_details/cubit/doctor_details_state.dart';
 
 class DoctorDetails extends StatelessWidget {
   final String doctorId;

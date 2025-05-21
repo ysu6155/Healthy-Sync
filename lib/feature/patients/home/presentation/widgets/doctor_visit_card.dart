@@ -3,14 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/feature/patients/home/data/models/doctor_visit.dart';
-import 'package:healthy_sync/feature/patients/home/presentation/screens/doctor_visit_screen.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/doctor_visit/screen/doctor_visit_screen.dart';
 
 class DoctorVisitCard extends StatelessWidget {
   final DoctorVisit visit;
 
   const DoctorVisitCard({
     super.key,
-    this.visit = DoctorVisit.lastVisit,
+    required this.visit,
   });
 
   @override
@@ -210,7 +210,10 @@ class DoctorVisitCard extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => DoctorVisitScreen(visit: visit),
+          builder: (context) => DoctorVisitScreen(
+         
+            visitId: visit.id,
+          ),
         ),
       ),
     );

@@ -4,7 +4,7 @@ import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/feature/patients/home/data/data.dart';
 
-import 'package:healthy_sync/feature/patients/home/presentation/screens/doctors_by_specialty_screen.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/doctors_by_specialty/screen/doctors_by_specialty_screen.dart';
 
 class SpecializationsSection extends StatelessWidget {
   const SpecializationsSection({super.key});

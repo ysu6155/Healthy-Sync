@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthy_sync/feature/doctors/home/data/data.dart';
 import 'package:healthy_sync/feature/patients/home/data/models/doctor_visit.dart';
-import 'package:healthy_sync/feature/patients/home/presentation/cubit/home_state.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/home/cubit/home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(const HomeState());

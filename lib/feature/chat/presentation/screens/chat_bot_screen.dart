@@ -9,11 +9,9 @@ import 'package:file_picker/file_picker.dart';
 import 'package:healthy_sync/feature/patients/home/data/models/doctor_visit.dart';
 
 class ChatScreen extends StatefulWidget {
-  final DoctorVisit visit;
 
   const ChatScreen({
     super.key,
-    this.visit = DoctorVisit.lastVisit,
   });
 
   @override

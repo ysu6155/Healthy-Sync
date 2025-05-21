@@ -6,7 +6,7 @@ import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
 
 
-import 'package:healthy_sync/feature/patients/home/presentation/screens/doctors_by_specialty_screen.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/doctors_by_specialty/screen/doctors_by_specialty_screen.dart';
 
 class SpecializationsSection extends StatelessWidget {
   final List<Map<String, dynamic>> specializations;

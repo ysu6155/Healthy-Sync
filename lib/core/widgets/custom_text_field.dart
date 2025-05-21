@@ -20,6 +20,7 @@ class CustomTextField extends StatelessWidget {
   final TextStyle? labelStyle;
   final TextInputAction textInputAction;
   final ValueChanged<String>? onFieldSubmitted;
+  final ValueChanged<String>? onChanged;
   final FocusNode? focusNode;
   final OutlineInputBorder? border;
   final Color? iconColor;
@@ -46,6 +47,7 @@ class CustomTextField extends StatelessWidget {
     this.labelStyle,
     this.textInputAction = TextInputAction.done,
     this.onFieldSubmitted,
+    this.onChanged,
     this.focusNode,
     this.border,
     this.borderColor,
@@ -79,6 +81,7 @@ class CustomTextField extends StatelessWidget {
         obscureText: isPassword && !isPasswordVisible,
         textInputAction: textInputAction,
         onFieldSubmitted: onFieldSubmitted,
+        onChanged: onChanged,
         focusNode: focusNode,
         decoration: InputDecoration(
           isDense: true,

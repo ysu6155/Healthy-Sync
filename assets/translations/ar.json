@@ -219,5 +219,6 @@
   "loading": "جاري التحميل...",
   "treatmentSchedule": "جدول العلاج",
   "markAsCompleted": "تمييز كمنتهي",
-  "days": "الأيام"
+  "days": "الأيام",
+  "retry": "إعادة المحاولة"
 }

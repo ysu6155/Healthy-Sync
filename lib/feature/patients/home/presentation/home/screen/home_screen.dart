@@ -7,15 +7,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/widgets/shows.dart';
 import 'package:healthy_sync/feature/patients/home/data/models/doctor_visit.dart';
-import 'package:healthy_sync/feature/patients/home/presentation/screens/specializations_screen.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/specializations/screen/specializations_screen.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/widgets/doctor_visit_card.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/widgets/doctors_section.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/widgets/specializations.dart';
-import 'package:healthy_sync/feature/patients/home/presentation/cubit/home_cubit.dart';
-import 'package:healthy_sync/feature/patients/home/presentation/cubit/home_state.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/home/cubit/home_cubit.dart';
+import 'package:healthy_sync/feature/patients/home/presentation/home/cubit/home_state.dart';
 
 class HomePatientScreen extends StatelessWidget {
   const HomePatientScreen({super.key});
@@ -37,6 +37,14 @@ class HomePatientScreen extends StatelessWidget {
                           ? buildLoading()
                           : DoctorVisitCard(
                               visit: DoctorVisit(
+                                imageUrl: state.visitData?.imageUrl ?? '',
+                              id: state.visitData?.id ?? '',
+                              rating: state.visitData?.rating ?? 0,
+                              experienceYears:
+                                  state.visitData?.experienceYears ?? 0,
+                              phoneNumber: state.visitData?.phoneNumber ?? '',
+                             // prescription: state.visitData?.prescription ?? '',
+                              followUpDate: state.visitData?.followUpDate ?? '',
                               doctorName: state.visitData?.doctorName ?? '',
                               specialization:
                                   state.visitData?.specialization ?? '',
@@ -44,10 +52,10 @@ class HomePatientScreen extends StatelessWidget {
                               time: state.visitData?.time ?? '',
                               status: state.visitData?.status ?? '',
                               diagnosis: state.visitData?.diagnosis ?? '',
+                             // notes: state.visitData?.notes ?? '',
                               symptoms: state.visitData?.symptoms ?? '',
                               treatment: state.visitData?.treatment ?? '',
-                              notes: state.visitData?.notes ?? '',
-                              medications: state.visitData?.medications ?? [],
+                              medications: state.visitData?.medications ?? '',
                               recommendations:
                                   state.visitData?.recommendations ?? [],
                             )).paddingSymmetric(horizontal: 16.w),

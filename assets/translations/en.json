@@ -219,5 +219,6 @@
 "loading": "Loading...",
 "treatmentSchedule": "Treatment Schedule",
 "markAsCompleted": "Mark as Completed",
-"days": "Days"
+"days": "Days",
+"retry": "Retry"
 }

@@ -88,22 +88,54 @@ List<String> healthTips = [
   "https://d.top4top.io/p_3383prbk31.jpg",
 ];
 
-final specializations = [
-  {'name': 'أمراض القلب', 'icon': Icons.favorite, 'value': 'أخصائي قلب'},
+final List<Map<String, dynamic>> specializations = [
+  {
+    'name': 'طب القلب',
+    'icon': Icons.favorite,
+  },
+  {
+    'name': 'طب الأعصاب',
+    'icon': Icons.psychology,
+  },
+  {
+    'name': 'طب العيون',
+    'icon': Icons.visibility,
+  },
   {
     'name': 'طب الأسنان',
     'icon': Icons.medical_services,
-    'value': 'أخصائي أسنان',
   },
-  {'name': 'الأمراض الجلدية', 'icon': Icons.face, 'value': 'أخصائي جلدية'},
-  {'name': 'طب الأعصاب', 'icon': Icons.psychology, 'value': 'أخصائي أعصاب'},
-  {'name': 'طب الأطفال', 'icon': Icons.child_care, 'value': 'أخصائي أطفال'},
-  {'name': 'العظام', 'icon': Icons.accessibility, 'value': 'أخصائي عظام'},
-  {'name': 'العيون', 'icon': Icons.remove_red_eye, 'value': 'أخصائي عيون'},
   {
-    'name': 'النساء والتوليد',
+    'name': 'طب الأطفال',
+    'icon': Icons.child_care,
+  },
+  {
+    'name': 'طب النساء والتوليد',
     'icon': Icons.pregnant_woman,
-    'value': 'أخصائي نساء وولادة',
+  },
+  {
+    'name': 'طب الجلدية',
+    'icon': Icons.face,
+  },
+  {
+    'name': 'طب العظام',
+    'icon': Icons.accessibility_new,
+  },
+  {
+    'name': 'طب الأنف والأذن والحنجرة',
+    'icon': Icons.hearing,
+  },
+  {
+    'name': 'طب الجهاز الهضمي',
+    'icon': Icons.medical_services,
+  },
+  {
+    'name': 'طب الغدد الصماء',
+    'icon': Icons.monitor_heart,
+  },
+  {
+    'name': 'طب المسالك البولية',
+    'icon': Icons.water_drop,
   },
 ];
 final List<Map<String, dynamic>> doctors = [

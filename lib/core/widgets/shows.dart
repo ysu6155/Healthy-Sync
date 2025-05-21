@@ -1,9 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:lottie/lottie.dart';
+import 'package:healthy_sync/core/translations/locale_keys.g.dart';
+import 'package:healthy_sync/core/helpers/extensions.dart';
 
 showErrorToast(BuildContext context, String error) {
   ScaffoldMessenger.of(
@@ -22,8 +25,27 @@ showLoadingDialog(BuildContext context) {
   );
 }
 
-showLoading() {
-  return Center(child: Lottie.asset(AppAssets.loading3));
+Widget showLoading() {
+  return Center(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CircularProgressIndicator(
+          color: AppColor.mainBlue,
+          strokeWidth: 3.w,
+        ),
+        16.H,
+        Text(
+          LocaleKeys.loading.tr(),
+          style: TextStyle(
+            fontSize: 16.sp,
+            color: AppColor.mainBlueDark,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    ),
+  );
 }
 
 void showSuccessSnackBar(String message, BuildContext context) {
@@ -105,6 +127,56 @@ Widget buildLoading() {
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(AppColor.mainBlue),
             strokeWidth: 3.w,
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget showError({
+  required String message,
+  required VoidCallback onRetry,
+}) {
+  return Center(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          Icons.error_outline,
+          size: 48.sp,
+          color: AppColor.mainPink,
+        ),
+        16.H,
+        Text(
+          message,
+          style: TextStyle(
+            fontSize: 16.sp,
+            color: AppColor.mainBlueDark,
+            fontWeight: FontWeight.w500,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        16.H,
+        ElevatedButton(
+          onPressed: onRetry,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColor.mainBlue,
+            padding: EdgeInsets.symmetric(
+              horizontal: 24.sp,
+              vertical: 12.sp,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.r),
+            ),
+          ),
+          child: Text(
+            LocaleKeys.retry.tr(),
+            style: TextStyle(
+              fontSize: 14.sp,
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ],
