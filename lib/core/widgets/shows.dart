@@ -30,19 +30,7 @@ Widget showLoading() {
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CircularProgressIndicator(
-          color: AppColor.mainBlue,
-          strokeWidth: 3.w,
-        ),
-        16.H,
-        Text(
-          LocaleKeys.loading.tr(),
-          style: TextStyle(
-            fontSize: 16.sp,
-            color: AppColor.mainBlueDark,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
+        Lottie.asset(AppAssets.loading3),
       ],
     ),
   );

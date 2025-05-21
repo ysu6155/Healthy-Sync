@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:healthy_sync/feature/patients/home/data/models/doctor_visit.dart';
 import 'package:healthy_sync/feature/patients/home/data/repositories/doctor_visit_repository.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/doctor_visit/cubit/doctor_visit_state.dart';
 

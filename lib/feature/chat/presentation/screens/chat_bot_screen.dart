@@ -6,7 +6,6 @@ import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:healthy_sync/feature/patients/home/data/models/doctor_visit.dart';
 
 class ChatScreen extends StatefulWidget {
 

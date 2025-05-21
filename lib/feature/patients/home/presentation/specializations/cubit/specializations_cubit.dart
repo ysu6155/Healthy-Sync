@@ -24,7 +24,6 @@ class SpecializationsCubit extends Cubit<SpecializationsState> {
 
   void searchSpecializations(String query) {
     if (state is SpecializationsLoaded) {
-      final currentState = state as SpecializationsLoaded;
       if (query.isEmpty) {
         emit(SpecializationsLoaded(
           specializations: specializations,
