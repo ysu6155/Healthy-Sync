@@ -15,7 +15,7 @@ import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/feature/patients/treatment_schedule/presentation/pages/treatment_schedule_screen.dart';
 
-import 'package:healthy_sync/feature/patients/profile/presentation/screens/profile_screen.dart';
+import 'package:healthy_sync/feature/patients/profile/presentation/profile/screen/profile_screen.dart';
 
 class PatientHomeNavScreen extends StatefulWidget {
   const PatientHomeNavScreen({super.key});

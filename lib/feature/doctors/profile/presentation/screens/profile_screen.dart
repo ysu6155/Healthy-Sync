@@ -12,9 +12,9 @@ import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/shows.dart';
-import 'package:healthy_sync/feature/patients/profile/presentation/cubit/profile_cubit.dart';
-import 'package:healthy_sync/feature/patients/profile/presentation/screens/edit_profile.dart';
-import 'package:healthy_sync/feature/patients/profile/presentation/screens/update_password.dart';
+import 'package:healthy_sync/feature/patients/profile/presentation/profile/cubit/profile_cubit.dart';
+import 'package:healthy_sync/feature/patients/profile/presentation/edit_profile/screen/edit_profile.dart';
+import 'package:healthy_sync/feature/patients/profile/presentation/update_password/screen/update_password.dart';
 import 'package:healthy_sync/feature/welcome/presentation/screens/intro/intro_screen.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 

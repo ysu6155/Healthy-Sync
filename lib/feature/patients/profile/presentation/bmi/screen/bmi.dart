@@ -6,7 +6,7 @@ import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
-import 'package:healthy_sync/feature/patients/profile/presentation/cubit/bmi/bmi_cubit.dart';
+import 'package:healthy_sync/feature/patients/profile/presentation/bmi/cubit/bmi_cubit.dart';
 
 class BMICalculatorScreen extends StatelessWidget {
   @override

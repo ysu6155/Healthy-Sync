@@ -11,7 +11,7 @@ import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_cubit.dart';
-import 'package:healthy_sync/feature/patients/profile/presentation/cubit/profile_cubit.dart';
+import 'package:healthy_sync/feature/patients/profile/presentation/profile/cubit/profile_cubit.dart';
 import 'package:lottie/lottie.dart';
 
 class UpdatePassword extends StatelessWidget {
