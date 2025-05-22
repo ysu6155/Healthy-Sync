@@ -4,8 +4,6 @@ import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
-
-
 import 'package:healthy_sync/feature/patients/home/presentation/doctors_by_specialty/screen/doctors_by_specialty_screen.dart';
 
 class SpecializationsSection extends StatelessWidget {
@@ -26,7 +24,7 @@ class SpecializationsSection extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             vertical: ResponsiveHelper.isMobile(context) ? 16.w : 6.sp),
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
+        // physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           final specialization = specializations[index];
           return Container(
@@ -63,7 +61,7 @@ class SpecializationsSection extends StatelessWidget {
               onTap: () {
                 context.push(
                   DoctorsBySpecialtyScreen(
-                    selectedSpecialty: specializations[index],
+                    selectedSpecialty: specialization,
                   ),
                 );
               },

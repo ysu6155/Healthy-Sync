@@ -24,6 +24,8 @@ class HomePatientScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
+        List<Map<String, dynamic>> specializations =
+            context.read<HomeCubit>().state.specializations;
         return Scaffold(
           body: state.isLoading
               ? showLoading()
@@ -37,13 +39,13 @@ class HomePatientScreen extends StatelessWidget {
                           ? buildLoading()
                           : DoctorVisitCard(
                               visit: DoctorVisit(
-                                imageUrl: state.visitData?.imageUrl ?? '',
+                              imageUrl: state.visitData?.imageUrl ?? '',
                               id: state.visitData?.id ?? '',
                               rating: state.visitData?.rating ?? 0,
                               experienceYears:
                                   state.visitData?.experienceYears ?? 0,
                               phoneNumber: state.visitData?.phoneNumber ?? '',
-                             // prescription: state.visitData?.prescription ?? '',
+                              // prescription: state.visitData?.prescription ?? '',
                               followUpDate: state.visitData?.followUpDate ?? '',
                               doctorName: state.visitData?.doctorName ?? '',
                               specialization:
@@ -52,7 +54,7 @@ class HomePatientScreen extends StatelessWidget {
                               time: state.visitData?.time ?? '',
                               status: state.visitData?.status ?? '',
                               diagnosis: state.visitData?.diagnosis ?? '',
-                             // notes: state.visitData?.notes ?? '',
+                              // notes: state.visitData?.notes ?? '',
                               symptoms: state.visitData?.symptoms ?? '',
                               treatment: state.visitData?.treatment ?? '',
                               medications: state.visitData?.medications ?? '',
@@ -65,7 +67,7 @@ class HomePatientScreen extends StatelessWidget {
                       state.isSpecializationsLoading
                           ? buildLoading()
                           : SpecializationsSection(
-                              specializations: state.specializations,
+                              specializations: specializations,
                             ),
                       16.H,
                       state.isDoctorsLoading
@@ -159,10 +161,15 @@ class HomePatientScreen extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
+            var specializations =
+                context.read<HomeCubit>().state.specializations;
+
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const SpecializationsAll(),
+                builder: (context) => SpecializationsAll(
+                  specializations: specializations,
+                ),
               ),
             );
           },

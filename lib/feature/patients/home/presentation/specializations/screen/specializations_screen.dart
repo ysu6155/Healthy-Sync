@@ -12,7 +12,8 @@ import 'package:healthy_sync/feature/patients/home/presentation/specializations/
 import 'package:healthy_sync/feature/patients/home/presentation/specializations/cubit/specializations_state.dart';
 
 class SpecializationsAll extends StatelessWidget {
-  const SpecializationsAll({super.key});
+  final List<Map<String, dynamic>> specializations;
+  const SpecializationsAll({super.key, required this.specializations});
 
   @override
   Widget build(BuildContext context) {
@@ -171,7 +172,8 @@ class SpecializationsAll extends StatelessWidget {
                                     MaterialPageRoute(
                                       builder: (context) =>
                                           DoctorsBySpecialtyScreen(
-                                        selectedSpecialty: specialty,
+                                        selectedSpecialty:
+                                            specializations[index],
                                       ),
                                     ),
                                   );

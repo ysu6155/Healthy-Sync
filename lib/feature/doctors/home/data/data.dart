@@ -105,9 +105,11 @@ final specializations = [
     'icon': Icons.pregnant_woman,
     'value': 'أخصائي نساء وولادة',
   },
+  {'name': 'الأمراض الجلدية', 'icon': Icons.face, 'value': 'أخصائي جلدية'},
 ];
 final List<Map<String, dynamic>> doctors = [
   {
+    "id": "1",
     "name": "د. أحمد",
     "specialty": "أخصائي قلب",
     "image":
@@ -123,6 +125,7 @@ final List<Map<String, dynamic>> doctors = [
     ],
   },
   {
+    "id": "2",
     "name": "د. هاجر",
     "specialty": "أخصائي أسنان",
     "image":
@@ -137,6 +140,7 @@ final List<Map<String, dynamic>> doctors = [
     ],
   },
   {
+    "id": "3",
     "name": "د. يوسف",
     "specialty": "أخصائي جراحة عامة",
     "image":
@@ -151,6 +155,7 @@ final List<Map<String, dynamic>> doctors = [
     ],
   },
   {
+    "id": "4",
     "name": "د. مريم",
     "specialty": "أخصائية نساء وتوليد",
     "image":
@@ -162,6 +167,21 @@ final List<Map<String, dynamic>> doctors = [
       {'time': '09:00 ص', 'date': 'الخميس 18 يونيو', 'available': true},
       {'time': '01:00 م', 'date': 'الخميس 18 يونيو', 'available': true},
       {'time': '04:30 م', 'date': 'الخميس 18 يونيو', 'available': false},
+    ],
+  },
+  {
+    "id": "5",
+    "name": "د. علي",
+    "specialty": "أخصائي جلدية",
+    "image":
+        "https://img.freepik.com/free-photo/doctor-with-his-arms-crossed-white-background_1368-5790.jpg", // صورة لشخص (دكتور جلدية)
+    "rating": 4.5,
+    "experience": "4 سنة خبرة",
+    "description": "متخصص في الجراحة العامة والعلاج بالمنظار",
+    "appointments": [
+      {'time': '09:30 ص', 'date': 'الأربعاء 17 يونيو', 'available': false},
+      {'time': '02:30 م', 'date': 'الأربعاء 17 يونيو', 'available': false},
+      {'time': '05:00 م', 'date': 'الأربعاء 17 يونيو', 'available': false},
     ],
   },
 ];

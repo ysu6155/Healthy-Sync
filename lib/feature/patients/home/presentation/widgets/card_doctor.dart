@@ -86,30 +86,28 @@ class CardDoctor extends StatelessWidget {
               children: [
                 // صورة الطبيب مع تحسين الإطار
                 Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18.r),
-                    border: Border.all(
-                      color: const Color(0xFFCBD5E0).withOpacity(0.6),
-                      width: 2,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 10,
-                        offset: const Offset(0, 5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(18.r),
+                      border: Border.all(
+                        color: const Color(0xFFCBD5E0).withOpacity(0.6),
+                        width: 2,
                       ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16.r),
-                    child: CachedNetworkImage(
-                      imageUrl: doctor["image"]!,
-                      height: 75.sp,
-                      width: 75.sp,
-                      fit: BoxFit.cover,
-                     
-                    ))
-                ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                          offset: const Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16.r),
+                        child: CachedNetworkImage(
+                          imageUrl: doctor["image"]!,
+                          height: 75.sp,
+                          width: 75.sp,
+                          fit: BoxFit.cover,
+                        ))),
                 16.W,
                 // معلومات الطبيب مع تحسين التصميم
                 Expanded(

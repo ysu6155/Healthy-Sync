@@ -117,7 +117,7 @@ class DoctorsBySpecialtyScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) => DoctorDetails(
-                            doctorId: doctor['id'].toString(),
+                            doctor: doctor,
                           ),
                         ),
                       );

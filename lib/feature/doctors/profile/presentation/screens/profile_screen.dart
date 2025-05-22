@@ -9,15 +9,12 @@ import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
-import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/ui_helpers.dart';
 import 'package:healthy_sync/core/widgets/profile_item.dart';
 import 'package:healthy_sync/feature/doctors/profile/presentation/cubit/profile_cubit.dart';
 import 'package:healthy_sync/feature/doctors/profile/presentation/screens/edit_profile.dart';
 import 'package:healthy_sync/feature/doctors/profile/presentation/screens/update_password.dart';
 import 'package:healthy_sync/feature/welcome/presentation/screens/intro/intro_screen.dart';
-import 'package:provider/provider.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 class ProfileDoctorScreen extends StatefulWidget {
   const ProfileDoctorScreen({super.key});

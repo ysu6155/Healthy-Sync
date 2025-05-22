@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 
 import 'package:healthy_sync/feature/patients/home/presentation/doctor_details/screen/doctor_details.dart';
 import 'package:flutter/material.dart';
@@ -52,31 +51,27 @@ class DoctorsSection extends StatelessWidget {
           ),
         ),
         // قائمة الأطباء
-        GridView.builder(
+        ListView.builder(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
           itemCount: doctors.length,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1,
-            crossAxisSpacing: 12.w,
-            mainAxisSpacing: 12.h,
-            childAspectRatio:
-                ResponsiveHelper.isMobile(context) ? 3.1.sp : 1.6.sp,
-          ),
           itemBuilder: (context, index) {
             final doctor = doctors[index];
-            return CardDoctor(doctor: doctor, index: index).withTapEffect(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DoctorDetails(
-                      doctorId: doctor['id'].toString(),
+            return Padding(
+              padding: EdgeInsets.only(bottom: 12.h),
+              child: CardDoctor(doctor: doctor, index: index).withTapEffect(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DoctorDetails(
+                        doctor: doctor,
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             );
           },
         ),

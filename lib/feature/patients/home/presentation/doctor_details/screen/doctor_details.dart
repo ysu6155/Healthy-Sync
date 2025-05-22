@@ -8,14 +8,14 @@ import 'package:healthy_sync/feature/patients/home/presentation/doctor_details/c
 import 'package:healthy_sync/feature/patients/home/presentation/doctor_details/cubit/doctor_details_state.dart';
 
 class DoctorDetails extends StatelessWidget {
-  final String doctorId;
+  final Map<String, dynamic> doctor;
 
-  const DoctorDetails({super.key, required this.doctorId});
+  const DoctorDetails({super.key, required this.doctor});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DoctorDetailsCubit()..loadDoctorDetails(doctorId),
+      create: (context) => DoctorDetailsCubit()..loadDoctorDetails(),
       child: BlocBuilder<DoctorDetailsCubit, DoctorDetailsState>(
         builder: (context, state) {
           return Scaffold(
@@ -55,7 +55,7 @@ class DoctorDetails extends StatelessWidget {
             Text(state.message),
             ElevatedButton(
               onPressed: () {
-                context.read<DoctorDetailsCubit>().loadDoctorDetails(doctorId);
+                context.read<DoctorDetailsCubit>().loadDoctorDetails();
               },
               child: const Text('إعادة المحاولة'),
             ),
@@ -67,14 +67,18 @@ class DoctorDetails extends StatelessWidget {
     if (state is DoctorDetailsLoaded) {
       final doctor = state.doctor.first;
       return RefreshIndicator(
-        onRefresh: () => context.read<DoctorDetailsCubit>().refresh(doctorId),
+        onRefresh: () => context.read<DoctorDetailsCubit>().refresh(),
         child: SingleChildScrollView(
           padding: EdgeInsets.all(20.w),
           child: Column(
             children: [
-              _buildDoctorCard(context, doctor),
+              _buildDoctorCard(
+                context,
+              ),
               SizedBox(height: 20.h),
-              _buildAppointmentsCard(context, doctor),
+              _buildAppointmentsCard(
+                context,
+              ),
             ],
           ),
         ),
@@ -84,7 +88,7 @@ class DoctorDetails extends StatelessWidget {
     return const SizedBox.shrink();
   }
 
-  Widget _buildDoctorCard(BuildContext context, Map<String, dynamic> doctor) {
+  Widget _buildDoctorCard(BuildContext context) {
     return Card(
       color: AppColor.cardColor,
       elevation: 4,
@@ -101,15 +105,13 @@ class DoctorDetails extends StatelessWidget {
                 // Doctor Image
                 Container(
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle, // التأكد من شكل الـ Container دائري
+                    shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(
-                          0.3,
-                        ), // لون الظل مع الشفافية
-                        spreadRadius: 0.4, // نشر بسيط
-                        blurRadius: 4.4, // ضبابية خفيفة
-                        offset: Offset(0, 0.4),
+                        color: Colors.black.withOpacity(0.3),
+                        spreadRadius: 0.4,
+                        blurRadius: 4.4,
+                        offset: const Offset(0, 0.4),
                       ),
                     ],
                   ),
@@ -127,12 +129,12 @@ class DoctorDetails extends StatelessWidget {
                           color: Colors.grey[200],
                           child: Icon(Icons.person, size: 50.sp),
                         ),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                       ),
                     ),
                   ),
                 ),
-
                 SizedBox(width: 15.w),
                 // Doctor Name, Specialty and Experience
                 Expanded(
@@ -149,7 +151,7 @@ class DoctorDetails extends StatelessWidget {
                       ),
                       SizedBox(height: 5.h),
                       Text(
-                        doctor['specialty'] ?? 'تخصص عام',
+                        doctor['specialization'] ?? 'تخصص عام',
                         style: TextStyle(
                           fontSize: 16.sp,
                           color: AppColor.mainBlue,
@@ -173,6 +175,11 @@ class DoctorDetails extends StatelessWidget {
                           SizedBox(width: 5.w),
                           Text(
                             doctor['rating']?.toStringAsFixed(1) ?? '0.0',
+                            style: TextStyle(fontSize: 14.sp),
+                          ),
+                          SizedBox(width: 5.w),
+                          Text(
+                            '(${doctor['reviews_count'] ?? 0})',
                             style: TextStyle(fontSize: 14.sp),
                           ),
                         ],
@@ -199,7 +206,8 @@ class DoctorDetails extends StatelessWidget {
   }
 
   Widget _buildAppointmentsCard(
-      BuildContext context, Map<String, dynamic> doctor) {
+    BuildContext context,
+  ) {
     List<dynamic> appointments = doctor['appointments'] ?? [];
 
     return Card(

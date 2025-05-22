@@ -5,11 +5,11 @@ import 'package:healthy_sync/feature/patients/home/presentation/doctor_details/c
 class DoctorDetailsCubit extends Cubit<DoctorDetailsState> {
   DoctorDetailsCubit() : super(DoctorDetailsInitial());
 
-  Future<void> refresh(String doctorId) async {
-    loadDoctorDetails(doctorId);
+  Future<void> refresh( ) async {
+    loadDoctorDetails();
   }
 
-  Future<void> loadDoctorDetails(String doctorId) async {
+  Future<void> loadDoctorDetails() async {
     try {
       emit(DoctorDetailsLoading());
       // TODO: Implement API call to get doctor details
