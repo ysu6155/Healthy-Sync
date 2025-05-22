@@ -38,3 +38,9 @@ class SpecializationSelected extends SignUpState {
   final String? specialization;
   SpecializationSelected(this.specialization);
 }
+
+class TypeSelected extends SignUpState {
+  final String? type;
+  TypeSelected(this.type);
+}
+

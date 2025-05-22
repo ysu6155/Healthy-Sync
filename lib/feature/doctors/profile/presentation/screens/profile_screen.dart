@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -110,9 +111,22 @@ class _ProfileDoctorScreenState extends State<ProfileDoctorScreen> {
                         child: Row(
                           children: [
                             CircleAvatar(
-                              radius: 50.r,
-                              backgroundImage:
-                                  NetworkImage(state.profile['image'] ?? ""),
+                              radius: 40.r,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(700.r),
+                                child: CachedNetworkImage(
+                                  imageUrl: state.profile['image'] ?? "",
+                                  width: 100.w,
+                                  height: 100.h,
+                                  fit: BoxFit.cover,
+                                  placeholder: (context, url) => Container(
+                                    color: Colors.grey[200],
+                                    child: Icon(Icons.person, size: 50.sp),
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
+                                ),
+                              ),
                             ),
                             const Gap(16),
                             Expanded(
@@ -144,58 +158,13 @@ class _ProfileDoctorScreenState extends State<ProfileDoctorScreen> {
                                 ],
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      backgroundColor: AppColor.white,
-                                      title: Center(
-                                        child: Text(
-                                          "QR Code",
-                                          style: TextStyle(
-                                            fontSize: 24.sp,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      content: Container(
-                                        color: Colors.white,
-                                        alignment: Alignment.center,
-                                        width: 200.sp,
-                                        height: 200.sp,
-                                        child: QrImageView(
-                                          data: state.profile['id'] ?? "",
-                                          version: QrVersions.auto,
-                                          size: 200.0,
-                                        ),
-                                      ),
-                                      actions: [
-                                        CustomButton(
-                                          onTap: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                          name: LocaleKeys.cancel.tr(),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              },
-                              child: Icon(
-                                Icons.qr_code,
-                                color: AppColor.mainPink,
-                                size: 24.sp,
-                              ),
-                            ),
                           ],
                         ),
                       ),
                       ProfileItem(
                           title: LocaleKeys.specialization.tr(),
                           icon: Icons.medical_services,
-                          value: state.profile['special'] ?? ""),
+                          value: state.profile['specialization'] ?? ""),
                       ProfileItem(
                         title: LocaleKeys.age.tr(),
                         value: state.profile['birthDate'] ?? "",

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +11,7 @@ import 'package:healthy_sync/feature/doctors/home/data/appointment_data.dart';
 import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/booked_appointments/cubit/booked_appointments_cubit.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/booked_appointments/cubit/booked_appointments_state.dart';
+import 'package:healthy_sync/feature/doctors/profile/data/rebo/profile_rebo.dart';
 import 'package:intl/intl.dart';
 
 class BookedAppointmentsScreen extends StatelessWidget {
@@ -138,15 +140,24 @@ class BookedAppointmentsScreen extends StatelessWidget {
                                           ],
                                         ),
                                         child: CircleAvatar(
-                                          backgroundColor: Colors.white,
                                           radius: 50.r,
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(700.r),
-                                            child: Icon(
-                                              Icons.person,
-                                              size: 50.sp,
-                                              color: Colors.grey[600],
+                                            child: CachedNetworkImage(
+                                              imageUrl: patient.image ?? "",
+                                              width: 100.w,
+                                              height: 100.h,
+                                              fit: BoxFit.cover,
+                                              placeholder: (context, url) =>
+                                                  Container(
+                                                color: Colors.grey[200],
+                                                child: Icon(Icons.person,
+                                                    size: 50.sp),
+                                              ),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
                                             ),
                                           ),
                                         ),

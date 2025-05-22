@@ -15,7 +15,6 @@ import 'package:healthy_sync/feature/doctors/home/presentation/home/screen/home_
 
 import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
-import 'package:healthy_sync/feature/doctors/profile/presentation/cubit/profile_cubit.dart';
 import 'package:healthy_sync/feature/doctors/profile/presentation/screens/profile_screen.dart';
 
 class DoctorHomeNavScreen extends StatefulWidget {

@@ -62,6 +62,10 @@ class _FormSignUpState extends State<FormSignUp> {
             16.H,
             UserSpecificContent(
               userType: widget.userType,
+              doctorWidget: type(signUpCubit),
+            ),
+            UserSpecificContent(
+              userType: widget.userType,
               doctorWidget: specialization(signUpCubit),
             ),
             UserSpecificContent(
@@ -219,6 +223,39 @@ class _FormSignUpState extends State<FormSignUp> {
                 return DropdownMenuItem(
                   value: specialization,
                   child: Text(specialization),
+                );
+              }).toList(),
+            );
+          },
+        ),
+        16.H,
+      ],
+    );
+  }
+
+  Column type(SignUpCubit signUpCubit) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          LocaleKeys.type.tr(),
+          style: TextStyles.font16DarkBlueW500,
+        ),
+        8.H,
+        BlocBuilder<SignUpCubit, SignUpState>(
+          buildWhen: (previous, current) => current is SpecializationSelected,
+          builder: (context, state) {
+            return CustomDropdown(
+              value: signUpCubit.selectedType,
+              hint: LocaleKeys.selectType.tr(),
+              onChanged: signUpCubit.selectType,
+              validator: (value) => value == null
+                  ? LocaleKeys.specializationIsRequired.tr()
+                  : null,
+              items: signUpCubit.getTypes().map((type) {
+                return DropdownMenuItem(
+                  value: type,
+                  child: Text(type),
                 );
               }).toList(),
             );
@@ -466,7 +503,7 @@ class UserSpecificContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return userType == UserType.doctor
-        ? doctorWidget ?? SizedBox()
-        : otherWidget ?? SizedBox();
+        ? doctorWidget ?? SizedBox.shrink()
+        : otherWidget ?? SizedBox.shrink();
   }
 }

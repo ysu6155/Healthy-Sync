@@ -59,3 +59,16 @@ class ProfileRepository {
     }
   }
 }
+
+final profile = {
+  'id': '1',
+  'name': 'يوسف شعبان',
+  'specialization': 'طبيب عام',
+  'gender': 'ذكر',
+  "image": "https://b.top4top.io/p_3401vpliv1.jpg",
+  'age': '45 سنة',
+  'birthDate': '45',
+  'phone': '01090438638',
+  'email': 'Youssif@example.com',
+  'bloodType': 'B+',
+};

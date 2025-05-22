@@ -1,4 +1,3 @@
-import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
 
 abstract class PrescriptionState {}
 

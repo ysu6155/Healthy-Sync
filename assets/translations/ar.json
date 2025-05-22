@@ -220,5 +220,7 @@
   "treatmentSchedule": "جدول العلاج",
   "markAsCompleted": "تمييز كمنتهي",
   "days": "الأيام",
-  "retry": "إعادة المحاولة"
+  "retry": "إعادة المحاولة",
+  "type": "النوع",
+  "selectType": "اختر النوع"
 }

@@ -18,6 +18,7 @@ import 'package:healthy_sync/feature/doctors/home/presentation/widgets/card_pati
 import 'package:healthy_sync/feature/doctors/home/presentation/home/cubit/home_cubit.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/home/cubit/home_state.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/qr_scanner/screen/qr_scanner_screen.dart';
+import 'package:healthy_sync/feature/doctors/profile/data/rebo/profile_rebo.dart';
 
 class HomeDoctorScreen extends StatefulWidget {
   const HomeDoctorScreen({super.key});
@@ -88,7 +89,7 @@ class _HomeDoctorScreenState extends State<HomeDoctorScreen> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(700.r),
                           child: CachedNetworkImage(
-                            imageUrl: "https://b.top4top.io/p_3401vpliv1.jpg",
+                            imageUrl: profile['image'] ?? "",
                             width: 60.w,
                             height: 60.h,
                             fit: BoxFit.cover,
@@ -113,7 +114,7 @@ class _HomeDoctorScreenState extends State<HomeDoctorScreen> {
                               ),
                             ),
                             Text(
-                              "${LocaleKeys.doctor.tr()} / Youssif Shaban",
+                              "${LocaleKeys.doctor.tr()} / ${profile['name']}",
                               style: TextStyles.font16DarkBlueW500.copyWith(
                                 color: AppColor.black,
                               ),

@@ -220,5 +220,7 @@
 "treatmentSchedule": "Treatment Schedule",
 "markAsCompleted": "Mark as Completed",
 "days": "Days",
-"retry": "Retry"
+"retry": "Retry",
+"type": "Type",
+"selectType": "Select Type"
 }

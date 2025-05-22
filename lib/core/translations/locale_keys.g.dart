@@ -227,4 +227,6 @@ abstract class LocaleKeys {
   static const String markAsCompleted = 'markAsCompleted';
   static const String days = 'days';
   static const retry = 'retry';
+  static const type = 'type';
+  static const selectType = 'selectType';
 }

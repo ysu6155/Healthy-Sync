@@ -74,6 +74,12 @@ class SignUpCubit extends Cubit<SignUpState> {
     emit(SpecializationSelected(specialization));
   }
 
+  String? selectedType;
+  void selectType(String? type) {
+    selectedType = type;
+    emit(TypeSelected(type));
+  }
+
   List<String> getSpecializations() {
     return [
       "Cardiology", // قلب
@@ -84,6 +90,17 @@ class SignUpCubit extends Cubit<SignUpState> {
       "Psychiatry", // نفسية
       "Radiology", // أشعة
       "Surgery", // جراحة
+      "Dental", // أسنان
+      "Urology", // مخ وأعصاب
+      "Lab",
+      "Pharmacy", // أخرى
+    ];
+  }
+
+  List<String> getTypes() {
+    return [
+      "Doctor",
+      "Lab&Pharmacy",
     ];
   }
 
