@@ -5,7 +5,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/core/themes/light_theme.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
@@ -164,7 +163,7 @@ class _HomeDoctorScreenState extends State<HomeDoctorScreen> {
                     ),
                     child: TextFormField(
                       controller: _searchController,
-                      keyboardType: TextInputType.phone,
+                      keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.search,
                       onChanged: (value) {
                         context.read<HomeCubit>().searchPatients(value);
@@ -215,41 +214,50 @@ class _HomeDoctorScreenState extends State<HomeDoctorScreen> {
                   ),
                   16.H,
                   Text(
-                    LocaleKeys.recentPatients.tr(),
+                    LocaleKeys.patients.tr(),
                     style: TextStyles.font20WhiteBold
                         .copyWith(color: AppColor.black),
                   ),
                   16.H,
-                  GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 1,
-                      childAspectRatio:
-                          ResponsiveHelper.isMobile(context) ? 2.6.sp : 1.4.sp,
-                      mainAxisSpacing: 16.h,
-                      crossAxisSpacing: 16.w,
-                    ),
-                    itemCount: state.filteredPatients.length,
-                    itemBuilder: (context, index) {
-                      final patient = state.filteredPatients[index];
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BlocProvider(
-                                create: (context) =>
-                                    PatientDetailsCubit()..getPatientDetails(),
-                                child: PatientDetailsScreen(patient: patient),
+                  if (state.filteredPatients.isEmpty)
+                    Center(
+                      child: Text(
+                        'لا توجد مرضي',
+                        style: TextStyles.font16DarkBlueW500,
+                      ),
+                    )
+                  else
+                    GridView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1,
+                        childAspectRatio: ResponsiveHelper.isMobile(context)
+                            ? 2.6.sp
+                            : 1.4.sp,
+                        mainAxisSpacing: 16.h,
+                        crossAxisSpacing: 16.w,
+                      ),
+                      itemCount: state.filteredPatients.length,
+                      itemBuilder: (context, index) {
+                        final patient = state.filteredPatients[index];
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => BlocProvider(
+                                  create: (context) => PatientDetailsCubit()
+                                    ..getPatientDetails(),
+                                  child: PatientDetailsScreen(patient: patient),
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        child: CardPatient(patient: patient),
-                      );
-                    },
-                  ),
+                            );
+                          },
+                          child: CardPatient(patient: patient),
+                        );
+                      },
+                    ),
                 ],
               ).paddingAll(16.sp);
             }

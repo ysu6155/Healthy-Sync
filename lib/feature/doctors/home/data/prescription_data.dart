@@ -33,7 +33,7 @@ class Medication {
 final List<Prescription> prescriptions = [
   Prescription(
     id: '1',
-    patientId: '2',
+    patientId: '01090438632',
     doctorId: '1',
     date: DateTime(2024, 3, 15),
     visitType: 'كشف قلب',
@@ -55,7 +55,7 @@ final List<Prescription> prescriptions = [
   ),
   Prescription(
     id: '2',
-    patientId: '2',
+    patientId: '01090438632',
     doctorId: '1',
     date: DateTime(2024, 3, 10),
     visitType: 'كشف صدر',
@@ -67,7 +67,7 @@ final List<Prescription> prescriptions = [
   ),
   Prescription(
     id: '3',
-    patientId: '2',
+    patientId: '3',
     doctorId: '1',
     date: DateTime(2024, 3, 5),
     visitType: 'كشف علاجي',

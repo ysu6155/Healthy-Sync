@@ -6,17 +6,14 @@ import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
-import 'package:healthy_sync/core/widgets/custom_loading.dart';
 import 'package:healthy_sync/core/widgets/ui_helpers.dart';
 import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/prescription/cubit/prescription_cubit.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/prescription/screen/prescription_screen.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/prescriptions_list/cubit/prescriptions_list_cubit.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/prescriptions_list/screen/prescriptions_list_screen.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/patient_details/cubit/patient_details_cubit.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/patient_details/cubit/patient_details_state.dart';
-import 'package:healthy_sync/feature/doctors/home/presentation/widgets/patient_info_card.dart';
-import 'package:healthy_sync/feature/doctors/home/presentation/widgets/patient_medical_history.dart';
-import 'package:healthy_sync/feature/doctors/home/presentation/widgets/patient_prescriptions.dart';
-import 'package:healthy_sync/feature/doctors/home/presentation/widgets/patient_visits.dart';
 
 class PatientDetailsScreen extends StatelessWidget {
   final Patient patient;
@@ -162,7 +159,6 @@ class PatientDetailsScreen extends StatelessWidget {
                         ),
                         errorWidget: (context, url, error) =>
                             const Icon(Icons.error),
-
                       ),
                     ),
                   ),
@@ -259,8 +255,10 @@ class PatientDetailsScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            PrescriptionsListScreen(patient: patient),
+                        builder: (context) => BlocProvider(
+                          create: (context) => PrescriptionsListCubit(),
+                          child: PrescriptionsListScreen(patient: patient),
+                        ),
                       ),
                     );
                   },
@@ -310,7 +308,10 @@ class PatientDetailsScreen extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => PrescriptionScreen(patient: patient),
+                builder: (context) => BlocProvider(
+                  create: (context) => PrescriptionCubit(),
+                  child: PrescriptionScreen(patient: patient),
+                ),
               ),
             );
           },

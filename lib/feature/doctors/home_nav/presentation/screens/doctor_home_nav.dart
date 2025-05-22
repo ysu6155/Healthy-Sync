@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/feature/chat/presentation/screens/chat_bot_screen.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/appointments/cubit/appointments_cubit.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/appointments/screen/appointments_screen.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/booked_appointments/screen/booked_appointments_screen.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/home/cubit/home_cubit.dart';
@@ -32,7 +33,10 @@ class DoctorHomeNavScreenState extends State<DoctorHomeNavScreen> {
       create: (context) => HomeCubit(),
       child: HomeDoctorScreen(),
     ),
-    AppointmentsScreen(),
+    BlocProvider(
+      create: (context) => AppointmentsCubit()..getAppointments(),
+      child: AppointmentsScreen(),
+    ),
     ChatScreen(),
     BookedAppointmentsScreen(),
     const ProfileDoctorScreen(),

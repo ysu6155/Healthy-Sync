@@ -29,10 +29,11 @@ class HomeCubit extends Cubit<HomeState> {
       }
 
       final filteredPatients = currentState.patients.where((patient) {
+        final name = patient.name?.toLowerCase() ?? '';
         final phone = patient.phone?.toLowerCase() ?? '';
         final searchQuery = query.toLowerCase();
 
-        return phone.contains(searchQuery);
+        return name.contains(searchQuery) || phone.contains(searchQuery);
       }).toList();
 
       emit(HomeLoaded(

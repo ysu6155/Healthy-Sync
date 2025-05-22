@@ -7,24 +7,40 @@ import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/feature/doctors/home/data/prescription_data.dart';
 import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:healthy_sync/core/widgets/ui_helpers.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/prescriptions_list/cubit/prescriptions_list_cubit.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/prescriptions_list/cubit/prescriptions_list_state.dart';
 
-class PrescriptionsListScreen extends StatelessWidget {
+class PrescriptionsListScreen extends StatefulWidget {
   final Patient patient;
 
-  const PrescriptionsListScreen({super.key, required this.patient});
+  const PrescriptionsListScreen({
+    super.key,
+    required this.patient,
+  });
+
+  @override
+  State<PrescriptionsListScreen> createState() =>
+      _PrescriptionsListScreenState();
+}
+
+class _PrescriptionsListScreenState extends State<PrescriptionsListScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context
+        .read<PrescriptionsListCubit>()
+        .getPrescriptions(patient: widget.patient);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final patientPrescriptions = prescriptions
-        .where((prescription) => prescription.patientId == patient.id)
-        .toList();
-
     return Scaffold(
-      //backgroundColor: Colors.grey[200],
       appBar: AppBar(
         toolbarHeight: 60.h,
         title: Text(
-          LocaleKeys.prescriptions.tr(),
+          'روشتات ${widget.patient.name}',
           style: TextStyle(
             color: Colors.black,
             fontSize: 20.sp,
@@ -36,25 +52,42 @@ class PrescriptionsListScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
       ),
-      body: patientPrescriptions.isEmpty
-          ? Center(
-              child: Text(
-                LocaleKeys.noPrescriptions.tr(),
-                style: TextStyles.font16DarkBlueW500,
-              ),
-            )
-          : ListView.builder(
-              padding: EdgeInsets.all(20.w),
-              itemCount: patientPrescriptions.length,
-              itemBuilder: (context, index) {
-                final prescription = patientPrescriptions[index];
-                return Card(
-                  margin: EdgeInsets.only(bottom: 16.h),
-                  child: InkWell(
-                    onTap: () {
-                      // TODO: Navigate to prescription details
-                    },
-                    borderRadius: BorderRadius.circular(15.r),
+      body: RefreshIndicator(
+        color: AppColor.mainBlue,
+        onRefresh: () async {
+          context
+              .read<PrescriptionsListCubit>()
+              .getPrescriptions(patient: widget.patient);
+        },
+        child: BlocBuilder<PrescriptionsListCubit, PrescriptionsListState>(
+          builder: (context, state) {
+            if (state is PrescriptionsListLoading) {
+              return showLoading();
+            } else if (state is PrescriptionsListError) {
+              return showError(
+                message: state.message,
+                onRetry: () {
+                  context
+                      .read<PrescriptionsListCubit>()
+                      .getPrescriptions(patient: widget.patient);
+                },
+              );
+            } else if (state is PrescriptionsListSuccess) {
+              if (state.prescriptions.isEmpty) {
+                return Center(
+                  child: Text(
+                    'لا توجد روشتات',
+                    style: TextStyles.font16DarkBlueW500,
+                  ),
+                );
+              }
+              return ListView.builder(
+                padding: EdgeInsets.all(16.w),
+                itemCount: state.prescriptions.length,
+                itemBuilder: (context, index) {
+                  final prescription = state.prescriptions[index];
+                  return Card(
+                    margin: EdgeInsets.only(bottom: 16.h),
                     child: Padding(
                       padding: EdgeInsets.all(16.w),
                       child: Column(
@@ -62,138 +95,84 @@ class PrescriptionsListScreen extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Icon(
-                                Icons.medical_services,
-                                color: AppColor.mainBlue,
-                                size: 24.sp,
-                              ),
-                              SizedBox(width: 8.w),
                               Text(
-                                '${LocaleKeys.prescription.tr()} ${index + 1}',
+                                'روشته ${index + 1}',
                                 style: TextStyles.font16DarkBlueW500,
+                              ),
+                              const Spacer(),
+                              Text(
+                                DateFormat('dd/MM/yyyy').format(
+                                    prescription.date ?? DateTime.now()),
+                                style: TextStyles.font12GreyW400,
                               ),
                             ],
                           ),
                           SizedBox(height: 12.h),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.calendar_today,
-                                color: Colors.grey,
-                                size: 18.sp,
-                              ),
-                              SizedBox(width: 8.w),
-                              Text(
-                                DateFormat(
-                                  'dd/MM/yyyy',
-                                ).format(prescription.date ?? DateTime.now()),
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: Colors.grey[600],
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 8.h),
                           Text(
-                            LocaleKeys.symptoms.tr(),
-                            style: TextStyles.font16DarkBlueW500,
+                            'الأعراض:',
+                            style: TextStyles.font14DarkBlueW500,
                           ),
                           SizedBox(height: 4.h),
                           Text(
                             prescription.symptoms ?? '',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              color: Colors.grey[600],
-                            ),
+                            style: TextStyles.font12GreyW400,
                           ),
-                          if (prescription.requiredTests?.isNotEmpty ??
-                              false) ...[
-                            SizedBox(height: 8.h),
+                          SizedBox(height: 12.h),
+                          Text(
+                            'الأدوية:',
+                            style: TextStyles.font14DarkBlueW500,
+                          ),
+                          SizedBox(height: 4.h),
+                          ...(prescription.medications ?? []).map((medication) {
+                            return Padding(
+                              padding: EdgeInsets.only(bottom: 4.h),
+                              child: Text(
+                                '${medication.name} - ${medication.dosage} - ${medication.duration}',
+                                style: TextStyles.font12GreyW400,
+                              ),
+                            );
+                          }).toList(),
+                          if ((prescription.requiredTests ?? [])
+                              .isNotEmpty) ...[
+                            SizedBox(height: 12.h),
                             Text(
-                              LocaleKeys.requiredTests.tr(),
-                              style: TextStyles.font16DarkBlueW500,
+                              'التحاليل المطلوبة:',
+                              style: TextStyles.font14DarkBlueW500,
                             ),
                             SizedBox(height: 4.h),
                             ...(prescription.requiredTests ?? []).map((test) {
                               return Padding(
                                 padding: EdgeInsets.only(bottom: 4.h),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.science,
-                                      color: Colors.grey,
-                                      size: 16.sp,
-                                    ),
-                                    SizedBox(width: 8.w),
-                                    Expanded(
-                                      child: Text(
-                                        test,
-                                        style: TextStyle(
-                                          fontSize: 14.sp,
-                                          color: Colors.grey[600],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                child: Text(
+                                  test,
+                                  style: TextStyles.font12GreyW400,
                                 ),
                               );
                             }).toList(),
                           ],
-                          SizedBox(height: 8.h),
-                          Text(
-                            LocaleKeys.medications.tr(),
-                            style: TextStyles.font16DarkBlueW500,
-                          ),
-                          SizedBox(height: 4.h),
-                          ...(prescription.medications ?? []).map((
-                            medication,
-                          ) {
-                            return Padding(
-                              padding: EdgeInsets.only(bottom: 4.h),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.medication,
-                                    color: Colors.grey,
-                                    size: 16.sp,
-                                  ),
-                                  SizedBox(width: 8.w),
-                                  Expanded(
-                                    child: Text(
-                                      '${medication.name} - ${medication.dosage}',
-                                      style: TextStyle(
-                                        fontSize: 14.sp,
-                                        color: Colors.grey[600],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }).toList(),
-                          if (prescription.notes?.isNotEmpty ?? false) ...[
-                            SizedBox(height: 8.h),
+                          if ((prescription.notes ?? '').isNotEmpty) ...[
+                            SizedBox(height: 12.h),
                             Text(
-                              LocaleKeys.notes.tr(),
-                              style: TextStyles.font16DarkBlueW500,
+                              'ملاحظات:',
+                              style: TextStyles.font14DarkBlueW500,
                             ),
                             SizedBox(height: 4.h),
                             Text(
                               prescription.notes ?? '',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: Colors.grey[600],
-                              ),
+                              style: TextStyles.font12GreyW400,
                             ),
                           ],
                         ],
                       ),
                     ),
-                  ),
-                );
-              },
-            ),
+                  );
+                },
+              );
+            }
+            return const SizedBox.shrink();
+          },
+        ),
+      ),
     );
   }
 }
