@@ -1,19 +1,21 @@
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/feature/chat/presentation/screens/chat_bot_screen.dart';
-import 'package:healthy_sync/feature/doctors/home/presentation/screens/appointments_screen.dart';
-import 'package:healthy_sync/feature/doctors/home/presentation/screens/booked_appointments_screen.dart';
-import 'package:healthy_sync/feature/doctors/home/presentation/screens/home_screen.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/appointments/screen/appointments_screen.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/booked_appointments/screen/booked_appointments_screen.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/home/cubit/home_cubit.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/home/screen/home_screen.dart';
 
 import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
+import 'package:healthy_sync/feature/doctors/profile/presentation/cubit/profile_cubit.dart';
 import 'package:healthy_sync/feature/doctors/profile/presentation/screens/profile_screen.dart';
-
 
 class DoctorHomeNavScreen extends StatefulWidget {
   const DoctorHomeNavScreen({super.key});
@@ -26,11 +28,14 @@ class DoctorHomeNavScreenState extends State<DoctorHomeNavScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    HomeDoctorScreen(),
+    BlocProvider(
+      create: (context) => HomeCubit(),
+      child: HomeDoctorScreen(),
+    ),
     AppointmentsScreen(),
     ChatScreen(),
     BookedAppointmentsScreen(),
-    ProfileDoctorScreen(),
+    const ProfileDoctorScreen(),
   ];
 
   @override

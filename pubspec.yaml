@@ -47,6 +47,9 @@ dependencies:
   shimmer: ^3.0.0
   smooth_page_indicator: ^1.2.1
   curved_labeled_navigation_bar: ^2.0.6
+ # pretty_qr_code: ^3.4.0
+  mobile_scanner: ^3.5.6
+  #qr_code_scanner: ^1.0.1
 
 # build_runner: ^2.4.7
 dev_dependencies:

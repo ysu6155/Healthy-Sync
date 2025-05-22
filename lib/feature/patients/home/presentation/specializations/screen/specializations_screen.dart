@@ -7,7 +7,7 @@ import 'package:healthy_sync/feature/patients/home/presentation/doctors_by_speci
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
-import 'package:healthy_sync/core/widgets/shows.dart';
+import 'package:healthy_sync/core/widgets/ui_helpers.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/specializations/cubit/specializations_cubit.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/specializations/cubit/specializations_state.dart';
 

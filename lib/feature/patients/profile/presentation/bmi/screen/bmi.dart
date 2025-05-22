@@ -9,6 +9,8 @@ import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/bmi/cubit/bmi_cubit.dart';
 
 class BMICalculatorScreen extends StatelessWidget {
+  const BMICalculatorScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -112,18 +114,17 @@ class BMICalculatorView extends StatelessWidget {
     Color resultColor;
     IconData resultIcon;
 
-    // تحديد اللون والأيقونة بناءً على فئة مؤشر كتلة الجسم
     if (state.bmi < 18.5) {
-      resultColor = const Color(0xFFFFA726); // برتقالي فاتح
+      resultColor = const Color(0xFFFFA726); 
       resultIcon = Icons.trending_down_rounded;
     } else if (state.bmi >= 18.5 && state.bmi < 24.9) {
-      resultColor = const Color(0xFF66BB6A); // أخضر فاتح
+      resultColor = const Color(0xFF66BB6A); 
       resultIcon = Icons.check_circle_rounded;
     } else if (state.bmi >= 25 && state.bmi < 29.9) {
-      resultColor = const Color(0xFFFFA726); // برتقالي فاتح
+      resultColor = const Color(0xFFFFA726); 
       resultIcon = Icons.trending_up_rounded;
     } else {
-      resultColor = const Color(0xFFEF5350); // أحمر فاتح
+      resultColor = const Color(0xFFEF5350); 
       resultIcon = Icons.warning_rounded;
     }
 
@@ -150,7 +151,6 @@ class BMICalculatorView extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // عناصر زخرفية محسنة
           Positioned(
             right: -20.w,
             top: -20.h,
@@ -187,7 +187,6 @@ class BMICalculatorView extends StatelessWidget {
               ),
             ),
           ),
-          // محتوى البطاقة
           Column(
             children: [
               Row(
@@ -281,9 +280,9 @@ class BMICalculatorView extends StatelessWidget {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            Color(0xFFF8FAFC), // لون أبيض فاتح جداً
-            Color(0xFFF1F5F9), // لون رمادي فاتح جداً
-            Color(0xFFE2E8F0), // لون رمادي فاتح
+            Color(0xFFF8FAFC), 
+            Color(0xFFF1F5F9),
+            Color(0xFFE2E8F0), 
           ],
           stops: [0.0, 0.5, 1.0],
         ),
@@ -304,7 +303,6 @@ class BMICalculatorView extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // زخرفة دائرية محسنة
           Positioned(
             right: -15.w,
             top: -15.h,
@@ -388,15 +386,15 @@ class BMICalculatorView extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 12.h),
       padding: EdgeInsets.all(20.sp),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            const Color(0xFFF8FAFC), // لون أبيض فاتح جداً
-            const Color(0xFFF1F5F9), // لون رمادي فاتح جداً
-            const Color(0xFFE2E8F0), // لون رمادي فاتح
+            Color(0xFFF8FAFC), 
+            Color(0xFFF1F5F9), 
+            Color(0xFFE2E8F0), 
           ],
-          stops: const [0.0, 0.5, 1.0],
+          stops: [0.0, 0.5, 1.0],
         ),
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [

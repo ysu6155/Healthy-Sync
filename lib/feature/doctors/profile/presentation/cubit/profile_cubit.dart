@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -18,23 +19,42 @@ class ProfileCubit extends Cubit<ProfileState> {
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
-  Future<void> getProfileData() async {
+  Future<void> loadProfile() async {
     emit(ProfileLoading());
     try {
-      final response = await ProfileRepository.updateUser();
-      emit(
-        ProfileLoaded(
-          name: response.user?.name ?? "",
-          email: response.user?.email ?? "No Email",
-          image: response.user?.profilePhoto ?? "",
-          address: response.user?.role ?? "",
-          city: response.user?.createdAt.toString() ?? "",
-          phone: response.user?.v.toString() ?? "",
-        ),
-      );
+      // Simulate network delay
+      await Future.delayed(const Duration(seconds: 1));
+
+      final profile = {
+        'id': '1',
+        'name': 'أحمد محمد',
+        'gender': 'ذكر',
+        "image": "https://via.placeholder.com/150",
+        'age': '45 سنة',
+        'birthDate': '45',
+        'phone': '+966 50 123 4567',
+        'email': 'ahmed@example.com',
+    
+        'bloodType': 'O+',
+      };
+
+      emit(ProfileLoaded(profile: profile));
     } catch (e) {
-      log(e.toString());
-      emit(ProfileError("Failed to load profile: $e"));
+      emit(ProfileError('حدث خطأ أثناء تحميل الملف الشخصي'));
+    }
+  }
+
+  Future<void> refresh() async {
+    if (state is ProfileLoaded) {
+      final currentProfile = (state as ProfileLoaded).profile;
+      emit(ProfileLoading());
+      try {
+        // Simulate network delay
+        await Future.delayed(const Duration(seconds: 1));
+        emit(ProfileLoaded(profile: currentProfile));
+      } catch (e) {
+        emit(ProfileError('حدث خطأ أثناء تحديث الملف الشخصي'));
+      }
     }
   }
 
@@ -107,4 +127,6 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(ProfileError("Failed to update password"));
     }
   }
+
+  void getProfileData() {}
 }

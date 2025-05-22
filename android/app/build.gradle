@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.HealthySync.healthy_sync"
+    namespace  "com.HealthySync.healthy_sync"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 

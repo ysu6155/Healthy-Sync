@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
-import 'package:healthy_sync/core/widgets/shows.dart';
+import 'package:healthy_sync/core/widgets/ui_helpers.dart';
 import 'package:healthy_sync/feature/patients/treatment_schedule/presentation/cubit/treatment_schedule_cubit.dart';
 
 class TreatmentScheduleScreen extends StatelessWidget {

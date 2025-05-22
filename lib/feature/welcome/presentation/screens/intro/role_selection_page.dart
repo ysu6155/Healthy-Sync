@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/constants/enum.dart';
@@ -9,6 +10,7 @@ import 'package:healthy_sync/core/helpers/responsive_helper.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
+import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:healthy_sync/feature/authentication/presentation/screens/login/login_screen.dart';
 
 class RoleSelectionPage extends StatefulWidget {
@@ -114,7 +116,13 @@ class _RoleSelectionPageState extends State<RoleSelectionPage> {
                     name: LocaleKeys.next.tr(),
                     onTap: () {
                       if (selectedType != null) {
-                        context.push(LoginScreen(userType: selectedType!));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BlocProvider(
+                                    create: (context) => LoginCubit(),
+                                    child:
+                                        LoginScreen(userType: selectedType!))));
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(

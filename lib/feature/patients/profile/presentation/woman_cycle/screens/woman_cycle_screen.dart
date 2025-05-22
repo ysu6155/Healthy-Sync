@@ -8,7 +8,7 @@ import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:healthy_sync/core/service/local/shared_keys.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
-import 'package:healthy_sync/core/widgets/shows.dart';
+import 'package:healthy_sync/core/widgets/ui_helpers.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

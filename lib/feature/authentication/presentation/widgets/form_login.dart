@@ -8,10 +8,11 @@ import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 import 'package:healthy_sync/core/helpers/responsive_helper.dart';
-import 'package:healthy_sync/core/widgets/shows.dart';
+import 'package:healthy_sync/core/widgets/ui_helpers.dart';
 import 'package:healthy_sync/feature/authentication/data/models/request/register_params.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_state.dart';
+import 'package:healthy_sync/feature/authentication/presentation/cubit/signup_cubit/signup_cubit.dart';
 import 'package:healthy_sync/feature/authentication/presentation/screens/forgot_password/forgot_password_screen.dart';
 import 'package:healthy_sync/feature/authentication/presentation/screens/signup/signup_screen.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
@@ -120,7 +121,9 @@ class FormLogin extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      context.push(ForgotPasswordScreen());
+                      context.push(BlocProvider(
+                          create: (context) => LoginCubit(),
+                          child: ForgotPasswordScreen()));
                     },
                     child: Row(
                       children: [
@@ -159,7 +162,9 @@ class FormLogin extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      context.push(SignUpScreen(userType: userType));
+                      context.push(BlocProvider(
+                          create: (context) => SignUpCubit(),
+                          child: SignUpScreen(userType: userType)));
                     },
                     child: Text(
                       LocaleKeys.signUp.tr(),

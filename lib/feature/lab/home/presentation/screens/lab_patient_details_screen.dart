@@ -4,7 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
-import 'package:healthy_sync/feature/doctors/home/presentation/screens/prescriptions_list_screen.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/prescriptions_list/screen/prescriptions_list_screen.dart';
 import 'package:healthy_sync/feature/lab/xray/presentation/screens/add_xray_screen.dart';
 import 'package:healthy_sync/feature/lab/home/presentation/screens/new_lab_test_screen.dart';
 

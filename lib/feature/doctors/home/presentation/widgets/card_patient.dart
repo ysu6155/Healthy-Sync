@@ -43,6 +43,12 @@ class CardPatient extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: patient.image ?? '',
                 fit: BoxFit.cover,
+                  placeholder: (context, url) => Container(
+                          color: Colors.grey[200],
+                          child: Icon(Icons.person, size: 50.sp),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
               ),
             ),
           ),

@@ -107,8 +107,8 @@ class CardDoctor extends StatelessWidget {
                       height: 75.sp,
                       width: 75.sp,
                       fit: BoxFit.cover,
-                    ),
-                  ),
+                     
+                    ))
                 ),
                 16.W,
                 // معلومات الطبيب مع تحسين التصميم

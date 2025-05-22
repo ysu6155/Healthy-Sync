@@ -1,53 +1,127 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
-
+import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
+import 'package:healthy_sync/core/widgets/custom_loading.dart';
+import 'package:healthy_sync/core/widgets/ui_helpers.dart';
 import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
-import 'package:healthy_sync/feature/doctors/home/presentation/screens/prescription_screen.dart';
-import 'package:healthy_sync/feature/doctors/home/presentation/screens/prescriptions_list_screen.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/prescription/screen/prescription_screen.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/prescriptions_list/screen/prescriptions_list_screen.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/patient_details/cubit/patient_details_cubit.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/patient_details/cubit/patient_details_state.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/widgets/patient_info_card.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/widgets/patient_medical_history.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/widgets/patient_prescriptions.dart';
+import 'package:healthy_sync/feature/doctors/home/presentation/widgets/patient_visits.dart';
 
 class PatientDetailsScreen extends StatelessWidget {
   final Patient patient;
 
-  const PatientDetailsScreen({super.key, required this.patient});
+  const PatientDetailsScreen({
+    super.key,
+    required this.patient,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        toolbarHeight: 60.h,
-        title: Text(
-          'تفاصيل المريض',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: Colors.grey[200],
-        iconTheme: const IconThemeData(color: Colors.black),
-        elevation: 0,
-        centerTitle: true,
+    return BlocProvider(
+      create: (context) => PatientDetailsCubit()..getPatientDetails(),
+      child: BlocBuilder<PatientDetailsCubit, PatientDetailsState>(
+        builder: (context, state) {
+          return Scaffold(
+            backgroundColor: Colors.grey[200],
+            appBar: AppBar(
+              toolbarHeight: 60.h,
+              title: Text(
+                'تفاصيل المريض',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              backgroundColor: Colors.grey[200],
+              iconTheme: const IconThemeData(color: Colors.black),
+              elevation: 0,
+              centerTitle: true,
+            ),
+            body: state is PatientDetailsLoading
+                ? showLoading()
+                : state is PatientDetailsError
+                    ? Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              state.message,
+                              style: TextStyles.font16DarkBlueW500,
+                              textAlign: TextAlign.center,
+                            ),
+                            20.H,
+                            ElevatedButton(
+                              onPressed: () {
+                                context
+                                    .read<PatientDetailsCubit>()
+                                    .getPatientDetails();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColor.mainBlue,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 24.sp,
+                                  vertical: 12.sp,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.r),
+                                ),
+                              ),
+                              child: Text(
+                                'Retry',
+                                style: TextStyle(
+                                  color: AppColor.white,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    : state is PatientDetailsSuccess
+                        ? RefreshIndicator(
+                            color: AppColor.mainBlue,
+                            onRefresh: () async {
+                              await context
+                                  .read<PatientDetailsCubit>()
+                                  .getPatientDetails();
+                            },
+                            child: SingleChildScrollView(
+                              physics: const AlwaysScrollableScrollPhysics(),
+                              padding: EdgeInsets.all(16.sp),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  _buildPatientCard(context, patient),
+                                  20.H,
+                                  _buildMedicalHistoryCard(context, patient),
+                                ],
+                              ),
+                            ),
+                          )
+                        : const SizedBox.shrink(),
+            bottomNavigationBar: state is PatientDetailsSuccess
+                ? _buildPrescriptionButton(context, patient)
+                : null,
+          );
+        },
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(20.w),
-        child: Column(
-          children: [
-            _buildPatientCard(context),
-            SizedBox(height: 20.h),
-            _buildMedicalHistoryCard(context),
-            SizedBox(height: 20.h),
-          ],
-        ),
-      ),
-      bottomNavigationBar: _buildPrescriptionButton(context),
     );
   }
 
-  Widget _buildPatientCard(BuildContext context) {
+  Widget _buildPatientCard(BuildContext context, Patient patient) {
     return Card(
       color: AppColor.cardColor,
       elevation: 4,
@@ -88,6 +162,7 @@ class PatientDetailsScreen extends StatelessWidget {
                         ),
                         errorWidget: (context, url, error) =>
                             const Icon(Icons.error),
+
                       ),
                     ),
                   ),
@@ -150,7 +225,7 @@ class PatientDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMedicalHistoryCard(BuildContext context) {
+  Widget _buildMedicalHistoryCard(BuildContext context, Patient patient) {
     return Card(
       color: AppColor.cardColor,
       elevation: 4,
@@ -223,7 +298,7 @@ class PatientDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPrescriptionButton(BuildContext context) {
+  Widget _buildPrescriptionButton(BuildContext context, Patient patient) {
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.all(16.w),

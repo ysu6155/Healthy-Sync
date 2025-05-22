@@ -10,7 +10,7 @@ import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
-import 'package:healthy_sync/core/widgets/shows.dart';
+import 'package:healthy_sync/core/widgets/ui_helpers.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/bmi/screen/bmi.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/chronic_diseases/screen/chronic_diseases_screen.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/profile/cubit/profile_cubit.dart';
@@ -18,7 +18,7 @@ import 'package:healthy_sync/feature/patients/profile/presentation/edit_profile/
 import 'package:healthy_sync/feature/patients/profile/presentation/update_password/screen/update_password.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/woman_cycle/cubit/woman_cycle_cubit.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/woman_cycle/screens/woman_cycle_screen.dart';
-import 'package:healthy_sync/feature/patients/profile/presentation/widgets/profile_item.dart';
+import 'package:healthy_sync/core/widgets/profile_item.dart';
 import 'package:healthy_sync/feature/welcome/presentation/screens/intro/intro_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
