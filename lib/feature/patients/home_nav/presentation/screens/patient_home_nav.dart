@@ -35,7 +35,7 @@ class PatientHomeNavScreenState extends State<PatientHomeNavScreen> {
     const TreatmentScheduleScreen(),
     const ChatScreen(),
     const MedicalTestsScreen(),
-     const ProfilePatientScreen(),
+    const ProfilePatientScreen(),
   ];
 
   @override

@@ -19,7 +19,7 @@ class PrescriptionCubit extends Cubit<PrescriptionState> {
       final prescription = Prescription(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         patientId: patient.id ?? '',
-        doctorId: '1', 
+        doctorId: '1',
         date: DateTime.now(),
         symptoms: symptoms ?? '',
         requiredTests: requiredTests ?? [],

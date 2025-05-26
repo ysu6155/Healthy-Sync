@@ -1,4 +1,3 @@
-
 abstract class PrescriptionState {}
 
 class PrescriptionInitial extends PrescriptionState {}

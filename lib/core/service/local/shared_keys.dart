@@ -39,5 +39,4 @@ sealed class SharedKeys {
   static const String womanCycleSettings = "womanCycleSettings";
   static const String womanCycleHistory = "womanCycleHistory";
   static const String womanCycleTips = "womanCycleTips";
-  
 }

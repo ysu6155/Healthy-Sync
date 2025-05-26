@@ -39,11 +39,11 @@ class _FormSignUpState extends State<FormSignUp> {
           showLoadingDialog(context);
         } else if (state is SignUpSuccess) {
           Navigator.pop(context);
-          if (widget.userType == UserType.doctor) {
+          if (signUpCubit.selectedType == "Doctor") {
             context.pushReplacement(const DoctorHomeNavScreen());
-          } else if (widget.userType == UserType.patient) {
+          } else if (widget.userType == "patient") {
             context.pushReplacement(const PatientHomeNavScreen());
-          } else if (widget.userType == UserType.lab) {
+          } else if (signUpCubit.selectedType == "Lab&Pharmacy") {
             context.pushReplacement(const LabHomeNavScreen());
           }
         } else if (state is SignUpError) {
@@ -95,7 +95,9 @@ class _FormSignUpState extends State<FormSignUp> {
                   name: signUpCubit.nameController.text,
                   passwordConfirmation:
                       signUpCubit.confirmPasswordController.text,
-                  role: widget.userType.name,
+                  role: signUpCubit.selectedType == "Lab&Pharmacy"
+                      ? "admin"
+                      : widget.userType.name,
                   phone: signUpCubit.phoneController.text,
                   //  specialization: signUpCubit.specializationController.text,
                   gender: signUpCubit.selectedGender,

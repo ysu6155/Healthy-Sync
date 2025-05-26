@@ -1,13 +1,13 @@
 import 'data.dart';
 
-class RegisterUser {
+class User {
   String? message;
   String? token;
   Data? data;
 
-  RegisterUser({this.message, this.token, this.data});
+  User({this.message, this.token, this.data});
 
-  factory RegisterUser.fromJson(Map<String, dynamic> json) => RegisterUser(
+  factory User.fromJson(Map<String, dynamic> json) => User(
         message: json['message'] as String?,
         token: json['token'] as String?,
         data: json['data'] == null

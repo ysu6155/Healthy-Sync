@@ -80,7 +80,6 @@ class HomeCubit extends Cubit<HomeState> {
       await Future.delayed(const Duration(seconds: 1));
 
       // Mock data
-      
 
       emit(state.copyWith(
         isDoctorsLoading: false,
@@ -103,7 +102,6 @@ class HomeCubit extends Cubit<HomeState> {
       await Future.delayed(const Duration(seconds: 1));
 
       // Mock data
-    
 
       emit(state.copyWith(
         isVisitLoading: false,

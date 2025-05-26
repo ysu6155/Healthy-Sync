@@ -25,8 +25,6 @@ class ProfileCubit extends Cubit<ProfileState> {
       // Simulate network delay
       await Future.delayed(const Duration(seconds: 1));
 
-      
-
       emit(ProfileLoaded(profile: profile));
     } catch (e) {
       emit(ProfileError('حدث خطأ أثناء تحميل الملف الشخصي'));

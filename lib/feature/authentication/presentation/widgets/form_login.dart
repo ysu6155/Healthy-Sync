@@ -18,6 +18,7 @@ import 'package:healthy_sync/feature/authentication/presentation/screens/signup/
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
+import 'package:healthy_sync/feature/lab/home_nav/presentation/screens/lab_nav.dart';
 
 class FormLogin extends StatelessWidget {
   final UserType userType;
@@ -143,7 +144,7 @@ class FormLogin extends StatelessWidget {
               CustomButton(
                 name: LocaleKeys.login.tr(),
                 onTap: () {
-                  // context.pushAndRemoveUntil(const PatientHomeNavScreen());
+                  //context.pushAndRemoveUntil(const LabHomeNavScreen());
                   loginCubit.login(
                     RegisterParams(
                       phone: loginCubit.emailController.text,

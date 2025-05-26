@@ -7,7 +7,7 @@ class PatientDetailsInitial extends PatientDetailsState {}
 class PatientDetailsLoading extends PatientDetailsState {}
 
 class PatientDetailsSuccess extends PatientDetailsState {
-  final  List<Patient> patient;
+  final List<Patient> patient;
 
   PatientDetailsSuccess(this.patient);
 }

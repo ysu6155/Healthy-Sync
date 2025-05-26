@@ -5,7 +5,7 @@ import 'package:healthy_sync/feature/patients/home/presentation/doctor_details/c
 class DoctorDetailsCubit extends Cubit<DoctorDetailsState> {
   DoctorDetailsCubit() : super(DoctorDetailsInitial());
 
-  Future<void> refresh( ) async {
+  Future<void> refresh() async {
     loadDoctorDetails();
   }
 

@@ -43,4 +43,3 @@ class TypeSelected extends SignUpState {
   final String? type;
   TypeSelected(this.type);
 }
-

@@ -4,11 +4,12 @@ import 'package:dio/dio.dart';
 import 'package:healthy_sync/core/network/dio_helper.dart';
 import 'package:healthy_sync/core/network/end_points.dart';
 import 'package:healthy_sync/feature/authentication/data/models/request/register_params.dart';
-import 'package:healthy_sync/feature/authentication/data/models/response/loginuser/loginuser.dart';
-import 'package:healthy_sync/feature/authentication/data/models/response/register_user/register_user.dart';
+import 'package:healthy_sync/feature/authentication/data/models/response/loginuser/login/login.dart';
+
+import '../models/response/register_user/user/user.dart';
 
 class AuthRepo {
-  static Future<RegisterUser> register(RegisterParams params) async {
+  static Future<User> register(RegisterParams params) async {
     try {
       var response = await DioHelper.post(
         endPoints: EndPoints.register,
@@ -16,7 +17,7 @@ class AuthRepo {
       );
       if (response.statusCode == 201) {
         log("✅ REGISTER SUCCESS");
-        return RegisterUser.fromJson(response.data);
+        return User.fromJson(response.data);
       } else {
         log("❌ REGISTER FAILED");
         log("📌 STATUS: ${response.statusCode}");
@@ -37,7 +38,7 @@ class AuthRepo {
     }
   }
 
-  static Future<LoginUser> login(RegisterParams params) async {
+  static Future<Login> login(RegisterParams params) async {
     try {
       var response = await DioHelper.post(
         endPoints: EndPoints.login,
@@ -47,7 +48,7 @@ class AuthRepo {
         log(
           " yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy${response.data.toString()}",
         );
-        return LoginUser.fromJson(response.data);
+        return Login.fromJson(response.data);
       } else {
         throw Exception('Failed to login ${response.data}');
       }

@@ -115,16 +115,16 @@ class BMICalculatorView extends StatelessWidget {
     IconData resultIcon;
 
     if (state.bmi < 18.5) {
-      resultColor = const Color(0xFFFFA726); 
+      resultColor = const Color(0xFFFFA726);
       resultIcon = Icons.trending_down_rounded;
     } else if (state.bmi >= 18.5 && state.bmi < 24.9) {
-      resultColor = const Color(0xFF66BB6A); 
+      resultColor = const Color(0xFF66BB6A);
       resultIcon = Icons.check_circle_rounded;
     } else if (state.bmi >= 25 && state.bmi < 29.9) {
-      resultColor = const Color(0xFFFFA726); 
+      resultColor = const Color(0xFFFFA726);
       resultIcon = Icons.trending_up_rounded;
     } else {
-      resultColor = const Color(0xFFEF5350); 
+      resultColor = const Color(0xFFEF5350);
       resultIcon = Icons.warning_rounded;
     }
 
@@ -280,9 +280,9 @@ class BMICalculatorView extends StatelessWidget {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            Color(0xFFF8FAFC), 
+            Color(0xFFF8FAFC),
             Color(0xFFF1F5F9),
-            Color(0xFFE2E8F0), 
+            Color(0xFFE2E8F0),
           ],
           stops: [0.0, 0.5, 1.0],
         ),
@@ -390,9 +390,9 @@ class BMICalculatorView extends StatelessWidget {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            Color(0xFFF8FAFC), 
-            Color(0xFFF1F5F9), 
-            Color(0xFFE2E8F0), 
+            Color(0xFFF8FAFC),
+            Color(0xFFF1F5F9),
+            Color(0xFFE2E8F0),
           ],
           stops: [0.0, 0.5, 1.0],
         ),

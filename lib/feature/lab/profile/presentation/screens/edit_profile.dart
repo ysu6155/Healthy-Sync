@@ -17,14 +17,14 @@ import 'package:healthy_sync/feature/authentication/presentation/cubit/signup_cu
 import 'package:healthy_sync/feature/patients/profile/presentation/profile/cubit/profile_cubit.dart';
 import 'package:image_picker/image_picker.dart';
 
-class EditProfileLab extends StatefulWidget {
-  const EditProfileLab({super.key});
+class EditProfile extends StatefulWidget {
+  const EditProfile({super.key});
 
   @override
-  State<EditProfileLab> createState() => _EditProfileLabState();
+  State<EditProfile> createState() => _EditProfileState();
 }
 
-class _EditProfileLabState extends State<EditProfileLab> {
+class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     final signUpCubit = context.read<SignUpCubit>();

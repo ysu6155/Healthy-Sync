@@ -211,7 +211,6 @@ class DoctorVisitCard extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) => DoctorVisitScreen(
-         
             visitId: visit.id,
           ),
         ),

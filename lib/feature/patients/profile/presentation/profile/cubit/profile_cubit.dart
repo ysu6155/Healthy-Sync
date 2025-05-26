@@ -34,7 +34,6 @@ class ProfileCubit extends Cubit<ProfileState> {
         'birthDate': '45',
         'phone': '+966 50 123 4567',
         'email': 'ahmed@example.com',
-    
         'bloodType': 'O+',
       };
 

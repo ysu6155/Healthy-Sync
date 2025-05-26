@@ -13,7 +13,6 @@ class TreatmentScheduleCubit extends Cubit<TreatmentScheduleState> {
 
       final schedules = [
         {
-          
           'id': '1',
           'name': '25 وحدة السولين',
           'time': '09:00',

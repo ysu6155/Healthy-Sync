@@ -16,4 +16,4 @@ class LabTestDetailsError extends LabTestDetailsState {
   final String message;
 
   LabTestDetailsError(this.message);
-} 
+}

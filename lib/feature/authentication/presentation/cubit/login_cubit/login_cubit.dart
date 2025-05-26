@@ -45,7 +45,10 @@ class LoginCubit extends Cubit<LoginState> {
       await SharedHelper.sava(SharedKeys.role, response.user?.role);
       await SharedHelper.sava(SharedKeys.id, response.user?.id);
       await SharedHelper.sava(SharedKeys.kToken, response.token);
-      //   await SharedHelper.sava(SharedKeys.gender, response.user?);
+      await SharedHelper.sava(SharedKeys.name, response.user?.name);
+      await SharedHelper.sava(SharedKeys.email, response.user?.email);
+      await SharedHelper.sava(SharedKeys.phone, response.user?.phone);
+     
       emit(LoginSuccess());
       String role = response.user?.role ?? "patient";
       log("User role: $role");
@@ -53,7 +56,7 @@ class LoginCubit extends Cubit<LoginState> {
         context.pushAndRemoveUntil(const PatientHomeNavScreen());
       } else if (role == "doctor") {
         context.pushAndRemoveUntil(const DoctorHomeNavScreen());
-      } else if (role == "lab") {
+      } else if (role == "admin") {
         context.pushAndRemoveUntil(const LabHomeNavScreen());
       }
     } catch (e, stackTrace) {

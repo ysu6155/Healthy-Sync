@@ -495,8 +495,4 @@ class _DrugInfoScreenState extends State<DrugInfoScreen> {
 
     return value.toString();
   }
-
- 
-
- 
 }

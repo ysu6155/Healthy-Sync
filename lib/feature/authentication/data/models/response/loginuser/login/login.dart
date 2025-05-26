@@ -1,12 +1,12 @@
 import 'user.dart';
 
-class LoginUser {
+class Login {
   String? token;
   User? user;
 
-  LoginUser({this.token, this.user});
+  Login({this.token, this.user});
 
-  factory LoginUser.fromJson(Map<String, dynamic> json) => LoginUser(
+  factory Login.fromJson(Map<String, dynamic> json) => Login(
         token: json['token'] as String?,
         user: json['user'] == null
             ? null

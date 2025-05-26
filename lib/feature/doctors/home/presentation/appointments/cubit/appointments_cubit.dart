@@ -14,7 +14,6 @@ class AppointmentsCubit extends Cubit<AppointmentsState> {
       await Future.delayed(const Duration(seconds: 1));
 
       // For now, using dummy data
-  
 
       emit(AppointmentsSuccess(_appointments));
     } catch (e) {

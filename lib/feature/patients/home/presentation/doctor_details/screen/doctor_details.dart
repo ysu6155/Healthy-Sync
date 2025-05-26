@@ -65,7 +65,6 @@ class DoctorDetails extends StatelessWidget {
     }
 
     if (state is DoctorDetailsLoaded) {
-      final doctor = state.doctor.first;
       return RefreshIndicator(
         onRefresh: () => context.read<DoctorDetailsCubit>().refresh(),
         child: SingleChildScrollView(

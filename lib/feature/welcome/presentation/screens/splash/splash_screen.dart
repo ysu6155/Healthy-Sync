@@ -24,44 +24,43 @@ class SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> navigateToNextScreen() async {
-  await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
 
-  String? token = SharedHelper.get(SharedKeys.kToken);
+    String? token = SharedHelper.get(SharedKeys.kToken);
 
-  if (token != null) {
-    final role = SharedHelper.get(SharedKeys.role);
+    if (token != null) {
+      final role = SharedHelper.get(SharedKeys.role);
 
-    if (role == "patient") {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => const PatientHomeNavScreen()),
-        (route) => false,
-      );
-    } else if (role == "doctor") {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => const DoctorHomeNavScreen()),
-        (route) => false,
-      );
-    } else if (role == "lab") {
-      context.pushReplacement(const LabHomeNavScreen());
+      if (role == "patient") {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const PatientHomeNavScreen()),
+          (route) => false,
+        );
+      } else if (role == "doctor") {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const DoctorHomeNavScreen()),
+          (route) => false,
+        );
+      } else if (role == "admin") {
+        context.pushReplacement(const LabHomeNavScreen());
+      } else {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const IntroScreen()),
+          (route) => false,
+        );
+      }
     } else {
+      // ✅ لو مفيش توكن، روح على شاشة المقدمة
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const IntroScreen()),
         (route) => false,
       );
     }
-  } else {
-    // ✅ لو مفيش توكن، روح على شاشة المقدمة
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => const IntroScreen()),
-      (route) => false,
-    );
   }
-}
-
 
   @override
   Widget build(BuildContext context) {

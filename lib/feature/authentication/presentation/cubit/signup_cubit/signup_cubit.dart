@@ -191,13 +191,11 @@ class SignUpCubit extends Cubit<SignUpState> {
       final result = await AuthRepo.register(params);
 
       SharedHelper.sava(SharedKeys.kToken, result.token);
-      SharedHelper.sava(SharedKeys.id, result.data?.newUser?.id);
-      SharedHelper.sava(SharedKeys.role, result.data?.newUser?.role);
-      SharedHelper.sava(SharedKeys.name, result.data?.newUser?.name);
-      SharedHelper.sava(SharedKeys.email, result.data?.newUser?.email);
-      SharedHelper.sava(SharedKeys.gender, result.data?.newUser?.gender);
-      SharedHelper.sava(
-          SharedKeys.dateOfBirth, result.data?.newUser?.dateOfBirth);
+      SharedHelper.sava(SharedKeys.id, result.data?.id);
+      var role = SharedHelper.sava(SharedKeys.role, result.data?.role);
+      // log(role as String);
+      SharedHelper.sava(SharedKeys.name, result.data?.name);
+      SharedHelper.sava(SharedKeys.email, result.data?.email);
 
       emit(SignUpSuccess());
     } catch (e) {

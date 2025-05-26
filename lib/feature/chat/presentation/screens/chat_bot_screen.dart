@@ -8,7 +8,6 @@ import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:file_picker/file_picker.dart';
 
 class ChatScreen extends StatefulWidget {
-
   const ChatScreen({
     super.key,
   });
