@@ -42,4 +42,22 @@ sealed class AppColor {
   static Color normal = Color(0xffFFFF00);
   static Color overweight = Color(0xffFF0000);
   static Color obesity = Color(0xffFF0000);
+  static Gradient colorCardGray = const LinearGradient(
+    begin: Alignment.topRight,
+    end: Alignment.bottomLeft,
+    colors: [
+      Color(0xFFF8FAFC), // لون أبيض فاتح جداً
+      Color(0xFFF1F5F9), // لون رمادي فاتح جداً
+      Color(0xFFE2E8F0), // لون رمادي فاتح
+    ],
+    stops: [0.0, 0.5, 1.0],
+  );
+  static Gradient colorCardBlue = LinearGradient(
+    begin: Alignment.topRight,
+    end: Alignment.bottomLeft,
+    colors: [
+      AppColor.mainBlue,
+      AppColor.mainBlue.withOpacity(0.8),
+    ],
+  );
 }

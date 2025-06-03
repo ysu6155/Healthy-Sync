@@ -1,7 +1,16 @@
-import 'package:equatable/equatable.dart';
+import 'package:healthy_sync/core/widgets/data.dart';
 import 'package:healthy_sync/feature/patients/home/data/models/doctor_visit.dart';
 
-class HomeState extends Equatable {
+abstract class HomeState {}
+
+class HomeInitial extends HomeState {}
+
+class HomeLoading extends HomeState {}
+
+class HomeLoaded extends HomeState {
+  final List<Patient>? patients;
+  final List<Patient>? filteredPatients;
+  final Map<String, dynamic>? profile;
   final bool isLoading;
   final bool isRefreshing;
   final bool isSpecializationsLoading;
@@ -12,53 +21,25 @@ class HomeState extends Equatable {
   final List<Map<String, dynamic>> doctors;
   final DoctorVisit? visitData;
 
-  const HomeState({
-    this.isLoading = true,
+  HomeLoaded({
+    this.patients,
+    List<Patient>? filteredPatients,
+    this.profile,
+    this.isLoading = false,
     this.isRefreshing = false,
-    this.isSpecializationsLoading = true,
-    this.isDoctorsLoading = true,
-    this.isVisitLoading = true,
+    this.isSpecializationsLoading = false,
+    this.isDoctorsLoading = false,
+    this.isVisitLoading = false,
     this.error,
     this.specializations = const [],
     this.doctors = const [],
     this.visitData,
-  });
+  }) : filteredPatients = filteredPatients ?? patients;
 
-  HomeState copyWith({
-    bool? isLoading,
-    bool? isRefreshing,
-    bool? isSpecializationsLoading,
-    bool? isDoctorsLoading,
-    bool? isVisitLoading,
-    String? error,
-    List<Map<String, dynamic>>? specializations,
-    List<Map<String, dynamic>>? doctors,
-    DoctorVisit? visitData,
-  }) {
-    return HomeState(
-      isLoading: isLoading ?? this.isLoading,
-      isRefreshing: isRefreshing ?? this.isRefreshing,
-      isSpecializationsLoading:
-          isSpecializationsLoading ?? this.isSpecializationsLoading,
-      isDoctorsLoading: isDoctorsLoading ?? this.isDoctorsLoading,
-      isVisitLoading: isVisitLoading ?? this.isVisitLoading,
-      error: error,
-      specializations: specializations ?? this.specializations,
-      doctors: doctors ?? this.doctors,
-      visitData: visitData ?? this.visitData,
-    );
-  }
+}
 
-  @override
-  List<Object?> get props => [
-        isLoading,
-        isRefreshing,
-        isSpecializationsLoading,
-        isDoctorsLoading,
-        isVisitLoading,
-        error,
-        specializations,
-        doctors,
-        visitData,
-      ];
+class HomeError extends HomeState {
+  final String message;
+
+  HomeError(this.message);
 }

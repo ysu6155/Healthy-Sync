@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/widgets/ui_helpers.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/lab_test_details/screen/lab_test_details_screen.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/lab_tests/cubit/lab_tests_cubit.dart';
+import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 
 class LabTestsScreen extends StatelessWidget {
   const LabTestsScreen({super.key});
@@ -22,7 +24,7 @@ class LabTestsScreen extends StatelessWidget {
           centerTitle: true,
           elevation: 0,
           title: Text(
-            "التحاليل الطبية",
+            LocaleKeys.labTests.tr(),
             style: TextStyles.font16DarkBlueW500,
           ),
           backgroundColor: AppColor.white,
@@ -32,54 +34,56 @@ class LabTestsScreen extends StatelessWidget {
             if (state is LabTestsLoading) {
               return showLoading();
             }
-
-            return RefreshIndicator(
-              onRefresh: () async {
-                await context.read<LabTestsCubit>().refresh();
-              },
-              child: ListView(
+            return SingleChildScrollView(
+              child: Column(
                 children: [
+                  // قسم التصفية
                   Padding(
                     padding: EdgeInsets.all(16.sp),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (state is LabTestsLoaded) ...[
-                          Row(
+                        Text(
+                          LocaleKeys.testType.tr(),
+                          style: TextStyles.font16DarkBlueW500,
+                        ),
+                        16.H,
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
                             children: [
-                              _buildFilterButton(
-                                context,
-                                'آخر 3 شهور',
-                                '3_months',
-                                state.filterPeriod == '3_months',
+                              _buildFilterChip(
+                                LocaleKeys.bloodTest.tr(),
+                                true,
+                                () {},
                               ),
                               8.W,
-                              _buildFilterButton(
-                                context,
-                                'هذا العام',
-                                'this_year',
-                                state.filterPeriod == 'this_year',
+                              _buildFilterChip(
+                                LocaleKeys.urineTest.tr(),
+                                false,
+                                () {},
                               ),
                               8.W,
-                              _buildFilterButton(
-                                context,
-                                'آخر 6 أشهر',
-                                '6_months',
-                                state.filterPeriod == '6_months',
-                              ),
-                              8.W,
-                              _buildFilterButton(
-                                context,
-                                "مخصص",
-                                'custom',
-                                state.filterPeriod == 'custom',
+                              _buildFilterChip(
+                                LocaleKeys.stoolTest.tr(),
+                                false,
+                                () {},
                               ),
                             ],
                           ),
-                          16.H,
+                        ),
+                      ],
+                    ),
+                  ),
+                  // قسم التحاليل
+                  Padding(
+                    padding: EdgeInsets.all(16.sp),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (state is LabTestsLoaded)
                           ...state.labTests
                               .map((test) => _buildTestCard(context, test)),
-                        ],
                       ],
                     ),
                   ),
@@ -92,51 +96,13 @@ class LabTestsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildFilterButton(
-    BuildContext context,
+  Widget _buildFilterChip(
     String text,
-    String period,
     bool isSelected,
+    VoidCallback onTap,
   ) {
     return InkWell(
-      onTap: () async {
-        if (isSelected) {
-          context.read<LabTestsCubit>().clearFilter();
-        } else if (period == 'custom') {
-          final DateTimeRange? dateRange = await showDateRangePicker(
-            context: context,
-            firstDate: DateTime(2020),
-            lastDate: DateTime.now(),
-            initialDateRange: DateTimeRange(
-              start: DateTime.now().subtract(const Duration(days: 30)),
-              end: DateTime.now(),
-            ),
-            builder: (context, child) {
-              return Theme(
-                data: Theme.of(context).copyWith(
-                  colorScheme: ColorScheme.light(
-                    primary: AppColor.mainBlue,
-                    onPrimary: Colors.white,
-                    surface: Colors.white,
-                    onSurface: AppColor.mainBlueDark,
-                  ),
-                ),
-                child: child!,
-              );
-            },
-          );
-
-          if (dateRange != null) {
-            await context.read<LabTestsCubit>().filterByPeriod(
-                  'custom',
-                  dateRange.start,
-                  dateRange.end,
-                );
-          }
-        } else {
-          await context.read<LabTestsCubit>().filterByPeriod(period);
-        }
-      },
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: 12.sp,
@@ -160,7 +126,7 @@ class LabTestsScreen extends StatelessWidget {
   }
 
   Widget _buildTestCard(BuildContext context, Map<String, dynamic> test) {
-    final isCompleted = test['status'] == 'مكتمل';
+    final isCompleted = test['status'] == LocaleKeys.completed.tr();
 
     return Container(
       margin: EdgeInsets.only(bottom: 12.sp),
@@ -191,7 +157,7 @@ class LabTestsScreen extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
-                  'النتائج غير متاحة بعد',
+                  LocaleKeys.resultsNotAvailable.tr(),
                   style: TextStyle(
                     fontSize: 14.sp,
                     color: Colors.white,

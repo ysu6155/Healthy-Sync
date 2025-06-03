@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
+import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 import 'package:healthy_sync/core/widgets/ui_helpers.dart';
 
@@ -31,7 +33,7 @@ class _ChronicDiseasesScreenState extends State<ChronicDiseasesScreen> {
         _chronicDiseases.add(_diseaseController.text);
         _diseaseController.clear();
         Navigator.of(context).pop();
-        showSuccessSnackBar('تمت إضافة المرض بنجاح', context);
+        showSuccessSnackBar(LocaleKeys.diseaseAdded.tr(), context);
       });
     }
   }
@@ -40,7 +42,9 @@ class _ChronicDiseasesScreenState extends State<ChronicDiseasesScreen> {
     final deletedDisease = _chronicDiseases[index];
     setState(() {
       _chronicDiseases.removeAt(index);
-      showSuccessSnackBar('تم حذف المرض "$deletedDisease" بنجاح', context);
+      showSuccessSnackBar(
+          LocaleKeys.diseaseDeleted.tr(namedArgs: {'disease': deletedDisease}),
+          context);
     });
   }
 
@@ -52,7 +56,7 @@ class _ChronicDiseasesScreenState extends State<ChronicDiseasesScreen> {
         toolbarHeight: 48.sp,
         iconTheme: IconThemeData(color: AppColor.black, size: 24.sp),
         title: Text(
-          'الأمراض المزمنة',
+          LocaleKeys.chronicDiseases.tr(),
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp),
         ),
         centerTitle: true,
@@ -71,7 +75,7 @@ class _ChronicDiseasesScreenState extends State<ChronicDiseasesScreen> {
                   ),
                   SizedBox(height: 16.sp),
                   Text(
-                    'لا توجد أمراض مسجلة',
+                    LocaleKeys.noChronicDiseases.tr(),
                     style: TextStyle(
                       fontSize: 18.sp,
                       color: Colors.grey[600],
@@ -134,92 +138,89 @@ class _ChronicDiseasesScreenState extends State<ChronicDiseasesScreen> {
     showDialog(
       context: context,
       builder: (context) {
-        return Directionality(
-          textDirection: TextDirection.rtl,
-          child: AlertDialog(
-            backgroundColor: AppColor.white,
-            content: SizedBox(
-              width: 300.w,
-              child: Column(
-                spacing: 16.sp,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'إضافة مرض مزمن',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.sp,
-                      color: AppColor.mainBlueVaryDark,
-                    ),
+        return AlertDialog(
+          backgroundColor: AppColor.white,
+          content: SizedBox(
+            width: 300.w,
+            child: Column(
+              spacing: 16.sp,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  LocaleKeys.addChronicDisease.tr(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.sp,
+                    color: AppColor.mainBlueVaryDark,
                   ),
-                  Form(
-                    key: _formKey,
-                    child: CustomTextField(
-                      fillColor: AppColor.cardColor,
-                      controller: _diseaseController,
-                      hintText: "اسم المرض",
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'الرجاء إدخال اسم المرض';
-                        }
-                        return null;
-                      },
-                    ),
+                ),
+                Form(
+                  key: _formKey,
+                  child: CustomTextField(
+                    fillColor: AppColor.cardColor,
+                    controller: _diseaseController,
+                    hintText: LocaleKeys.diseaseName.tr(),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return LocaleKeys.diseaseNameIsRequired.tr();
+                      }
+                      return null;
+                    },
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                            elevation: 4,
-                            shadowColor: Colors.black,
-                            backgroundColor: AppColor.white,
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                color: AppColor.mainBlue,
-                                width: 1.5,
-                              ),
-                              borderRadius: BorderRadius.circular(25.r),
-                            ),
-                          ),
-                          onPressed: () => Navigator.of(context).pop(),
-                          child: Text(
-                            'إلغاء',
-                            style: TextStyle(
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          elevation: 4,
+                          shadowColor: Colors.black,
+                          backgroundColor: AppColor.white,
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
                               color: AppColor.mainBlue,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.bold,
+                              width: 1.5,
                             ),
+                            borderRadius: BorderRadius.circular(25.r),
+                          ),
+                        ),
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Text(
+                          LocaleKeys.cancel.tr(),
+                          style: TextStyle(
+                            color: AppColor.mainBlue,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                      SizedBox(width: 8.w),
-                      Expanded(
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                            backgroundColor: AppColor.mainBlue,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25.r),
-                            ),
-                            elevation: 4, // ارتفاع الظل
-                            shadowColor: Colors.black,
+                    ),
+                    SizedBox(width: 8.w),
+                    Expanded(
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: AppColor.mainBlue,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25.r),
                           ),
-                          onPressed: _addDisease,
-                          child: Text(
-                            'حفظ',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          elevation: 4, // ارتفاع الظل
+                          shadowColor: Colors.black,
+                        ),
+                        onPressed: _addDisease,
+                        child: Text(
+                          LocaleKeys.save.tr(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         );
@@ -231,53 +232,51 @@ class _ChronicDiseasesScreenState extends State<ChronicDiseasesScreen> {
     showDialog(
       context: context,
       builder: (context) {
-        return Directionality(
-          textDirection: TextDirection.rtl,
-          child: AlertDialog(
-            title: const Text(
-              'تأكيد الحذف',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            content: Text(
-              'هل أنت متأكد أنك تريد حذف مرض ${_chronicDiseases[index]}؟',
-              textAlign: TextAlign.center,
-            ),
-            actions: [
-              Row(
-                children: [
-                  Expanded(
-                    child: TextButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.grey[200],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.r),
-                        ),
-                      ),
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: const Text('إلغاء'),
-                    ),
-                  ),
-                  8.W,
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red[400],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.r),
-                        ),
-                      ),
-                      onPressed: () {
-                        _deleteDisease(index);
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text('حذف'),
-                    ),
-                  ),
-                ],
-              ),
-            ],
+        return AlertDialog(
+          title: Text(
+            LocaleKeys.deleteConfirm.tr(),
+            textAlign: TextAlign.center,
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
+          content: Text(
+            LocaleKeys.deleteDiseaseQuestion
+                .tr(namedArgs: {'disease': _chronicDiseases[index]}),
+            textAlign: TextAlign.center,
+          ),
+          actions: [
+            Row(
+              children: [
+                Expanded(
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.grey[200],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                    ),
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text(LocaleKeys.cancel.tr()),
+                  ),
+                ),
+                8.W,
+                Expanded(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red[400],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                    ),
+                    onPressed: () {
+                      _deleteDisease(index);
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(LocaleKeys.delete.tr()),
+                  ),
+                ),
+              ],
+            ),
+          ],
         );
       },
     );

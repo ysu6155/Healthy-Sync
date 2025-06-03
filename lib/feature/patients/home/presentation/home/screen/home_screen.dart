@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
+import 'package:healthy_sync/core/widgets/data.dart';
 import 'package:healthy_sync/core/widgets/ui_helpers.dart';
 import 'package:healthy_sync/feature/patients/home/data/models/doctor_visit.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/specializations/screen/specializations_screen.dart';
@@ -24,72 +25,91 @@ class HomePatientScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
-        List<Map<String, dynamic>> specializations =
-            context.read<HomeCubit>().state.specializations;
-        return Scaffold(
-          body: state.isLoading
-              ? showLoading()
-              : RefreshIndicator(
-                  onRefresh: () => context.read<HomeCubit>().refresh(),
-                  child: ListView(
-                    children: [
-                      _buildHeader(context),
-                      16.H,
-                      state.isVisitLoading
-                          ? buildLoading()
-                          : DoctorVisitCard(
-                              visit: DoctorVisit(
-                              imageUrl: state.visitData?.imageUrl ?? '',
-                              id: state.visitData?.id ?? '',
-                              rating: state.visitData?.rating ?? 0,
-                              experienceYears:
-                                  state.visitData?.experienceYears ?? 0,
-                              phoneNumber: state.visitData?.phoneNumber ?? '',
-                              // prescription: state.visitData?.prescription ?? '',
-                              followUpDate: state.visitData?.followUpDate ?? '',
-                              doctorName: state.visitData?.doctorName ?? '',
-                              specialization:
-                                  state.visitData?.specialization ?? '',
-                              date: state.visitData?.date ?? '',
-                              time: state.visitData?.time ?? '',
-                              status: state.visitData?.status ?? '',
-                              diagnosis: state.visitData?.diagnosis ?? '',
-                              // notes: state.visitData?.notes ?? '',
-                              symptoms: state.visitData?.symptoms ?? '',
-                              treatment: state.visitData?.treatment ?? '',
-                              medications: state.visitData?.medications ?? '',
-                              recommendations:
-                                  state.visitData?.recommendations ?? [],
-                            )).paddingSymmetric(horizontal: 16.w),
-                      16.H,
-                      _buildSpecializationsHeader(context),
-                      8.H,
-                      state.isSpecializationsLoading
-                          ? buildLoading()
-                          : SpecializationsSection(
-                              specializations: specializations,
-                            ),
-                      16.H,
-                      state.isDoctorsLoading
-                          ? buildLoading()
-                          : DoctorsSection(
-                              doctors: state.doctors,
-                            ),
-                    ],
-                  ),
+        if (state is HomeLoading) {
+          return Scaffold(body: showLoading());
+        }
+
+        if (state is HomeError) {
+          return Scaffold(
+            body: Center(
+              child: Text(
+                state.message,
+                style: TextStyles.font16DarkBlueW500.copyWith(
+                  color: AppColor.red,
                 ),
-        );
+              ),
+            ),
+          );
+        }
+
+        if (state is HomeLoaded) {
+          return Scaffold(
+            body: RefreshIndicator(
+              onRefresh: () => context.read<HomeCubit>().refresh(),
+              child: ListView(
+                children: [
+                  _buildHeader(context, state),
+                  16.H,
+                  state.isVisitLoading
+                      ? buildLoading()
+                      : DoctorVisitCard(
+                          visit: DoctorVisit(
+                            imageUrl: state.visitData?.imageUrl ?? '',
+                            id: state.visitData?.id ?? '',
+                            rating: state.visitData?.rating ?? 0,
+                            experienceYears:
+                                state.visitData?.experienceYears ?? 0,
+                            phoneNumber: state.visitData?.phoneNumber ?? '',
+                            followUpDate: state.visitData?.followUpDate ?? '',
+                            doctorName: state.visitData?.doctorName ?? '',
+                            specialization:
+                                state.visitData?.specialization ?? '',
+                            date: state.visitData?.date ?? '',
+                            time: state.visitData?.time ?? '',
+                            status: state.visitData?.status ?? '',
+                            diagnosis: state.visitData?.diagnosis ?? '',
+                            symptoms: state.visitData?.symptoms ?? '',
+                            treatment: state.visitData?.treatment ?? '',
+                            medications: state.visitData?.medications ?? '',
+                            recommendations:
+                                state.visitData?.recommendations ?? [],
+                          ),
+                        ).paddingSymmetric(horizontal: 16.w),
+                  16.H,
+                  _buildSpecializationsHeader(context),
+                  8.H,
+                  state.isSpecializationsLoading
+                      ? buildLoading()
+                      : SpecializationsSection(
+                          specializations: state.specializations,
+                        ),
+                  16.H,
+                  state.isDoctorsLoading
+                      ? buildLoading()
+                      : DoctorsSection(
+                          doctors: state.doctors,
+                        ),
+                ],
+              ),
+            ),
+          );
+        }
+
+        return const Scaffold(body: SizedBox());
       },
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(
+    BuildContext context,
+    HomeState state,
+  ) {
     return Row(
       children: [
         CircleAvatar(
           radius: 30.r,
           backgroundImage: Image.network(
-            "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+            profile["image"],
             fit: BoxFit.cover,
           ).image,
         ),
@@ -105,7 +125,7 @@ class HomePatientScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                "Youssif Shaban",
+                profile["name"],
                 style: TextStyles.font16DarkBlueW500.copyWith(
                   color: AppColor.black,
                 ),
@@ -161,17 +181,19 @@ class HomePatientScreen extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            var specializations =
-                context.read<HomeCubit>().state.specializations;
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => SpecializationsAll(
-                  specializations: specializations,
+            if (context.read<HomeCubit>().state is HomeLoaded) {
+              var specializations =
+                  (context.read<HomeCubit>().state as HomeLoaded)
+                      .specializations;
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SpecializationsAll(
+                    specializations: specializations,
+                  ),
                 ),
-              ),
-            );
+              );
+            }
           },
           child: Text(
             LocaleKeys.seeAll.tr(),

@@ -1,16 +1,30 @@
 import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:healthy_sync/feature/doctors/home/data/data.dart';
+import 'package:healthy_sync/core/widgets/data.dart';
 import 'package:healthy_sync/feature/patients/home/data/models/doctor_visit.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/home/cubit/home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(const HomeState());
+  HomeCubit() : super(HomeInitial());
+
+  Future<void> loadProfile() async {
+    emit(HomeLoading());
+    try {
+      // Simulate network delay
+      await Future.delayed(const Duration(seconds: 1));
+
+      emit(HomeLoaded(
+        profile: profile,
+      ));
+    } catch (e) {
+      emit(HomeError('حدث خطأ أثناء تحميل الملف الشخصي'));
+    }
+  }
 
   Future<void> loadData() async {
     try {
-      emit(state.copyWith(isLoading: true, error: null));
+      emit(HomeLoading());
 
       // Load all data in parallel
       await Future.wait([
@@ -19,19 +33,20 @@ class HomeCubit extends Cubit<HomeState> {
         _loadVisitData(),
       ]);
 
-      emit(state.copyWith(isLoading: false));
+      emit(HomeLoaded(
+        specializations: specializations,
+        doctors: doctors,
+        visitData: DoctorVisit.lastVisit,
+      ));
     } catch (e) {
       log('Error loading data: $e');
-      emit(state.copyWith(
-        isLoading: false,
-        error: e.toString(),
-      ));
+      emit(HomeError(e.toString()));
     }
   }
 
   Future<void> refresh() async {
     try {
-      emit(state.copyWith(isRefreshing: true, error: null));
+      emit(HomeLoading());
 
       // Load all data in parallel
       await Future.wait([
@@ -40,79 +55,49 @@ class HomeCubit extends Cubit<HomeState> {
         _loadVisitData(),
       ]);
 
-      emit(state.copyWith(isRefreshing: false));
+      emit(HomeLoaded(
+        specializations: specializations,
+        doctors: doctors,
+        visitData: DoctorVisit.lastVisit,
+      ));
     } catch (e) {
       log('Error refreshing data: $e');
-      emit(state.copyWith(
-        isRefreshing: false,
-        error: e.toString(),
-      ));
+      emit(HomeError(e.toString()));
     }
   }
 
   Future<void> _loadSpecializations() async {
     try {
-      emit(state.copyWith(isSpecializationsLoading: true));
-
       // Simulate API call
       await Future.delayed(const Duration(seconds: 1));
-
-      // Mock data
-
-      emit(state.copyWith(
-        isSpecializationsLoading: false,
-        specializations: specializations,
-      ));
+      HomeLoaded(specializations: specializations);
     } catch (e) {
       log('Error loading specializations: $e');
-      emit(state.copyWith(
-        isSpecializationsLoading: false,
-        error: e.toString(),
-      ));
+      rethrow;
     }
   }
 
   Future<void> _loadDoctors() async {
     try {
-      emit(state.copyWith(isDoctorsLoading: true));
-
       // Simulate API call
       await Future.delayed(const Duration(seconds: 1));
-
-      // Mock data
-
-      emit(state.copyWith(
-        isDoctorsLoading: false,
-        doctors: doctors,
-      ));
     } catch (e) {
       log('Error loading doctors: $e');
-      emit(state.copyWith(
-        isDoctorsLoading: false,
-        error: e.toString(),
-      ));
+      rethrow;
     }
   }
 
   Future<void> _loadVisitData() async {
     try {
-      emit(state.copyWith(isVisitLoading: true));
-
       // Simulate API call
       await Future.delayed(const Duration(seconds: 1));
 
-      // Mock data
-
-      emit(state.copyWith(
-        isVisitLoading: false,
-        visitData: DoctorVisit.lastVisit,
-      ));
+      // Mock data is already in DoctorVisit.lastVisit
     } catch (e) {
       log('Error loading visit data: $e');
-      emit(state.copyWith(
-        isVisitLoading: false,
-        error: e.toString(),
-      ));
+      rethrow;
     }
   }
+
+  // Mock data
 }

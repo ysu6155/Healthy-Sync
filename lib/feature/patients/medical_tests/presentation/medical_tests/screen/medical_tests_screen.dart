@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
@@ -11,6 +12,7 @@ import 'package:healthy_sync/feature/patients/medical_tests/presentation/lab_tes
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/xray_tests/screens/xray_screen.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/xray_details/screen/xray_details_screen.dart';
 import 'package:healthy_sync/feature/patients/medical_tests/presentation/medical_tests/cubit/medical_tests_cubit.dart';
+import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 
 class MedicalTestsScreen extends StatelessWidget {
   const MedicalTestsScreen({super.key});
@@ -26,7 +28,7 @@ class MedicalTestsScreen extends StatelessWidget {
           centerTitle: true,
           elevation: 0,
           title: Text(
-            "التحاليل والأشعة",
+            LocaleKeys.medicalTests.tr(),
             style: TextStyles.font16DarkBlueW500,
           ),
           backgroundColor: AppColor.white,
@@ -36,89 +38,84 @@ class MedicalTestsScreen extends StatelessWidget {
             if (state is MedicalTestsLoading) {
               return showLoading();
             }
-
-            return RefreshIndicator(
-              onRefresh: () => context.read<MedicalTestsCubit>().refresh(),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const HealthTips(),
-                    16.H,
-                    Padding(
-                      padding: EdgeInsets.all(16.sp),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "الخدمات",
-                            style: TextStyles.font16DarkBlueW500,
-                          ),
-                          16.H,
-                          GridView.count(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 12.sp,
-                            crossAxisSpacing: 12.sp,
-                            childAspectRatio: 1.5,
-                            children: [
-                              _buildServiceCard(
-                                "التحاليل الطبية",
-                                Icons.science_outlined,
-                                AppColor.mainBlue,
-                                () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const LabTestsScreen(),
-                                    ),
-                                  );
-                                },
-                              ),
-                              _buildServiceCard(
-                                "الأشعة",
-                                Icons.medical_information_outlined,
-                                AppColor.mainPink,
-                                () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const XrayScreen(),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  const HealthTips(),
+                  // قسم الخدمات
+                  Padding(
+                    padding: EdgeInsets.all(16.sp),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          LocaleKeys.medicalTests.tr(),
+                          style: TextStyles.font16DarkBlueW500,
+                        ),
+                        16.H,
+                        GridView.count(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 16.sp,
+                          crossAxisSpacing: 16.sp,
+                          childAspectRatio: 1.5,
+                          children: [
+                            _buildServiceCard(
+                              LocaleKeys.labTests.tr(),
+                              Icons.science_outlined,
+                              AppColor.mainBlue,
+                              () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const LabTestsScreen(),
+                                  ),
+                                );
+                              },
+                            ),
+                            _buildServiceCard(
+                              LocaleKeys.xrayTests.tr(),
+                              Icons.medical_information_outlined,
+                              AppColor.mainPink,
+                              () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const XrayScreen(),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    // قسم آخر التحاليل والأشعة
-                    Padding(
-                      padding: EdgeInsets.all(16.sp),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "آخر التحاليل والأشعة",
-                                style: TextStyles.font16DarkBlueW500,
-                              ),
-                            ],
-                          ),
-                          16.H,
-                          if (state is MedicalTestsLoaded)
-                            ...state.recentTests
-                                .map((test) => _buildTestCard(context, test)),
-                        ],
-                      ),
+                  ),
+                  // قسم آخر التحاليل والأشعة
+                  Padding(
+                    padding: EdgeInsets.all(16.sp),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              LocaleKeys.recentTests.tr(),
+                              style: TextStyles.font16DarkBlueW500,
+                            ),
+                          ],
+                        ),
+                        16.H,
+                        if (state is MedicalTestsLoaded)
+                          ...state.recentTests
+                              .map((test) => _buildTestCard(context, test)),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             );
           },
@@ -127,9 +124,45 @@ class MedicalTestsScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildServiceCard(
+    String title,
+    IconData icon,
+    Color color,
+    VoidCallback onTap,
+  ) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: 32.sp,
+              color: color,
+            ),
+            8.H,
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w600,
+                color: color,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildTestCard(BuildContext context, Map<String, dynamic> test) {
     final isLabTest = test['type']?.toString().contains('تحليل') ?? false;
-    final isCompleted = test['status'] == 'مكتمل';
+    final isCompleted = test['status'] == LocaleKeys.completed.tr();
 
     return Container(
       margin: EdgeInsets.only(bottom: 12.sp),
@@ -139,10 +172,9 @@ class MedicalTestsScreen extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: AppColor.grey.withValues(alpha: 0.3),
-            // شادو خفيف جدًا
-            spreadRadius: 0.4, // نشر بسيط
-            blurRadius: 4.4, // ضبابية خفيفة
-            offset: Offset(0, 0.4), // ارتفاع بسيط للشادو
+            spreadRadius: 0.4,
+            blurRadius: 4.4,
+            offset: Offset(0, 0.4),
           ),
         ],
       ),
@@ -172,7 +204,7 @@ class MedicalTestsScreen extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
-                  'النتائج غير متاحة بعد',
+                  LocaleKeys.resultsNotAvailable.tr(),
                   style: TextStyle(
                     fontSize: 14.sp,
                     color: Colors.white,
@@ -275,63 +307,6 @@ class MedicalTestsScreen extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildServiceCard(
-    String title,
-    IconData icon,
-    Color color,
-    VoidCallback onTap,
-  ) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColor.white,
-        borderRadius: BorderRadius.circular(12.r),
-        boxShadow: [
-          BoxShadow(
-            color: AppColor.grey.withValues(alpha: 0.3),
-            // شادو خفيف جدًا
-            spreadRadius: 0.4, // نشر بسيط
-            blurRadius: 4.4, // ضبابية خفيفة
-            offset: Offset(0, 0.4), // ارتفاع بسيط للشادو
-          ),
-        ],
-      ),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12.r),
-        child: Container(
-          padding: EdgeInsets.all(16.sp),
-          decoration: BoxDecoration(
-            color: color.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(12.r),
-            border: Border.all(
-              color: color.withOpacity(0.2),
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                size: 32.sp,
-                color: color,
-              ),
-              12.H,
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w600,
-                  color: color,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
         ),
       ),
     );

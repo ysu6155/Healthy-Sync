@@ -30,6 +30,7 @@ class CustomTextField extends StatelessWidget {
   final bool isEnabled;
   final double? borderRadius;
   final IconData? suffixIcon;
+
   const CustomTextField({
     super.key,
     this.hintTextStyle,

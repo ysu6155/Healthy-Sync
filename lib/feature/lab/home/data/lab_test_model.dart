@@ -1,4 +1,4 @@
-import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
+import 'package:healthy_sync/core/widgets/data.dart';
 
 class LabTestPDF {
   final String testName;

@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
-import 'package:healthy_sync/feature/doctors/home/data/prescription_data.dart';
+import 'package:healthy_sync/core/widgets/data.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/prescriptions_list/cubit/prescriptions_list_state.dart';
 
 class PrescriptionsListCubit extends Cubit<PrescriptionsListState> {

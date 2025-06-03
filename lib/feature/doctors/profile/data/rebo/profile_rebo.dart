@@ -60,17 +60,3 @@ class ProfileRepository {
   }
 }
 
-final profile = {
-  'id': '1',
-  'name': SharedHelper.get(SharedKeys.name) ?? "youssef",
-  'specialization':
-      SharedHelper.get(SharedKeys.role) == "admin" ? "معمل" : "طبيب عام",
-  'gender': SharedHelper.get(SharedKeys.gender) ?? "male",
-  "image": SharedHelper.get(SharedKeys.image) ??
-      "https://b.top4top.io/p_3401vpliv1.jpg",
-  'age': '45 سنة',
-  'birthDate': SharedHelper.get(SharedKeys.dateOfBirth) ?? "2025-05-26",
-  'phone': SharedHelper.get(SharedKeys.phone) ?? "01090438638",
-  'email': SharedHelper.get(SharedKeys.email) ?? "youssef@example.com",
-  'bloodType': 'B+',
-};

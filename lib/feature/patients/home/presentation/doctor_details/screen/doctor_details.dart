@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
+import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/widgets/ui_helpers.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/doctor_details/cubit/doctor_details_cubit.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/doctor_details/cubit/doctor_details_state.dart';
@@ -23,7 +25,7 @@ class DoctorDetails extends StatelessWidget {
             appBar: AppBar(
               toolbarHeight: 60.h,
               title: Text(
-                'تفاصيل الطبيب',
+                LocaleKeys.doctorDetails.tr(),
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20.sp,
@@ -57,7 +59,7 @@ class DoctorDetails extends StatelessWidget {
               onPressed: () {
                 context.read<DoctorDetailsCubit>().loadDoctorDetails();
               },
-              child: const Text('إعادة المحاولة'),
+              child: Text(LocaleKeys.retry.tr()),
             ),
           ],
         ),
@@ -219,7 +221,7 @@ class DoctorDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'المواعيد المتاحة',
+              LocaleKeys.appointmentTime.tr(),
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.bold,

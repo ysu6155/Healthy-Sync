@@ -229,4 +229,168 @@ abstract class LocaleKeys {
   static const retry = 'retry';
   static const type = 'type';
   static const selectType = 'selectType';
+  static const diseaseName = 'diseaseName';
+  static const diseaseNameIsRequired = 'diseaseNameIsRequired';
+  static const diagnosisDate = 'diagnosisDate';
+  static const diagnosisDateIsRequired = 'diagnosisDateIsRequired';
+  static const treatment = 'treatment';
+  static const treatmentIsRequired = 'treatmentIsRequired';
+  static const String diseaseAdded = 'diseaseAdded';
+  static const String diseaseDeleted = 'diseaseDeleted';
+  static const String noChronicDiseases = 'noChronicDiseases';
+  static const String addChronicDisease = 'addChronicDisease';
+  static const String deleteConfirm = 'deleteConfirm';
+  static const String deleteDiseaseQuestion = 'deleteDiseaseQuestion';
+  static const String delete = 'delete';
+  static const String womanCycle = 'womanCycle';
+  static const String cycleSettings = 'cycleSettings';
+  static const String cycleLength = 'cycleLength';
+  static const String cycleLengthRequired = 'cycleLengthRequired';
+  static const String periodLength = 'periodLength';
+  static const String periodLengthRequired = 'periodLengthRequired';
+  static const String ovulationLength = 'ovulationLength';
+  static const String ovulationLengthRequired = 'ovulationLengthRequired';
+  static const String cycleTips = 'cycleTips';
+  static const String settingsSaved = 'settingsSaved';
+  static const String trackYourCycle = 'trackYourCycle';
+  static const String trackYourCycleDesc = 'trackYourCycleDesc';
+  static const String healthyHabits = 'healthyHabits';
+  static const String healthyHabitsDesc = 'healthyHabitsDesc';
+  static const String reminders = 'reminders';
+  static const String remindersDesc = 'remindersDesc';
+  static const String selectCycleStartDate = 'selectCycleStartDate';
+  static const String cycleStartDateSaved = 'cycleStartDateSaved';
+  static const String newCycle = 'newCycle';
+  static const String periodLengthDays = 'periodLengthDays';
+  static const String periodDay = 'periodDay';
+  static const String bestOvulationDay = 'bestOvulationDay';
+  static const String ovulationPeriod = 'ovulationPeriod';
+  static const String beforePeriod = 'beforePeriod';
+  static const String normalDay = 'normalDay';
+  static const String cycleHistory = 'cycleHistory';
+  static const String close = 'close';
+  static const String selectedDate = 'selectedDate';
+  static const String today = 'today';
+
+  static String menstrualCycle = "menstrualCycle";
+
+  static String noCycleRegistered = "noCycleRegistered";
+
+  static String currentCycle = "currentCycle";
+
+  static String premenstrualPhase = "premenstrualPhase";
+
+  static String tipStayHydrated = "tipStayHydrated";
+
+  static String tipAvoidColdDrinks = "tipAvoidColdDrinks";
+
+  static String tipLightExercise = "tipLightExercise";
+
+  static String tipIronRichFoods = "tipIronRichFoods";
+
+  static String tipGetRest = "tipGetRest";
+
+  static String recommendations = "recommendations";
+
+  static String diagnosis = "diagnosis";
+
+  static String experienceYears = "experienceYears";
+
+  static String testDate = "testDate";
+
+  static String confirmTest = "confirmTest";
+
+  static String remaining = "remaining";
+
+  static String pills = "pills";
+
+  static String confirmIntake = "confirmIntake";
+
+  static String takenAt = "takenAt";
+
+  static const String medicalTests = 'medicalTests';
+  static const String labTests = 'labTests';
+  static const String xrayTests = 'xrayTests';
+  static const String recentTests = 'recentTests';
+  static const String bloodTest = 'bloodTest';
+  static const String urineTest = 'urineTest';
+  static const String stoolTest = 'stoolTest';
+  static const String xray = 'xray';
+  static const String mri = 'mri';
+  static const String ctScan = 'ctScan';
+  static const String completed = 'completed';
+  static const String pending = 'pending';
+  static const String resultsNotAvailable = 'resultsNotAvailable';
+  static const String testType = 'testType';
+  //static const String testDate = 'testDate';
+  //static const String doctor = 'doctor';
+  static const String testName = 'testName';
+  static const String testStatus = 'testStatus';
+  static const String testDetails = 'testDetails';
+  //static const String testResults = 'testResults';
+  static const String testNotes = 'testNotes';
+  static const String testRecommendations = 'testRecommendations';
+  static const String testAttachments = 'testAttachments';
+  static const String testHistory = 'testHistory';
+  static const String testSchedule = 'testSchedule';
+  static const String testLocation = 'testLocation';
+  static const String testCost = 'testCost';
+  static const String testInsurance = 'testInsurance';
+  static const String testPreparation = 'testPreparation';
+  static const String testDuration = 'testDuration';
+  static const String testRisks = 'testRisks';
+  static const String testBenefits = 'testBenefits';
+  static const String testAlternatives = 'testAlternatives';
+  static const String testFollowUp = 'testFollowUp';
+  static const String testQuestions = 'testQuestions';
+  static const String testAnswers = 'testAnswers';
+  static const String testResources = 'testResources';
+  static const String testSupport = 'testSupport';
+  static const String testEducation = 'testEducation';
+  static const String testResearch = 'testResearch';
+  static const String testNews = 'testNews';
+  static const String testEvents = 'testEvents';
+  static const String testCommunity = 'testCommunity';
+  static const String testFeedback = 'testFeedback';
+  static const String testRating = 'testRating';
+  static const String testReview = 'testReview';
+  static const String testShare = 'testShare';
+  static const String testPrint = 'testPrint';
+  static const String testDownload = 'testDownload';
+  static const String testEmail = 'testEmail';
+  static const String testSms = 'testSms';
+  static const String testCall = 'testCall';
+  static const String testChat = 'testChat';
+  static const String testVideo = 'testVideo';
+  static const String testAudio = 'testAudio';
+  static const String testImage = 'testImage';
+  static const String testDocument = 'testDocument';
+  static const String testLink = 'testLink';
+  static const String testQR = 'testQR';
+  static const String testBarcode = 'testBarcode';
+  static const String testNFC = 'testNFC';
+  static const String testBluetooth = 'testBluetooth';
+  static const String testWifi = 'testWifi';
+  static const String testGPS = 'testGPS';
+  static const String testSensor = 'testSensor';
+  static const String testDevice = 'testDevice';
+  static const String testApp = 'testApp';
+  static const String testWeb = 'testWeb';
+  static const String testCloud = 'testCloud';
+  static const String testAI = 'testAI';
+  static const String testML = 'testML';
+  static const String testBlockchain = 'testBlockchain';
+  static const String testIoT = 'testIoT';
+  static const String testAR = 'testAR';
+  static const String testVR = 'testVR';
+  static const String testMR = 'testMR';
+  static const String testXR = 'testXR';
+  static const String test3D = 'test3D';
+  static const String test4D = 'test4D';
+  static const String test5D = 'test5D';
+  static const String test6D = 'test6D';
+  static const String test7D = 'test7D';
+  static const String test8D = 'test8D';
+  static const String test9D = 'test9D';
+  static const String test10D = 'test10D';
 }

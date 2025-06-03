@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
+import 'package:healthy_sync/core/widgets/data.dart';
 
 class LabTestPDF {
   final String testName;

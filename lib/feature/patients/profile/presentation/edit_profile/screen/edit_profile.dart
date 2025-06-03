@@ -13,8 +13,9 @@ import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
 import 'package:healthy_sync/core/widgets/ui_helpers.dart';
-import 'package:healthy_sync/feature/authentication/presentation/cubit/signup_cubit/signup_cubit.dart';
+import 'package:healthy_sync/feature/authentication/presentation/signup/cubit/signup_cubit.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/profile/cubit/profile_cubit.dart';
+import 'package:healthy_sync/feature/patients/profile/presentation/profile/cubit/profile_state.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditProfile extends StatelessWidget {

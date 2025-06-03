@@ -1,4 +1,4 @@
-import 'package:healthy_sync/feature/doctors/home/data/prescription_data.dart';
+import 'package:healthy_sync/core/widgets/data.dart';
 
 abstract class PrescriptionsListState {}
 

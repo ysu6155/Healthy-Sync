@@ -11,6 +11,21 @@ class RegisterParams {
   String? profilePhoto;
   List<String>? chronicDiseases;
   String? city;
+  String? address;
+  String? phone1;
+  String? phone2;
+  String? image;
+  String? description;
+  String? rating;
+  List<String>? appointments;
+  List<String>? medicalHistory;
+  List<String>? allergies;
+  List<String>? medications;
+  List<String>? medicalRecords;
+  List<String>? lastVisit;
+  List<String>? prescriptions;
+  Map<String, dynamic>? other;
+  String? experience;
 
   RegisterParams(
       {this.name,

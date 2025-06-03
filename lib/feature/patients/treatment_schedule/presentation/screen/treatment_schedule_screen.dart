@@ -7,6 +7,7 @@ import 'package:healthy_sync/core/constants/app_assets.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/widgets/ui_helpers.dart';
 import 'package:healthy_sync/feature/patients/treatment_schedule/presentation/cubit/treatment_schedule_cubit.dart';
+import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 
 class TreatmentScheduleScreen extends StatelessWidget {
   const TreatmentScheduleScreen({super.key});
@@ -47,7 +48,7 @@ class _TreatmentScheduleViewState extends State<_TreatmentScheduleView> {
         toolbarHeight: 48.sp,
         backgroundColor: AppColor.white,
         title: Text(
-          'الجدول العلاجي',
+          LocaleKeys.treatmentSchedule.tr(),
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp),
         ),
         centerTitle: true,
@@ -73,7 +74,7 @@ class _TreatmentScheduleViewState extends State<_TreatmentScheduleView> {
                     onPressed: () {
                       context.read<TreatmentScheduleCubit>().loadSchedules();
                     },
-                    child: Text('إعادة المحاولة'),
+                    child: Text(LocaleKeys.retry.tr()),
                   ),
                 ],
               ),
@@ -103,7 +104,7 @@ class _TreatmentScheduleViewState extends State<_TreatmentScheduleView> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              DateFormat('EEEE', 'ar').format(_selectedDate),
+                              DateFormat('EEEE').format(_selectedDate),
                               style: TextStyle(
                                 fontSize: 18.sp,
                                 fontWeight: FontWeight.bold,
@@ -111,8 +112,7 @@ class _TreatmentScheduleViewState extends State<_TreatmentScheduleView> {
                             ),
                             SizedBox(height: 4.h),
                             Text(
-                              DateFormat('d MMMM yyyy', 'ar')
-                                  .format(_selectedDate),
+                              DateFormat('d MMMM yyyy').format(_selectedDate),
                               style: TextStyle(fontSize: 14.sp),
                             ),
                           ],
@@ -145,7 +145,7 @@ class _TreatmentScheduleViewState extends State<_TreatmentScheduleView> {
                               ),
                               child: Center(
                                 child: Text(
-                                  'الأدوية',
+                                  LocaleKeys.medications.tr(),
                                   style: TextStyle(
                                     color: _currentTabIndex == 0
                                         ? AppColor.white
@@ -174,7 +174,7 @@ class _TreatmentScheduleViewState extends State<_TreatmentScheduleView> {
                               ),
                               child: Center(
                                 child: Text(
-                                  'التحاليل',
+                                  LocaleKeys.tests.tr(),
                                   style: TextStyle(
                                     color: _currentTabIndex == 1
                                         ? AppColor.white
@@ -293,12 +293,19 @@ class _MedicationCard extends StatelessWidget {
                         ),
                         SizedBox(width: 4.w),
                         Text(
-                          'تم التناول في ${DateFormat('HH:mm').format(medication['lastTaken'])}',
+                          tr(LocaleKeys.takenAt),
                           style: TextStyle(
                             color: Colors.green,
                             fontSize: 12.sp,
                           ),
                         ),
+                        Text(
+                          DateFormat('HH:mm').format(medication['lastTaken']),
+                          style: TextStyle(
+                            color: Colors.green,
+                            fontSize: 12.sp,
+                          ),
+                        )
                       ],
                     ),
                   )
@@ -307,7 +314,7 @@ class _MedicationCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "تاكيد التناول",
+                        LocaleKeys.confirmIntake.tr(),
                         style: TextStyle(
                           color: AppColor.mainPink,
                           fontWeight: FontWeight.bold,
@@ -343,7 +350,7 @@ class _MedicationCard extends StatelessWidget {
                     color: AppColor.mainBlue.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12.r),
                   ),
-                  child: medication['medicationType'] == "حبوب"
+                  child: medication['medicationType'] == tr(LocaleKeys.pills)
                       ? SvgPicture.asset(
                           AppAssets.pillsSvg,
                           height: 20.sp,
@@ -372,7 +379,7 @@ class _MedicationCard extends StatelessWidget {
                 SizedBox(width: 16.w),
                 _buildInfoItem(
                   Icons.medication,
-                  '${medication['remaining']} متبقية',
+                  '${medication['remaining']} ${LocaleKeys.remaining.tr()}',
                 ),
               ],
             ),
@@ -428,7 +435,7 @@ class _TestCard extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        'تأكيد التحليل',
+                        LocaleKeys.confirmTest.tr(),
                         style: TextStyle(
                           color: AppColor.mainPink,
                           fontSize: 14.sp,
@@ -465,7 +472,7 @@ class _TestCard extends StatelessWidget {
             SizedBox(height: 12.h),
             _buildInfoItem(
               Icons.calendar_today,
-              'موعد التحليل: ${test['date']}',
+              '${LocaleKeys.testDate.tr()}: ${test['date']}',
             ),
             SizedBox(height: 8.h),
           ],

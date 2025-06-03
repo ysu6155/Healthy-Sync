@@ -10,8 +10,9 @@ import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/widgets/custom_button.dart';
 import 'package:healthy_sync/core/widgets/custom_text_field.dart';
-import 'package:healthy_sync/feature/authentication/presentation/cubit/login_cubit/login_cubit.dart';
+import 'package:healthy_sync/feature/authentication/presentation/login/cubit/login_cubit.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/profile/cubit/profile_cubit.dart';
+import 'package:healthy_sync/feature/patients/profile/presentation/profile/cubit/profile_state.dart';
 import 'package:lottie/lottie.dart';
 
 class UpdatePassword extends StatelessWidget {
@@ -109,7 +110,7 @@ class UpdatePasswordView extends StatelessWidget {
                   hintText: LocaleKeys.newPassword.tr(),
                   isPassword: true,
                 ),
-                Gap(26),
+                const Gap(26),
                 CustomTextField(
                   isPasswordVisible: loginCubit.isPasswordVisible,
                   togglePasswordVisibility: () {
@@ -126,9 +127,9 @@ class UpdatePasswordView extends StatelessWidget {
                   hintText: LocaleKeys.confirmNewPassword.tr(),
                   isPassword: true,
                 ),
-                Gap(40),
+                const Gap(40),
                 state is ProfileUpdateLoading
-                    ? Center(child: CircularProgressIndicator())
+                    ? const Center(child: CircularProgressIndicator())
                     : CustomButton(
                         name: LocaleKeys.changePassword.tr(),
                         onTap: () {

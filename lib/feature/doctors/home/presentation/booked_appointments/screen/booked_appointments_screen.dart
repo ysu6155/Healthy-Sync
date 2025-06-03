@@ -6,13 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
+import 'package:healthy_sync/core/widgets/data.dart';
 import 'package:healthy_sync/core/widgets/ui_helpers.dart';
-import 'package:healthy_sync/feature/doctors/home/data/appointment_data.dart';
-import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/booked_appointments/cubit/booked_appointments_cubit.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/booked_appointments/cubit/booked_appointments_state.dart';
-import 'package:healthy_sync/feature/doctors/profile/data/rebo/profile_rebo.dart';
-import 'package:intl/intl.dart';
 
 class BookedAppointmentsScreen extends StatelessWidget {
   const BookedAppointmentsScreen({super.key});

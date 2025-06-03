@@ -7,10 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_sync/core/service/local/shared_helper.dart';
+import 'package:healthy_sync/core/widgets/data.dart';
 import 'package:healthy_sync/feature/patients/profile/data/rebo/profile_rebo.dart';
+import 'package:healthy_sync/feature/patients/profile/presentation/profile/cubit/profile_state.dart';
 import 'package:healthy_sync/feature/welcome/presentation/screens/intro/intro_screen.dart';
 
-part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(ProfileInitial());
@@ -25,17 +26,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       // Simulate network delay
       await Future.delayed(const Duration(seconds: 1));
 
-      final profile = {
-        'id': '1',
-        'name': 'أحمد محمد',
-        'gender': 'ذكر',
-        "image": "https://via.placeholder.com/150",
-        'age': '45 سنة',
-        'birthDate': '45',
-        'phone': '+966 50 123 4567',
-        'email': 'ahmed@example.com',
-        'bloodType': 'O+',
-      };
+  
 
       emit(ProfileLoaded(profile: profile));
     } catch (e) {

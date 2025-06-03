@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/themes/styles.dart';
-import 'package:healthy_sync/feature/doctors/home/data/patient_data.dart';
+import 'package:healthy_sync/core/widgets/data.dart';
 
 class CardPatient extends StatelessWidget {
   const CardPatient({

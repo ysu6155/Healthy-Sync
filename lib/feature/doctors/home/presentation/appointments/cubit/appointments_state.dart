@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:healthy_sync/feature/doctors/home/data/appointment_data.dart';
+import 'package:healthy_sync/core/widgets/data.dart';
 
 abstract class AppointmentsState extends Equatable {
   const AppointmentsState();

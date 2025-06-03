@@ -84,7 +84,7 @@ class DoctorVisitScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          // معلومات الطبيب
+          // Doctor Information
           Container(
             margin: EdgeInsets.fromLTRB(12.sp, 8.sp, 12.sp, 4.sp),
             decoration: BoxDecoration(
@@ -107,7 +107,7 @@ class DoctorVisitScreen extends StatelessWidget {
             ),
             child: Stack(
               children: [
-                // عناصر زخرفية
+                // Decorative elements
                 Positioned(
                   right: -15.w,
                   top: -15.h,
@@ -132,7 +132,7 @@ class DoctorVisitScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                // محتوى معلومات الطبيب
+                // Doctor information content
                 Padding(
                   padding: EdgeInsets.all(14.sp),
                   child: Column(
@@ -140,7 +140,7 @@ class DoctorVisitScreen extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // صورة الطبيب
+                          // Doctor image
                           Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
@@ -169,7 +169,7 @@ class DoctorVisitScreen extends StatelessWidget {
                             ),
                           ),
                           10.W,
-                          // معلومات الطبيب
+                          // Doctor details
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -203,14 +203,14 @@ class DoctorVisitScreen extends StatelessWidget {
                                   ),
                                 ),
                                 10.H,
-                                // معلومات إضافية
+                                // Additional info
                                 Row(
                                   children: [
                                     Expanded(
                                       child: _buildDoctorInfoItem(
                                         Icons.star,
                                         visit.rating.toString(),
-                                        "التقييم",
+                                        tr(LocaleKeys.rating),
                                       ),
                                     ),
                                     8.W,
@@ -218,13 +218,13 @@ class DoctorVisitScreen extends StatelessWidget {
                                       child: _buildDoctorInfoItem(
                                         Icons.work_outline,
                                         "${visit.experienceYears}+",
-                                        "سنوات الخبرة",
+                                        tr(LocaleKeys.experienceYears),
                                       ),
                                     ),
                                   ],
                                 ),
                                 10.H,
-                                // رقم الهاتف
+                                // Phone number
                                 Container(
                                   width: 1.sw,
                                   padding: EdgeInsets.symmetric(
@@ -278,7 +278,7 @@ class DoctorVisitScreen extends StatelessWidget {
               ],
             ),
           ),
-          // باقي المحتوى
+          // Rest of content
           Padding(
             padding: EdgeInsets.fromLTRB(12.sp, 0, 12.sp, 12.sp),
             child: Column(
@@ -307,17 +307,17 @@ class DoctorVisitScreen extends StatelessWidget {
         children: [
           _buildInfoRow(
             Icons.access_time,
-            "${LocaleKeys.time.tr()}: ${visit.time}",
+            "${tr(LocaleKeys.time)}: ${visit.time}",
           ),
           12.H,
           _buildInfoRow(
             Icons.calendar_today,
-            "${LocaleKeys.date.tr()}: ${visit.date}",
+            "${tr(LocaleKeys.date)}: ${visit.date}",
           ),
           12.H,
           _buildInfoRow(
             Icons.health_and_safety,
-            "${LocaleKeys.status.tr()}: ${visit.status}",
+            "${tr(LocaleKeys.status)}: ${visit.status}",
             iconColor: AppColor.green,
             textColor: AppColor.green,
           ),
@@ -328,7 +328,7 @@ class DoctorVisitScreen extends StatelessWidget {
 
   Widget _buildDiagnosisCard(DoctorVisit visit) {
     return _buildCard(
-      title: "التشخيص",
+      title: tr(LocaleKeys.diagnosis),
       icon: Icons.medical_information_outlined,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -353,7 +353,7 @@ class DoctorVisitScreen extends StatelessWidget {
           ),
           16.H,
           Text(
-            LocaleKeys.symptoms.tr(),
+            tr(LocaleKeys.symptoms),
             style: TextStyles.font16DarkBlueW500,
           ),
           8.H,
@@ -382,7 +382,7 @@ class DoctorVisitScreen extends StatelessWidget {
 
   Widget _buildTreatmentCard(DoctorVisit visit) {
     return _buildCard(
-      title: "العلاج",
+      title: tr(LocaleKeys.treatment),
       icon: Icons.medical_services_outlined,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -407,7 +407,7 @@ class DoctorVisitScreen extends StatelessWidget {
           ),
           16.H,
           Text(
-            LocaleKeys.medicine.tr(),
+            tr(LocaleKeys.medications),
             style: TextStyles.font16DarkBlueW500,
           ),
           8.H,
@@ -421,7 +421,7 @@ class DoctorVisitScreen extends StatelessWidget {
 
   Widget _buildRecommendationsCard(DoctorVisit visit) {
     return _buildCard(
-      title: "التوصيات",
+      title: tr(LocaleKeys.recommendations),
       icon: Icons.lightbulb_outline,
       child: Column(
         children: visit.recommendations
@@ -430,7 +430,7 @@ class DoctorVisitScreen extends StatelessWidget {
       ),
     );
   }
-
+  
   Widget _buildCard({
     required String title,
     required IconData icon,
@@ -621,3 +621,7 @@ class DoctorVisitScreen extends StatelessWidget {
     );
   }
 }
+
+  // ... [Keep all other helper methods exactly the same]
+  // _buildCard, _buildInfoRow, _buildMedicationItem, 
+  // _buildRecommendationItem, _buildDoctorInfoItem

@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:healthy_sync/feature/doctors/home/data/data.dart';
+import 'package:healthy_sync/core/widgets/data.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/specializations/cubit/specializations_state.dart';
 
 class SpecializationsCubit extends Cubit<SpecializationsState> {

@@ -4,6 +4,7 @@ import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/feature/patients/home/data/models/doctor_visit.dart';
 import 'package:healthy_sync/feature/patients/home/presentation/doctor_visit/screen/doctor_visit_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DoctorVisitCard extends StatelessWidget {
   final DoctorVisit visit;
@@ -36,7 +37,7 @@ class DoctorVisitCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // خلفية زخرفية
+          // Decorative background
           Positioned(
             right: -20.w,
             top: -20.h,
@@ -61,7 +62,7 @@ class DoctorVisitCard extends StatelessWidget {
               ),
             ),
           ),
-          // المحتوى
+          // Content
           Padding(
             padding: EdgeInsets.all(16.sp),
             child: Column(
@@ -87,7 +88,7 @@ class DoctorVisitCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "آخر زيارة",
+                            tr("last_visit"),
                             style: TextStyle(
                               fontSize: 14.sp,
                               color: Colors.white,
@@ -147,7 +148,7 @@ class DoctorVisitCard extends StatelessWidget {
                           ),
                           8.W,
                           Text(
-                            "تاريخ الزيارة:",
+                            tr("visit_date") + ":",
                             style: TextStyle(
                               fontSize: 14.sp,
                               color: Colors.white,
@@ -179,7 +180,7 @@ class DoctorVisitCard extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "التشخيص:",
+                                  tr("diagnosis") + ":",
                                   style: TextStyle(
                                     fontSize: 14.sp,
                                     color: Colors.white,

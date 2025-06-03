@@ -14,6 +14,7 @@ import 'package:healthy_sync/feature/patients/profile/presentation/bmi/screen/bm
 import 'package:healthy_sync/feature/patients/profile/presentation/chronic_diseases/screen/chronic_diseases_screen.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/profile/cubit/profile_cubit.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/edit_profile/screen/edit_profile.dart';
+import 'package:healthy_sync/feature/patients/profile/presentation/profile/cubit/profile_state.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/update_password/screen/update_password.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/woman_cycle/cubit/woman_cycle_cubit.dart';
 import 'package:healthy_sync/feature/patients/profile/presentation/woman_cycle/screens/woman_cycle_screen.dart';
@@ -132,14 +133,14 @@ class _ProfilePatientScreenState extends State<ProfilePatientScreen> {
                                     ),
                                   ),
                                   Text(
-                                    state.profile['email'] ?? "",
+                                    "${LocaleKeys.email.tr()} : ${state.profile['email']}",
                                     style: TextStyle(
                                       fontSize: 14.sp,
                                       color: AppColor.grey,
                                     ),
                                   ),
                                   Text(
-                                    state.profile['phone'] ?? "",
+                                    "${LocaleKeys.phone.tr()} : ${state.profile['phone']}",
                                     style: TextStyle(
                                       fontSize: 14.sp,
                                       color: AppColor.grey,
@@ -204,15 +205,15 @@ class _ProfilePatientScreenState extends State<ProfilePatientScreen> {
                       ),
 
                       ProfileItem(
-                        title: "الامراض المزمنه",
+                        title: LocaleKeys.chronicDiseases.tr(),
                         onTap: () {
-                          context.push(ChronicDiseasesScreen());
+                          context.push(const ChronicDiseasesScreen());
                         },
                         icon: Icons.medical_services,
                       ),
                       //  if (state.profile['gender'] == "أنثي")
                       ProfileItem(
-                        title: "هيّا ",
+                        title: LocaleKeys.femaleGender.tr(),
                         icon: Icons.monitor_weight,
                         onTap: () => {
                           context.push(
@@ -229,7 +230,7 @@ class _ProfilePatientScreenState extends State<ProfilePatientScreen> {
                       ),
                       // if (SharedHelper.get(SharedKeys.gender) == "male")
                       ProfileItem(
-                        title: "BMI الكتل العضليه",
+                        title: LocaleKeys.BMIcalculator.tr(),
                         icon: Icons.monitor_weight,
                         onTap: () => {
                           Navigator.push(
@@ -274,7 +275,7 @@ class _ProfilePatientScreenState extends State<ProfilePatientScreen> {
                         title: LocaleKeys.logout.tr(),
                         icon: Icons.logout,
                         onTap: () {
-                          SharedHelper.removeKey(SharedKeys.kToken);
+                          SharedHelper.clear();
                           context.pushAndRemoveUntil(IntroScreen());
                         },
                       ),

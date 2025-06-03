@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:healthy_sync/core/themes/app_color.dart';
-import 'package:healthy_sync/feature/doctors/home/data/data.dart';
-
+import 'package:healthy_sync/core/widgets/data.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HealthTips extends StatefulWidget {

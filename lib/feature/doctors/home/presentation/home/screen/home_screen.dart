@@ -11,6 +11,7 @@ import 'package:healthy_sync/core/themes/styles.dart';
 import 'package:healthy_sync/core/translations/locale_keys.g.dart';
 import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
+import 'package:healthy_sync/core/widgets/data.dart';
 import 'package:healthy_sync/core/widgets/ui_helpers.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/patient_details/cubit/patient_details_cubit.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/patient_details/screen/patient_details_screen.dart';
@@ -18,7 +19,6 @@ import 'package:healthy_sync/feature/doctors/home/presentation/widgets/card_pati
 import 'package:healthy_sync/feature/doctors/home/presentation/home/cubit/home_cubit.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/home/cubit/home_state.dart';
 import 'package:healthy_sync/feature/doctors/home/presentation/qr_scanner/screen/qr_scanner_screen.dart';
-import 'package:healthy_sync/feature/doctors/profile/data/rebo/profile_rebo.dart';
 
 class HomeDoctorScreen extends StatefulWidget {
   const HomeDoctorScreen({super.key});

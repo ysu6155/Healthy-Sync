@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:healthy_sync/core/service/local/shared_helper.dart';
 import 'package:flutter/services.dart';
 
-import 'package:healthy_sync/healthy_sync.dart';
 import 'package:healthy_sync/core/constants/app_assets.dart';
+import 'package:healthy_sync/health_sync.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +24,7 @@ void main() async {
       fallbackLocale: Locale('en'),
       startLocale: Locale("ar"),
 
-      child: HealthySync(),
+      child: const HealthSync(),
     ),
   );
 }

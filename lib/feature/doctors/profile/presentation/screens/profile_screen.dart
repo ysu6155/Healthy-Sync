@@ -11,6 +11,8 @@ import 'package:healthy_sync/core/themes/app_color.dart';
 import 'package:healthy_sync/core/helpers/extensions.dart';
 import 'package:healthy_sync/core/widgets/ui_helpers.dart';
 import 'package:healthy_sync/core/widgets/profile_item.dart';
+import 'package:healthy_sync/feature/authentication/presentation/login/cubit/login_cubit.dart';
+import 'package:healthy_sync/feature/authentication/presentation/signup/cubit/signup_cubit.dart';
 import 'package:healthy_sync/feature/doctors/profile/presentation/cubit/profile_cubit.dart';
 import 'package:healthy_sync/feature/doctors/profile/presentation/screens/edit_profile.dart';
 import 'package:healthy_sync/feature/doctors/profile/presentation/screens/update_password.dart';
@@ -139,7 +141,7 @@ class _ProfileDoctorScreenState extends State<ProfileDoctorScreen> {
                                     ),
                                   ),
                                   Text(
-                                    state.profile['email'] ?? "",
+                                    " Email : ${state.profile['email']}",
                                     style: TextStyle(
                                       fontSize: 14.sp,
                                       color: AppColor.grey,
@@ -171,14 +173,34 @@ class _ProfileDoctorScreenState extends State<ProfileDoctorScreen> {
                         title: LocaleKeys.editProfile.tr(),
                         icon: Icons.person,
                         onTap: () {
-                          context.push(const EditProfile());
+                          context.push(MultiBlocProvider(
+                            providers: [
+                              BlocProvider(
+                                create: (context) => SignUpCubit(),
+                              ),
+                              BlocProvider(
+                                create: (context) => ProfileCubit(),
+                              ),
+                            ],
+                            child: EditProfile(),
+                          ));
                         },
                       ),
                       ProfileItem(
                         title: LocaleKeys.changePassword.tr(),
                         icon: Icons.password,
                         onTap: () {
-                          context.push(const UpdatePassword());
+                          context.push(MultiBlocProvider(
+                            providers: [
+                              BlocProvider(
+                                create: (context) => LoginCubit(),
+                              ),
+                              BlocProvider(
+                                create: (context) => ProfileCubit(),
+                              ),
+                            ],
+                            child: const UpdatePassword(),
+                          ));
                         },
                       ),
                       ProfileItem(
@@ -199,7 +221,7 @@ class _ProfileDoctorScreenState extends State<ProfileDoctorScreen> {
                         title: LocaleKeys.logout.tr(),
                         icon: Icons.logout,
                         onTap: () {
-                          SharedHelper.removeKey(SharedKeys.kToken);
+                          SharedHelper.clear();
                           context.pushAndRemoveUntil(IntroScreen());
                         },
                       ),
